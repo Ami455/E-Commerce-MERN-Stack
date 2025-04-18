@@ -1,20 +1,25 @@
-const user = require('../models/user.model');
+const User = require('../models/user.model');
 
 const findAllUsers = async(req, res) => {
-    const users= await user.findAll()
+    const users= await User.findAll()
+    res.json(users)
+    // console.log('all user')
 
 }
 
 const findUserById = async (req, res) => {
-const user= await user.findByPk(req.params.id)
+const user= await User.findByPk(req.params.id)
 }
+
 const createUser = async (req, res) => {
+    console.log('created')
     const data = req.body
-    const user = await user.create(data) 
+    const user = await User.create(data) 
+    res.json(user)
 }
 const updateUser = async (req, res) => {
     const data = req.body
-    const user = await user.update(data, {
+    const user = await User.update(data, {
         where: {
             id: req.params.id
         }
@@ -22,7 +27,7 @@ const updateUser = async (req, res) => {
 }
 const deleteUser = async (req, res) => {
 const user_id = req.params.id
-const user = await user.update({isActive:false}, {
+const user = await User.update({isActive:false}, {
     where: {
         id: req.params.id
     }
