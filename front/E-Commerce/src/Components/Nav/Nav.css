@@ -1,0 +1,53 @@
+
+.navbar{
+    position: fixed;
+    inset: 0 0 90% 0;
+    display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: blanchedalmond;
+  padding:0.7rem 2rem;
+  
+  }
+  .navRSection{
+    /* background-color: aqua; */
+    width: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+  }
+  
+  .links{
+  background-color: #0E1C3C;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  
+  }
+  .navUl{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  /* background-color: aquamarine; */
+  }
+  
+  ul{
+    list-style: none;
+    gap: 1rem;
+  padding: 0.7rem;
+  }
+  
+  
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
+  .navButtons button{
+    padding: 1em;
+    font-size: 1em;
+    background-color: var(--main-color);
+    border: none;
+  }
+  
