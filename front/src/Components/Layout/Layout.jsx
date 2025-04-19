@@ -1,11 +1,11 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import Nav from  "../Nav/Nav"
+import NavComponent from '../Nav/Nav.Component.jsx'
 
 export default function Layout() {
   return (
     <div>
-        <Nav/>
+        <NavComponent/>
         <Outlet/>
         
     </div>

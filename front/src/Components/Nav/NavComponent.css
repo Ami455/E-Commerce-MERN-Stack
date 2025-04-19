@@ -1,17 +1,18 @@
 
-.navbar{
-    position: fixed;
-    inset: 0 0 90% 0;
-    display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+.bar{
+    /* position: fixed;
+    inset: 0 0 90% 0; */
+    /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: space-between;
+  align-items: center; */
   background-color: blanchedalmond;
-  padding:0.7rem 2rem;
+  /* padding:0.7rem 2rem; */
   
   }
-  .navRSection{
-    /* background-color: aqua; */
+  
+  /* .navRSection{
+    
     width: 30%;
   display: flex;
   justify-content: space-around;
@@ -30,10 +31,10 @@
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
-  /* background-color: aquamarine; */
+  
   }
   
-  ul{
+   ul{
     list-style: none;
     gap: 1rem;
   padding: 0.7rem;
@@ -50,4 +51,4 @@
     background-color: var(--main-color);
     border: none;
   }
-  
+    */
