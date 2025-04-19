@@ -6,13 +6,16 @@ const bodyParser = require("body-parser")
 const userRouter = require("./routes/user.route")
 const {errorHandler} = require('./middleware/errorHandler.middleware')
 const sequelize = require("./db/sql.db.config")
+const authRouter = require('./routes/auth.route')
 
+app.use(errorHandler)
 app.use(morgan("dev"))
 app.use(bodyParser.json())
 app.use('/user', userRouter)
-app.use(errorHandler)
+app.use('/auth',authRouter)
 
-app.listen(port ,async(e)=>{
+
+app.listen(port ,async()=>{
     try {
         await sequelize.authenticate();
 

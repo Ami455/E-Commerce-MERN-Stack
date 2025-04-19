@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const authMiddleware = require("../middleware/auth.middleware")
 const {tryCatchWrapper} = require('../middleware/errorHandler.middleware')
 const {findAllUsers,
     findUserById,
@@ -8,9 +9,9 @@ const {findAllUsers,
 
 
 router.get('/', tryCatchWrapper(findAllUsers))
-router.get('/:id', tryCatchWrapper(findUserById))
-router.post('/', tryCatchWrapper(createUser))
-router.put('/:id', tryCatchWrapper (updateUser))
-router.delete('/:id',tryCatchWrapper( deleteUser))
+router.get('/:id',authMiddleware, tryCatchWrapper(findUserById))
+router.post('/',authMiddleware, tryCatchWrapper(createUser))
+router.put('/:id',authMiddleware, tryCatchWrapper (updateUser))
+router.delete('/:id',authMiddleware, tryCatchWrapper( deleteUser))
 
 module.exports = router

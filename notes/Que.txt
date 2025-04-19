@@ -1,0 +1,12 @@
+use (res.status(400) or throw new error)
+
+create role schema ?
+
+when should we use error.details[0].message ?
+
+when use ( ...id , ...body ) and when (...body,id) ?
+
+how to share database between our group ?
+
+auth middlerware for all user function ? (like findAll, findbyid , post)
+
