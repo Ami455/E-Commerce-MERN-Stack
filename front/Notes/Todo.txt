@@ -1,0 +1,17 @@
+Todo:
+1- dashboard of admin
+2- crud in front
+3- display products (/products)
+4- connection between front and back (cors)
+
+
+
+
+
+Done:
+navbar
+login (with background)
+register
+card
+
+
