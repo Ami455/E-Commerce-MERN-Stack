@@ -1,0 +1,11 @@
+.register-background {
+    background-image: url('https://images2.alphacoders.com/647/647567.jpg');
+    background-size: cover;
+    background-position: center;
+flex:1;
+height: 92vh;
+overflow: auto;
+padding: 10rem;
+
+  }
+  

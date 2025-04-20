@@ -9,14 +9,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Login from './Components/Login/login.jsx'
+import Register from './Components/Register/Register.jsx'
+
 
   let router = createBrowserRouter([{
     path: '/',element:<Layout/>,children:[
       {index:true,element:<App/>},
       {path: '/category',element:<Category/>,children:[
         {path: 'products',element:<Products/>},     /*todo:add categories as childen or a query*/
-      ]}
-      // {path: '/about',element:<Favorite/>},
+      ]},
+       {path: '/login',element:<Login/>},
+       {path: '/register',element:<Register/>},
       // {path: '/cart',element:<Cart/>},
       // {path: '/favorites',element:<Favorites/>},
       // {path: '*',element:<Error/>},

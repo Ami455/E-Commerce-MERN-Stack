@@ -4,10 +4,12 @@ import NavComponent from '../Nav/Nav.Component.jsx'
 
 export default function Layout() {
   return (
-    <div>
+    <>
         <NavComponent/>
-        <Outlet/>
         
-    </div>
+          <Outlet/>
+       
+        
+    </>
   )
 }
