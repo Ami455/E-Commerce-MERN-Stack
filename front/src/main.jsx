@@ -3,17 +3,18 @@ import { createRoot } from 'react-dom/client'
 
 import App from './App.jsx'
 import Layout from "./Components/Layout/Layout.jsx"
-import Products from "./Components/Category/Products/Product.jsx"
+import Products from "./Components/Category/Products/Products.jsx"
 import Category from "./Components/Category/Category.jsx"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Login from './Components/Login/login.jsx'
+import Login from './Components/Login/Login.jsx'
 import Register from './Components/Register/Register.jsx'
 import Admin from './Components/Admin/Admin.jsx'
 import Add from './Components/Admin/Add/Add.jsx'
 import List from './Components/Admin/List/List.jsx'
+import User from './Components/Admin/Users/User.jsx'
 
 
   let router = createBrowserRouter([{
@@ -24,6 +25,7 @@ import List from './Components/Admin/List/List.jsx'
       ]},
       {path: '/login',element:<Login/>},
       {path: '/register',element:<Register/>},
+      {path: '/auth',element:<User/>},
       {path:'/admin',element:<Admin/>,children:[
         {path:'add',element:<Add/>},
         {path:'list',element:<List/>}

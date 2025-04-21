@@ -4,7 +4,7 @@ import "./App.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
 import {  faCartShopping, faHeart, faUser } from '@fortawesome/free-solid-svg-icons'
-import ListAndEditItems from './Components/Admin/ListAndEditItems';
+import List from './Components/Admin/List/List';
 
 
 export default function () {
@@ -31,7 +31,7 @@ position:"relative",
         background: 'lightblue',
         padding: '40px'
       }}>
-    <ListAndEditItems/>
+    <List/>
     </main>
    
     </>

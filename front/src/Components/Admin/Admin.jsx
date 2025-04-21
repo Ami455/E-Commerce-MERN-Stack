@@ -24,7 +24,7 @@ export default function Admin() {
                         </Nav.Item>
                     </Nav>
                 </Col>
-                <Col sm={10}>
+                <Col sm={10} className='p-5'>
                     <Outlet />
                 </Col>
             </Row>

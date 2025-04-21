@@ -9,9 +9,9 @@ const {findAllUsers,
 
 
 router.get('/', tryCatchWrapper(findAllUsers))
-router.get('/:id',authMiddleware, tryCatchWrapper(findUserById))
-router.post('/',authMiddleware, tryCatchWrapper(createUser))
-router.put('/:id',authMiddleware, tryCatchWrapper (updateUser))
-router.delete('/:id',authMiddleware, tryCatchWrapper( deleteUser))
+router.get('/:id',/*authMiddleware,*/ tryCatchWrapper(findUserById))
+router.post('/',/*authMiddleware,*/ tryCatchWrapper(createUser))
+router.put('/:id',/*authMiddleware,*/ tryCatchWrapper (updateUser))
+router.delete('/:id',/*authMiddleware,*/ tryCatchWrapper( deleteUser))
 
 module.exports = router
