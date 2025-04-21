@@ -32,11 +32,11 @@ export default function NavComponent() {
                 <NavDropdown.Item href="#action/3.4">
                   Separated link
                 </NavDropdown.Item>
-              </NavDropdown >
+              </NavDropdown>
               <Nav>
               <Nav.Link href="#fav" className='navLink'><FontAwesomeIcon icon={faHeart} /></Nav.Link>
               <Nav.Link href="#cart"><FontAwesomeIcon icon={faCartShopping} /></Nav.Link>
-              <Nav.Link href="#acount"><FontAwesomeIcon icon={faUser} /></Nav.Link>            
+              <Nav.Link href="#acount"><FontAwesomeIcon icon={faUser} /></Nav.Link>
               </Nav>
               </Nav>
           </Navbar.Collapse>
