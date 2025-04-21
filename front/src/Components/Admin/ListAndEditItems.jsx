@@ -7,7 +7,7 @@ import { faPen, faPenNib, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import ProductCard from './productCard';
 
-
+//commit
 
 
 export default function ListAndEditItems() {
