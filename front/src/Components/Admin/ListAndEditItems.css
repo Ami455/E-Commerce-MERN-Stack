@@ -1,0 +1,98 @@
+table {
+    background-color: rgb(226, 217, 235);
+    border-collapse: separate;
+    border-spacing: 0px 10px;
+    /* Space between borders */
+
+}
+
+tr {
+    /* Apply vertical alignment to table cells */
+    vertical-align: middle;
+    /* Center text vertically */
+    outline: 1px solid #999;
+    /* Add border to each row */
+
+}
+
+tbody tr:hover {
+    outline: 1px solid #282727;
+}
+
+.imageTable {
+    width: 48px;
+    /* Set the width to 48px */
+    height: 55px;
+    /* Set the height to 55px */
+    object-fit: cover;
+    /* Ensures the image covers the area without distortion */
+}
+
+.iconButton {
+    border: none;
+    /* Remove border */
+    background: none;
+    /* Remove background */
+    padding: 0;
+    /* Remove padding */
+    cursor: pointer;
+    /* Change cursor to pointer */
+    outline: none;
+    /* Remove outline on focus */
+    pointer-events: none;
+}
+
+.custom-icon {
+    color: #626060;
+    font-size: larger;
+
+}
+
+.custom-icon:hover {
+    color: #343333;
+    font-size: larger;
+
+}
+
+.custom-icon:active {
+    color: #343333;
+    font-size: larger;
+
+}
+.mytooltip > .tooltip-inner {
+    background-color: rgba(128, 128, 128, 0.73);
+color: #2a2a2a;
+width: 100%;
+
+max-width: 100%; /* or whatever limit you want */
+
+  }
+  .tooltip{
+    pointer-events: none;
+  }
+
+
+.imageTooltip{
+    width: 144px;
+    height: 165px;
+    object-fit: cover;
+}
+
+.mytooltip .tooltip-arrow::before {
+    border-bottom-color:  #5e5c5f; ; /* 'bottom' since placement="bottom" */
+    border-width: 7px; /* Adjust the size of the arrow */
+
+  }
+  .toolTipDivStyle {
+    max-width: 70vw; /* Maximum width of the container */
+    width: auto; /* Allow the width to adjust based on content */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Responsive columns */
+    gap: 1rem 4rem; /* Gap between items in the grid */
+    word-wrap: normal; /* Allow long words to break */
+    overflow-wrap: break-word; /* Ensure long words wrap correctly */
+    padding: 1rem; /* Optional: Add padding for better spacing */
+}
+.toolTipDivStyle > *:last-child {
+    grid-column: 1 / -1; /* Make last item span the full row */
+  }
