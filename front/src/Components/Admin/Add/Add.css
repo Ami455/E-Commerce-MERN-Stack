@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap');
+
+.custom-file-upload{
+    width: 25%;
+
+}
+
+p{
+    font-size: 1.5rem;
+    font-family: "outfit";
+}
+
+.inputImg{
+    width: 10%;
+}
+
+.price{
+    border-radius: 0.5rem;
+    border:solid #DEE2E6;
+    height: 2.2rem;
+    width: 100%;
+    outline-color: #c586a5;
+}
