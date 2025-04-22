@@ -17,7 +17,7 @@ export default function Login() {
         console.log("submit")
         console.log(formdata)
         console.log(formdata.email, formdata.password, "didnt nav")
-        nav("/auth", { state: { email: formdata.email, password:formdata.password } })
+        nav("/auth", { state: { email: formdata.email, password:formdata.password ,action: 'login' } })
 
     }
     return (
@@ -51,6 +51,15 @@ export default function Login() {
                             <Col>
                                 <Button type="submit" variant="outline-primary" className='w-75' size="lg" >
                                     Login
+                                </Button>
+                            </Col>
+
+                        </Form.Group>
+                        <Form.Group as={Row} className="mb-3">
+                            <Col sm='1'></Col>
+                            <Col>
+                                <Button type="create" variant="outline-success" href='/register' className='w-100' size="lg" >
+                                    Create new account
                                 </Button>
                             </Col>
 

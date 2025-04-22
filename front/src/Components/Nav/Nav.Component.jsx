@@ -37,7 +37,7 @@ export default function NavComponent() {
               <Nav>
               <Nav.Link href="#fav" className='navLink'><FontAwesomeIcon icon={faHeart} /></Nav.Link>
               <Nav.Link href="#cart"><FontAwesomeIcon icon={faCartShopping} /></Nav.Link>
-              <Nav.Link href="#acount"><FontAwesomeIcon icon={faUser} /></Nav.Link>
+              <Nav.Link href="/login"><FontAwesomeIcon icon={faUser} /></Nav.Link>
               </Nav>
               </Nav>
           </Navbar.Collapse>

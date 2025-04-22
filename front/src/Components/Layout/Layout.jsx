@@ -5,11 +5,11 @@ import NavComponent from '../Nav/Nav.Component.jsx'
 export default function Layout() {
   return (
     <>
-        <NavComponent/>
-        
-          <Outlet/>
-       
-        
+      <NavComponent/>
+
+      <Outlet/>
+
+
     </>
   )
 }
