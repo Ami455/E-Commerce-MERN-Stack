@@ -12,11 +12,7 @@ export default function User() {
 
   const login = () => {
     console.log("Logging in with:", email, password);
-    //   const [loginData,setLoginData] = useState({
-    //     "userName":"a",
-    //     "email":"a@gmail.com",
-    //     "password": "123aBc"
-    //   })
+    
     console.log("navigate to user")
     console.log(email, password)
     console.log("navigate to user")
@@ -26,7 +22,8 @@ export default function User() {
     console.log(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_AUTH_LOGIN}`)
     axios.post(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_AUTH_LOGIN}`, { email, password }).then((res) => {
       const token = res.data.token;
-      console.log(res);
+    
+      
       console.log("Token:", token);
       setToken(token)
       setMessage("Login successful!"); // Set success message

@@ -24,8 +24,10 @@ const login = async (req,res)=>{
 
     const token = generateToken({id:user.id,email:user.email})
 
-    return res.status(200).json(token,{message:"login successfully"})
-
+    return res.status(201).json({
+        message: "logged in successfully",
+        token,
+    });
 }
 
 const register = async (req,res)=>{
