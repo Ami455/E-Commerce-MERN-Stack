@@ -42,21 +42,24 @@ export default function Add() {
                                 <section className='me-5'>
                                     <label><p>product Category</p></label>
                                     <Form.Select id="product-category" className=' d-block mt-2 w-100 '>
-                                        <option>Men</option>
-                                        <option>Women</option>
-                                        <option>Kids</option>
+                                        <option>Bed Room</option>
+                                        <option>Office</option>
+                                        <option>Dining Room</option>
+                                        <option>Living Room</option>
                                     </Form.Select>
                                 </section>
                                 <section className='me-5'>
                                     <label><p>Sub category</p></label>
                                     <Form.Select id="Sub category" className=' d-block mt-2 w-100'>
-                                        <option>TopWear</option>
-                                        <option>BottomWear</option>
-                                        <option>WinterWear</option>
+                                        <option>Tables</option>
+                                        <option>Desks</option>
+                                        <option>Storage</option>
+                                        <option>Chair</option>
+                                        <option>Bed</option>
                                     </Form.Select>
                                 </section>
                                 <section className='me-5'>
-                                    <label><p>product category</p></label>
+                                    <label><p>product Price</p></label>
                                     <div id="product-category" className=' d-block mt-2 w-75 text-center'>
                                         <input type="number" id="product-price" className='price' />
                                     </div>
@@ -65,22 +68,28 @@ export default function Add() {
                             </div>
 
                             <Form className='mt-4'>
-                                <p> Product Sizes</p>
+                                <p> Product Colors</p>
                                 <ToggleButtonGroup type="checkbox" defaultValue={[1, 3]} className="mb-2">
-                                    <ToggleButton id="tbg-check-1" value={1} className='me-2 rounded-bottom-0'>
-                                        S
+                                    <ToggleButton id="tbg-check-1" value={1} className='me-2 rounded-bottom-0 bg-white'>
+                                        White
                                     </ToggleButton>
-                                    <ToggleButton id="tbg-check-2" value={2} className='me-2' >
-                                        M
+                                    <ToggleButton id="tbg-check-2" value={2} className='me-2 bg-black' >
+                                        Black
                                     </ToggleButton>
-                                    <ToggleButton id="tbg-check-3" value={3} className='me-2'>
-                                        L
+                                    <ToggleButton id="tbg-check-3" value={3} className='me-2 bg-light text-dark'>
+                                        Gray
                                     </ToggleButton>
                                     <ToggleButton id="tbg-check-4" value={4} className='me-2'>
-                                        XL
+                                        Brown
+                                    </ToggleButton>
+                                    <ToggleButton id="tbg-check-5" value={5} className='me-2 '>
+                                    Walnut
+                                    </ToggleButton>
+                                    <ToggleButton id="tbg-check-5" value={5} className='me-2 '>
+                                    Mahogany
                                     </ToggleButton>
                                     <ToggleButton id="tbg-check-5" value={5} className='me-2 rounded-bottom-0'>
-                                        XXL
+                                    Cherry
                                     </ToggleButton>
                                 </ToggleButtonGroup>
                             </Form>
