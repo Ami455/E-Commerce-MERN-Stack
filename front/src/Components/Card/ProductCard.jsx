@@ -16,7 +16,7 @@ export default function CardComponent({product}) {
         </Card.Text>
       </Card.Body>
       </Link>  
-        <Button variant="primary" className='w-75 mb-3'>Add to Cart</Button>
+        {/* <Button variant="primary" className='w-75 mb-3'>Add to Cart</Button> */}
     </Card>
     </div>
   )

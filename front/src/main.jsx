@@ -15,6 +15,7 @@ import Admin from './Components/Admin/Admin.jsx'
 import Add from './Components/Admin/Add/Add.jsx'
 import List from './Components/Admin/List/List.jsx'
 import User from './Components/Admin/Users/User.jsx'
+import AddProudctDB from './Components/Admin/Add/AddProudctDB.jsx'
 
 
   let router = createBrowserRouter([{
@@ -26,6 +27,8 @@ import User from './Components/Admin/Users/User.jsx'
       {path: '/login',element:<Login/>},
       {path: '/register',element:<Register/>},
       {path: '/auth',element:<User/>},
+      {path: '/create',element:<AddProudctDB/>},
+
       {path:'/admin',element:<Admin/>,children:[
         {path:'add',element:<Add/>},
         {path:'list',element:<List/>}
@@ -39,7 +42,6 @@ import User from './Components/Admin/Users/User.jsx'
     ]
   }])
 
-   
 createRoot(document.getElementById('root')).render(
   <RouterProvider router={router}/>
 )

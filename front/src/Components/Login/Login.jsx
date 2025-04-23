@@ -4,8 +4,6 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import './Login.css'
-import Container from 'react-bootstrap/esm/Container';
-import User from '../Admin/Users/User';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
