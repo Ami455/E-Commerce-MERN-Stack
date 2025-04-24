@@ -16,11 +16,12 @@ import Add from './Components/Admin/Add/Add.jsx'
 import List from './Components/Admin/List/List.jsx'
 import User from './Components/Admin/Users/User.jsx'
 import AddProudctDB from './Components/Admin/Add/AddProudctDB.jsx'
+import Home from './Components/Home/Home.jsx'
 
 
   let router = createBrowserRouter([{
     path: '/',element:<Layout/>,children:[
-      {index:true,element:<App/>},
+      {index:true,element:<Home/>},
       {path: '/category',element:<Category/>,children:[
         {path: 'products',element:<Products/>},     /*todo:add categories as children or a query*/
       ]},
