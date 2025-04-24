@@ -24,7 +24,7 @@ const Product = sequelize.define("Product", {
         allowNull: true,
     },
     price: {
-        type: DataTypes.DECIMAL(10, 2), // Specify precision and scale
+        type: DataTypes.NUMBER, // Specify precision and scale
         allowNull: false,
     },
     image: {

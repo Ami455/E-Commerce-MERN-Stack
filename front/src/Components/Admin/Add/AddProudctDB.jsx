@@ -4,18 +4,18 @@ import { useLocation } from 'react-router-dom';
 
 export default function AddProductDB() {
     const location = useLocation();
-    const { name, description, category, subCategory, price, image,availableColors, action } = location.state || {};
+    const { name, description, category, subCategory, price, image,availableColors, quantity, action } = location.state || {};
     const [message, setMessage] = useState(""); // State for message
     // const [token, setToken] = useState(""); // State for token (if needed)
 
     const createProduct = async () => {
         
-            console.log("Creating product with:", { name, description, category, subCategory, price});
+            console.log("Creating product with:", { name, description, category, price ,quantity});
             await axios.post(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_PRODUCTS_LIST}`, {
                 name,
                 description,
-                category,
-                subCategory,
+                categoryId,
+                // subCategory,
                 price,
                 // availableColors,
                 // image
@@ -33,27 +33,26 @@ export default function AddProductDB() {
     };
 
 
-    const deleteProduct = () => {
-        console.log("Registering with:", userName, email, password);
-        axios.post(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_PRODUCTS_LIST}`, { userName, email, password })
-            .then((res) => {
-                const data = res.data;
-                console.log("delete successful,", data);
-                setMessage("deleted successful!"); // Set success message
-                localStorage.setItem("data", data);
-            })
-            .catch((err) => {
-                console.error("Registration error:", err.response?.data?.message || err.message);
-                setMessage(err.response?.data?.message || "Registration failed."); // Set error message
-            });
-    };
+    // const deleteProduct = () => {
+    //     axios.delete(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_PRODUCTS_LIST}`, { name, description, category, price ,quantity})
+    //         .then((res) => {
+    //             const data = res.data;
+    //             console.log("delete successful,", data);
+    //             setMessage("deleted successful!"); // Set success message
+    //             localStorage.setItem("data", data);
+    //         })
+    //         .catch((err) => {
+    //             console.error("Registration error:", err.response?.data?.message || err.message);
+    //             setMessage(err.response?.data?.message || "Registration failed."); // Set error message
+    //         });
+    // };
 
     useEffect(() => {
         if (action === 'create') {
-            createProduct();
-        } else if (action === 'delete') {
-            deleteProduct();
-        }
+            createProduct();}
+        // } else if (action === 'delete') {
+        //     deleteProduct();
+        // }
     }, [action]); // Depend on action to call the correct function
 
     return (

@@ -16,6 +16,7 @@ import Add from './Components/Admin/Add/Add.jsx'
 import List from './Components/Admin/List/List.jsx'
 import User from './Components/Admin/Users/User.jsx'
 import AddProudctDB from './Components/Admin/Add/AddProudctDB.jsx'
+import Edit from './Components/Admin/EditProduct/Edit.jsx'
 
 
   let router = createBrowserRouter([{
@@ -31,7 +32,8 @@ import AddProudctDB from './Components/Admin/Add/AddProudctDB.jsx'
 
       {path:'/admin',element:<Admin/>,children:[
         {path:'add',element:<Add/>},
-        {path:'list',element:<List/>}
+        {path:'list',element:<List/>},
+        {path:'edit',element:<Edit/>}
 
       ]},
       
