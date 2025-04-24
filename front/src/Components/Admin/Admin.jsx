@@ -22,6 +22,11 @@ export default function Admin() {
                             <p>List Items</p>
                             </Nav.Link>
                         </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link as={Link} to="edit" className='nlink'>
+                            <p>Edit Items</p>
+                            </Nav.Link>
+                        </Nav.Item>
                     </Nav>
                 </Col>
                 <Col sm={10} className='p-5'>

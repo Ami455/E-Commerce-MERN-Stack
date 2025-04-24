@@ -18,15 +18,16 @@ export default function Add() {
     const sendLoginData=(formdata)=>{
         console.log("submit")
         console.log(formdata)
-        console.log(formdata.name, formdata.description, formdata.category,formdata.subCategory,formdata.price,"didnt nav")
+        console.log(formdata.name, formdata.description, formdata.category,formdata.price, formdata.quantity,"didn't nav")
         nav("/create", { state: {
             name: formdata.name,
             description :formdata.description,
             category : formdata.category,
-            subCategory : formdata.subCategory,
+            // subCategory : formdata.subCategory,
             price : formdata.price,
             // color : formdata.availableColors,
             // image : formdata.image,
+            quantity : formdata.quantity,
             action: 'create' } })
     }
 
@@ -70,11 +71,6 @@ export default function Add() {
                                         <option>Office</option>
                                         <option>Dining Room</option>
                                         <option>Living Room</option>
-                                    </Form.Select>
-                                </section>
-                                <section className='me-5'>
-                                    <label><p>Sub category</p></label>
-                                    <Form.Select id="Sub category" className=' d-block mt-2 w-100'{...register("subCategory")}>
                                         <option>Tables</option>
                                         <option>Desks</option>
                                         <option>Storage</option>
@@ -82,13 +78,23 @@ export default function Add() {
                                         <option>Bed</option>
                                     </Form.Select>
                                 </section>
+                                {/* <section className='me-5'>
+                                    <label><p>Sub category</p></label>
+                                    <Form.Select id="Sub category" className=' d-block mt-2 w-100'{...register("subCategory")}>
+                                        
+                                    </Form.Select>
+                                </section> */}
                                 <section>
                                     <Form.Label><p>Product Price</p></Form.Label>
                                     <Form.Control type="number" className='d-block w-75 text-center' {...register("price")} />
                                 </section>
+                                <section>
+                                    <Form.Label><p>quantity</p></Form.Label>
+                                    <Form.Control type="number" className='d-block w-75 text-center' {...register("quantity")} />
+                                </section>
 
                             </div>
-
+{/* 
                             <Form className='mt-4'>
                                 <p> Product Colors</p>
                                 <ToggleButtonGroup type="checkbox" defaultValue={[1, 3]} className="mb-2" >
@@ -114,7 +120,7 @@ export default function Add() {
                                     Cherry
                                     </ToggleButton>
                                 </ToggleButtonGroup>
-                            </Form>
+                            </Form> */}
 
 
 

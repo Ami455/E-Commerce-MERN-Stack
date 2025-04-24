@@ -16,7 +16,11 @@ import Add from './Components/Admin/Add/Add.jsx'
 import List from './Components/Admin/List/List.jsx'
 import User from './Components/Admin/Users/User.jsx'
 import AddProudctDB from './Components/Admin/Add/AddProudctDB.jsx'
+<<<<<<< HEAD
 import Home from './Components/Home/Home.jsx'
+=======
+import Edit from './Components/Admin/EditProduct/Edit.jsx'
+>>>>>>> be5d589 (edit and delete)
 
 
   let router = createBrowserRouter([{
@@ -32,7 +36,8 @@ import Home from './Components/Home/Home.jsx'
 
       {path:'/admin',element:<Admin/>,children:[
         {path:'add',element:<Add/>},
-        {path:'list',element:<List/>}
+        {path:'list',element:<List/>},
+        {path:'edit',element:<Edit/>}
 
       ]},
       

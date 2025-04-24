@@ -9,12 +9,12 @@ Todo 2 :
 1- details of product (front)
 2-auth middleware (front)
 3- CRUD product between list and add dashboard
-4- home page , footer , about 
-5- category 
-6-filter , search 
+4- home page , footer , about
+5- category
+6-filter , search
 7-payment , checkout
 8-cart , fav
-9-order 
+9-order
 
 
 
