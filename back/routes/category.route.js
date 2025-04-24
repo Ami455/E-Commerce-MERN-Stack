@@ -5,9 +5,10 @@ const { findAllCategory,
     createCategory,
     updateCategory,
     deleteCategory,
-    findCategoriesWithProducts,
+    //findCategoriesWithProducts,
     findCategoryByIdWithProducts,
-    addProductToCategory} = require('../controllers/category.controller')
+    //addProductToCategory
+} = require('../controllers/category.controller')
 
 
 router.get('/', tryCatchWrapper(findAllCategory))
@@ -16,8 +17,8 @@ router.post('/', tryCatchWrapper(createCategory))
 router.put('/:id', tryCatchWrapper (updateCategory))
 router.delete('/:id', tryCatchWrapper( deleteCategory))
 
-router.get('/products', tryCatchWrapper(findCategoriesWithProducts))
+//router.get('/products', tryCatchWrapper(findCategoriesWithProducts))
 router.get('/:id/products', tryCatchWrapper(findCategoryByIdWithProducts))
-router.put('/:id/products', tryCatchWrapper(addProductToCategory))
+//router.put('/:id/products', tryCatchWrapper(addProductToCategory))
 
 module.exports = router

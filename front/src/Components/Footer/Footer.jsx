@@ -1,12 +1,14 @@
-import "./Footer.css"
 import React from 'react'
+
+import "./Footer.css"
 
 export default function Footer() {
   return (
 
+<footer>
 
-    <div className="container">
-      <div className="row align-items-center justify-content-evenly ">
+    <div className="container ">
+      <div className="row align-items-center justify-content-evenly  ">
         <div className="col-5 foot-sec rounded-2 " >
           <ul className="footer-ul">
             <li>1418 Riverland, Shop 385</li>
@@ -24,5 +26,6 @@ export default function Footer() {
         
       </div>
     </div>
+</footer>
   )
 }

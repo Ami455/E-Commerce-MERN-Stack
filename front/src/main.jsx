@@ -16,15 +16,10 @@ import Add from './Components/Admin/Add/Add.jsx'
 import List from './Components/Admin/List/List.jsx'
 import User from './Components/Admin/Users/User.jsx'
 import AddProudctDB from './Components/Admin/Add/AddProudctDB.jsx'
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import Home from './Components/Home/Home.jsx'
-=======
+
 import Edit from './Components/Admin/EditProduct/Edit.jsx'
->>>>>>> be5d589 (edit and delete)
-=======
-import Home from './Components/Home/Home.jsx'
->>>>>>> c14f8e5 (Home)
 
 
   let router = createBrowserRouter([{

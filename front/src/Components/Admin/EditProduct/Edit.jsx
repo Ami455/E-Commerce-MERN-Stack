@@ -52,7 +52,7 @@ export default function Edit() {
                 formData
             );
             alert("Product updated successfully!");
-            navigate("/"); // redirect back to list
+           // navigate("/"); // redirect back to list
         } catch (error) {
             console.error("Error updating product:", error);
         }
