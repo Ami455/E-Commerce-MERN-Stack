@@ -23,8 +23,8 @@ const findProductById = async (req, res) => {
 const createProduct = async (req, res) => {
     console.log('created')
     const data = req.body
-    const user = await Product.create(data)
-    res.json(user)
+    const product = await Product.create(data)
+    res.json(product)
 };
 
 
@@ -55,10 +55,54 @@ const deleteProduct = async (req, res) => {
 
 };
 
+
+
+
+
+// Get all products in a category
+const findAllProductsInCategory = async (req, res) => {
+    categoryId=req.query
+    const products = await Product.findAll({where: { categoryId },
+        include: { model: Category, as: 'category' }});
+    res.status(200).json(products);
+
+};
+
+// Get category of product by ID
+const findCategoryOfProductById = async (req, res) => {
+    const product = await Product.findByPk(req.params.id);
+    if (product) {
+       const category = await product.getCategory()
+        res.status(200).json(category);
+    } else {
+        res.status(404).json({ error: 'Product not found' });
+    }
+
+};
+
+// Set category of product 
+const setProductCategory = async (req, res) => {
+    const {id} = req.body
+    const product = await Product.findByPk(req.params);
+  const category = await Category.findByPk(id);
+  if (product && category) {
+    await product.setCategory(category);
+    res.json(product)
+  }
+  else{
+    res.status(404).json({ error: 'Product or category not found' });
+
+  }
+    
+};
+
 module.exports = {
     findAllProduct,
     findProductById,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    findAllProductsInCategory,
+    findCategoryOfProductById,
+    setProductCategory
 };
