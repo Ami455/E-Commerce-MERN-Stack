@@ -11,23 +11,16 @@ const Product = sequelize.define("Product", {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    // category: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false,
-    // },
-    // subCategory: {
-    //     type: DataTypes.STRING,
-    //     allowNull: false,
-    // },
     availableColors: {
         type: DataTypes.JSON, // Use JSON to store an array of colors
         allowNull: true,
-    },
+    }, 
     price: {
-        type: DataTypes.NUMBER, // Specify precision and scale
+        type: DataTypes.DECIMAL, // Specify precision and scale
         allowNull: false,
     },
-    image: {
+    image: { 
+    
         type: DataTypes.STRING, // To store the image URL
         allowNull: true,
     },
