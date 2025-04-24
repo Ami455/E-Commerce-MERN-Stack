@@ -22,7 +22,7 @@ const login = async (req,res)=>{
         });
     }
 
-    const token = generateToken({id:user.id,email:user.email})
+    const token = generateToken({id:user.id,email:user.email,role: user.role})
 
     return res.status(201).json({
         message: "logged in successfully",
@@ -50,7 +50,7 @@ const register = async (req,res)=>{
 
     const newUser = await User.create({...value,password:hashedPassword})
 
-    const token = generateToken({id:newUser.id,email:newUser.email})
+    const token = generateToken({id:newUser.id,email:newUser.email, role: newUser.role})
 
     return res.status(201).json({
         message: "registered successfully",

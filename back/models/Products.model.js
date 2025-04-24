@@ -2,11 +2,7 @@ const sequelize = require("../db/sql.db.config")
 const { DataTypes } = require("sequelize")
 
 const Product = sequelize.define("Product", {
-    // id: {
-    //     type: DataTypes.INTEGER,
-    //     autoIncrement: true,
-    //     primaryKey: true
-    // },
+    
     name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -15,14 +11,14 @@ const Product = sequelize.define("Product", {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    category: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    subCategory: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
+    // category: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+    // },
+    // subCategory: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+    // },
     availableColors: {
         type: DataTypes.JSON, // Use JSON to store an array of colors
         allowNull: true,

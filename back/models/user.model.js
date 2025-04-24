@@ -1,6 +1,6 @@
 const sequelize = require("../db/sql.db.config")
 const {DataTypes} = require("sequelize")
-
+const Role =require("../utils/role")
 const User = sequelize.define("User", {
     // id: {
     //     type: DataTypes.INTEGER,
@@ -21,6 +21,11 @@ const User = sequelize.define("User", {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    role: {
+        type: DataTypes.ENUM(Role.ADMIN, Role.USER), // restrict values
+        allowNull: false,
+        defaultValue: Role.USER, // default value
+      },      
     IsActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true

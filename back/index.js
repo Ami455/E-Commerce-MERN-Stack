@@ -8,10 +8,11 @@ const {errorHandler} = require('./middleware/errorHandler.middleware')
 const sequelize = require("./db/sql.db.config")
 const authRouter = require('./routes/auth.route')
 const productRouter = require('./routes/product.route')
+const categoryRouter = require('./routes/category.route')
 const cors= require("cors")
 const Product = require("./models/Products.model")
 const env = require("dotenv").config()
-
+const associations=require("./utils/associations")
 // const  FurnitureProduct  = require('./models/index');
 
 // console.log(FurnitureProduct)
@@ -26,12 +27,13 @@ app.use(bodyParser.json());
 app.use('/user', userRouter);
 app.use('/auth',authRouter);
 app.use('/product',productRouter);
+app.use('/category',categoryRouter);
 
 
 app.listen(port ,async()=>{
     try {
         await sequelize.authenticate();
-
+        associations();
         // Product.bulkCreate([
         //   {
         //     name: 'Coffee Table',
