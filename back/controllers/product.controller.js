@@ -63,28 +63,27 @@ const deleteProduct = async (req, res) => {
 const findAllProductsInCategory = async (req, res) => {
     categoryId=req.query
     const products = await Product.findAll({where: { categoryId },
-        include: { model: Category, as: 'category' }});
+        include: { model: Category, as: 'category' }}); //test
     res.status(200).json(products);
-
 };
 
 // Get category of product by ID
-const findCategoryOfProductById = async (req, res) => {
-    const product = await Product.findByPk(req.params.id);
-    if (product) {
-       const category = await product.getCategory()
-        res.status(200).json(category);
-    } else {
-        res.status(404).json({ error: 'Product not found' });
-    }
+// const findCategoryOfProductById = async (req, res) => {
+//     const product = await Product.findByPk(req.params.id);
+//     if (product) {
+//        const category = await product.getCategory()
+//         res.status(200).json(category);
+//     } else {
+//         res.status(404).json({ error: 'Product not found' });
+//     }
 
-};
+// };
 
 // Set category of product 
 const setProductCategory = async (req, res) => {
-    const {id} = req.body
+    const {categoryId} = req.body
     const product = await Product.findByPk(req.params);
-  const category = await Category.findByPk(id);
+  const category = await Category.findByPk(categoryId);
   if (product && category) {
     await product.setCategory(category);
     res.json(product)
@@ -103,6 +102,6 @@ module.exports = {
     updateProduct,
     deleteProduct,
     findAllProductsInCategory,
-    findCategoryOfProductById,
+   // findCategoryOfProductById,
     setProductCategory
 };
