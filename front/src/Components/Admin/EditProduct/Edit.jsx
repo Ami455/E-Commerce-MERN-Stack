@@ -23,15 +23,13 @@ export default function Edit() {
 
     useEffect(() => {
         const fetchProduct = async () => {
-            try {
+            
                 const response = await axios.get(
                     `${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_PRODUCTS_LIST}/${productId}`
                 );
                 setProduct(response.data);
                 setFormData(response.data); // Pre-fill form
-            } catch (error) {
-                console.error("Error fetching product:", error);
-            }
+            
         };
 
         if (productId) {
@@ -46,16 +44,14 @@ export default function Edit() {
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevent page reload
-        try {
+
             await axios.put(
                 `${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_PRODUCTS_LIST}/${productId}`,
                 formData
             );
             alert("Product updated successfully!");
-           // navigate("/"); // redirect back to list
-        } catch (error) {
-            console.error("Error updating product:", error);
-        }
+           navigate("/admin/list"); // redirect back to list
+        
     };
 
     if (!product) return <p>Loading product data...</p>;

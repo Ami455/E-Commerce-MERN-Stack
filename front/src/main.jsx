@@ -15,11 +15,13 @@ import Admin from './Components/Admin/Admin.jsx'
 import Add from './Components/Admin/Add/Add.jsx'
 import List from './Components/Admin/List/List.jsx'
 import User from './Components/Admin/Users/User.jsx'
-import AddProudctDB from './Components/Admin/Add/AddProudctDB.jsx'
+import AddProductDB from './Components/Admin/Add/AddProductDB.jsx'
 
 import Home from './Components/Home/Home.jsx'
 
 import Edit from './Components/Admin/EditProduct/Edit.jsx'
+import Details from './Components/Category/Details/Details.jsx'
+import FindByCategory from './Components/Category/ProductInCategory/FindByCategory.jsx'
 
 
   let router = createBrowserRouter([{
@@ -27,11 +29,13 @@ import Edit from './Components/Admin/EditProduct/Edit.jsx'
       {index:true,element:<Home/>},
       {path: '/category',element:<Category/>,children:[
         {path: 'products',element:<Products/>},     /*todo:add categories as children or a query*/
+        {path:'details' , element:<Details/>},
+        {path: 'find', element: <FindByCategory/>}
       ]},
       {path: '/login',element:<Login/>},
       {path: '/register',element:<Register/>},
       {path: '/auth',element:<User/>},
-      {path: '/create',element:<AddProudctDB/>},
+      {path: '/create',element:<AddProductDB/>},
 
       {path:'/admin',element:<Admin/>,children:[
         {path:'add',element:<Add/>},

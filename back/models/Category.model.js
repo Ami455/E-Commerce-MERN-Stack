@@ -8,10 +8,6 @@ const Category = sequelize.define("Category", {
         allowNull: false,
         unique: true
       },
-      image: {
-        type: DataTypes.STRING(255), // Can store image URL or path
-        allowNull: true
-      },
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
