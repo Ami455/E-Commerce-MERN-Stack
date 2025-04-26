@@ -4,9 +4,11 @@ const { DataTypes } = require("sequelize")
 const Cart = sequelize.define("Cart", {
 
     totalPrice: {
-        type: DataTypes.NUMBER,
-        allowNull: true,
+        type: DataTypes.DECIMAL(15,3),
+        allowNull: false,
+        defaultValue:0
       },
+      
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false,

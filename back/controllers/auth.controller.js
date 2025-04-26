@@ -49,7 +49,8 @@ const register = async (req,res)=>{
     const hashedPassword = await hashPassword(value.password)
 
     const newUser = await User.create({...value,password:hashedPassword})
-
+    await newUser.createCart()
+    
     const token = generateToken({id:newUser.id,email:newUser.email, role: newUser.role})
 
     return res.status(201).json({
