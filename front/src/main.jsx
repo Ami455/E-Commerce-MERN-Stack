@@ -31,7 +31,7 @@ import Cart from './Components/Cart/Cart.jsx'
       {path: '/category',element:<Category/>,children:[
         {path: 'products',element:<Products/>},     /*todo:add categories as children or a query*/
         {path:'details' , element:<Details/>},
-        {path: 'find', element: <FindByCategory/>}
+        {path: ':categoryId', element: <FindByCategory/>}
       ]},
       {path: '/login',element:<Login/>},
       {path: '/register',element:<Register/>},
