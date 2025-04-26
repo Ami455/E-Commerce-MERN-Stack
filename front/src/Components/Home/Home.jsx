@@ -4,12 +4,12 @@ import React from 'react'
 export default function Home() {
     return (
         <>
-        <section className="first container  mt-3 ">
+        <section className="first container  my-5 ">
             <div className="row justify-content-center align-items-center">
                 <div className="col-6 ">
                     <div className="inner ">
                         <div className="fir-left">
-                            <h3 className="slogen">Wide Collection <br />Of Home</h3>
+                            <h3 className="slogen mt-5">Wide Collection <br />Of Home</h3>
                             <h2 className="main-word">Furniture</h2>
                             <p>Embrace a life of luxury and comfort with Xtra. Our exclusive furniture collection brings sophistication and timeless elegance to your home, creating spaces that resonate with your style.</p>
                             <div className="row">
@@ -36,7 +36,7 @@ export default function Home() {
 
         <section className="explore">
             <div className="container">
-                <div className="row  align-items-center justify-content-center g-4 my-4">
+                <div className="row  align-items-center justify-content-center g-4 mb-4">
                     <div className="col-12 justify-content-start ">
                         <div className="explore-title">
                         <h3>Explore Our<br/><span >Furniture</span> Range:</h3>
@@ -113,6 +113,60 @@ export default function Home() {
             </div>
             
         </section>
+        <section>
+        <div className="container my-5">
+            <div className="row">
+                <div className="col-6">
+                    <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/photo2.jpg" alt="" />
+                    
+                </div>
+                <div className="col-6 ">
+                    <div className="contain">
+                        <h2 className="mt-5">Explore<br/>Xtra <span >Furniture</span><br/> <span >Stores</span> for<br/>latest collection</h2>
+                        <p className="my-3">Sofa, bed, desk, chairs, tables, there’s something so enjoyable about slowly meandering through furniture stores.</p>
+                        <button>See collection</button>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        </section>
+        <section>
+            <div className="container">
+                <div className="row">
+                <div className="col-6 ">
+                    <div className="contain">
+                        <h2 className="mt-5">Explore<br/>Xtra <span >Furniture</span><br/> <span >Stores</span> for<br/>latest collection</h2>
+                        <p className="my-3">Sofa, bed, desk, chairs, tables, there’s something so enjoyable about slowly meandering through furniture stores.</p>
+                        <button>See collection</button>
+                    </div>
+                    
+                </div>
+                <div className="col-6 ">
+                    <div className="row">
+                        <div className="col-6">
+                            <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2019/09/p20-600x600.jpg" alt="" />
+                            <button className="btn card-button ">Flower Lamp</button>
+                        </div>
+                        <div className="col-6">
+                            <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2019/09/p22-600x600.jpg" alt="" />
+                            <button className="btn card-button ">Flower Lamp</button>
+                        </div>
+                        <div className="col-6">
+                            <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2019/09/p22i-600x600.jpg" alt="" />
+                            <button className="btn card-button ">Flower Lamp</button>
+                        </div>
+                        <div className="col-6">
+                            <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2019/09/p26i-600x600.jpg" alt="" />
+                            <button className="btn card-button ">Flower Lamp</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+
         
         <section>
             {/* <div className="container">
@@ -156,7 +210,7 @@ export default function Home() {
 
         {/* Card 1 */}
         <div className="col-md-3 card-box p-4 rounded-4">
-          <div className="icon-circle mb-3 mx-auto">
+        <div className="icon-circle mb-3 mx-auto">
             <img
               src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon11.png"
               className="img-fluid"
@@ -190,10 +244,10 @@ export default function Home() {
         <div className="col-md-3 card-box p-4 rounded-4">
           <div className="icon-circle mb-3 mx-auto">
             <img
-              src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon13.png"
-              className="img-fluid"
-              width="40"
-              alt="support"
+            src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon13.png"
+            className="img-fluid"
+            width="40"
+            alt="support"
             />
           </div>
           <h5 className="fw-bold">ONLINE FRIENDLY SUPPORT 24/7</h5>
@@ -206,8 +260,25 @@ export default function Home() {
     </div>
         </section>
         <section>
-            
+        <div className="container my-5">
+            <div className="row">
+                <div className="col-6">
+                    <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/photo3.jpg" alt="" />
+                    
+                </div>
+                <div className="col-6 ">
+                    <div className="contain">
+                        <h2 className="mt-5">Solution for<br /> all  your <br /> Wooden <span> <br />Furniture</span> <br /> needs <br />collection</h2>
+                        <button>See collection</button>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+
         </section>
+        
         </>
     )
 }
