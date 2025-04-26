@@ -1,5 +1,7 @@
 const Category = require('../models/Category.model');
-const Product = require('../models/Products.model');
+
+const  Product  = require('../models/Products.model');
+
 
 
 // Get all furniture products
@@ -32,42 +34,23 @@ const findProductById = async (req, res) => {
 
 const createProduct = async (req, res) => {
 
-
-
+    
     const { name,
-
         description,
-
         price,
-
-        stock } = req.body
-
-    const product = await Product.create({
-        name,
-
+        stock} = req.body
+    const product = await Product.create({ name,
         description,
-
         price,
-
-        stock
-    })
-
-    console.log("created")
-
-    const category = await Category.findByPk(req.body.categoryId)
-
-
-
+        stock})
+        console.log("created")
+        const category=await  Category.findByPk(req.body.categoryId)
+       
     if (category && product) {
-
         await product.setCategory(category)
-
-        res.json(product)
-
+    res.json(product)
     } else {
-
         res.status(404).json({ error: 'category not found' });
-
     }
 
 };
