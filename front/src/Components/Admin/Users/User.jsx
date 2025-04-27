@@ -63,7 +63,7 @@ export default function User() {
     try {
       console.log("Registering with:", userName, email, password);
 
-      const res = await axios.post(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_AUTH_REGISER}`, { userName, email, password });
+      const res = await axios.post(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_AUTH_REGISTER}`, { userName, email, password });
       const token = res.data.token;
 
       console.log("Registration successful, Token:", token);
