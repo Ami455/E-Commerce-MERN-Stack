@@ -15,11 +15,11 @@ export default function About() {
                     <p>Our team is committed to curating the finest products, delivering outstanding customer support, and creating a user experience that is intuitive, fast, and truly premium.</p>
                     <p>Welcome to <span>Dwella</span>  — where luxury meets innovation.</p>
             </div>
-            <ul class="fa-ul">
-                <li><span class="fa-li"><i class="fa-solid fa-check-square"></i></span>List icons can</li>
-                <li><span class="fa-li"><i class="fa-solid fa-check-square"></i></span>be used to</li>
-                <li><span class="fa-li"><i class="fa-solid fa-spinner fa-pulse"></i></span>replace bullets</li>
-                <li><span class="fa-li"><i class="fa-regular fa-square"></i></span>in lists</li>
+            <ul className="fa-ul">
+                <li><span className="fa-li"><i className="fa-solid fa-check-square"></i></span>List icons can</li>
+                <li><span className="fa-li"><i className="fa-solid fa-check-square"></i></span>be used to</li>
+                <li><span className="fa-li"><i className="fa-solid fa-spinner fa-pulse"></i></span>replace bullets</li>
+                <li><span className="fa-li"><i className="fa-regular fa-square"></i></span>in lists</li>
             </ul>
             </div>
             <div className="col-5">

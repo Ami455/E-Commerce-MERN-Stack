@@ -31,12 +31,12 @@ export default function NavComponent() {
     <>
       <Navbar expand="lg" className="bar">
         <Container>
-          {/* 🔹 Logo on the left */}
+          
           <Navbar.Brand href="/"><img src={Logo} alt="logo" className="w-25 " /></Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            {/* 🔹 Everything else pushed to the right */}
+            
             <Nav className="ms-auto d-flex align-items-center gap-3">
 
               <Nav.Link href="/">Home</Nav.Link>
@@ -62,7 +62,7 @@ export default function NavComponent() {
               <Nav.Link href="/login">
                 <FontAwesomeIcon icon={faUser} />
               </Nav.Link>
-              
+
  {/* {isAthenticated ? :<Nav.Link href="/login">
                 <FontAwesomeIcon icon={faUser} />
               </Nav.Link>}
