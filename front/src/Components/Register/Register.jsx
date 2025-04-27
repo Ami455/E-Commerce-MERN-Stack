@@ -17,7 +17,7 @@ export default function Register() {
         console.log("submit")
         console.log(formdata)
         console.log(formdata.email, formdata.password, "didnt nav")
-        nav("/login", { state: { userName: formdata.userName ,email: formdata.email, password:formdata.password ,action: 'register'} })
+        nav("/auth", { state: { userName: formdata.userName ,email: formdata.email, password:formdata.password ,action: 'register'} })
 
         
 
@@ -27,73 +27,24 @@ export default function Register() {
 
     return (
         <>
-            <section className='register-background '>
-                <div className="form  w-25 ">
-                    <Form onSubmit={handleSubmit(sendLoginData)}>
-                    <Form.Group as={Row} className="mb-3">
-                            <Form.Label column className='me-2 ms-4' sm="2">
-                                Username
-                            </Form.Label>
-                            <Col sm="9">
-                                <Form.Control type="userName" placeholder="UserName" {...register("userName")} />
-                            </Col>
-                        </Form.Group>
-                        <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                            <Form.Label column className='me-2 ms-4' sm="2">
-                                Email
-                            </Form.Label>
-                            <Col sm="9">
-                                <Form.Control type="email" placeholder="email@example.com" {...register("email")}/>
-                            </Col>
-                        </Form.Group>
-
-                        <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-                            <Form.Label column className='me-2 ms-4' sm="5">
-                                Password
-                            </Form.Label>
-                            <Col sm="13">
-                                <Form.Control type="password" placeholder="Password" aria-describedby="passwordHelpBlock" {...register("password")}/>
-                                <Form.Text id="passwordHelpBlock" muted>
-                                    Your password must be 8-20 characters long, contain letters and numbers,
-                                    and must not contain spaces, special characters, or emoji.
-                                </Form.Text>
-                            </Col>
-                        </Form.Group>
-                        <Form.Group as={Row} className="mb-3">
-                            <Col sm='3'></Col>
-                            <Col>
-                                <Button type="submit" variant="outline-primary" className='w-75' size="lg">
-                                    Register
-                                </Button>
-                            </Col>
-
-                        </Form.Group>
-                        <div>
-
-                        </div>
-
-                    </Form>
-                </div>
-            </section>
-
             
             <section className=''>
-                <div className="container   my-5">
-                    <div className="row ggg p-5 justify-content-center alighn-item-evenly">
+                <div className="container my-5">
+                    <div className="row ggg p-5 justify-content-between align-item-evenly">
                         <div className="col-5 login">
-                            <form>
+                            <form onSubmit={handleSubmit(sendLoginData)}>
                                 <div className="mb-3">
-                                    <h2 className='login-title p-3'>Login</h2>
+                                    <h2 className='login-title p-3'>Sign up</h2>
                                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" {...register("email")} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputUserName" className="form-label">User Name</label>
-                                    <input type="UserName" className="form-control" id="exampleInputUserName"  />
+                                    <input type="text" className="form-control" id="exampleInputUserName" {...register("userName")} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                                    <input type="password" className="form-control" id="exampleInputPassword1" />
+                                    <input type="password" className="form-control" id="exampleInputPassword1" {...register("password")}/>
                                 </div>
                                 <div className="mb-3 form-check">
                                     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
@@ -104,11 +55,14 @@ export default function Register() {
                             </form>
 
                         </div>
+                        <div className="col-5 ">
+                                {/* <img src="https://i.pinimg.com/736x/58/ef/fc/58effc8203b7d19935efc26589cd0b3a.jpg" className='w-100 rounded' alt="" /> */}
+                                <img src="https://i.pinimg.com/736x/f8/33/e9/f833e9c1e11ff86c5aa7f1fa4ba4ea86.jpg" className='w-100 rounded' alt="" />
+                            </div>
                         
                         </div>
                 </div>
             </section>
-
             </>
 
     )

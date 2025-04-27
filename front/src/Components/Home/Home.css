@@ -93,4 +93,9 @@ button{
     background-color:rgb(247, 247, 247);
     position: relative;
     /* right: 200px; */
+
+}
+a{
+    color: var(--main-sub-color);
+
 }

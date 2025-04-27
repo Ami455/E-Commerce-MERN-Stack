@@ -4,7 +4,9 @@ import Button from 'react-bootstrap/esm/Button';
 import { Link } from 'react-router-dom';
 import './ProductCard.css'
 export default function CardComponent({ product }) {
+
   //console.log(product.id)
+
   return (
     <div>
       <Card style={{ width: 'fit-content', textAlign: 'center', alignItems: 'center', alignContent: 'center' }}>

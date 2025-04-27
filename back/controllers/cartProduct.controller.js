@@ -99,8 +99,20 @@ if (cartProduct) {
 }
 
 
+
+// =======
+// if (cartProduct) {
+//     // If product already exists, update the quantity
+//     cartProduct.quantity += quantity;
+//     await cartProduct.save();
+// } else{
+//     // If product doesn't exist in the cart, create a new entry in CartProduct table
+//     await CartProduct.create({ CartId, ProductId, quantity });
+// }
+// >>>>>>> merge
+
 res.status(200).json({ message: 'Product added to cart' });
-};
+ };
 
 
 const updateProductQuantity = async (req, res) => {
@@ -124,7 +136,6 @@ const updateProductQuantity = async (req, res) => {
     if (!product) {
         return res.status(404).json({ error: 'Product not found' });
     }
-
     
     const finalQuantity = Math.min(Math.max(quantity, 1), product.stock);
 
