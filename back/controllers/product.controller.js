@@ -91,11 +91,13 @@ const deleteProduct = async (req, res) => {
 // Get all products in a category
 const findAllProductsInCategory = async (req, res) => {
 
+
     categoryId = req.query
     const products = await Product.findAll({
         where: { categoryId },
         include: { model: Category, as: 'category' }
     }); //test
+
 
     res.status(200).json(products);
 };

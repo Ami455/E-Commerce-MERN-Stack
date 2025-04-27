@@ -1,8 +1,8 @@
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { Container, Row, Col, Card } from 'react-bootstrap';
+
 
 export default function FindByCategory() {
 
@@ -27,6 +27,7 @@ export default function FindByCategory() {
             getData();
         }
     }, [categoryId]);
+
 
     return (
         <Container>
