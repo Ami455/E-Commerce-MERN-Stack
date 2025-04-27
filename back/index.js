@@ -112,15 +112,18 @@ app.listen(port ,async()=>{
       //     }
       //   ]);
         
-
-      //   await Category.bulkCreate([
-      //     { name: 'Bed', createdAt: new Date(), updatedAt: new Date() },
-      //     { name: 'Chair', createdAt: new Date(), updatedAt: new Date() },
-      //     { name: 'Table', createdAt: new Date(), updatedAt: new Date() },
-      //     { name: 'Sofa', createdAt: new Date(), updatedAt: new Date() },
-      //     { name: 'Wardrobe', createdAt: new Date(), updatedAt: new Date() },
-      //     { name: 'Bookshelf', createdAt: new Date(), updatedAt: new Date() }
-      //   ]);
+        await Category.bulkCreate([
+          { name: 'Sofa',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon1.png", createdAt: new Date(), updatedAt: new Date() },
+          { name: 'Table',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon2.png", createdAt: new Date(), updatedAt: new Date() },
+          { name: 'Bed',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon3.png", createdAt: new Date(), updatedAt: new Date() },
+          { name: 'Wardrobe',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon4.png", createdAt: new Date(), updatedAt: new Date() },
+          { name: 'Mirror',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon5.png", createdAt: new Date(), updatedAt: new Date() },
+          { name: 'Bathtub',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon6.png", createdAt: new Date(), updatedAt: new Date() },
+          { name: 'Sofa Set',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon7.png", createdAt: new Date(), updatedAt: new Date() },
+          { name: 'Sink',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon8.png", createdAt: new Date(), updatedAt: new Date() },
+          { name: 'Lamp',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon9.png", createdAt: new Date(), updatedAt: new Date() },
+          { name: 'Other ...',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon10.png", createdAt: new Date(), updatedAt: new Date() }
+        ]);
 
 
 
