@@ -112,6 +112,7 @@ const findAllProductsInCategory = async (req, res) => {
 
 // Set category of product 
 const setProductCategory = async (req, res) => {
+
     const { categoryId } = req.body
     const product = await Product.findByPk(req.params);
     const category = await Category.findByPk(categoryId);
@@ -124,6 +125,7 @@ const setProductCategory = async (req, res) => {
 
     }
 
+
 };
 
 module.exports = {
@@ -133,6 +135,8 @@ module.exports = {
     updateProduct,
     deleteProduct,
     findAllProductsInCategory,
+
     // findCategoryOfProductById,
+
     setProductCategory
 };
