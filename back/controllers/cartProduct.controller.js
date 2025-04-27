@@ -108,8 +108,8 @@ if (cartProduct) {
 //     await CartProduct.create({ CartId, ProductId, quantity });
 // }
 // >>>>>>> merge
-// res.status(200).json({ message: 'Product added to cart' });
-// };
+res.status(200).json({ message: 'Product added to cart' });
+ };
 
 
 const updateProductQuantity = async (req, res) => {
