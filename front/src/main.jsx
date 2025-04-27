@@ -30,6 +30,9 @@ import Account from './Components/UserAccount/Account.jsx'
 
 
 
+import Cart from './Components/Cart/Cart.jsx'
+
+
 
   let router = createBrowserRouter([{
     path: '/',element:<Layout/>,children:[
@@ -50,6 +53,7 @@ import Account from './Components/UserAccount/Account.jsx'
 
       {path: '/cart',element:<Cart/>},
       {path: '/checkout',element:<Checkout/>},
+
 
 
       {path:'/admin',element:<Admin/>,children:[

@@ -127,6 +127,7 @@ app.listen(port ,async()=>{
 
 
 
+
         await sequelize.sync({ alter: true, force: false  });
 
         console.log("SQL connected successfully");

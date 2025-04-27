@@ -20,11 +20,12 @@ export default function Login() {
     }
     return (
         <>
-            <section className=''>
-                <div className="container  my-5">
-                    <div className="row ggg p-5 justify-content-between align-item-center">
 
-                        <div className="col-5 mt-5 login ">
+            <section className=''>
+                <div className="container   my-5">
+                    <div className="row ggg p-5 justify-content-between alighn-item-center">
+
+                        <div className="col-5 login ">
                             <form onSubmit={handleSubmit(sendLoginData)}>
                                 <div className="mb-3">
                                 <h2 className='login-title p-3'>Log in</h2>
@@ -37,22 +38,18 @@ export default function Login() {
                                 </div>
                                 
                                 <button type="submit" className="btn ">Log in</button>
-                                
-                                <br/>
-                                <div className="mt-3">
-                                <Link to="/register" >Don't have an account? Sign up now!</Link>
-                                </div>
+                                <br />
+                                <p >if you don't have account please create one</p>
+                                <button to="/register" onClick={"/register"} type="create" className="btn ">Create Account</button>
+                                <Button type="create"  href='/register' className=' btn '  >
+                                    Create new account
+                                </Button>
                             </form>
                             </div>
                             <div className="col-5">
                                 {/* <img src="https://i.pinimg.com/736x/58/ef/fc/58effc8203b7d19935efc26589cd0b3a.jpg" className='w-100 rounded' alt="" /> */}
                                 <img src="https://i.pinimg.com/736x/f8/33/e9/f833e9c1e11ff86c5aa7f1fa4ba4ea86.jpg" className='w-100 rounded' alt="" />
                             </div>
-
-                        
-                        {/* <div className="col-6">
-                            
-                        </div> */}
                     </div>
                 </div>
             </section>
