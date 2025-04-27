@@ -28,6 +28,9 @@ export default function Details() {
         return <h3>Loading product details...</h3>;
     }
 
+    // console.log(product)
+
+
     return (
         <>
             <p>img:<img src={product.image} className='w-25 m-2 ' /></p>

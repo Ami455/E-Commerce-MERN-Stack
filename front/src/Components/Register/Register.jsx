@@ -17,7 +17,7 @@ export default function Register() {
         console.log("submit")
         console.log(formdata)
         console.log(formdata.email, formdata.password, "didnt nav")
-        nav("/auth", { state: { userName: formdata.userName ,email: formdata.email, password:formdata.password ,action: 'register'} })
+        nav("/login", { state: { userName: formdata.userName ,email: formdata.email, password:formdata.password ,action: 'register'} })
 
         
 

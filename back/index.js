@@ -122,8 +122,6 @@ app.listen(port ,async()=>{
       //     { name: 'Bookshelf', createdAt: new Date(), updatedAt: new Date() }
       //   ]);
 
-
-
         await sequelize.sync({ alter: true, force: false  });
 
         console.log("SQL connected successfully");

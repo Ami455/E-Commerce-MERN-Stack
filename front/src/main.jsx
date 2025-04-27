@@ -28,6 +28,7 @@ import Checkout from './Components/Cart/Checkout/Checkout.jsx'
 
 
 
+
   let router = createBrowserRouter([{
     path: '/',element:<Layout/>,children:[
       {index:true,element:<Home/>},

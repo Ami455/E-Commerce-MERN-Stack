@@ -5,7 +5,6 @@ const {tryCatchWrapper} = require('../middleware/errorHandler.middleware')
 const { findCartProducts,
 
     findProductQuantity,
-
     addProductToCart,
     updateProductQuantity,
      deleteProductFromCart

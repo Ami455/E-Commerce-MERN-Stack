@@ -139,6 +139,5 @@ module.exports = {
     findAllProductsInCategory,
 
     // findCategoryOfProductById,
-
     setProductCategory
 };
