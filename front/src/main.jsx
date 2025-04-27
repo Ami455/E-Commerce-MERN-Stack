@@ -23,6 +23,7 @@ import Edit from './Components/Admin/EditProduct/Edit.jsx'
 import Details from './Components/Category/Details/Details.jsx'
 import FindByCategory from './Components/Category/ProductInCategory/FindByCategory.jsx'
 import Cart from './Components/Cart/Cart.jsx'
+import Checkout from './Components/Cart/Checkout/Checkout.jsx'
 
 
   let router = createBrowserRouter([{
@@ -38,6 +39,7 @@ import Cart from './Components/Cart/Cart.jsx'
       {path: '/auth',element:<User/>},
       {path: '/create',element:<AddProductDB/>},
       {path: '/cart',element:<Cart/>},
+      {path: '/checkout',element:<Checkout/>},
 
       {path:'/admin',element:<Admin/>,children:[
         {path:'add',element:<Add/>},

@@ -85,7 +85,7 @@
                   <th style={{ width: "30%" }}>Name</th>
                   <th style={{ width: "15%" }}>Category</th>
                   <th style={{ width: "5%" }}>Price</th>
-                  <th style={{ width: "5%" }}>Quantity</th>
+                  <th style={{ width: "5%" }}>Stock</th>
                   <th style={{ width: "5%" }}>Edit</th>
                   <th style={{ width: "5%" }}>Delete</th>
                 </tr>
@@ -101,7 +101,7 @@
                     <td>{product.name}</td>
                     <td>{product.category}</td>
                     <td>{product.price}</td>
-                    <td>{product.quantity}</td>
+                    <td>{product.stock}</td>
                     {/* <td><Button className='iconButton' onClick={()=>alert("mm")}><FontAwesomeIcon icon={faTrash} className="custom-icon"/></Button></td>
                 <td><Button className='iconButton' onClick={()=>fnEdit}><FontAwesomeIcon icon={faPen} className="custom-icon"/></Button></td> */}
                     <td><Link onClick={() => deleteData(product.id)}><FontAwesomeIcon icon={faTrash} className="custom-icon" /></Link></td>
@@ -124,7 +124,7 @@
                     <div><strong>Name:</strong><br />{tooltipData.name}</div>
                     <div><strong>Category:</strong><br />{tooltipData.category}</div>
                     <div><strong>Price:</strong><br />${tooltipData.price}</div>
-                    <div><strong>Quantity:</strong><br />{tooltipData.quantity}</div>
+                    <div><strong>Stock:</strong><br />{tooltipData.stock}</div>
                     <div><strong>Description:</strong><br />{tooltipData.description}</div>
                   </div>
 
