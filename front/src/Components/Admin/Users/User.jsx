@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function User() {
   const location = useLocation();
+
   const { email, password, userName, action } = location.state || {};
   const navigate = useNavigate();
 
@@ -16,6 +17,7 @@ export default function User() {
       console.log("Logging in with:", email, password);
 
       const res = await axios.post(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_AUTH_LOGIN}`, { email, password });
+
       const token = res.data.token;
 
       console.log("Token:", token);
@@ -80,12 +82,14 @@ export default function User() {
       register();
     }
     const savedToken = localStorage.getItem("token");
+
     if (savedToken) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`;
       setToken(savedToken);
       console.log(savedToken);
     }
-  }, [action]);
+  }, [action]); // Depend on action to call the correct function
+
 
   return (
     <>

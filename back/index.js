@@ -39,6 +39,7 @@ app.listen(port ,async()=>{
     try {
         await sequelize.authenticate();
         associations();
+
       //   User.bulkCreate([
       //     {
       //         userName: 'JohnDoe',
@@ -120,7 +121,6 @@ app.listen(port ,async()=>{
       //     { name: 'Wardrobe', createdAt: new Date(), updatedAt: new Date() },
       //     { name: 'Bookshelf', createdAt: new Date(), updatedAt: new Date() }
       //   ]);
-
 
         await sequelize.sync({ alter: true, force: false  });
 

@@ -3,6 +3,8 @@ const authMiddleware = require("../middleware/auth.middleware")
 
 const {tryCatchWrapper} = require('../middleware/errorHandler.middleware')
 const { findCartProducts,
+
+    findProductQuantity,
     addProductToCart,
     updateProductQuantity,
      deleteProductFromCart
@@ -10,6 +12,9 @@ const { findCartProducts,
 
 
 router.get('/products',authMiddleware, tryCatchWrapper(findCartProducts))
+
+ router.get('/products/:id',authMiddleware, tryCatchWrapper(findProductQuantity))
+
  router.post('/products/:id',authMiddleware, tryCatchWrapper(addProductToCart))
  router.put('/products/:id',authMiddleware, tryCatchWrapper (updateProductQuantity))
 router.delete('/products/:id',authMiddleware, tryCatchWrapper( deleteProductFromCart))
