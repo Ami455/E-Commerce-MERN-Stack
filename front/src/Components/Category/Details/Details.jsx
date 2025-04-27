@@ -27,6 +27,7 @@ export default function Details() {
     if (!product) {
         return <h3>Loading product details...</h3>;
     }
+    // console.log(product)
 
     return (
         <>
