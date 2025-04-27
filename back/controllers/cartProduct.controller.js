@@ -63,7 +63,6 @@ if(!product)
 
 const addProductToCart = async (req, res) => {
     
-
     const {quantity}= req.body
     const ProductId= req.params.id
     const cart = await Cart.findOne({
@@ -99,8 +98,18 @@ if (cartProduct) {
 }
 
 
-res.status(200).json({ message: 'Product added to cart' });
-};
+// =======
+// if (cartProduct) {
+//     // If product already exists, update the quantity
+//     cartProduct.quantity += quantity;
+//     await cartProduct.save();
+// } else{
+//     // If product doesn't exist in the cart, create a new entry in CartProduct table
+//     await CartProduct.create({ CartId, ProductId, quantity });
+// }
+// >>>>>>> merge
+// res.status(200).json({ message: 'Product added to cart' });
+// };
 
 
 const updateProductQuantity = async (req, res) => {
@@ -131,7 +140,6 @@ const updateProductQuantity = async (req, res) => {
 const cartProduct = await CartProduct.findOne({ where: { CartId, ProductId}} )
 if (cartProduct) {
     //If product already exists, update the quantity
-
     
     if(quantity<=0){
         await cartProduct.destroy();
@@ -144,7 +152,6 @@ if (cartProduct) {
 } else{
     // If product doesn't exist in the cart, create a new entry in CartProduct table
     await CartProduct.create({ CartId, ProductId, finalQuantity });
-
 }
 res.status(200).json({ message: 'Product added to cart' });
 };
