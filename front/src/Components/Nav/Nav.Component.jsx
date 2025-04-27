@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { faCartShopping, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
@@ -11,6 +11,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../Nav/NavComponent.css";
 import Logo from "../../../../images/navLogo.png";
+
 
 export default function NavComponent() {
   const [categoryData, setCategoryData] = useState([]);
@@ -60,6 +61,11 @@ export default function NavComponent() {
               <Nav.Link href="/login">
                 <FontAwesomeIcon icon={faUser} />
               </Nav.Link>
+              
+ {/* {isAthenticated ? :<Nav.Link href="/login">
+                <FontAwesomeIcon icon={faUser} />
+              </Nav.Link>}
+               */}
             </Nav>
           </Navbar.Collapse>
         </Container>

@@ -31,10 +31,22 @@ export default function Details() {
 
     return (
         <>
-            <p>img:<img src={product.image} className='w-25 m-2 ' /></p>
-            <h1>Name: {product.name}</h1>
-            <h2>Price: ${product.price}</h2>
-            <p>Description: {product.description}</p>
+            <div className=' m-5'>
+                <div className='d-row d-flex justify-content-between  container  m-5 p-5' >
+                    <div className='col-6'>
+                        <img src={product.image} className='w-100 m-2 ' />
+                    </div>
+                    <div className='col-6 ps-5'>
+                        <h1>{product.name}</h1>
+                        <h2>${product.price}</h2>
+                        <p>Category: {product.category}</p>
+                        <p>Rating: {product.rating}</p>
+                        <h2>Description</h2>
+                        <p>{product.description}</p>
+                        <button className=' btn w-100'>Add to Cart</button>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
