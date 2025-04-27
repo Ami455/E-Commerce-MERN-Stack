@@ -90,11 +90,13 @@ const deleteProduct = async (req, res) => {
 
 // Get all products in a category
 const findAllProductsInCategory = async (req, res) => {
+
     categoryId = req.query
     const products = await Product.findAll({
         where: { categoryId },
         include: { model: Category, as: 'category' }
     }); //test
+
     res.status(200).json(products);
 };
 
@@ -112,6 +114,7 @@ const findAllProductsInCategory = async (req, res) => {
 
 // Set category of product 
 const setProductCategory = async (req, res) => {
+
     const { categoryId } = req.body
     const product = await Product.findByPk(req.params);
     const category = await Category.findByPk(categoryId);
@@ -124,6 +127,7 @@ const setProductCategory = async (req, res) => {
 
     }
 
+
 };
 
 module.exports = {
@@ -133,6 +137,8 @@ module.exports = {
     updateProduct,
     deleteProduct,
     findAllProductsInCategory,
+
     // findCategoryOfProductById,
+
     setProductCategory
 };

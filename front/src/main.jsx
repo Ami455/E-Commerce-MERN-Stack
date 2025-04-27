@@ -22,8 +22,10 @@ import Home from './Components/Home/Home.jsx'
 import Edit from './Components/Admin/EditProduct/Edit.jsx'
 import Details from './Components/Category/Details/Details.jsx'
 import FindByCategory from './Components/Category/ProductInCategory/FindByCategory.jsx'
+
 import Cart from './Components/Cart/Cart.jsx'
 import Checkout from './Components/Cart/Checkout/Checkout.jsx'
+
 
 
   let router = createBrowserRouter([{
@@ -32,14 +34,18 @@ import Checkout from './Components/Cart/Checkout/Checkout.jsx'
       {path: '/category',element:<Category/>,children:[
         {path: 'products',element:<Products/>},     /*todo:add categories as children or a query*/
         {path:'details' , element:<Details/>},
+
         {path: ':categoryId', element: <FindByCategory/>}
+
       ]},
       {path: '/login',element:<Login/>},
       {path: '/register',element:<Register/>},
       {path: '/auth',element:<User/>},
       {path: '/create',element:<AddProductDB/>},
+
       {path: '/cart',element:<Cart/>},
       {path: '/checkout',element:<Checkout/>},
+
 
       {path:'/admin',element:<Admin/>,children:[
         {path:'add',element:<Add/>},
