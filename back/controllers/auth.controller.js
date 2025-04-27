@@ -2,7 +2,7 @@ const User = require('../models/user.model')
 const {hashPassword,comparePassword} = require('../utils/hashingPassword')
 const {registerSchema} = require('../vaildators/auth.validator')
 const {generateToken}=require('../utils/jwt')
-
+const { verifyToken } = require('../utils/jwt');
 
 
 const login = async (req,res)=>{
@@ -49,7 +49,8 @@ const register = async (req,res)=>{
     const hashedPassword = await hashPassword(value.password)
 
     const newUser = await User.create({...value,password:hashedPassword})
-
+    await newUser.createCart()
+    
     const token = generateToken({id:newUser.id,email:newUser.email, role: newUser.role})
 
     return res.status(201).json({
@@ -59,4 +60,14 @@ const register = async (req,res)=>{
 
 }
 
-module.exports={login,register}
+const admin = async (req,res)=>{
+    const data =req.user
+    const role = data.role
+    // console.log(data.role)
+    console.log(role)
+
+    res.json({role, message: 'Welcome to the admin panel!'})
+}
+
+
+module.exports={login,register,admin}
