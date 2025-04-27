@@ -1,13 +1,14 @@
 const sequelize = require("../db/sql.db.config")
 const { DataTypes } = require("sequelize")
 
-const Category = sequelize.define("Category", {
+const Cart = sequelize.define("Cart", {
 
-    name: {
-        type: DataTypes.STRING(100),
+    totalPrice: {
+        type: DataTypes.DECIMAL(15,3),
         allowNull: false,
-        unique: true
+        defaultValue:0
       },
+      
     createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
@@ -25,4 +26,4 @@ const Category = sequelize.define("Category", {
 )
 
 
-module.exports = Category
+module.exports = Cart

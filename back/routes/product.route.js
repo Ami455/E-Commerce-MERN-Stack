@@ -6,7 +6,7 @@
         updateProduct,
         deleteProduct,
         findAllProductsInCategory,
-        findCategoryOfProductById,
+        //findCategoryOfProductById,
         setProductCategory} = require('../controllers/product.controller')
 
 
@@ -18,7 +18,7 @@
 
 
     router.get('/category', tryCatchWrapper(findAllProductsInCategory))
-    router.get('/:id/category', tryCatchWrapper(findCategoryOfProductById))
+    //router.get('/:id/category', tryCatchWrapper(findCategoryOfProductById))
     router.put('/:id/category', tryCatchWrapper (setProductCategory))
 
     module.exports = router

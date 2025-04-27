@@ -9,10 +9,14 @@ const sequelize = require("./db/sql.db.config")
 const authRouter = require('./routes/auth.route')
 const productRouter = require('./routes/product.route')
 const categoryRouter = require('./routes/category.route')
+const cartRouter = require('./routes/cart.route')
 const cors= require("cors")
 const Product = require("./models/Products.model")
+const User = require("./models/user.model")
+const Role =require("./utils/role")
 const env = require("dotenv").config()
 const associations=require("./utils/associations")
+const Category = require("./models/Category.model")
 // const  FurnitureProduct  = require('./models/index');
 
 // console.log(FurnitureProduct)
@@ -28,69 +32,95 @@ app.use('/user', userRouter);
 app.use('/auth',authRouter);
 app.use('/product',productRouter);
 app.use('/category',categoryRouter);
+app.use('/cart',cartRouter);
 
 
 app.listen(port ,async()=>{
     try {
         await sequelize.authenticate();
         associations();
-        // Product.bulkCreate([
-        //   {
-        //     name: 'Coffee Table',
-        //     description: 'A modern coffee table for your living space.',
-        //     category: 'Living Room',
-        //     subCategory: 'Tables',
-        //     availableColors: ['Red', 'Gray', 'Brown'],
-        //     price: 99.99,
-        //     image: 'https://media.istockphoto.com/id/1173959961/photo/scandinavian-style-coffee-table.jpg?s=612x612&w=0&k=20&c=LXcq-MgkOTWbxrOAPpfV_14VgdaU-SRRramgm_HizDU=', // Image URL
-        //     createdAt: new Date(),
-        //     updatedAt: new Date()
-        //   },
-        //   {
-        //     name: 'Dining Table',
-        //     description: 'A spacious dining table for family gatherings.',
-        //     category: 'Dining Room',
-        //     subCategory: 'Tables',
-        //     availableColors: ['Black', 'White', 'Natural'],
-        //     price: 199.99,
-        //     image: 'https://media.istockphoto.com/id/1309042044/photo/interior-design-of-stylish-dining-room-interior-with-family-wooden-table-modern-chairs-plate.jpg?s=612x612&w=0&k=20&c=_r5TNzVXvZwgbHEKiEvguyq-kmAzR9U667It3mDpWQo=', // Image URL
-        //     createdAt: new Date(),
-        //     updatedAt: new Date()
-        //   },
-        //   {
-        //     name: 'Office Desk',
-        //     description: 'A sleek office desk for your workspace.',
-        //     category: 'Office',
-        //     subCategory: 'Desks',
-        //     availableColors: ['Mahogany', 'Maple', 'Steel Gray'],
-        //     price: 149.99,
-        //     image: 'https://media.istockphoto.com/id/1165916723/photo/the-setup-for-success.jpg?s=612x612&w=0&k=20&c=40J6tNYEPe3PZm9cprMVIMoC9BiUXH3c8OKCS5USGC8=', // Image URL
-        //     createdAt: new Date(),
-        //     updatedAt: new Date()
-        //   },
-        //   {
-        //     name: 'Nightstand',
-        //     description: 'A compact nightstand for your bedroom.',
-        //     category: 'Bedroom',
-        //     subCategory: 'Nightstands',
-        //     availableColors: ['White', 'Black', 'Walnut'],
-        //     price: 79.99,
-        //     image: 'https://media.gettyimages.com/id/1160605841/photo/spacious-modern-bedroom.jpg?s=612x612&w=gi&k=20&c=6JTIqY3BubkrNsyGTThpgoXA0dI666jCJ6nFLQvZMSw=', // Image URL
-        //     createdAt: new Date(),
-        //     updatedAt: new Date()
-        //   },
-        //   {
-        //     name: 'Bookshelf',
-        //     description: 'A tall bookshelf for your collection of books.',
-        //     category: 'Library',
-        //     subCategory: 'Storage',
-        //     availableColors: ['Oak', 'Cherry', 'Pine'],
-        //     price: 129.99,
-        //     image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYEoPEc8pL3LkL4JEXpNph8ADnWBIlJm_bcG8E3qh1Lhs2ibMvbvREVRI&s', // Image URL
-        //     createdAt: new Date(),
-        //     updatedAt: new Date()
-        //   }
-        // ])
+      //   User.bulkCreate([
+      //     {
+      //         userName: 'JohnDoe',
+      //         email: 'johndoe@example.com',
+      //         password: 'password123', // Make sure to hash this password in production!
+      //         role: Role.USER, // Or 'ADMIN'
+      //     },
+      //     {
+      //         userName: 'JaneSmith',
+      //         email: 'janesmith@example.com',
+      //         password: 'password456',
+      //         role: Role.ADMIN,
+      //     },
+      //     {
+
+      //         userName: 'SamBrown',
+      //         email: 'sambrown@example.com',
+      //         password: 'password789',
+      //         role: Role.USER,
+      //     },
+      // ])
+     
+  
+      //   Product.bulkCreate([
+      //     {
+      //       name: 'Coffee Table',
+      //       description: 'A modern coffee table for your living space.',
+      //       price: 99.99,
+      //       image: 'https://media.istockphoto.com/id/1173959961/photo/scandinavian-style-coffee-table.jpg?s=612x612&w=0&k=20&c=LXcq-MgkOTWbxrOAPpfV_14VgdaU-SRRramgm_HizDU=',
+      //       stock: 10, // Added stock
+      //       createdAt: new Date(),
+      //       updatedAt: new Date()
+      //     },
+      //     {
+      //       name: 'Dining Table',
+      //       description: 'A spacious dining table for family gatherings.',
+      //       price: 199.99,
+      //       image: 'https://media.istockphoto.com/id/1309042044/photo/interior-design-of-stylish-dining-room-interior-with-family-wooden-table-modern-chairs-plate.jpg?s=612x612&w=0&k=20&c=_r5TNzVXvZwgbHEKiEvguyq-kmAzR9U667It3mDpWQo=',
+      //       stock: 15, // Added stock
+      //       createdAt: new Date(),
+      //       updatedAt: new Date()
+      //     },
+
+      //     {
+      //       name: 'Office Desk',
+      //       description: 'A sleek office desk for your workspace.',
+      //       price: 149.99,
+      //       image: 'https://media.istockphoto.com/id/1165916723/photo/the-setup-for-success.jpg?s=612x612&w=0&k=20&c=40J6tNYEPe3PZm9cprMVIMoC9BiUXH3c8OKCS5USGC8=',
+      //       stock: 8, // Added stock
+      //       createdAt: new Date(),
+      //       updatedAt: new Date()
+      //     },
+      //     {
+      //       name: 'Nightstand',
+      //       description: 'A compact nightstand for your bedroom.',
+      //       price: 79.99,
+      //       image: 'https://media.gettyimages.com/id/1160605841/photo/spacious-modern-bedroom.jpg?s=612x612&w=gi&k=20&c=6JTIqY3BubkrNsyGTThpgoXA0dI666jCJ6nFLQvZMSw=',
+      //       stock: 20, // Added stock
+      //       createdAt: new Date(),
+      //       updatedAt: new Date()
+      //     },
+      //     {
+      //       name: 'Bookshelf',
+      //       description: 'A tall bookshelf for your collection of books.',
+      //       price: 129.99,
+      //       image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYEoPEc8pL3LkL4JEXpNph8ADnWBIlJm_bcG8E3qh1Lhs2ibMvbvREVRI&s',
+      //       stock: 12, // Added stock
+      //       createdAt: new Date(),
+      //       updatedAt: new Date()
+      //     }
+      //   ]);
+        
+
+      //   await Category.bulkCreate([
+      //     { name: 'Bed', createdAt: new Date(), updatedAt: new Date() },
+      //     { name: 'Chair', createdAt: new Date(), updatedAt: new Date() },
+      //     { name: 'Table', createdAt: new Date(), updatedAt: new Date() },
+      //     { name: 'Sofa', createdAt: new Date(), updatedAt: new Date() },
+      //     { name: 'Wardrobe', createdAt: new Date(), updatedAt: new Date() },
+      //     { name: 'Bookshelf', createdAt: new Date(), updatedAt: new Date() }
+      //   ]);
+
 
         await sequelize.sync({ alter: true, force: false  });
 

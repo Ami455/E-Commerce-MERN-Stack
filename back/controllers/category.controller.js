@@ -1,5 +1,7 @@
 const  Category  = require('../models/Category.model');
 
+const Product = require("../models/Products.model")
+
 
 // Get all furniture category
 const findAllCategory = async (req, res) => {
@@ -60,34 +62,34 @@ const deleteCategory = async (req, res) => {
 
 
 // Get all categories that have products
-const findCategoriesWithProducts = async (req, res) => {
-    const categories = await Category.findAll({include: { model: Product, as: 'products' }});
-    res.status(200).json({categories: categories});
+// const findCategoriesWithProducts = async (req, res) => {
+//     const categories = await Category.findAll({include: { model: Product, as: 'products' }});
+//     res.status(200).json({categories: categories});
 
-};
+// };
 
 // Get a single category by ID with its products
 const findCategoryByIdWithProducts = async (req, res) => {
     const category = await Category.findByPk(req.params.id,{include: { model: Product, as: 'products' }});
-    if (category) {
-        res.status(200).json({category: category});
-    } else {
-        res.status(404).json({ error: 'Category not found' });
-    }
+    res.status(200).json({category: category});
+    // if (category) {
+    // } else {
+    //     res.status(404).json({ error: 'Category not found' });
+    // }
 
 };
 
 
 // add product to category
-const addProductToCategory = async (req, res) => {
-    const category = await Category.findByPk(req.params.id);
-  if (category) {
-    const product = await category.createProduct(req.body); 
-    res.status(200);
-    } else {
-        res.status(404).json({ error: 'Category not found' });
-    }
-};
+// const addProductToCategory = async (req, res) => {
+//     const category = await Category.findByPk(req.params.id);
+//   if (category) {
+//     const product = await category.createProduct(req.body); 
+//     res.status(200);
+//     } else {
+//         res.status(404).json({ error: 'Category not found' });
+//     }
+// };
 
 
 module.exports = {
@@ -96,7 +98,7 @@ module.exports = {
     createCategory,
     updateCategory,
     deleteCategory,
-    findCategoriesWithProducts,
+   // findCategoriesWithProducts,
     findCategoryByIdWithProducts,
-    addProductToCategory
+  //  addProductToCategory
 };
