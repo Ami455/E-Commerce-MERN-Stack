@@ -16,8 +16,10 @@ export default function User() {
       console.log("Logging in with:", email, password);
 
       const res = await axios.post(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_AUTH_LOGIN}`, { email, password });
->>>>>>>>> Temporary merge branch 2
+
       const token = res.data.token;
+
+      // data successfully received isAuthenticated = true
 
       console.log("Token:", token);
 
@@ -69,6 +71,7 @@ export default function User() {
       setToken(token);
       setMessage("Registration successful!");
       localStorage.setItem("token", token);
+      navigate('/login'); // Redirect to login after successful registration
 
     } catch (err) {
       console.error("Registration error:", err.response?.data?.message || err.message);
@@ -87,7 +90,7 @@ export default function User() {
     if (savedToken) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`;
       setToken(savedToken);
-      console.log(savedToken);
+      // console.log(savedToken);
     }
   }, [action]);
 
