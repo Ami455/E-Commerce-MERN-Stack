@@ -1,6 +1,6 @@
 
 .first{
-    height: 90vh;
+    height: 60vh;
 } 
 .row{
     background-color:white;
@@ -69,4 +69,28 @@ span{
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
     transform: translateY(-5px);
     background-color: #ffffff;
+}
+
+.contain{
+    padding-inline: 50px;
+}
+button{
+    width: 34%;
+    padding: 5px;
+    border-radius: 10%;
+    border: none;
+    background-color: var(--main-color);
+}
+.contain p{
+    font-size: small;
+}
+
+.card-button{
+    width: 34%;
+    padding: 5px;
+    border-radius: 15%;
+    border: none;
+    background-color:rgb(247, 247, 247);
+    position: relative;
+    /* right: 200px; */
 }

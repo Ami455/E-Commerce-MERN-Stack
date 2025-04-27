@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 
+
 export default function FindByCategory() {
 
     const { categoryId } = useParams();
@@ -26,6 +27,7 @@ export default function FindByCategory() {
             getData();
         }
     }, [categoryId]);
+
 
     return (
         <Container>
