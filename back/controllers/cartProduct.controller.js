@@ -134,6 +134,7 @@ const updateProductQuantity = async (req, res) => {
         return res.status(404).json({ error: 'Product not found' });
     }
 
+
     
     const finalQuantity = Math.min(Math.max(quantity, 1), product.stock);
 
