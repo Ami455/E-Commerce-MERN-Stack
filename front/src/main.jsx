@@ -25,6 +25,9 @@ import FindByCategory from './Components/Category/ProductInCategory/FindByCatego
 import Cart from './Components/Cart/Cart.jsx'
 import Checkout from './Components/Cart/Checkout/Checkout.jsx'
 
+import Cart from './Components/Cart/Cart.jsx'
+
+
 
   let router = createBrowserRouter([{
     path: '/',element:<Layout/>,children:[
@@ -32,7 +35,9 @@ import Checkout from './Components/Cart/Checkout/Checkout.jsx'
       {path: '/category',element:<Category/>,children:[
         {path: 'products',element:<Products/>},     /*todo:add categories as children or a query*/
         {path:'details' , element:<Details/>},
+
         {path: ':categoryId', element: <FindByCategory/>}
+
       ]},
       {path: '/login',element:<Login/>},
       {path: '/register',element:<Register/>},
@@ -40,6 +45,9 @@ import Checkout from './Components/Cart/Checkout/Checkout.jsx'
       {path: '/create',element:<AddProductDB/>},
       {path: '/cart',element:<Cart/>},
       {path: '/checkout',element:<Checkout/>},
+
+      {path: '/cart',element:<Cart/>},
+
 
       {path:'/admin',element:<Admin/>,children:[
         {path:'add',element:<Add/>},
