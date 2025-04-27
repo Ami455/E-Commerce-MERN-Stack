@@ -4,8 +4,8 @@ const roleMiddleware =(role) =>{
             return res.status(403).json({
                 message: "You are not authorized ",
               });
-              next();
-        }
+            }
+            next();
     }
 }
 

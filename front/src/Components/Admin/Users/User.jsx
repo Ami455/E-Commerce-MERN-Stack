@@ -19,7 +19,7 @@ export default function User() {
 
     //const{email,password}=loginData
     console.log(email, password)
-    console.log(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_AUTH_LOGIN}`)
+    //console.log(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_AUTH_LOGIN}`)
     axios.post(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_AUTH_LOGIN}`, { email, password }).then((res) => {
       const token = res.data.token;
     
@@ -29,6 +29,8 @@ export default function User() {
       setMessage("Login successful!"); // Set success message
       // Save token (commonly in localStorage)
       localStorage.setItem("token", token);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      
     })
       .catch((err) => {
         console.log("err")
@@ -61,6 +63,11 @@ export default function User() {
     } else if (action === 'register') {
       register();
     }
+    const savedToken = localStorage.getItem("token");
+  if (savedToken) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`;
+    setToken(savedToken);
+  }
   }, [action]); // Depend on action to call the correct function
 
   return (
