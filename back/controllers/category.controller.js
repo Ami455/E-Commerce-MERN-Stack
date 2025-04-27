@@ -1,5 +1,7 @@
 const  Category  = require('../models/Category.model');
 
+const Product = require("../models/Products.model")
+
 
 // Get all furniture category
 const findAllCategory = async (req, res) => {
