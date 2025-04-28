@@ -25,7 +25,7 @@ import FindByCategory from './Components/Category/ProductInCategory/FindByCatego
 
 import Cart from './Components/Cart/Cart.jsx'
 import Checkout from './Components/Cart/Checkout/Checkout.jsx'
-import Account from './Components/UserAccount/Account.jsx'
+// import Account from './Components/UserAccount/Account.jsx'
 
 
 
