@@ -1,29 +1,25 @@
       import React, { useEffect, useState } from 'react'
       import Table from 'react-bootstrap/Table';
       import './List.css'
-      import { Button, Col, Overlay, Tooltip, Row, Popover } from 'react-bootstrap';
+      import {  Overlay, Tooltip } from 'react-bootstrap';
       import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
       import { faPen, faPenNib, faTrash } from '@fortawesome/free-solid-svg-icons';
       import { Link } from 'react-router-dom';
-      import axios from 'axios';
 
-
-
-
-
+import { api } from '../../../utils/api';
 
       export default function List() {
 
         const [products, setProducts] = useState([]);
 
         const getData = async ()=>{
-          const data = await axios.get(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_PRODUCTS_LIST}`)
+          const data = await api.get(`${import.meta.env.VITE_PRODUCTS_LIST}`)
           console.log(data.data)
           setProducts( data.data)
         };
 
         const deleteData = async (id)=>{
-          await axios.delete(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_PRODUCTS_LIST}/${id}`);
+          await api.delete(`${import.meta.env.VITE_PRODUCTS_LIST}/${id}`);
           getData();
         }
 
@@ -32,12 +28,6 @@
           getData()
         }
         ,[])
-
-        const sentProductId = (id)=>{
-
-
-        }
-
 
 
         const [tooltipShow, setTooltipShow] = useState(false);

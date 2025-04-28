@@ -1,7 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import App from './App.jsx'
 import Layout from "./Components/Layout/Layout.jsx"
 import Products from "./Components/Category/Products/Products.jsx"
 import Category from "./Components/Category/Category.jsx"
@@ -33,6 +32,7 @@ import About from './Components/About/About';
     path: '/',element:<Layout/>,children:[
       {index:true,element:<Home/>},
       {path:'/about',element:<About/>},
+      
       {path: '/category',element:<Category/>,children:[
         {path: 'products',element:<Products/>},     /*todo:add categories as children or a query*/
         {path:'details' , element:<Details/>},
