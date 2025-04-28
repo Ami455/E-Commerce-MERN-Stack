@@ -22,8 +22,13 @@ import Home from './Components/Home/Home.jsx'
 import Edit from './Components/Admin/EditProduct/Edit.jsx'
 import Details from './Components/Category/Details/Details.jsx'
 import FindByCategory from './Components/Category/ProductInCategory/FindByCategory.jsx'
+
 import Cart from './Components/Cart/Cart.jsx'
 import Checkout from './Components/Cart/Checkout/Checkout.jsx'
+import Account from './Components/UserAccount/Account.jsx'
+
+
+
 
 
 
@@ -33,6 +38,7 @@ import Checkout from './Components/Cart/Checkout/Checkout.jsx'
 
       {path:'/account',element:<Account/>},
       {index:true,element:<Home/>},
+      {path:"/account/:id", element:<Account/>},
       {path: '/category',element:<Category/>,children:[
         {path: 'products',element:<Products/>},     /*todo:add categories as children or a query*/
         {path:'details' , element:<Details/>},
@@ -44,10 +50,11 @@ import Checkout from './Components/Cart/Checkout/Checkout.jsx'
       {path: '/register',element:<Register/>},
       {path: '/auth',element:<User/>},
       {path: '/create',element:<AddProductDB/>},
+
+
       {path: '/cart',element:<Cart/>},
       {path: '/checkout',element:<Checkout/>},
 
-      {path: '/cart',element:<Cart/>},
 
 
       {path:'/admin',element:<Admin/>,children:[

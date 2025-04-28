@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import './Add.css';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import './Add.css';
 
 // ...all your imports...
 
@@ -26,9 +26,21 @@ export default function Add() {
         getCategory();
     }, []);
 
-    const sendLoginData = (formdata) => {
+    const sendLoginData = async (formdata) => {
         console.log("submit");
         console.log(formdata);
+
+        //edit mohmed emad
+        // const res = await axios.post('/admin', formdata)
+        // // res.data
+
+        // const formData = new FormData();
+
+        // formData.append('name', formdata.name);
+        // formData.append('file', formdata.file);
+        
+
+        // 
 
         // ✅ Pass categoryId to the route
         nav("/create", {

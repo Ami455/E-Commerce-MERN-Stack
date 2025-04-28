@@ -1,9 +1,24 @@
 import "./Home.css"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 
 export default function Home() {
+
+    const [categoryData, setCategoryData] = useState([]);
+
+    const getCategory = async () => {
+        const data = await axios.get(
+            `${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_CATEGORY_LIST}`
+        );
+        setCategoryData(data.data.categories);
+    };
+
+    useEffect(() => {
+        getCategory();
+    }, []);
     return (
         <>
+
         <section className="first container  my-5 ">
             <div className="row justify-content-center align-items-center">
                 <div className="col-6 ">
@@ -22,17 +37,19 @@ export default function Home() {
                                 <div className="col-2 ">
                                     <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/thmb3.jpg" className="rounded-4" alt="" />
                                 </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="col-6 ">
-                    <div className="inner">
-                        <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/photo1.png" className="w-100 "  alt="" />
+                    <div className="col-6 ">
+                        <div className="inner">
+                            <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/photo1.png" className="w-100 " alt="" />
+                        </div>
                     </div>
                 </div>
-                </div>
-        </section>
+            </section>
+
 
         <section className="explore">
             <div className="container">
@@ -71,45 +88,86 @@ export default function Home() {
                         <div className="categ ">
                             <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon5.png"  className="w-100 object-fit-contain " alt="" />
                             <h5 className=" "> sofa</h5>
+
+                         </div>
+
                         </div>
-                    </div>
-                    <div className="col-1   ">
-                        
-                    </div>
-                    <div className="col-2 ">
-                        <div className="categ ">
-                            <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon10.png"  className="w-100 object-fit-contain " alt="" />
-                            <h5 className=""> sofa</h5>
+                        {categoryData.map((cat, index) => (
+                            <React.Fragment key={cat.id}>
+                                <div className="col-2">
+                                    <div className="categ py-3">
+                                        <a href="/home" className="text-decoration-none">
+                                        <img src={cat.image} className="w-100 object-fit-contain" alt="" />
+                                        <h5 className="sofa-text">{cat.name}</h5>
+                                        </a>
+                                        </div>
+                                </div>
+
+                                {index === 4 && (   // <== notice: after index 4 (the 5th element)
+                                    <div className="col-1" key={`empty-${cat.id}`}></div>
+                                )}
+                            </React.Fragment>
+                        ))}
+                        <div className="col-1 ">
+
                         </div>
-                    </div>
-                    <div className="col-2 ">
-                        <div className="categ ">
-                            <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon9.png"  className="w-100 object-fit-contain " alt="" />
-                            <h5 className=""> sofa</h5>
-                        </div>
-                    </div>
-                    <div className="col-2 ">
-                        <div className="categ ">
-                            <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon8.png"  className="w-100 object-fit-contain " alt="" />
-                            <h5 className=""> sofa</h5>
-                        </div>
-                    </div>
-                    <div className="col-2 ">
-                        <div className="categ ">
-                            <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon7.png"  className="w-100 object-fit-contain " alt="" />
-                            <h5 className=""> sofa</h5>
-                        </div>
-                    </div>
-                    <div className="col-2 ">
-                        <div className="categ ">
-                            <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon6.png"  className="w-100 object-fit-contain " alt="" />
-                            <h5 className=""> sofa</h5>
-                        </div>
-                    </div>
-                    <div className="col-1 ">
-                        
                     </div>
                 </div>
+
+            </section>
+            <section>
+                <div className="container my-5">
+                    <div className="row">
+                        <div className="col-6">
+                            <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/photo2.jpg" alt="" />
+
+                        </div>
+                        <div className="col-6 ">
+                            <div className="contain">
+                                <h2 className="mt-5">Explore<br />Xtra <span >Furniture</span><br /> <span >Stores</span> for<br />latest collection</h2>
+                                <p className="my-3">Sofa, bed, desk, chairs, tables, there’s something so enjoyable about slowly meandering through furniture stores.</p>
+                                <button>See collection</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-6 ">
+                            <div className="contain">
+                                <h2 className="mt-5">Explore<br />Xtra <span >Furniture</span><br /> <span >Stores</span> for<br />latest collection</h2>
+                                <p className="my-3">Sofa, bed, desk, chairs, tables, there’s something so enjoyable about slowly meandering through furniture stores.</p>
+                                <button>See collection</button>
+                            </div>
+
+                        </div>
+                        <div className="col-6 ">
+                            <div className="row">
+                                <div className="col-6 ">
+                                    <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2019/09/p20-600x600.jpg" alt="" />
+                                    <button className="btn card-button w-50">Flower Lamp</button>
+                                </div>
+                                <div className="col-6">
+                                    <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2019/09/p22-600x600.jpg" alt="" />
+                                    <button className="btn card-button w-50">Triangle Stool</button>
+                                </div>
+                                <div className="col-6">
+                                    <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2019/09/p23-600x600.jpg" alt="" />
+                                    <button className="btn card-button w-50">Gray Simple Sofa</button>
+                                </div>
+                                <div className="col-6">
+                                    <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2019/09/p26i-600x600.jpg" alt="" />
+                                    <button className="btn card-button w-50">Modern Lounge</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             
         </section>
@@ -169,7 +227,7 @@ export default function Home() {
 
         
         <section>
-            {/* <div className="container">
+
                 <div className="row align-items-center justify-content-center my-4 ">
                     <div className="col-4 the-f ">
                         <div className="feature">
@@ -203,6 +261,7 @@ export default function Home() {
                     </div>
                 </div>
             </div> */}
+
 
 
 <div className="container my-5">
@@ -279,6 +338,10 @@ export default function Home() {
 
         </section>
         
+
         </>
     )
 }
+
+
+
