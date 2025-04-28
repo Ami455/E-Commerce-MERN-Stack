@@ -36,14 +36,18 @@ const user = await User.update({isActive:false}, {
 }
 
 const adminDashboard= async (req, res) => {
+
     res.status(200).json({isAdmin: true});
 }
+
 
 module.exports = {
     findAllUsers,
     findUserById,
     createUser,
     updateUser,
+
     isActiveUser,
+
     adminDashboard
 }
