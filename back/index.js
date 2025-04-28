@@ -10,6 +10,7 @@ const authRouter = require('./routes/auth.route')
 const productRouter = require('./routes/product.route')
 const categoryRouter = require('./routes/category.route')
 const cartRouter = require('./routes/cart.route')
+const addressRouter = require('./routes/address.route')
 const cors= require("cors")
 const Product = require("./models/Products.model")
 const User = require("./models/user.model")
@@ -33,6 +34,7 @@ app.use('/auth',authRouter);
 app.use('/product',productRouter);
 app.use('/category',categoryRouter);
 app.use('/cart',cartRouter);
+app.use('/address',addressRouter);
 
 
 app.listen(port ,async()=>{

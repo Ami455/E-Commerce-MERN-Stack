@@ -1,11 +1,14 @@
-1111111111 multer for mai 
-1- Search, 
-2- filter(price , category, sort by )
+
 3- favorite 
 4- track order admin
 5- reviews & comments
 6- seller, relation between seller and product
-
+7-order , order history
+checkout
+phone num and date of birth
+login with google acount
+send mail to customer service
+user track his order
 
 flow:
 
@@ -26,3 +29,6 @@ admin : orderId
 Done:
 1- add user role
 2- add role in token login , register
+1- Search, 
+2- filter(price , category, sort by , limit and pages)
+1111111111 multer for mai 
