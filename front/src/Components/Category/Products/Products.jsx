@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react'
-
 import Card from '../../Card/ProductCard';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import './Products.css'
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { api } from '../../../utils/api';
 
-const token = localStorage.getItem('token');
-if (token) {
-  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-}
+// const token = localStorage.getItem('token');
+// if (token) {
+//   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+// }
 
 
 export default function Products() {
@@ -22,15 +21,12 @@ export default function Products() {
   const [error, setError] = useState(null);
 
   const getCart = async (id) => {
-    const cart = await axios.get(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_CARTPRODUCT}`)
+    const cart = await api.get(`${import.meta.env.VITE_CARTPRODUCT}`)
     setCart(cart.data.products)
   };
   const getProducts = async () => {
    // console.log(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_PRODUCTS_LIST}`)
-    const res = await axios.get(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_PRODUCTS_LIST}`)
-
-
-
+    const res = await api.get(`${import.meta.env.VITE_PRODUCTS_LIST}`)
 
     if (res.status >= 200 && res.status < 300) {
       setProducts(res.data);
@@ -45,7 +41,7 @@ export default function Products() {
   }
   const editQuantity = async (id, operation, index = null) => {
     if (operation == "#") {
-      await axios.post(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_CARTPRODUCT}/${id}`,{ quantity: 1 } );
+      await api.post(`${import.meta.env.VITE_CARTPRODUCT}/${id}`,{ quantity: 1 } );
 
     } else {
       
@@ -54,14 +50,13 @@ export default function Products() {
 
       //count = Math.min(Math.max(count, 1), products[index].stock);
      // console.log(count)
-      await axios.put(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_CARTPRODUCT}/${id}`, { quantity: count });
+      await api.put(`${import.meta.env.VITE_CARTPRODUCT}/${id}`, { quantity: count });
 
     }
 
     getProducts()
     getCart()
   }
-
 
   const getProductQuantity = (productId) => {
     const cartItem = cart.find(item => item.id === productId);
@@ -70,16 +65,17 @@ export default function Products() {
   useEffect(() => {
     getProducts()
     getCart()
-   
+  
   }, [])
- const l=()=> { 
+  const l=()=> {
   const productWithId44 = products.find(product => product.id === 44)
     if (productWithId44) {
       console.log('Product with id 44:', productWithId44);
-    }}
+    }
+  }
   return (
     <>
-    {console.log(l())}
+    {/* {console.log(l())} */}
       {error != null && <p>{error}</p>}
       <Container  >
         <Row className='product-list'>
@@ -90,7 +86,7 @@ export default function Products() {
               {getProductQuantity(product.id) > 0 ?
                 (<div className='w-75 bg-primary d-flex justify-content-between '>
                   <Link onClick={() => editQuantity(product.id, "-", index)}><FontAwesomeIcon icon={faMinus} className="custom-icon" /></Link>
-                    {getProductQuantity(product.id)}  
+                    {getProductQuantity(product.id)}
                   <Link onClick={() => editQuantity(product.id, "+", index)}><FontAwesomeIcon icon={faPlus} className="custom-icon" /></Link>
                 </div>)
                 :
@@ -101,6 +97,8 @@ export default function Products() {
 
         </Row>
       </Container>
+
+      
 
     </>
   )

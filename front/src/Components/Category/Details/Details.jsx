@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
+import { api } from '../../../utils/api';
 
 export default function Details() {
     const location = useLocation();
@@ -12,8 +12,8 @@ export default function Details() {
         if (productId) {
             const getData = async () => {
                 try {
-                    const response = await axios.get(
-                        `${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_PRODUCTS_LIST}/${productId}`
+                    const response = await api.get(
+                        `${import.meta.env.VITE_PRODUCTS_LIST}/${productId}`
                     );
                     setProduct(response.data);
                 } catch (error) {

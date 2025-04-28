@@ -1,70 +1,87 @@
-import React from 'react'
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button';
-import './Register.css'
-import Container from 'react-bootstrap/esm/Container';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Navigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-
+import {api} from '../../utils/api'; // make sure your api instance is set
+import './Register.css';
 
 export default function Register() {
-    
-    const { register, handleSubmit } = useForm();
-    const nav = useNavigate();
-    const sendLoginData=(formdata)=>{
-        console.log("submit")
-        console.log(formdata)
-        console.log(formdata.email, formdata.password, "didn't nav")
-        nav("/auth", { state: { userName: formdata.userName ,email: formdata.email, password:formdata.password ,action: 'register'} })
+  const { register, handleSubmit } = useForm();
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [message, setMessage] = useState('');
 
-        
+  const registerUser = async (formData) => {
+    const { userName, email, password } = formData;
 
+    try {
+      // Send registration request to the backend
+      const res = await api.post(`${import.meta.env.VITE_AUTH_REGISTER}`, { userName, email, password });
+      console.log("Registration successful:", res.data);
+
+      // After successful registration:
+      setMessage("Registration successful! Please log in.");
+      localStorage.removeItem("token"); // Clear any existing token
+      localStorage.removeItem("role");  // Clear any existing role
+
+      // Set state to trigger the redirect
+      setIsRegistered(true);  // Set to true to trigger the redirection
+
+    } catch (err) {
+      console.error("Registration error:", err.response?.data?.message || err.message);
+      setMessage(err.response?.data?.message || "Registration failed.");
     }
-    
+  };
 
+  const onSubmit = (formData) => {
+    registerUser(formData); // Call the register function
+  };
 
-    return (
-        <>
-            
-            <section className=''>
-                <div className="container my-5">
-                    <div className="row ggg p-5 justify-content-between align-item-evenly">
-                        <div className="col-5 login">
-                            <form onSubmit={handleSubmit(sendLoginData)}>
-                                <div className="mb-3">
-                                    <h2 className='login-title p-3'>Sign up</h2>
-                                    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" {...register("email")} />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="exampleInputUserName" className="form-label">User Name</label>
-                                    <input type="text" className="form-control" id="exampleInputUserName" {...register("userName")} />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                                    <input type="password" className="form-control" id="exampleInputPassword1" {...register("password")}/>
-                                </div>
-                                <div className="mb-3 form-check">
-                                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                                    <label className="form-check-label" htmlFor="exampleCheck1"> Remember me</label>
-                                </div>
-                            
-                                <button type="submit" className="btn ">Register</button>
-                            </form>
+  // If the user is registered, navigate to the login page
+  if (isRegistered) {
+    return <Navigate to="/login" replace />;
+  }
 
-                        </div>
-                        <div className="col-5 ">
-                                {/* <img src="https://i.pinimg.com/736x/58/ef/fc/58effc8203b7d19935efc26589cd0b3a.jpg" className='w-100 rounded' alt="" /> */}
-                                <img src="https://i.pinimg.com/736x/f8/33/e9/f833e9c1e11ff86c5aa7f1fa4ba4ea86.jpg" className='w-100 rounded' alt="" />
-                            </div>
-                        
-                        </div>
-                </div>
-            </section>
-            </>
+  return (
+    <section>
+      <div className="container my-5">
+        <div className="row p-5 justify-content-between align-items-center">
+          <div className="col-5 register">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <h2 className="register-title p-3">Sign up</h2>
 
-    )
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">Email address</label>
+                <input type="email" className="form-control" id="email" {...register("email", { required: true })} />
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="userName" className="form-label">User Name</label>
+                <input type="text" className="form-control" id="userName" {...register("userName", { required: true })} />
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">Password</label>
+                <input type="password" className="form-control" id="password" {...register("password", { required: true })} />
+              </div>
+
+              <div className="mb-3 form-check">
+                <input type="checkbox" className="form-check-input" id="rememberMe" />
+                <label className="form-check-label" htmlFor="rememberMe">Remember me</label>
+              </div>
+
+              <button type="submit" className="btn btn-primary">Register</button>
+
+              {message && <div className="mt-3 alert alert-info">{message}</div>}
+              <div className="mt-3">
+                <Link to="/login">Already have an account? Log in here!</Link>
+              </div>
+            </form>
+          </div>
+
+          <div className="col-5">
+            <img src="https://i.pinimg.com/736x/f8/33/e9/f833e9c1e11ff86c5aa7f1fa4ba4ea86.jpg" className="w-100 rounded" alt="Register Visual" />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
-

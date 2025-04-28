@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+
 import { faCartShopping, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import axios from 'axios';
@@ -11,14 +11,15 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../Nav/NavComponent.css";
 import Logo from "../../../../images/navLogo.png";
+import { api } from '../../utils/api';
 
 
 export default function NavComponent() {
   const [categoryData, setCategoryData] = useState([]);
 
   const getCategory = async () => {
-    const data = await axios.get(
-      `${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_CATEGORY_LIST}`
+    const data = await api.get(
+      `${import.meta.env.VITE_CATEGORY_LIST}`
     );
     setCategoryData(data.data.categories);
   };
@@ -41,11 +42,11 @@ export default function NavComponent() {
 
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/about">About</Nav.Link>
+              <Nav.Link href="/category/products">Product</Nav.Link>
 
               <NavDropdown title="Category" id="category-dropdown">
                 {categoryData.map((cat) => (
                   <NavDropdown.Item key={cat.id} href={`/category/${cat.id}`}>
-                  {/* <NavDropdown.Item key={cat.id} href={`/category/${cat.id}`}> */}
                     {cat.name}
                   </NavDropdown.Item>
                 ))}
