@@ -1,4 +1,5 @@
     const router = require('express').Router()
+    const uploads=require("../middleware/uploads.middleware")
     const {tryCatchWrapper} = require('../middleware/errorHandler.middleware')
     const { findAllProduct,
         findProductById,
@@ -12,7 +13,7 @@
 
     router.get('/', tryCatchWrapper(findAllProduct))
     router.get('/:id', tryCatchWrapper(findProductById))
-    router.post('/', tryCatchWrapper(createProduct))
+    router.post('/',uploads.single("file") ,tryCatchWrapper(createProduct))
     router.put('/:id', tryCatchWrapper (updateProduct))
     router.delete('/:id', tryCatchWrapper( deleteProduct))
 
