@@ -1,20 +1,17 @@
-
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import { api } from '../../../utils/api';
 
 
 export default function FindByCategory() {
 
     const { categoryId } = useParams();
-
     const [products, setProducts] = useState([]);
-
     // Fetch data based on categoryId
     const getData = async () => {
         try {
-            const response = await axios.get(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_CATEGORY_LIST}/${categoryId}/products`);
+            const response = await api.get(`${import.meta.env.VITE_CATEGORY_LIST}/${categoryId}/products`);
             console.log(response.data.category);
             
             setProducts(response.data.category.products);
@@ -28,7 +25,6 @@ export default function FindByCategory() {
             getData();
         }
     }, [categoryId]);
-
 
     return (
         <Container>

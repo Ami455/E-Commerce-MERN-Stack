@@ -1,12 +1,12 @@
-const { Op } = require('sequelize');
+// const { Op } = require('sequelize');
 const Category = require('../models/Category.model');
 
-const  Product  = require('../models/Products.model');
+const Product = require('../models/Products.model');
 
 
 
 // Get all furniture products (with query : filter, search , sort, limit)
-const findAllProduct = async (req, res) => { 
+const findAllProduct = async (req, res) => {
    const {search,category,max_price,min_price ,sort, page = 1, limit = 16} = req.query 
   //1- where
    const whereSelector= {}
@@ -50,7 +50,7 @@ const offset = (page - 1) * limit;
         limit: parseInt(limit),
       offset: parseInt(offset),
     });
-
+    
 
     res.json({
         totalItems: products.count,
@@ -60,6 +60,13 @@ const offset = (page - 1) * limit;
       });
 
 };
+
+// Get all furniture products
+// const findAllProduct = async (req, res) => {
+//     const products = await Product.findAll();
+//     console.log(products)
+//     res.status(200).json(products);
+// };
 
 // Get a single furniture product by ID
 const findProductById = async (req, res) => {
@@ -84,22 +91,27 @@ const findProductById = async (req, res) => {
 
 const createProduct = async (req, res) => {
 
-    const image= req.file.filename;
+    const image = req.file.filename;
     const { name,
         description,
         price,
         stock } = req.body
-    
-    const product = await Product.create({ name,
+    if (!req.file) {
+        return res.status(400).json({ error: 'No image file uploaded' });
+    }
+
+    const product = await Product.create({
+        name,
         description,
         price,
-        stock, image})
-        console.log("created")
-        const category=await  Category.findByPk(req.body.categoryId)
-    
+        stock, image
+    })
+    console.log("created")
+    const category = await Category.findByPk(req.body.categoryId)
+
     if (category && product) {
         await product.setCategory(category)
-    res.json(product)
+        res.json(product)
     } else {
         res.status(404).json({ error: 'category not found' });
     }
@@ -109,6 +121,7 @@ const createProduct = async (req, res) => {
 
 
 // Update a furniture product by ID
+
 const updateProduct = async (req, res) => {
     const [updated] = await Product.update(req.body, {
         where: { id: req.params.id }

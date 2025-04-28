@@ -1,14 +1,15 @@
 import "./Home.css"
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import { api } from "../../utils/api";
 
 export default function Home() {
 
     const [categoryData, setCategoryData] = useState([]);
 
     const getCategory = async () => {
-        const data = await axios.get(
-            `${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_CATEGORY_LIST}`
+        const data = await api.get(
+            `${import.meta.env.VITE_CATEGORY_LIST}`
         );
         setCategoryData(data.data.categories);
     };
@@ -60,7 +61,7 @@ export default function Home() {
                             <React.Fragment key={cat.id}>
                                 <div className="col-2">
                                     <div className="categ py-3">
-                                        <a href="/home" className="text-decoration-none">
+                                        <a href={`/category/${cat.id}`} className="text-decoration-none">
                                         <img src={cat.image} className="w-100 object-fit-contain" alt="" />
                                         <h5 className="sofa-text">{cat.name}</h5>
                                         </a>
@@ -135,41 +136,6 @@ export default function Home() {
 
 
             <section>
-                {/* <div className="container">
-                <div className="row align-items-center justify-content-center my-4 ">
-                    <div className="col-4 the-f ">
-                        <div className="feature">
-                            <div>
-                                <h2>Lorem ipsum dolor sit.</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, quas!</p>
-                            </div>
-                            
-                        </div>
-
-                    </div>
-                    <div className="col-4 the-f ">
-                        <div className="feature">
-                            <div>
-                                <h2>Lorem ipsum dolor sit.</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, quas!</p>
-                            </div>
-                            
-                        </div>
-
-                    </div>
-                    <div className="col-4 the-f ">
-                        <div className="feature">
-                            <div>
-                                <h2>Lorem ipsum dolor sit.</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, quas!</p>
-                            </div>
-                            
-                        </div>
-
-                    </div>
-                </div>
-            </div> */}
-
 
                 <div className="container my-5">
                     <div className="row text-center justify-content-center gap-3">

@@ -26,7 +26,7 @@ const updateUser = async (req, res) => {
     })
     res.json(user)
 }
-const deleteUser = async (req, res) => {
+const isActiveUser = async (req, res) => {
 const user_id = req.params.id
 const user = await User.update({isActive:false}, {
     where: {
@@ -36,14 +36,18 @@ const user = await User.update({isActive:false}, {
 }
 
 const adminDashboard= async (req, res) => {
-    res.status(200).json({isAdmin: ture});
-    }
+
+    res.status(200).json({isAdmin: true});
+}
+
 
 module.exports = {
     findAllUsers,
     findUserById,
     createUser,
     updateUser,
-    deleteUser,
+
+    isActiveUser,
+
     adminDashboard
 }

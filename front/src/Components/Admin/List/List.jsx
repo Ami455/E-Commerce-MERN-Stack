@@ -1,29 +1,25 @@
       import React, { useEffect, useState } from 'react'
       import Table from 'react-bootstrap/Table';
       import './List.css'
-      import { Button, Col, Overlay, Tooltip, Row, Popover } from 'react-bootstrap';
+      import {  Overlay, Tooltip } from 'react-bootstrap';
       import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
       import { faPen, faPenNib, faTrash } from '@fortawesome/free-solid-svg-icons';
       import { Link } from 'react-router-dom';
-      import axios from 'axios';
 
-
-
-
-
+import { api } from '../../../utils/api';
 
       export default function List() {
 
         const [products, setProducts] = useState([]);
 
         const getData = async ()=>{
-          const data = await axios.get(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_PRODUCTS_LIST}`)
-          console.log(data.data)
-          setProducts( data.data)
+          const data = await api.get(`${import.meta.env.VITE_PRODUCTS_LIST}`)
+          console.log(data.data.items)
+          setProducts( data.data.items)
         };
 
         const deleteData = async (id)=>{
-          await axios.delete(`${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_PRODUCTS_LIST}/${id}`);
+          await api.delete(`${import.meta.env.VITE_PRODUCTS_LIST}/${id}`);
           getData();
         }
 
@@ -33,38 +29,11 @@
         }
         ,[])
 
-        const sentProductId = (id)=>{
-
-
-        }
-
-
 
         const [tooltipShow, setTooltipShow] = useState(false);
         const [tooltipData, setTooltipData] = useState({});
         const [tooltipTarget, setTooltipTarget] = useState(null);
-        //const [isHoverInfo,setIsHoverInfo]=useState(false)
-        // const products = [
-        //   {
-        //     id: 1,
-        //     image: 'https://raw.githubusercontent.com/avinashdm/gs-images/main/forever/p_img47.png',
-        //     name: 'Kid Tapered Slim Fit Trouser',
-        //     description: "this is descriptionsdlatsdfsfsffffffffffffj ...............this is description...............this is description...............",
-        //     category: 'Kids',
-        //     price: 38,
-        //     quantity: 4,
-        //   },
-        //   {
-        //     id: 2,
-        //     image: 'https://raw.githubusercontent.com/avinashdm/gs-images/main/forever/p_img47.png',
-        //     name: 'Kid Tapered Slim Fit Trouser',
-        //     description: "this is description...............this is description...............this is description...............",
-        //     category: 'Kids',
-        //     price: 38,
-        //     quantity: 4,
-        //   },
-          // Add more products as needed
-        // ];
+        
         const handleMouseEnter = (event, product) => {
           setTooltipData(product);
           setTooltipTarget(event.currentTarget);

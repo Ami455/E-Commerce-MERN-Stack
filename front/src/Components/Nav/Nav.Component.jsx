@@ -1,27 +1,30 @@
-import React, { useContext, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react';
+
 import { faCartShopping, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
 
-import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "../Nav/NavComponent.css";
 import Logo from "../../../../images/navLogo.png";
+import { api } from '../../utils/api';
+import "../Nav/NavComponent.css";
+import { useSelector } from "react-redux";
 
 
 export default function NavComponent() {
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   const [categoryData, setCategoryData] = useState([]);
+  
 
-  const getCategory = async () => {
-    const data = await axios.get(
-      `${import.meta.env.VITE_LOCAL_HOST}/${import.meta.env.VITE_CATEGORY_LIST}`
+  const getCategory = useCallback(async () => {
+    const data = await api.get(
+      `${import.meta.env.VITE_CATEGORY_LIST}`
     );
-    setCategoryData(data.data.categories);
-  };
+    setCategoryData(data.data.categories);  
+  }, []);
 
   useEffect(() => {
     getCategory();
@@ -41,11 +44,11 @@ export default function NavComponent() {
 
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/about">About</Nav.Link>
+              <Nav.Link href="/category/products">Product</Nav.Link>
 
               <NavDropdown title="Category" id="category-dropdown">
                 {categoryData.map((cat) => (
                   <NavDropdown.Item key={cat.id} href={`/category/${cat.id}`}>
-                  {/* <NavDropdown.Item key={cat.id} href={`/category/${cat.id}`}> */}
                     {cat.name}
                   </NavDropdown.Item>
                 ))}
@@ -63,10 +66,9 @@ export default function NavComponent() {
                 <FontAwesomeIcon icon={faUser} />
               </Nav.Link>
 
- {/* {isAthenticated ? :<Nav.Link href="/login">
-                <FontAwesomeIcon icon={faUser} />
-              </Nav.Link>}
-               */}
+              <Nav.Link href={user?.role !== "admin" ? '/' : '/admin'}>Dashboard</Nav.Link>
+
+
             </Nav>
           </Navbar.Collapse>
         </Container>

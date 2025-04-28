@@ -18,6 +18,8 @@
     "@reduxjs/toolkit": "^2.7.0",
     "axios": "^1.8.4",
     "bootstrap": "^5.3.5",
+    "install": "^0.13.0",
+    "npm": "^11.3.0",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
