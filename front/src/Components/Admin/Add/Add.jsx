@@ -45,7 +45,7 @@ export default function Add() {
             formDataToSend.append('categoryId', formdata.category);
             formDataToSend.append('price', formdata.price);
             formDataToSend.append('stock', formdata.stock);
-
+            console.log(formdata.file[0])
             if (formdata.file[0]) { // if an image is selected
                 formDataToSend.append('file', formdata.file[0]);
             }

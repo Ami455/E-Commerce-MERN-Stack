@@ -26,6 +26,9 @@ app.use(cors({
   origin: `${process.env.REACT_LOCAL_HOST}`
 }));
 
+app.use('/uploads', express.static('uploads')) //  /uploads => path
+
+
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use('/user', userRouter);

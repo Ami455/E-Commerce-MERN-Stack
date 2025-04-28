@@ -10,7 +10,7 @@ const authMiddleware =(req,res,next)=>{
     const decoded = verifyToken(token); // Verify the token
     req.user = decoded; // Attach the decoded user info to the request object
 
-    console.log(req.user); // Log the user info for debugging
+    // console.log(req.user); // Log the user info for debugging
 
     next(); // Call the next middleware or route handler
 

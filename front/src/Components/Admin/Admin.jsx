@@ -4,9 +4,12 @@ import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
+
 import { Outlet, Link } from 'react-router-dom';
 
 export default function Admin() {
+
+
     return (
         <Tab.Container defaultActiveKey="add">
             <Row className='row'>

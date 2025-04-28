@@ -6,6 +6,6 @@ const roleMiddleware = require('../middleware/role.middleware')
 
 router.post('/login',tryCatchWrapper(login))
 router.post('/register',tryCatchWrapper(register))
-router.get('/admin',authMiddleware,roleMiddleware('admin'),tryCatchWrapper(admin))
+// router.get('/admin',authMiddleware,roleMiddleware('admin'),tryCatchWrapper(admin))
 
 module.exports = router

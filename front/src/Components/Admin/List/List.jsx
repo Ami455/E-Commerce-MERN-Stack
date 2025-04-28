@@ -14,8 +14,8 @@ import { api } from '../../../utils/api';
 
         const getData = async ()=>{
           const data = await api.get(`${import.meta.env.VITE_PRODUCTS_LIST}`)
-          console.log(data.data)
-          setProducts( data.data)
+          console.log(data.data.items)
+          setProducts( data.data.items)
         };
 
         const deleteData = async (id)=>{
@@ -33,28 +33,7 @@ import { api } from '../../../utils/api';
         const [tooltipShow, setTooltipShow] = useState(false);
         const [tooltipData, setTooltipData] = useState({});
         const [tooltipTarget, setTooltipTarget] = useState(null);
-        //const [isHoverInfo,setIsHoverInfo]=useState(false)
-        // const products = [
-        //   {
-        //     id: 1,
-        //     image: 'https://raw.githubusercontent.com/avinashdm/gs-images/main/forever/p_img47.png',
-        //     name: 'Kid Tapered Slim Fit Trouser',
-        //     description: "this is descriptionsdlatsdfsfsffffffffffffj ...............this is description...............this is description...............",
-        //     category: 'Kids',
-        //     price: 38,
-        //     quantity: 4,
-        //   },
-        //   {
-        //     id: 2,
-        //     image: 'https://raw.githubusercontent.com/avinashdm/gs-images/main/forever/p_img47.png',
-        //     name: 'Kid Tapered Slim Fit Trouser',
-        //     description: "this is description...............this is description...............this is description...............",
-        //     category: 'Kids',
-        //     price: 38,
-        //     quantity: 4,
-        //   },
-          // Add more products as needed
-        // ];
+        
         const handleMouseEnter = (event, product) => {
           setTooltipData(product);
           setTooltipTarget(event.currentTarget);
