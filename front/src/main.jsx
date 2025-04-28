@@ -7,7 +7,7 @@ import Products from "./Components/Category/Products/Products.jsx"
 import Category from "./Components/Category/Category.jsx"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
-
+import Account from '../account/account.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './Components/Login/Login.jsx'
 import Register from './Components/Register/Register.jsx'
@@ -25,12 +25,22 @@ import FindByCategory from './Components/Category/ProductInCategory/FindByCatego
 
 import Cart from './Components/Cart/Cart.jsx'
 import Checkout from './Components/Cart/Checkout/Checkout.jsx'
+
+// import Account from './Components/UserAccount/Account.jsx'
+
+
+
+
+
 import About from './Components/About/About';
+
 
 
 
   let router = createBrowserRouter([{
     path: '/',element:<Layout/>,children:[
+
+      {path:'/account',element:<Account/>},
       {index:true,element:<Home/>},
       {path:'/about',element:<About/>},
       {path: '/category',element:<Category/>,children:[
