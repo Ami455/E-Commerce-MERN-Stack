@@ -1,13 +1,63 @@
+const { Op } = require('sequelize');
 const Category = require('../models/Category.model');
 
 const  Product  = require('../models/Products.model');
 
 
 
-// Get all furniture products
-const findAllProduct = async (req, res) => {
-    const products = await Product.findAll();
-    res.status(200).json(products);
+// Get all furniture products (with query : filter, search , sort, limit)
+const findAllProduct = async (req, res) => { 
+   const {search,category,max_price,min_price ,sort, page = 1, limit = 16} = req.query 
+  //1- where
+   const whereSelector= {}
+   if(search){
+    whereSelector.name = { [Op.iLike]: `%${search}%` };
+   }
+   if(category){
+    whereSelector.search = category
+   }
+   if(max_price || min_price){
+    whereSelector.price={}
+    if (minPrice) {
+        whereSelector.price[Op.gte] = parseFloat(minPrice);
+      }
+      if (maxPrice) {
+        whereSelector.price[Op.lte] = parseFloat(maxPrice);
+      }
+
+   }
+//2- order
+   orderSelector=[]
+if(sort)
+{
+    if (sort === 'price_asc') {
+        orderSelector = [['price', 'ASC']];
+      } else if (sort === 'price_desc') {
+        orderSelector = [['price', 'DESC']];
+      } else if (sort === 'name_asc') {
+        orderSelector = [['name', 'ASC']];
+      } else if (sort === 'name_desc') {
+        orderSelector = [['name', 'DESC']];
+      }
+}
+
+//3- offset
+const offset = (page - 1) * limit;
+
+    const products = await Product.findAndCountAll({
+        where:whereSelector,
+        order:orderSelector,
+        limit: parseInt(limit),
+      offset: parseInt(offset),
+    });
+
+
+    res.json({
+        totalItems: products.count,
+        totalPages: Math.ceil(products.count / limit),
+        currentPage: parseInt(page),
+        items: products.rows,
+      });
 
 };
 
@@ -34,18 +84,19 @@ const findProductById = async (req, res) => {
 
 const createProduct = async (req, res) => {
 
-    
+    const image= req.file.filename;
     const { name,
         description,
         price,
-        stock} = req.body
+        stock } = req.body
+    
     const product = await Product.create({ name,
         description,
         price,
-        stock})
+        stock, image})
         console.log("created")
         const category=await  Category.findByPk(req.body.categoryId)
-       
+    
     if (category && product) {
         await product.setCategory(category)
     res.json(product)

@@ -35,11 +35,15 @@ const user = await User.update({isActive:false}, {
 })
 }
 
+const adminDashboard= async (req, res) => {
+    res.status(200).json({isAdmin: ture});
+    }
 
 module.exports = {
     findAllUsers,
     findUserById,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    adminDashboard
 }
