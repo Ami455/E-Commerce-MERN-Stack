@@ -1,9 +1,9 @@
 const Cart = require('../models/Cart.model');
-const  Product  = require('../models/Products.model');
-const  CartProduct  = require('../models//CartProduct.model');
+const Product = require('../models/Products.model');
+const CartProduct = require('../models//CartProduct.model');
 
 const findCartProducts = async (req, res) => {
-    
+
     const cart = await Cart.findOne({
         where: {
             userId: req.user.id
@@ -12,15 +12,15 @@ const findCartProducts = async (req, res) => {
     if (!cart) {
         return res.status(404).json({ error: 'Cart not found' });
     }
-    const CartId=cart.id
+    const CartId = cart.id
 
     const products = await cart.getProducts({
         joinTableAttributes: ['quantity'] // includes quantity from CartProduct
     });
 
-// const quantities = await CartProduct.findAll({where: {
-//     CartId
-// }})
+    // const quantities = await CartProduct.findAll({where: {
+    //     CartId
+    // }})
 
 
     if (!products) {
@@ -31,13 +31,13 @@ const findCartProducts = async (req, res) => {
     products.forEach((product) => {
         totalPrice += product.CartProduct.quantity * product.price;
         //console.log(product.CartProduct.quantity, "*", product.price, totalPrice)
-      });
-    
-      res.status(200).json({ products, totalPrice });
+    });
+
+    res.status(200).json({ products, totalPrice });
 };
 
 //check if product is in cart
-const findProductQuantity= async (req, res) => {
+const findProductQuantity = async (req, res) => {
     const ProductId = req.params.id
     const cart = await Cart.findOne({
         where: {
@@ -47,25 +47,24 @@ const findProductQuantity= async (req, res) => {
     if (!cart) {
         return res.status(404).json({ error: 'Cart not found' });
     }
-    const CartId=cart.id
+    const CartId = cart.id
 
     const product = await cart.getProduct({
-        where:{ProductId},
+        where: { ProductId },
         joinTableAttributes: ['quantity'] // includes quantity from CartProduct
     });
-if(!product)
-{
-    res.status(200).json({ quantity:0 }); 
-}
-      res.status(200).json({quantity: product.CartProduct.quantity });
+    if (!product) {
+        res.status(200).json({ quantity: 0 });
+    }
+    res.status(200).json({ quantity: product.CartProduct.quantity });
 };
 
 
 const addProductToCart = async (req, res) => {
-    
 
-    const {quantity}= req.body
-    const ProductId= req.params.id
+
+    const { quantity } = req.body
+    const ProductId = req.params.id
     const cart = await Cart.findOne({
         where: {
             userId: req.user.id
@@ -74,45 +73,44 @@ const addProductToCart = async (req, res) => {
     if (!cart) {
         return res.status(404).json({ error: 'Cart not found' });
     }
-    const CartId=cart.id
+    const CartId = cart.id
 
     const product = await Product.findByPk(ProductId);
     if (!product) {
         return res.status(404).json({ error: 'Product not found' });
     }
-const cartProduct = await CartProduct.findOne({ where: { CartId, ProductId}} )
+    const cartProduct = await CartProduct.findOne({ where: { CartId, ProductId } })
 
-//quantity cant be more than stock or less than 1
-const finalQuantity = Math.min(Math.max(quantity, 1), product.stock);
+    //quantity cant be more than stock or less than 1
+    const finalQuantity = Math.min(Math.max(quantity, 1), product.stock);
 
-if (cartProduct) {
-    // If product already exists, update the quantity
-    
-    cartProduct.quantity += finalQuantity;
-    //quantity can't be more than stock
-    if(cartProduct.quantity>product.stock)
-    {cartProduct.quantity=product.stock}
-    await cartProduct.save();
-} else{
-    // If product doesn't exist in the cart, create a new entry in CartProduct table
-    await CartProduct.create({ CartId, ProductId, finalQuantity });
-}
+    if (cartProduct) {
+        // If product already exists, update the quantity
 
+        cartProduct.quantity += finalQuantity;
+        //quantity can't be more than stock
+        if (cartProduct.quantity > product.stock) { cartProduct.quantity = product.stock }
+        await cartProduct.save();
+    } else {
+        // If product doesn't exist in the cart, create a new entry in CartProduct table
+        await CartProduct.create({ CartId, ProductId, finalQuantity });
+    }
 
 
-// =======
-// if (cartProduct) {
-//     // If product already exists, update the quantity
-//     cartProduct.quantity += quantity;
-//     await cartProduct.save();
-// } else{
-//     // If product doesn't exist in the cart, create a new entry in CartProduct table
-//     await CartProduct.create({ CartId, ProductId, quantity });
-// }
-// >>>>>>> merge
 
-res.status(200).json({ message: 'Product added to cart' });
- };
+    // =======
+    // if (cartProduct) {
+    //     // If product already exists, update the quantity
+    //     cartProduct.quantity += quantity;
+    //     await cartProduct.save();
+    // } else{
+    //     // If product doesn't exist in the cart, create a new entry in CartProduct table
+    //     await CartProduct.create({ CartId, ProductId, quantity });
+    // }
+    // >>>>>>> merge
+
+    res.status(200).json({ message: 'Product added to cart' });
+};
 
 
 const updateProductQuantity = async (req, res) => {
@@ -120,8 +118,8 @@ const updateProductQuantity = async (req, res) => {
     console.log(req.body)
 
 
-    const {quantity}= req.body
-    const ProductId= req.params.id
+    const { quantity } = req.body
+    const ProductId = req.params.id
     const cart = await Cart.findOne({
         where: {
             userId: req.user.id
@@ -130,39 +128,39 @@ const updateProductQuantity = async (req, res) => {
     if (!cart) {
         return res.status(404).json({ error: 'Cart not found' });
     }
-    const CartId=cart.id
+    const CartId = cart.id
 
     const product = await Product.findByPk(ProductId);
     if (!product) {
         return res.status(404).json({ error: 'Product not found' });
     }
-    
+
     const finalQuantity = Math.min(Math.max(quantity, 1), product.stock);
 
-const cartProduct = await CartProduct.findOne({ where: { CartId, ProductId}} )
-if (cartProduct) {
-    //If product already exists, update the quantity
+    const cartProduct = await CartProduct.findOne({ where: { CartId, ProductId } })
+    if (cartProduct) {
+        //If product already exists, update the quantity
 
-    
-    if(quantity<=0){
-        await cartProduct.destroy();
-    return res.status(200).json({ message: 'Product removed from cart' });
+
+        if (quantity <= 0) {
+            await cartProduct.destroy();
+            return res.status(200).json({ message: 'Product removed from cart' });
+        }
+
+        cartProduct.quantity = finalQuantity;
+
+        await cartProduct.save();
+    } else {
+        // If product doesn't exist in the cart, create a new entry in CartProduct table
+        await CartProduct.create({ CartId, ProductId, finalQuantity });
+
     }
-
-    cartProduct.quantity = finalQuantity;
-    
-    await cartProduct.save();
-} else{
-    // If product doesn't exist in the cart, create a new entry in CartProduct table
-    await CartProduct.create({ CartId, ProductId, finalQuantity });
-
-}
-res.status(200).json({ message: 'Product added to cart' });
+    res.status(200).json({ message: 'Product added to cart' });
 };
 
 
 const deleteProductFromCart = async (req, res) => {
-    const ProductId= req.params.id
+    const ProductId = req.params.id
     const cart = await Cart.findOne({
         where: {
             userId: req.user.id
@@ -171,31 +169,31 @@ const deleteProductFromCart = async (req, res) => {
     if (!cart) {
         return res.status(404).json({ error: 'Cart not found' });
     }
-    const CartId=cart.id
+    const CartId = cart.id
 
     const product = await Product.findByPk(ProductId);
     if (!product) {
         return res.status(404).json({ error: 'Product not found' });
     }
-const cartProduct = await CartProduct.findOne({ where: { CartId, ProductId}} )
-if (!cartProduct) {
-    // If product doesnt exist
-    return res.status(404).json({ error: 'Product is not in the cart' });
+    const cartProduct = await CartProduct.findOne({ where: { CartId, ProductId } })
+    if (!cartProduct) {
+        // If product doesnt exist
+        return res.status(404).json({ error: 'Product is not in the cart' });
 
-} 
-    
-const deleted = await CartProduct.destroy({
-    where: {
-        CartId,
-        ProductId
     }
-});
 
-if (deleted) {
-    return res.status(200).json({ message: 'Product removed from cart' });
-} else {
-    return res.status(404).json({ error: 'Product not found in cart' });
-}
+    const deleted = await CartProduct.destroy({
+        where: {
+            CartId,
+            ProductId
+        }
+    });
+
+    if (deleted) {
+        return res.status(200).json({ message: 'Product removed from cart' });
+    } else {
+        return res.status(404).json({ error: 'Product not found in cart' });
+    }
 
 };
 
@@ -203,11 +201,11 @@ if (deleted) {
 
 
 module.exports = {
-   findCartProducts,
+    findCartProducts,
 
-   findProductQuantity,
+    findProductQuantity,
 
-     addProductToCart,
+    addProductToCart,
     updateProductQuantity,
-     deleteProductFromCart
+    deleteProductFromCart
 };

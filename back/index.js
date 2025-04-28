@@ -10,6 +10,7 @@ const authRouter = require('./routes/auth.route')
 const productRouter = require('./routes/product.route')
 const categoryRouter = require('./routes/category.route')
 const cartRouter = require('./routes/cart.route')
+const addressRouter = require('./routes/address.route')
 const cors= require("cors")
 const Product = require("./models/Products.model")
 const User = require("./models/user.model")
@@ -33,6 +34,7 @@ app.use('/auth',authRouter);
 app.use('/product',productRouter);
 app.use('/category',categoryRouter);
 app.use('/cart',cartRouter);
+app.use('/address',addressRouter);
 
 
 app.listen(port ,async()=>{
@@ -112,23 +114,23 @@ app.listen(port ,async()=>{
       //     }
       //   ]);
         
-        await Category.bulkCreate([
-          { name: 'Sofa',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon1.png", createdAt: new Date(), updatedAt: new Date() },
-          { name: 'Table',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon2.png", createdAt: new Date(), updatedAt: new Date() },
-          { name: 'Bed',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon3.png", createdAt: new Date(), updatedAt: new Date() },
-          { name: 'Wardrobe',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon4.png", createdAt: new Date(), updatedAt: new Date() },
-          { name: 'Mirror',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon5.png", createdAt: new Date(), updatedAt: new Date() },
-          { name: 'Bathtub',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon6.png", createdAt: new Date(), updatedAt: new Date() },
-          { name: 'Sofa Set',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon7.png", createdAt: new Date(), updatedAt: new Date() },
-          { name: 'Sink',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon8.png", createdAt: new Date(), updatedAt: new Date() },
-          { name: 'Lamp',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon9.png", createdAt: new Date(), updatedAt: new Date() },
-          { name: 'Other ...',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon10.png", createdAt: new Date(), updatedAt: new Date() }
-        ]);
+      //   await Category.bulkCreate([
+      //     { name: 'Sofa',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon1.png", createdAt: new Date(), updatedAt: new Date() },
+      //     { name: 'Table',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon2.png", createdAt: new Date(), updatedAt: new Date() },
+      //     { name: 'Bed',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon3.png", createdAt: new Date(), updatedAt: new Date() },
+      //     { name: 'Wardrobe',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon4.png", createdAt: new Date(), updatedAt: new Date() },
+      //     { name: 'Mirror',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon5.png", createdAt: new Date(), updatedAt: new Date() },
+      //     { name: 'Bathtub',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon6.png", createdAt: new Date(), updatedAt: new Date() },
+      //     { name: 'Sofa Set',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon7.png", createdAt: new Date(), updatedAt: new Date() },
+      //     { name: 'Sink',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon8.png", createdAt: new Date(), updatedAt: new Date() },
+      //     { name: 'Lamp',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon9.png", createdAt: new Date(), updatedAt: new Date() },
+      //     { name: 'Other ...',image:"https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2024/03/icon10.png", createdAt: new Date(), updatedAt: new Date() }
+      //   ]);
 
 
 
 
-        await sequelize.sync({ alter: true, force: false  });
+        await sequelize.sync({ alter: true, force: false });
 
         console.log("SQL connected successfully");
       } catch (err) {

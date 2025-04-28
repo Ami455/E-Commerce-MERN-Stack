@@ -14,7 +14,7 @@ export default function Login() {
     const sendLoginData=(formdata)=>{
         console.log("submit")
         console.log(formdata)
-        console.log(formdata.email, formdata.password, "didnt nav")
+        console.log(formdata.email, formdata.password, "didn't nav")
         nav("/auth", { state: { email: formdata.email, password:formdata.password ,action: 'login' } })
 
     }
@@ -38,12 +38,14 @@ export default function Login() {
                                 </div>
                                 
                                 <button type="submit" className="btn ">Log in</button>
-                                <br />
-                                <p >if you don't have account please create one</p>
-                                <button to="/register" onClick={"/register"} type="create" className="btn ">Create Account</button>
-                                <Button type="create"  href='/register' className=' btn '  >
-                                    Create new account
-                                </Button>
+                                
+
+                                <br/>
+                                <div className="mt-3">
+                                <Link to="/register" >Don't have an account? Sign up now!</Link>
+                                </div>
+
+
                             </form>
                             </div>
                             <div className="col-5">

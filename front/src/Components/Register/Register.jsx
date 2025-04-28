@@ -16,7 +16,7 @@ export default function Register() {
     const sendLoginData=(formdata)=>{
         console.log("submit")
         console.log(formdata)
-        console.log(formdata.email, formdata.password, "didnt nav")
+        console.log(formdata.email, formdata.password, "didn't nav")
         nav("/auth", { state: { userName: formdata.userName ,email: formdata.email, password:formdata.password ,action: 'register'} })
 
         
@@ -51,7 +51,7 @@ export default function Register() {
                                     <label className="form-check-label" htmlFor="exampleCheck1"> Remember me</label>
                                 </div>
                             
-                                <button type="submit" className="btn ">Rejester</button>
+                                <button type="submit" className="btn ">Register</button>
                             </form>
 
                         </div>
