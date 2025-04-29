@@ -23,7 +23,7 @@ import Checkout from './Components/Cart/Checkout/Checkout.jsx';
 import About from './Components/About/About';
 
 function AppRoutes() {
-    const { isAuthenticated, user } = useSelector((state) => state.auth);
+    const { isAuthenticated } = useSelector((state) => state.auth);
 
     const router = createBrowserRouter([{
         path: '/',
