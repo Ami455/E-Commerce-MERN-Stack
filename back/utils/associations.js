@@ -4,6 +4,8 @@ const Cart= require("../models/Cart.model")
 const User =require("../models/user.model")
 const Address =require("../models/address.model")
 const Order =require("../models/Order.model")
+const Fav =require("../models/Fav.model")
+
 
 const associations=()=>{
 //Category : Product   (1 to M)

@@ -12,7 +12,7 @@ import Register from './Components/Register/Register.jsx';
 import Admin from './Components/Admin/Admin.jsx';
 import Add from './Components/Admin/AddProduct/AddProduct.jsx';
 import List from './Components/Admin/ListProduct/ListProduct.jsx';
-import User from './Components/Admin/AddUser/AddUser.jsx';
+
 import Home from './Components/Home/Home.jsx';
 import Edit from './Components/Admin/EditProduct/EditProduct.jsx';
 import Details from './Components/Category/Details/Details.jsx';
@@ -48,7 +48,6 @@ function AppRoutes() {
             ]},
 
             { path: '/login', element: isAuthenticated ? <Home /> : <Login /> },
-
             { path: '/register', element: <Register /> },
             { path: '/cart', element: <Cart /> },
             { path: '/checkout', element: <Checkout /> },
