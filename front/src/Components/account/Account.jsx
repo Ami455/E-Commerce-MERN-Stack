@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from "../../images/navLogo.png"
+import logo from "../../../../images/navLogo.png"
 
 
 export default function Account() {
