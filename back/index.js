@@ -11,6 +11,7 @@ const productRouter = require('./routes/product.route')
 const categoryRouter = require('./routes/category.route')
 const cartRouter = require('./routes/cart.route')
 const addressRouter = require('./routes/address.route')
+const favRouter = require('./routes/fav.route')
 const cors= require("cors")
 const Product = require("./models/Products.model")
 const User = require("./models/user.model")
@@ -18,6 +19,7 @@ const Role =require("./utils/role")
 const env = require("dotenv").config()
 const associations=require("./utils/associations")
 const Category = require("./models/Category.model")
+
 // const  FurnitureProduct  = require('./models/index');
 
 // console.log(FurnitureProduct)
@@ -38,6 +40,7 @@ app.use('/product',productRouter);
 app.use('/category',categoryRouter);
 app.use('/cart',cartRouter);
 app.use('/address',addressRouter);
+app.use('/fav',favRouter);
 
 
 app.listen(port ,async()=>{
