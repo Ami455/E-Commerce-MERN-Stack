@@ -1,4 +1,4 @@
-// const { Op } = require('sequelize');
+const { Op } = require('sequelize');
 const Category = require('../models/Category.model');
 
 const Product = require('../models/Products.model');
@@ -12,17 +12,18 @@ const findAllProduct = async (req, res) => {
    const whereSelector= {}
    if(search){
     whereSelector.name = { [Op.iLike]: `%${search}%` };
+    
    }
    if(category){
     whereSelector.search = category
    }
    if(max_price || min_price){
     whereSelector.price={}
-    if (minPrice) {
-        whereSelector.price[Op.gte] = parseFloat(minPrice);
+    if (min_price) {
+        whereSelector.price[Op.gte] = parseFloat(min_price);
       }
-      if (maxPrice) {
-        whereSelector.price[Op.lte] = parseFloat(maxPrice);
+      if (max_price) {
+        whereSelector.price[Op.lte] = parseFloat(max_price);
       }
 
    }
@@ -50,6 +51,8 @@ const offset = (page - 1) * limit;
         limit: parseInt(limit),
       offset: parseInt(offset),
     });
+
+    console.log(products)
     
 
     res.json({

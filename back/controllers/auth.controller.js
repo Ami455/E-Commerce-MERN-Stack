@@ -2,7 +2,7 @@ const User = require('../models/user.model')
 const {hashPassword,comparePassword} = require('../utils/hashingPassword')
 const {registerSchema} = require('../vaildators/auth.validator')
 const {generateToken}=require('../utils/jwt')
-const { verifyToken } = require('../utils/jwt');
+// const { verifyToken } = require('../utils/jwt');
 
 
 const login = async (req,res)=>{
@@ -51,6 +51,7 @@ const register = async (req,res)=>{
 
     const newUser = await User.create({...value,password:hashedPassword})
     await newUser.createCart()
+    await newUser.createFav()
     
     const token = generateToken({id:newUser.id,email:newUser.email, role: newUser.role})
 

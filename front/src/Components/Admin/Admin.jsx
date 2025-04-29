@@ -1,41 +1,74 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './Admin.css';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
-
-import { Outlet, Link } from 'react-router-dom';
+import Accordion from 'react-bootstrap/Accordion';
+import { Outlet, Link, useLocation } from 'react-router-dom';
 
 export default function Admin() {
+  const contentRef = useRef(null);
+  const location = useLocation();
 
+  // Scroll content into view when location changes (route changes)
+  useEffect(() => {
+    if (contentRef.current) {
+      window.scrollTo({
+        top: contentRef.current.offsetTop - 20,
+        behavior: 'smooth',
+      });
+    }
+  }, [location]);
 
-    return (
-        <Tab.Container defaultActiveKey="add">
-            <Row className='row'>
-                <Col sm={2} className='tabRow '>
-                    <Nav variant="underline" className="flex-column">
-                        <Nav.Item>
-                            <Nav.Link as={Link} to="add" className='nlink' >
-                            <p>Add Items</p>
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link as={Link} to="list" className='nlink'>
-                            <p>List Items</p>
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link as={Link} to="edit" className='nlink'>
-                            <p>Edit Items</p>
-                            </Nav.Link>
-                        </Nav.Item>
-                    </Nav>
-                </Col>
-                <Col sm={10} className='p-5'>
-                    <Outlet />
-                </Col>
-            </Row>
-        </Tab.Container>
-    );
+  return (
+    <Tab.Container defaultActiveKey="add">
+      <Row>
+        <Col sm={2} className="tabRow p-3">
+          <Accordion defaultActiveKey="0" className='mb-3'>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header><strong>Product</strong></Accordion.Header>
+              <Accordion.Body>
+                <Nav className="flex-column">
+                  <Nav.Link as={Link} to="product/add" className="nlink">Add</Nav.Link>
+                  <Nav.Link as={Link} to="product/list" className="nlink">List</Nav.Link>
+                  <Nav.Link as={Link} to="product/edit" className="nlink">Edit</Nav.Link>
+                </Nav>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+
+          <Accordion defaultActiveKey="0" className='mb-3'>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header><strong>User</strong></Accordion.Header>
+              <Accordion.Body>
+                <Nav className="flex-column">
+                  <Nav.Link as={Link} to="user/add" className="nlink">Add</Nav.Link>
+                  <Nav.Link as={Link} to="user/list" className="nlink">List</Nav.Link>
+                  <Nav.Link as={Link} to="user/edit" className="nlink">Edit</Nav.Link>
+                </Nav>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+
+          <Accordion defaultActiveKey="0" className='mb-3'>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header><strong>Order</strong></Accordion.Header>
+              <Accordion.Body>
+                <Nav className="flex-column">
+                  <Nav.Link as={Link} to="order/add" className="nlink">Add</Nav.Link>
+                  <Nav.Link as={Link} to="order/list" className="nlink">List</Nav.Link>
+                  <Nav.Link as={Link} to="order/edit" className="nlink">Edit</Nav.Link>
+                </Nav>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+        </Col>
+
+        <Col sm={10} className="p-5" ref={contentRef}>
+          <Outlet />
+        </Col>
+      </Row>
+    </Tab.Container>
+  );
 }

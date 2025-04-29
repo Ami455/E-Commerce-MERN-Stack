@@ -15,6 +15,7 @@ const createUser = async (req, res) => {
     const data = req.body
     const user = await User.create(data)
  await user.createCart()
+ await user.createFav()
     res.json({user })
 }
 const updateUser = async (req, res) => {

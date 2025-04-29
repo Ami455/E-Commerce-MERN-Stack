@@ -4,7 +4,11 @@ const Cart= require("../models/Cart.model")
 const User =require("../models/user.model")
 const Address =require("../models/address.model")
 const Order =require("../models/Order.model")
+
 const Review = require("../models/review.model")
+
+const Fav =require("../models/Fav.model")
+
 
 const associations=()=>{
 //Category : Product   (1 to M)
@@ -45,6 +49,7 @@ Order.belongsTo(User,{
     as: "user",
 })
 
+
 //User : Review   (1 to M)
 User.hasMany(Review, { 
     foreignKey: 'userId',
@@ -66,6 +71,18 @@ Review.belongsTo(Product, {
     foreignKey: 'productId',
     onDelete: "CASCADE",
     as: "product", });
+
+//User : fav   (1 : 1)
+User.hasOne(Fav, {
+    foreignKey: "userId",
+    onDelete: "CASCADE",
+    as: "fav",
+  });
+  Fav.belongsTo(User, {
+    foreignKey: "userId",
+    onDelete: "CASCADE",
+    as: "user",
+  });
 
 //User : Cart   (1 : 1)
 User.hasOne(Cart, {
@@ -91,6 +108,14 @@ Order.hasOne(Address, {
     as: "order",
   });
 
+
+//Fav : Product   (M to M)
+Fav.belongsToMany(Product,{
+    through:"FavProduct"
+})
+Product.belongsToMany(Fav,{
+    through:"FavProduct"
+})
 
 //Cart : Product   (M to M)
 Cart.belongsToMany(Product,{
