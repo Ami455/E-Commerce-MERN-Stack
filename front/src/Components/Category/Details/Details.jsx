@@ -34,7 +34,7 @@ export default function Details() {
             <div className=' m-5'>
                 <div className='d-row d-flex justify-content-between  container  m-5 p-5' >
                     <div className='col-6'>
-                        <img src={product.image} className='w-100 m-2 ' />
+                        <img src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`} className='w-100 m-2 ' />
                     </div>
                     <div className='col-6 ps-5'>
                         <h1>{product.name}</h1>

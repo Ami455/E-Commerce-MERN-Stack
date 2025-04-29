@@ -9,18 +9,16 @@ export default function CardComponent({ product }) {
   
   return (
     <div>
-      <Card style={{ width: 'fit-content', textAlign: 'center', alignItems: 'center', alignContent: 'center' }}>
+      <div  >
       <Link to={`../details`} state={{ productId: product.id }}>
-          <Card.Img variant="top" src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`} className='productImage' />
-          <Card.Body>
+          <Card.Img variant="top" src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`} className='productImage w-100' />
+          <Card.Body className='mb-2'>
             <Card.Title>{product.name}</Card.Title>
-            <Card.Text>
-              No text
-            </Card.Text>
+            
           </Card.Body>
         </Link>
         {/* <Button variant="primary" className='w-75 mb-3'>Add to Cart</Button> */}
-      </Card>
+      </div>
     </div>
     
 

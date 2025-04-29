@@ -44,10 +44,10 @@ const authSlices = createSlice({
         console.log(action.payload.user)
         localStorage.setItem("token", action.payload.token);
       })
-    //   .addCase(loginUser.rejected, (state, action) => {
-    //     state.loading = false;
-    //     state.error = action.payload.message;
-    //   });
+      .addCase(loginUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload.message;
+      });
   },
 });
 

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { faCartShopping, faHeart, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faHeart, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -12,21 +12,53 @@ import Logo from "../../../../images/navLogo.png";
 import { api } from '../../utils/api';
 import "../Nav/NavComponent.css";
 import { useSelector } from "react-redux";
-
+import { useNavigate } from 'react-router-dom';
 
 export default function NavComponent() {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const [categoryData, setCategoryData] = useState([]);
-  
+  const [search, setSearch] = useState('');
+  // const [products, setProducts] = useState([]);
+  // const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
+  // // Fetch categories
   const getCategory = useCallback(async () => {
-    const data = await api.get(
-      `${import.meta.env.VITE_CATEGORY_LIST}`
-    );
-    setCategoryData(data.data.categories);  
+    try {
+      const data = await api.get(`${import.meta.env.VITE_CATEGORY_LIST}`);
+      setCategoryData(data.data.categories);
+    } catch (err) {
+      console.error("Error fetching categories:", err);
+    }
   }, []);
 
+  // // Handle product search
+  // const getProducts = async () => {
+  //   try {
+  //     const params = { search };
+  //     const res = await api.get(`${import.meta.env.VITE_PRODUCTS_LIST}`, { params });
+  //     if (res.status >= 200 && res.status < 300) {
+  //       setProducts(res.data.items);
+  //       setError(null);
+  //     } else {
+  //       setError(res.statusText);
+  //       setProducts([]);
+  //     }
+  //   } catch (err) {
+  //     setError('Failed to fetch products.');
+  //     setProducts([]);
+  //   }
+  // };
+
+  // Submit search form
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/search?search=${search}`);
+  };
+  
+
   useEffect(() => {
+    // getProducts()
     getCategory();
   }, []);
 
@@ -34,14 +66,11 @@ export default function NavComponent() {
     <>
       <Navbar expand="lg" className="bar">
         <Container>
-          
           <Navbar.Brand href="/"><img src={Logo} alt="logo" className="w-25 " /></Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            
             <Nav className="ms-auto d-flex align-items-center gap-3">
-
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/about">About</Nav.Link>
               <Nav.Link href="/category/products">Product</Nav.Link>
@@ -66,14 +95,25 @@ export default function NavComponent() {
                 <FontAwesomeIcon icon={faUser} />
               </Nav.Link>
 
+              {/* Search Form */}
+              <form onSubmit={handleSearchSubmit} className="d-flex position-relative">
+                <input
+                  type="text"
+                  placeholder="Search products..."
+                  className="search-input form-control rounded-3 py-2 pe-5"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <button type="submit" className="search-button w-25  ">
+                  <FontAwesomeIcon icon={faMagnifyingGlass} />
+                </button>
+              </form>
+
               <Nav.Link href={user?.role !== "admin" ? '/' : '/admin'}>Dashboard</Nav.Link>
-
-
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
     </>
   );
 }

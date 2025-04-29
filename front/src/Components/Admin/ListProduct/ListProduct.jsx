@@ -66,7 +66,7 @@ import { api } from '../../../utils/api';
                     onMouseEnter={(e) => handleMouseEnter(e, product)}
                     onMouseLeave={handleMouseLeave}>
                     <td>{product.id}</td>
-                    <td><img src={product.image} className='imageTable' /></td>
+                    <td><img src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`} className='imageTable' /></td>
                     <td>{product.name}</td>
                     <td>{product.category}</td>
                     <td>{product.price}</td>

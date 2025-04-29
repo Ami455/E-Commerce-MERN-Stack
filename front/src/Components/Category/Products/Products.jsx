@@ -14,22 +14,43 @@ export default function Products() {
     setCart(cart.data.products);
   };
 
+  const [min_price, setMinPrice] = useState('');
+  const [max_price, setMaxPrice] = useState('');
+  const [limit, setLimit] = useState(6);
+  const [sort, setSort] = useState('default');
+  const [search, setSearch] = useState('');
+
   const getProducts = async () => {
-    const res = await api.get(`${import.meta.env.VITE_PRODUCTS_LIST}`);
-    if (res.status >= 200 && res.status < 300) {
-      setProducts(res.data.items);
-      // console.log(res.data.items)
-      setError(null);
-    } else {
-      setError(res.statusText);
+    try {
+      // Using the state values for query parameters
+      const params = {
+        min_price,
+        max_price,
+        limit,
+        sort
+      };
+
+      const res = await api.get(`${import.meta.env.VITE_PRODUCTS_LIST}`, { params });
+
+      if (res.status >= 200 && res.status < 300) {
+        setProducts(res.data.items);
+        setError(null);
+      } else {
+        setError(res.statusText);
+        setProducts([]);
+      }
+    } catch (err) {
+      setError('Failed to fetch products.');
       setProducts([]);
     }
   };
 
+  
+
   useEffect(() => {
     getProducts();
     getCart();
-  }, []);
+  }, [min_price, max_price, limit, sort]); // Dependency array to re-fetch products when these change
 
   const getProductQuantity = (productId) => {
     const cartItem = cart.find(item => item.id === productId);
@@ -39,28 +60,74 @@ export default function Products() {
   return (
     <>
       {error && <p>{error}</p>}
-      <Container>
-        <Row className="product-list">
-          {products.length > 0 &&
-            products.map((product) => (
-              <Col key={product.id}>
-              <div className=' container d-flex flex-column justify-content-center ' >
-              <div className=' w-100 row'>
-                <ProductCard product={product} />
-                </div>
-                <div className=' row  justify-content-center'>
-                <CartButton
-                  product={product}
-                  getProductQuantity={getProductQuantity}
-                  getCart={getCart}
-                  getProducts={getProducts}
-                />
-                </div>
-                </div>
-              </Col>
-            ))}
-        </Row>
-      </Container>
+      
+      <section className='d-flex justify-content-center mt-5'>
+        <div className="row w-100" style={{ maxWidth: '900px' }}>
+          <div className="col-md-2 mb-4">
+            <h5 className="fw-bold mb-3">SHOP BY</h5>
+            {/* Price filter */}
+            <div className="mb-3">
+              <label className="form-label fw-semibold">Price</label>
+              <input
+                type="number"
+                placeholder="Min Price"
+                className="form-control mb-2"
+                value={min_price}
+                onChange={e => setMinPrice(e.target.value)}
+              />
+              <input
+                type="number"
+                placeholder="Max Price"
+                className="form-control"
+                value={max_price}
+                onChange={e => setMaxPrice(e.target.value)}
+              />
+            </div>
+            {/* Limit filter */}
+            <div className="mb-3">
+              <label className="form-label fw-semibold">Limit</label>
+              <select className="form-select" value={limit} onChange={e => setLimit(Number(e.target.value))}>
+                <option value="3">3</option>
+                <option value="6">6</option>
+                <option value="9">9</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+          </div>
+          
+          <div className="col-md-9">
+            <div className="d-flex justify-content-between align-items-center mb-4">
+              {/* Sorting */}
+              <select className="form-select w-auto" value={sort} onChange={e => setSort(e.target.value)}>
+                <option value="default">Default</option>
+                <option value="price_asc">Price: Low to High</option>
+                <option value="price_desc">Price: High to Low</option>
+                <option value="name_asc">Name: A to Z</option>
+                <option value="name_desc">Name: Z to A</option>
+              </select>
+            </div>
+
+            <div className="row product-list">
+              {products.length > 0 &&
+                products.map((product) => (
+                  <div key={product.id} className="col-md-4 mb-4">
+                    <div className="row text-center">
+                      <ProductCard product={product} />
+                    </div>
+                    <div className="row justify-content-center">
+                      <CartButton
+                        product={product}
+                        getProductQuantity={getProductQuantity}
+                        getCart={getCart}
+                        getProducts={getProducts}
+                      />
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
