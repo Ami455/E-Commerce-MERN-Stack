@@ -12,6 +12,7 @@ const categoryRouter = require('./routes/category.route')
 const cartRouter = require('./routes/cart.route')
 const addressRouter = require('./routes/address.route')
 const orderRouter = require('./routes/order.route')
+const reviewRouter = require('./routes/review.route')
 const cors= require("cors")
 const Product = require("./models/Products.model")
 const User = require("./models/user.model")
@@ -40,6 +41,7 @@ app.use('/category',categoryRouter);
 app.use('/cart',cartRouter);
 app.use('/address',addressRouter);
 app.use('/order',orderRouter);
+app.use('/review',reviewRouter);
 
 
 app.listen(port ,async()=>{
