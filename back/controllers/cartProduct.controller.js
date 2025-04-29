@@ -12,19 +12,14 @@ const findCartProducts = async (req, res) => {
     if (!cart) {
         return res.status(404).json({ error: 'Cart not found' });
     }
-    const CartId = cart.id
 
     const products = await cart.getProducts({
         joinTableAttributes: ['quantity'] // includes quantity from CartProduct
     });
 
-    // const quantities = await CartProduct.findAll({where: {
-    //     CartId
-    // }})
 
-
-    if (!products) {
-        res.status(200).json({ products, message: "Cart is empty" });
+    if (!products.length) {
+       return res.status(200).json({ products, message: "Cart is empty" });
     }
 
     let totalPrice = 0;
@@ -47,21 +42,19 @@ const findProductQuantity = async (req, res) => {
     if (!cart) {
         return res.status(404).json({ error: 'Cart not found' });
     }
-    const CartId = cart.id
 
     const product = await cart.getProduct({
         where: { ProductId },
         joinTableAttributes: ['quantity'] // includes quantity from CartProduct
     });
     if (!product) {
-        res.status(200).json({ quantity: 0 });
+        return res.status(200).json({ quantity: 0 });
     }
     res.status(200).json({ quantity: product.CartProduct.quantity });
 };
 
 
 const addProductToCart = async (req, res) => {
-
 
     const { quantity } = req.body
     const ProductId = req.params.id
@@ -93,21 +86,10 @@ const addProductToCart = async (req, res) => {
         await cartProduct.save();
     } else {
         // If product doesn't exist in the cart, create a new entry in CartProduct table
-        await CartProduct.create({ CartId, ProductId, finalQuantity });
+        await CartProduct.create({ CartId, ProductId, quantity: finalQuantity });
+        
     }
 
-
-
-    // =======
-    // if (cartProduct) {
-    //     // If product already exists, update the quantity
-    //     cartProduct.quantity += quantity;
-    //     await cartProduct.save();
-    // } else{
-    //     // If product doesn't exist in the cart, create a new entry in CartProduct table
-    //     await CartProduct.create({ CartId, ProductId, quantity });
-    // }
-    // >>>>>>> merge
 
     res.status(200).json({ message: 'Product added to cart' });
 };
@@ -152,7 +134,7 @@ const updateProductQuantity = async (req, res) => {
         await cartProduct.save();
     } else {
         // If product doesn't exist in the cart, create a new entry in CartProduct table
-        await CartProduct.create({ CartId, ProductId, finalQuantity });
+        await CartProduct.create({ CartId, ProductId, quantity: finalQuantity });
 
     }
     res.status(200).json({ message: 'Product added to cart' });

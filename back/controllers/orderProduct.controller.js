@@ -1,139 +1,117 @@
 const Order = require('../models/Order.model');
 const Product = require('../models/Products.model');
-const orderProduct = require('../models/OrderProduct.model');
+const OrderProduct = require('../models/OrderProduct.model');
+const Address = require('../models/address.model');
 
-const findOrderProducts = async (req, res) => {
-
-    const order = await Order.findOne({
-        where: {
-            userId: req.user.id
+const findAllOrders = async (req, res) => {
+    const userId = req.user.id;
+    const orders = await Order.findAll({
+      where: { userId },
+      include: [
+        {
+          model: Product,
+          through: { attributes: ["quantity"] }
+        },
+        {
+          model: Address,
+          as: "address"
         }
+      ]
     });
+
+    res.status(200).json(orders);
+}
+
+const findOrderDetails = async (req, res) => {
+    const userId = req.user.id;
+    const orderId = req.params.id;
+    const order = await Order.findOne({
+        where: { id : orderId, userId },
+        include: [
+          {
+            model: Product,
+            through: { attributes: ["quantity"] }
+          },
+          {
+            model: Address,
+            as: "address"
+          }
+        ]
+      });
+
     if (!order) {
         return res.status(404).json({ error: 'Order not found' });
     }
-    const OrderId = order.id
-
-    const products = await order.getProducts({
-        joinTableAttributes: ['quantity'] // includes quantity from OrderProduct
-    });
-
-
-    if (!products) {
-        res.status(200).json({ products, message: "Order is empty" });
-    }
-
-    let totalPrice = 0;
-    products.forEach((product) => {
-        totalPrice += product.OrderProduct.quantity * product.price;
-        //console.log(product.OrderProduct.quantity, "*", product.price, totalPrice)
-    });
-
-    res.status(200).json({ products, totalPrice });
+    
+    res.status(200).json({ order });
 };
 
 
 const addProductToOrder = async (req, res) => {
 
     const { quantity } = req.body
-    const ProductId = req.params.id
+    const { orderId, productId } = req.params;
     const order = await Order.findOne({
         where: {
+            id: orderId,
             userId: req.user.id
         }
     });
     if (!order) {
         return res.status(404).json({ error: 'Order not found' });
     }
-    const OrderId = order.id
 
-    const product = await Product.findByPk(ProductId);
+    const product = await Product.findByPk(productId);
     if (!product) {
         return res.status(404).json({ error: 'Product not found' });
     }
-    const orderProduct = await OrderProduct.findOne({ where: { OrderId, ProductId } })
+    const orderProduct = await OrderProduct.findOne({ where: { OrderId:orderId, ProductId:productId } })
 
-    //quantity cant be more than stock or less than 1
-    const finalQuantity = Math.min(Math.max(quantity, 1), product.stock);
-
+    
     if (orderProduct) {
         // If product already exists, update the quantity
-
-        orderProduct.quantity += finalQuantity;
-        //quantity can't be more than stock
-        if (orderProduct.quantity > product.stock) { orderProduct.quantity = product.stock }
-        await orderProduct.save();
-    } else {
-        // If product doesn't exist in the order, create a new entry in OrderProduct table
-        await OrderProduct.create({ OrderId, ProductId, finalQuantity });
-    }
-
-    res.status(200).json({ message: 'Product added to order' });
-};
-
-
-const updateProductQuantity = async (req, res) => {
-
-
-    const { quantity } = req.body
-    const ProductId = req.params.id
-    const order = await Order.findOne({
-        where: {
-            userId: req.user.id
-        }
-    });
-    if (!order) {
-        return res.status(404).json({ error: 'Order not found' });
-    }
-    const OrderId = order.id
-
-    const product = await Product.findByPk(ProductId);
-    if (!product) {
-        return res.status(404).json({ error: 'Product not found' });
-    }
-
-    const finalQuantity = Math.min(Math.max(quantity, 1), product.stock);
-
-    const orderProduct = await OrderProduct.findOne({ where: { OrderId, ProductId } })
-    if (orderProduct) {
-        //If product already exists, update the quantity
-
-
+//but if quantity <=0 delete product from order
         if (quantity <= 0) {
             await orderProduct.destroy();
             return res.status(200).json({ message: 'Product removed from order' });
         }
 
-        orderProduct.quantity = finalQuantity;
-
+        orderProduct.quantity += quantity;
+        //quantity can't be more than stock
+        if (orderProduct.quantity > product.stock) { orderProduct.quantity = product.stock }
         await orderProduct.save();
     } else {
         // If product doesn't exist in the order, create a new entry in OrderProduct table
-        await OrderProduct.create({ OrderId, ProductId, finalQuantity });
 
+        //quantity cant be more than stock or less than 1
+    const finalQuantity = Math.min(Math.max(quantity, 1), product.stock);
+
+        await OrderProduct.create({ OrderId: orderId, ProductId: productId, quantity: finalQuantity });
     }
+
     res.status(200).json({ message: 'Product added to order' });
 };
 
 
+
 const deleteProductFromOrder = async (req, res) => {
-    const ProductId = req.params.id
+    const { orderId, productId } = req.params;
     const order = await Order.findOne({
         where: {
+            id: orderId,
             userId: req.user.id
         }
     });
     if (!order) {
         return res.status(404).json({ error: 'Order not found' });
     }
-    const OrderId = order.id
 
-    const product = await Product.findByPk(ProductId);
+    const product = await Product.findByPk(productId);
     if (!product) {
         return res.status(404).json({ error: 'Product not found' });
     }
-    const orderProduct = await OrderProduct.findOne({ where: { OrderId, ProductId } })
-    if (!orderProduct) {
+    const orderProduct = await OrderProduct.findOne({ where: { OrderId:orderId, ProductId:productId } })
+if (!orderProduct) {
         // If product doesnt exist
         return res.status(404).json({ error: 'Product is not in the order' });
 
@@ -141,8 +119,8 @@ const deleteProductFromOrder = async (req, res) => {
 
     const deleted = await OrderProduct.destroy({
         where: {
-            OrderId,
-            ProductId
+            OrderId:orderId,
+            ProductId:productId
         }
     });
 
@@ -158,11 +136,8 @@ const deleteProductFromOrder = async (req, res) => {
 
 
 module.exports = {
-    findOrderProducts,
-
-    updateProductQuantity,
-
+    findAllOrders,
+    findOrderDetails,
     addProductToOrder,
-
     deleteProductFromOrder
 };
