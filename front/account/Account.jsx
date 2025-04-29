@@ -13,16 +13,16 @@ export default function account() {
             <div className="col-12">
             <form className="row g-3">
         <div className="col-md-6">
+            <label htmlFor="inputName4" className="form-label">
+            userName
+            </label>
+            <input type="email" className="form-control" id="inputEmail4" />
+        </div>
+        <div className="col-md-6">
         <label htmlFor="inputEmail4" className="form-label">
             Email
         </label>
         <input type="email" className="form-control" id="inputEmail4" />
-        </div>
-        <div className="col-md-6">
-            <label htmlFor="inputName4" className="form-label">
-            Name
-            </label>
-            <input type="email" className="form-control" id="inputEmail4" />
         </div>
         <div className="col-md-6">
             <label htmlFor="inputPhone4" className="form-label">

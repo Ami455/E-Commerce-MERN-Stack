@@ -11,6 +11,7 @@ const productRouter = require('./routes/product.route')
 const categoryRouter = require('./routes/category.route')
 const cartRouter = require('./routes/cart.route')
 const addressRouter = require('./routes/address.route')
+const orderRouter = require('./routes/order.route')
 const cors= require("cors")
 const Product = require("./models/Products.model")
 const User = require("./models/user.model")
@@ -38,6 +39,7 @@ app.use('/product',productRouter);
 app.use('/category',categoryRouter);
 app.use('/cart',cartRouter);
 app.use('/address',addressRouter);
+app.use('/order',orderRouter);
 
 
 app.listen(port ,async()=>{
