@@ -11,11 +11,15 @@
 // }
 import React, { useState } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+// import { checkout } from '../../../../../back/routes/fav.route';
+import { api } from '../../../utils/api';
 
 const Checkout = () => {
   const [selectedAddress, setSelectedAddress] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navegate =useNavigate()
 
   const handleAddressChange = (e) => {
     setSelectedAddress(e.target.value);
@@ -26,14 +30,35 @@ const Checkout = () => {
     setPaymentMethod(e.target.value);
     setErrorMessage('');
   };
-
-  const handleSubmit = (e) => {
+const data={
+      paymentMethod,
+      selectedAddress
+    }
+  const handleSubmit =async (e) => {
+    
     e.preventDefault();
     if (!selectedAddress || !paymentMethod) {
       setErrorMessage('Please select an address and a payment method.');
+      await api.post(`${import.meta.env.VITE_CHECK_OUT}`, { data});
+      console.log(data)
       return;
     }
+
+  
+    //  const editQuantity = async (id, operation) => {
+    //         if (operation === "#") {
+    //             await api.post(`${import.meta.env.VITE_CARTPRODUCT}/${id}`, { quantity: 1 });
+    //         } else {
+    //             let count = getProductQuantity(id);
+    //             operation === "+" ? count++ : count--;
+    //             await api.put(`${import.meta.env.VITE_CARTPRODUCT}/${id}`, { quantity: count });
+    //         }
+    //         getProducts();
+    //         getCart();
+    //     };
+  
     console.log('Order Confirmed:', { selectedAddress, paymentMethod });
+    navegate("/order")
   };
 
   return (
@@ -45,7 +70,7 @@ const Checkout = () => {
             {/* Address Selection */}
             <Form.Group controlId="addressSelect" className="mb-3">
               <Form.Label>Select Address</Form.Label>
-              <Form.Select value={selectedAddress} onChange={handleAddressChange}>
+              <Form.Select value={data.selectedAddress} onChange={handleAddressChange}>
                 <option value="">Select an address</option>
                 <option value="Address 1">Address 1</option>
                 <option value="Address 2">Address 2</option>
@@ -63,7 +88,7 @@ const Checkout = () => {
                   name="paymentMethod"
                   value="credit_card"
                   onChange={handlePaymentChange}
-                  checked={paymentMethod === 'credit_card'}
+                  checked={data.paymentMethod === 'credit_card'}
                 />
                 <Form.Check
                   type="radio"
@@ -71,7 +96,7 @@ const Checkout = () => {
                   name="paymentMethod"
                   value="paypal"
                   onChange={handlePaymentChange}
-                  checked={paymentMethod === 'paypal'}
+                  checked={data.paymentMethod === 'paypal'}
                 />
                 <Form.Check
                   type="radio"
@@ -79,7 +104,7 @@ const Checkout = () => {
                   name="paymentMethod"
                   value="cash_on_delivery"
                   onChange={handlePaymentChange}
-                  checked={paymentMethod === 'cash_on_delivery'}
+                  checked={data.paymentMethod === 'cash_on_delivery'}
                 />
               </div>
             </Form.Group>
@@ -103,10 +128,12 @@ const Checkout = () => {
             {/* Submit Button */}
             <Button variant="primary" type="submit">
               Confirm Order
+              
             </Button>
           </Form>
         </Card.Body>
       </Card>
+
     </div>
   );
 };
