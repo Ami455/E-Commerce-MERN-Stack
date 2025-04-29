@@ -21,6 +21,7 @@ import FindByCategory from './Components/Category/ProductInCategory/FindByCatego
 import Cart from './Components/Cart/Cart.jsx';
 import Checkout from './Components/Cart/Checkout/Checkout.jsx';
 import About from './Components/About/About';
+import Account from '../account/Account.jsx';
 
 function AppRoutes() {
     const { isAuthenticated } = useSelector((state) => state.auth);
@@ -30,6 +31,7 @@ function AppRoutes() {
         element: <Layout />,
         children: [
             { index: true, element: <Home /> },
+            { path: '/account', element: <Account /> },
             { path: '/about', element: <About /> },
             { path: '/category', element: <Category />, children: [
                 { path: 'products', element: <Products /> },

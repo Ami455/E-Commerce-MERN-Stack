@@ -44,6 +44,17 @@ Order.belongsTo(User,{
     as: "user",
 })
 
+//User : fav   (1 : 1)
+User.hasOne(Fav, {
+    foreignKey: "userId",
+    onDelete: "CASCADE",
+    as: "fav",
+  });
+  Fav.belongsTo(User, {
+    foreignKey: "userId",
+    onDelete: "CASCADE",
+    as: "user",
+  });
 //User : Cart   (1 : 1)
 User.hasOne(Cart, {
     foreignKey: "userId",
@@ -68,6 +79,14 @@ Order.hasOne(Address, {
     as: "order",
   });
 
+
+//Fav : Product   (M to M)
+Fav.belongsToMany(Product,{
+    through:"FavProduct"
+})
+Product.belongsToMany(Fav,{
+    through:"FavProduct"
+})
 
 //Cart : Product   (M to M)
 Cart.belongsToMany(Product,{
