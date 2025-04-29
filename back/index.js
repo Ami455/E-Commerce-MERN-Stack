@@ -16,6 +16,8 @@ const favRouter = require('./routes/fav.route')
 
 const orderRouter = require('./routes/order.route')
 
+const reviewRouter = require('./routes/review.route')
+
 const cors= require("cors")
 const Product = require("./models/Products.model")
 const User = require("./models/user.model")
@@ -48,6 +50,7 @@ app.use('/address',addressRouter);
 app.use('/fav',favRouter);
 
 app.use('/order',orderRouter);
+app.use('/review',reviewRouter);
 
 
 
