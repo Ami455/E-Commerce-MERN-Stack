@@ -20,7 +20,7 @@ import FindByCategory from './Components/Category/ProductInCategory/FindByCatego
 import Cart from './Components/Cart/Cart.jsx';
 import Checkout from './Components/Cart/Checkout/Checkout.jsx';
 import About from './Components/About/About';
-import Account from '../account/Account.jsx';
+import Account from './Components/account/Account.jsx';
 
 import SearchResults from './Components/Category/Search/Search.jsx';
 import AddUser from './Components/Admin/AddUser/AddUser.jsx';
