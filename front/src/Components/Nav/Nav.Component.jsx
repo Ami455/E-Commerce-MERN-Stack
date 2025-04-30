@@ -69,7 +69,7 @@ export default function NavComponent() {
               <FontAwesomeIcon icon={faCartShopping} />
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/login">
+            <Nav.Link as={Link} to={isAuthenticated?"/account":"/login"}>
               <FontAwesomeIcon icon={faUser} />
             </Nav.Link>
 
@@ -89,10 +89,10 @@ export default function NavComponent() {
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
               </button>
             </form>
-
-            <Nav.Link as={Link} to={user?.role !== "admin" ? '/' : '/admin'}>
+            {user?.role !== "admin" ? '' : <Nav.Link as={Link} to= '/admin'>
               Dashboard
-            </Nav.Link>
+            </Nav.Link>}
+            
           </Nav>
         </Navbar.Collapse>
       </Container>

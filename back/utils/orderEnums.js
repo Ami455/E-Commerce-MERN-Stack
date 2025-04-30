@@ -7,9 +7,9 @@ const OrderStatus = {
 };
 
 const PaymentMethod = {
-    CREDIT_CARD: "credit_card",
-    PAYPAL: "paypal",
-    CASH_ON_DELIVERY: "cash_on_delivery"
+    CREDIT_CARD: 'Credit Card',
+    PAYPAL: 'PayPal',
+    CASH_ON_DELIVERY: 'Cash on Delivery'
 };
 
 
