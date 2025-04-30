@@ -1,34 +1,36 @@
 
 import React, { useState, useEffect } from 'react';
 import { Card, Button, Spinner } from 'react-bootstrap';
-import axios from 'axios';
-
+import { useSelector } from 'react-redux';
+import { api } from '../../utils/api';
+import {useNavigate } from 'react-router-dom';
 export default function Order() {
 
 // const order = () => {
   const [orderData, setOrderData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const {user , isAuthenticated} = useSelector((state) => state.auth);
+const navigate = useNavigate()
+  const fetchOrderData = async () => {
+    setLoading(true);
+    try {
+    const response= await api.get(`${import.meta.env.VITE_ORDER}/${1}`);
+    setOrderData(response.data);
+    } catch (error) {
+      console.error('Error fetching order data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   useEffect(() => {
-    const fetchOrderData = async () => {
-      setLoading(true);
-      try {
-        // إرسال الـ request لجلب الطلبات بناءً على الـ user ID
-        const response = await axios.get('/api/orders', {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`, // أو أي طريقة تستخدمها للحصول على الـ token
-          },
-        });
-        setOrderData(response.data);
-      } catch (error) {
-        console.error('Error fetching order data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    if (!isAuthenticated) {
+      navigate("/login"); 
+  }
+  fetchOrderData();
+}, [isAuthenticated]);
 
-    fetchOrderData();
-  }, []);
 
   if (loading) {
     return (
@@ -75,12 +77,4 @@ export default function Order() {
     </div>
   );
 };
-// }
 
-// import React from 'react'
-
-// export default function Order() {
-//   return (
-//     <div>Order</div>
-//   )
-// }

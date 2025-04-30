@@ -9,7 +9,7 @@ const { OrderStatus, PaymentMethod } = require('../utils/orderEnums');
 const checkout = async(req, res)=>{
     const { addressId, paymentMethod, totalPrice } = req.body;
     const userId = req.user.id;
-
+console.log(addressId, paymentMethod, totalPrice)
     // 1. Find user's cart
     const cart = await Cart.findOne({
         where: {userId},

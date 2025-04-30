@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
     import { useSelector } from "react-redux";
+    import  { Toaster } from 'react-hot-toast';
 
 import Layout from "./Components/Layout/Layout.jsx";
 import Products from "./Components/Category/Products/Products.jsx";
@@ -70,7 +71,12 @@ function AppRoutes() {
         ]
     }]);
 
-    return <RouterProvider router={router} />;
+
+    
+    return (<>
+    <RouterProvider router={router} />
+    <Toaster/>
+    </>);
 }
 
 export default function App() {

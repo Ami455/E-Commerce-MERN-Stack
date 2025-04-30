@@ -9,6 +9,7 @@ const findAllUsers = async(req, res) => {
 
 const findUserById = async (req, res) => {
 const user= await User.findByPk(req.params.id)
+res.json(user)
 }
 
 const createUser = async (req, res) => {

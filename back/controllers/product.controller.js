@@ -109,7 +109,7 @@ const createProduct = async (req, res) => {
         price,
         stock, image
     })
-    console.log("created")
+    
     const category = await Category.findByPk(req.body.categoryId)
 
     if (category && product) {

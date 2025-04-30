@@ -9,17 +9,26 @@
 //     <div>totalPrice: {totalPrice}</div>
 //   )
 // }
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 // import { checkout } from '../../../../../back/routes/fav.route';
 import { api } from '../../../utils/api';
+import { useSelector } from 'react-redux';
+
+
 
 const Checkout = () => {
+
+  const { totalPrice } = useLocation().state || {};
+
   const [selectedAddress, setSelectedAddress] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const navegate =useNavigate()
+  const [addresses, setAddresses] = useState([]);
+  const {user , isAuthenticated} = useSelector((state) => state.auth);
+const payments= ['Credit Card','PayPal','Cash on Delivery']
+  const navigate =useNavigate()
 
   const handleAddressChange = (e) => {
     setSelectedAddress(e.target.value);
@@ -39,28 +48,38 @@ const data={
     e.preventDefault();
     if (!selectedAddress || !paymentMethod) {
       setErrorMessage('Please select an address and a payment method.');
-      await api.post(`${import.meta.env.VITE_CHECK_OUT}`, { data});
-      console.log(data)
       return;
     }
+    try{
 
-  
-    //  const editQuantity = async (id, operation) => {
-    //         if (operation === "#") {
-    //             await api.post(`${import.meta.env.VITE_CARTPRODUCT}/${id}`, { quantity: 1 });
-    //         } else {
-    //             let count = getProductQuantity(id);
-    //             operation === "+" ? count++ : count--;
-    //             await api.put(`${import.meta.env.VITE_CARTPRODUCT}/${id}`, { quantity: count });
-    //         }
-    //         getProducts();
-    //         getCart();
-    //     };
-  
+      const response= await api.post(`${import.meta.env.VITE_CHECK_OUT}`, { addressId:selectedAddress, paymentMethod, totalPrice :2000})
+      console.log(response)
+    }catch(error){
+      console.log("error cant post data", error)
+    }
+
     console.log('Order Confirmed:', { selectedAddress, paymentMethod });
-    navegate("/order")
+    navigate("/order")
   };
 
+  const fetchData = async () => {
+    try{
+
+    const userData= await api.get(`${import.meta.env.VITE_USER}/${user.id}`);
+    const addresses= await api.get(`${import.meta.env.VITE_ADDRESS}`);
+    if(addresses.data.length>0){ setAddresses(addresses.data)}
+    
+    }catch(error){
+     console.error('Failed to fetch data', error);
+        }
+       };
+  useEffect(() => {
+           if (!isAuthenticated) {
+               navigate("/login"); 
+           }
+           fetchData()
+           
+       }, [isAuthenticated]);
   return (
     <div className="container mt-5">
       <Card>
@@ -72,9 +91,10 @@ const data={
               <Form.Label>Select Address</Form.Label>
               <Form.Select value={data.selectedAddress} onChange={handleAddressChange}>
                 <option value="">Select an address</option>
-                <option value="Address 1">Address 1</option>
-                <option value="Address 2">Address 2</option>
-                <option value="Address 3">Address 3</option>
+                {addresses.map((address)=>
+                <option key={address.id} value={`Address ${address.id}`}>{`${address.street}, ${address.city}, ${address.country}`}</option>
+                )}
+                
               </Form.Select>
             </Form.Group>
 
@@ -82,36 +102,23 @@ const data={
             <Form.Group className="mb-3">
               <Form.Label>Payment Method</Form.Label>
               <div>
-                <Form.Check
+               { payments.map((payment)=>
+                 <Form.Check key={payment}
                   type="radio"
-                  label="Credit Card"
+                  label={payment}
                   name="paymentMethod"
-                  value="credit_card"
+                  value={`${payment}`}
                   onChange={handlePaymentChange}
-                  checked={data.paymentMethod === 'credit_card'}
+                  checked={data.paymentMethod === payment}
                 />
-                <Form.Check
-                  type="radio"
-                  label="PayPal"
-                  name="paymentMethod"
-                  value="paypal"
-                  onChange={handlePaymentChange}
-                  checked={data.paymentMethod === 'paypal'}
-                />
-                <Form.Check
-                  type="radio"
-                  label="Cash on Delivery"
-                  name="paymentMethod"
-                  value="cash_on_delivery"
-                  onChange={handlePaymentChange}
-                  checked={data.paymentMethod === 'cash_on_delivery'}
-                />
+                )}
+                
               </div>
             </Form.Group>
 
             {/* Order Summary */}
             <div className="mb-3">
-              <p>Total Price: $1000</p>
+              <p>Total Price: {$totalPrice}</p>
               <p>Fees: $50</p>
               <p>Delivery: $30</p>
               <hr />
