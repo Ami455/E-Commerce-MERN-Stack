@@ -1,17 +1,25 @@
 
 const Address = require('../models/address.model');
+const User = require('../models/user.model');
 
 // Create a new address
 const createAddress = async (req, res) => {
-    const Address = await Address.create(req.body);
-    res.status(201).json(Address);
+  const {street, city, postalCode , country}= req.body
+  const userId = req.user.id
+  const user = await User.findByPk(userId)
+  if(!user){ res.status(404).json({error:"login error"});}
+    const address = await Address.create({street, city, postalCode , country});
+    if(!address){ res.status(404).json({error: "error creating an address"});}
+    await address.setUser(user)
+
+    res.status(201).json(address);
   
 };
 
 // Get all addresses
 const getAllAddresses = async (req, res) => {
- 
-    const addresses = await Address.findAll();
+  const userId=req.user.id
+  const addresses = await Address.findAll( {where: { userId } });
     res.status(200).json(addresses);
   
 };
@@ -32,7 +40,7 @@ const getAddressById = async (req, res) => {
 
 // Update an address
 const updateAddress = async (req, res) => {
-  
+  const {street, city, postalCode , country}= req.body
     const { id } = req.params;
     const address = await Address.findByPk(id);
 
@@ -40,7 +48,7 @@ const updateAddress = async (req, res) => {
       return res.status(404).json({ message: 'Address not found' });
     }
 
-    await address.update(req.body);
+    await address.update({street, city, postalCode , country});
     res.status(200).json(address);
  
 };

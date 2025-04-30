@@ -2,8 +2,10 @@ const Review = require("../models/review.model");
 
 
 const createReview= async (req, res) => {
-  const { rating } = req.body;
+const {rating}  = req.body;
+console.log(rating)
   const userId = req.user.id; 
+console.log(req.params.productId)
 
   const review = await Review.create({
     productId: req.params.productId,
@@ -20,10 +22,8 @@ const findProductReviews = async (req, res) => {
     const reviews = await Review.findAll({
       where: { productId: req.params.productId }
     });
-  
     const averageRating = reviews.length
-      ? reviews.reduce((acc, r) => acc + r.rating, 0) / reviews.length
-      : 0;
+    ? reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length : 0;
   
     res.json({ reviews, averageRating });
   }
@@ -33,3 +33,6 @@ const findProductReviews = async (req, res) => {
     createReview,
     findProductReviews
   }
+
+
+  

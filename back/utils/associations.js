@@ -96,17 +96,17 @@ User.hasOne(Cart, {
     as: "user",
   });
 
-  //Order : Address   (1 : 1)
-Order.hasOne(Address, {
-    foreignKey: "orderId",
-    onDelete: "CASCADE",
-    as: "address",
-  });
-  Address.belongsTo(Order, {
-    foreignKey: "orderId",
-    onDelete: "CASCADE",
-    as: "order",
-  });
+  //Address : Order   (1 : M)
+  Address.hasMany(Order, {
+      foreignKey: "addressId",
+      onDelete: "CASCADE",
+      as: "order",
+    });
+    Order.belongsTo(Address, {
+        foreignKey: "addressId",
+        onDelete: "CASCADE",
+        as: "address",
+      });
 
 
 //Fav : Product   (M to M)

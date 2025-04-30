@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
     import { useSelector } from "react-redux";
+    import  { Toaster } from 'react-hot-toast';
 
 import Layout from "./Components/Layout/Layout.jsx";
 import Products from "./Components/Category/Products/Products.jsx";
@@ -29,6 +30,7 @@ import EditUser from './Components/Admin/EditUser/EditUser.jsx';
 import AddOrder from './Components/Admin/AddOrder/AddOrder.jsx';
 import ListOrder from './Components/Admin/ListOrder/ListOrder.jsx';
 import EditOrder from './Components/Admin/EditOrder/EditOrder.jsx';
+import Order from './Components/order/Order.jsx';
 
 function AppRoutes() {
     const { isAuthenticated } = useSelector((state) => state.auth);
@@ -51,6 +53,7 @@ function AppRoutes() {
             { path: '/register', element: <Register /> },
             { path: '/cart', element: <Cart /> },
             { path: '/checkout', element: <Checkout /> },
+            { path: '/order', element: <Order /> },
 
             { path: '/admin', element: <Admin />, children: [
 
@@ -68,7 +71,12 @@ function AppRoutes() {
         ]
     }]);
 
-    return <RouterProvider router={router} />;
+
+    
+    return (<>
+    <RouterProvider router={router} />
+    <Toaster/>
+    </>);
 }
 
 export default function App() {
