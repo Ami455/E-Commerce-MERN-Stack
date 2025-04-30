@@ -9,7 +9,7 @@ import './Add.css';
 
 export default function Add() {
     const [categoryData, setCategoryData] = useState([]);
-    const [selectedImage, setSelectedImage] = useState(null); // State to store the selected image
+    const [selectedImage, setSelectedImage] = useState(null);
     const { register, handleSubmit, reset } = useForm();
     const [message, setMessage] = useState("");
 

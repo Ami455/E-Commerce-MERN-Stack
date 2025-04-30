@@ -1,33 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import ProductCard from '../../Card/ProductCard'; // Import the ProductCard component
-import CartButton from './CartButton/CartButton';  // Import the CartButton component
-import { Container, Row, Col } from 'react-bootstrap';
+import ProductCard from '../../Card/ProductCard';
+import CartButton from './CartButton/CartButton';
+import { Container, Row, Col, NavDropdown } from 'react-bootstrap';
 import { api } from '../../../utils/api';
+import { Link } from 'react-router-dom';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [error, setError] = useState(null);
+  const [categoryData, setCategoryData] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState();
+  const [min_price, setMinPrice] = useState();
+  const [max_price, setMaxPrice] = useState();
+  const [limit, setLimit] = useState();
+  const [sort, setSort] = useState();
 
   const getCart = async () => {
-    const cart = await api.get(`${import.meta.env.VITE_CARTPRODUCT}`);
-    setCart(cart.data.products);
+    try {
+      const res = await api.get(`${import.meta.env.VITE_CARTPRODUCT}`);
+      setCart(res.data.products);
+    } catch (err) {
+      console.error('Failed to fetch cart:', err);
+    }
   };
-
-  const [min_price, setMinPrice] = useState('');
-  const [max_price, setMaxPrice] = useState('');
-  const [limit, setLimit] = useState(6);
-  const [sort, setSort] = useState('default');
-  const [search, setSearch] = useState('');
 
   const getProducts = async () => {
     try {
-      // Using the state values for query parameters
       const params = {
         min_price,
         max_price,
         limit,
-        sort
+        sort,
+        ...(min_price && { min_price }),      // only include if not empty
+      ...(max_price && { max_price }),      // only include if not empty
+        ...(selectedCategory && { category: selectedCategory }), // Only add if selected
       };
 
       const res = await api.get(`${import.meta.env.VITE_PRODUCTS_LIST}`, { params });
@@ -45,12 +52,23 @@ export default function Products() {
     }
   };
 
-  
+  const getCategory = async () => {
+    try {
+      const res = await api.get(`${import.meta.env.VITE_CATEGORY_LIST}`);
+      setCategoryData(res.data.categories);
+    } catch (err) {
+      console.error("Error fetching categories:", err);
+    }
+  };
 
   useEffect(() => {
     getProducts();
+  }, [min_price, max_price, limit, sort, selectedCategory]);
+
+  useEffect(() => {
+    getCategory();
     getCart();
-  }, [min_price, max_price, limit, sort]); // Dependency array to re-fetch products when these change
+  }, []);
 
   const getProductQuantity = (productId) => {
     const cartItem = cart.find(item => item.id === productId);
@@ -59,13 +77,13 @@ export default function Products() {
 
   return (
     <>
-      {error && <p>{error}</p>}
-      
-      <section className='d-flex justify-content-center mt-5'>
-        <div className="row w-100" style={{ maxWidth: '900px' }}>
-          <div className="col-md-2 mb-4">
+      {error && <p className="text-danger text-center">{error}</p>}
+
+      <section className="d-flex justify-content-center mt-5">
+        <div className="row w-100" style={{ maxWidth: '1200px' }}>
+          <div className="col-md-3 mb-4">
             <h5 className="fw-bold mb-3">SHOP BY</h5>
-            {/* Price filter */}
+
             <div className="mb-3">
               <label className="form-label fw-semibold">Price</label>
               <input
@@ -83,7 +101,7 @@ export default function Products() {
                 onChange={e => setMaxPrice(e.target.value)}
               />
             </div>
-            {/* Limit filter */}
+
             <div className="mb-3">
               <label className="form-label fw-semibold">Limit</label>
               <select className="form-select" value={limit} onChange={e => setLimit(Number(e.target.value))}>
@@ -93,11 +111,26 @@ export default function Products() {
                 <option value="12">12</option>
               </select>
             </div>
+
+            <div className="mb-3">
+              <label className="form-label fw-semibold">Category</label>
+              <select
+                className="form-select"
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+              >
+                <option value="">All Categories</option>
+                {categoryData.map((cat) => (
+                  <option key={cat.id} value={cat.name}>
+                    {cat.name}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-          
+
           <div className="col-md-9">
             <div className="d-flex justify-content-between align-items-center mb-4">
-              {/* Sorting */}
               <select className="form-select w-auto" value={sort} onChange={e => setSort(e.target.value)}>
                 <option value="default">Default</option>
                 <option value="price_asc">Price: Low to High</option>
@@ -108,13 +141,11 @@ export default function Products() {
             </div>
 
             <div className="row product-list">
-              {products.length > 0 &&
+              {products.length > 0 ? (
                 products.map((product) => (
                   <div key={product.id} className="col-md-4 mb-4">
-                    <div className="row text-center">
+                    <div className="text-center">
                       <ProductCard product={product} />
-                    </div>
-                    <div className="row justify-content-center">
                       <CartButton
                         product={product}
                         getProductQuantity={getProductQuantity}
@@ -123,7 +154,10 @@ export default function Products() {
                       />
                     </div>
                   </div>
-                ))}
+                ))
+              ) : (
+                <p className="text-center">No products found.</p>
+              )}
             </div>
           </div>
         </div>
