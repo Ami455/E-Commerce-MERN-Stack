@@ -34,7 +34,7 @@ export default function Products() {
         sort,
         ...(min_price && { min_price }),      // only include if not empty
       ...(max_price && { max_price }),      // only include if not empty
-        ...(selectedCategory && { category: selectedCategory }), // Only add if selected
+        ...(selectedCategory && { categoryId: selectedCategory }), // Only add if selected
       };
 
       const res = await api.get(`${import.meta.env.VITE_PRODUCTS_LIST}`, { params });
@@ -121,7 +121,7 @@ export default function Products() {
               >
                 <option value="">All Categories</option>
                 {categoryData.map((cat) => (
-                  <option key={cat.id} value={cat.name}>
+                  <option key={cat.id} value={cat.id}>
                     {cat.name}
                   </option>
                 ))}

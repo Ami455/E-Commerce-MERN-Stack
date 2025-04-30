@@ -14,7 +14,8 @@ const navigate = useNavigate()
   const fetchOrderData = async () => {
     setLoading(true);
     try {
-    const response= await api.get(`${import.meta.env.VITE_ORDER}/${1}`);
+    const response= await api.get(`${import.meta.env.VITE_ORDER}`);
+    console.log(response)
     setOrderData(response.data);
     } catch (error) {
       console.error('Error fetching order data:', error);

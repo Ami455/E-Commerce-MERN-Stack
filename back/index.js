@@ -58,7 +58,7 @@ app.listen(port ,async()=>{
     try {
         await sequelize.authenticate();
         associations();
-
+        
       //   User.bulkCreate([
       //     {
       //         userName: 'JohnDoe',

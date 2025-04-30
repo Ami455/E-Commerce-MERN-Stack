@@ -7,15 +7,15 @@ const Product = require('../models/Products.model');
 
 // Get all furniture products (with query : filter, search , sort, limit)
 const findAllProduct = async (req, res) => {
-   const {search,category,max_price,min_price ,sort, page = 1, limit = 16} = req.query 
+   const {search,categoryId,max_price,min_price ,sort, page = 1, limit = 16} = req.query 
   //1- where
    const whereSelector= {}
    if(search){
     whereSelector.name = { [Op.iLike]: `%${search}%` };
     
    }
-   if(category){
-    whereSelector.search = category
+   if(categoryId){
+    whereSelector.categoryId = categoryId
    }
    if(max_price || min_price){
     whereSelector.price={}
