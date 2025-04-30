@@ -9,7 +9,7 @@ export default function Order() {
 // const order = () => {
   const [orderData, setOrderData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const {user , isAuthenticated} = useSelector((state) => state.auth);
+  const { isAuthenticated} = useSelector((state) => state.auth);
 const navigate = useNavigate()
   const fetchOrderData = async () => {
     setLoading(true);
@@ -40,7 +40,6 @@ const navigate = useNavigate()
       </div>
     );
   }
-
   if (!orderData) {
     return <p>No order found.</p>;
   }

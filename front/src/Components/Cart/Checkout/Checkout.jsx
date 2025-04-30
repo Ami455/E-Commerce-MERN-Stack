@@ -26,7 +26,7 @@ const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [addresses, setAddresses] = useState([]);
-  const {user , isAuthenticated} = useSelector((state) => state.auth);
+  const { isAuthenticated} = useSelector((state) => state.auth);
 const payments= ['Credit Card','PayPal','Cash on Delivery']
   const navigate =useNavigate()
 
@@ -52,7 +52,7 @@ const data={
     }
     try{
 
-      const response= await api.post(`${import.meta.env.VITE_CHECK_OUT}`, { addressId:selectedAddress, paymentMethod, totalPrice :2000})
+      const response= await api.post(`${import.meta.env.VITE_CHECK_OUT}`, { addressId:selectedAddress, paymentMethod, totalPrice })
       console.log(response)
     }catch(error){
       console.log("error cant post data", error)
@@ -65,7 +65,7 @@ const data={
   const fetchData = async () => {
     try{
 
-    const userData= await api.get(`${import.meta.env.VITE_USER}/${user.id}`);
+    // const userData= await api.get(`${import.meta.env.VITE_USER}/${user.id}`);
     const addresses= await api.get(`${import.meta.env.VITE_ADDRESS}`);
     if(addresses.data.length>0){ setAddresses(addresses.data)}
     
@@ -80,6 +80,8 @@ const data={
            fetchData()
            
        }, [isAuthenticated]);
+  const grand_total = totalPrice + 50 + 30
+
   return (
     <div className="container mt-5">
       <Card>
@@ -102,8 +104,8 @@ const data={
             <Form.Group className="mb-3">
               <Form.Label>Payment Method</Form.Label>
               <div>
-               { payments.map((payment)=>
-                 <Form.Check key={payment}
+              { payments.map((payment)=>
+                <Form.Check key={payment}
                   type="radio"
                   label={payment}
                   name="paymentMethod"
@@ -118,11 +120,11 @@ const data={
 
             {/* Order Summary */}
             <div className="mb-3">
-              <p>Total Price: {$totalPrice}</p>
+              <p>Total Price: ${totalPrice}</p>
               <p>Fees: $50</p>
               <p>Delivery: $30</p>
               <hr />
-              <p><strong>Grand Total: $1080</strong></p>
+              <p><strong>Grand Total: ${grand_total}</strong></p>
             </div>
 
             {/* Error Message */}
