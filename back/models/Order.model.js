@@ -5,6 +5,7 @@ const Order = sequelize.define("Order", {
 
    totalPrice : {
         type: DataTypes.DECIMAL(15,3),
+        
         allowNull: false,
         defaultValue:0
       },

@@ -2,6 +2,7 @@ import "./Home.css"
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { api } from "../../utils/api";
+import { Link } from "react-router-dom";
 
 export default function Home() {
 
@@ -61,10 +62,10 @@ export default function Home() {
                             <React.Fragment key={cat.id}>
                                 <div className="col-2">
                                     <div className="categ py-3">
-                                        <a href={`/category/${cat.id}`} className="text-decoration-none">
+                                        <Link to={`/category/${cat.id}`} className="text-decoration-none">
                                         <img src={cat.image} className="w-100 object-fit-contain" alt="" />
                                         <h5 className="sofa-text">{cat.name}</h5>
-                                        </a>
+                                        </Link>
                                         </div>
                                 </div>
 

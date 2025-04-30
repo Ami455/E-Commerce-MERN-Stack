@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { use, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -31,9 +31,12 @@ import AddOrder from './Components/Admin/AddOrder/AddOrder.jsx';
 import ListOrder from './Components/Admin/ListOrder/ListOrder.jsx';
 import EditOrder from './Components/Admin/EditOrder/EditOrder.jsx';
 import Order from './Components/order/Order.jsx';
+import { api } from './utils/api.js';
 
 function AppRoutes() {
     const { isAuthenticated } = useSelector((state) => state.auth);
+
+    
 
     const router = createBrowserRouter([{
         path: '/',
@@ -80,8 +83,21 @@ function AppRoutes() {
 }
 
 export default function App() {
+
+    useEffect(() => {
+        const fetchME = async () => {
+            try{
+                const response = await  api.get('/me')
+            }
+            catch (error) {
+                console.log(error);
+            }}
+            fetchME()
+    },[])
+
     return (
         <>
+
             <AppRoutes />
         </>
     );
