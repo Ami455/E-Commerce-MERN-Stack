@@ -46,7 +46,7 @@ import { api } from '../../../utils/api';
         return (
           <>
 
-            <Table>
+            <Table className=' bg-light'>
               <thead>
                 <tr>
                   <th style={{ width: "5%" }}>#</th>
@@ -55,8 +55,8 @@ import { api } from '../../../utils/api';
                   <th style={{ width: "15%" }}>Category</th>
                   <th style={{ width: "5%" }}>Price</th>
                   <th style={{ width: "5%" }}>Stock</th>
-                  <th style={{ width: "5%" }}>Edit</th>
                   <th style={{ width: "5%" }}>Delete</th>
+                  <th style={{ width: "5%" }}>Edit</th>
                 </tr>
               </thead>
               <tbody>
@@ -74,7 +74,7 @@ import { api } from '../../../utils/api';
                     {/* <td><Button className='iconButton' onClick={()=>alert("mm")}><FontAwesomeIcon icon={faTrash} className="custom-icon"/></Button></td>
                 <td><Button className='iconButton' onClick={()=>fnEdit}><FontAwesomeIcon icon={faPen} className="custom-icon"/></Button></td> */}
                     <td><Link onClick={() => deleteData(product.id)}><FontAwesomeIcon icon={faTrash} className="custom-icon" /></Link></td>
-                    <td><Link to="../edit" state={{ productId: product.id }}><FontAwesomeIcon icon={faPen} className="custom-icon" /></Link></td>
+                    <td><Link to="../product/edit" state={{ productId: product.id }}><FontAwesomeIcon icon={faPen} className="custom-icon" /></Link></td>
                     {/* {isHoverInfo && (<tr><ProductCard product={product}/></tr>)} */}
 
                   </tr>
