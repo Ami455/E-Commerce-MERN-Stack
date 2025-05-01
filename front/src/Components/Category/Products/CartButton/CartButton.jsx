@@ -26,7 +26,7 @@ export default function CartButton({
     return (
         <>
             {getProductQuantity(product.id) > 0 ? (
-                <div className="w-75 bg-primary d-flex justify-content-between">
+                <div className="w-100 bg-info-subtle d-flex justify-content-between">
                     <FontAwesomeIcon
                         icon={faMinus}
                         onClick={() => editQuantity(product.id, "-")}
@@ -43,7 +43,7 @@ export default function CartButton({
                 <Button
                     onClick={() => editQuantity(product.id, "#")}
                     variant="primary"
-                    className="w-50  mb-3"
+                    className="w-100  mb-3"
                 >
                     Add to Cart
                 </Button>

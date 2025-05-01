@@ -16,7 +16,7 @@
     router.get('/',tryCatchWrapper(findAllProduct))
     router.get('/:id', tryCatchWrapper(findProductById))
     router.post('/', uploads.single("file") ,tryCatchWrapper(createProduct))
-    router.put('/:id', tryCatchWrapper (updateProduct))
+    router.put('/:id',uploads.single("file"), tryCatchWrapper (updateProduct))
     router.delete('/:id', tryCatchWrapper( deleteProduct))
 
 

@@ -1,0 +1,902 @@
+[
+  {
+    "name": "Premium Sofa",
+    "description": "A premium sofa perfect for your home.",
+    "price": "2959.28",
+    "image": "image-1.jpg",
+    "stock": 7,
+    "createdAt": "2025-05-01T08:49:54.922139Z",
+    "updatedAt": "2025-05-01T08:49:54.922148Z"
+  },
+  {
+    "name": "Minimalist Table",
+    "description": "A minimalist table perfect for your home.",
+    "price": "1335.284",
+    "image": "image-2.jpg",
+    "stock": 14,
+    "createdAt": "2025-05-01T08:49:54.922165Z",
+    "updatedAt": "2025-05-01T08:49:54.922168Z"
+  },
+  {
+    "name": "Stylish Bed",
+    "description": "A stylish bed perfect for your home.",
+    "price": "2722.455",
+    "image": "image-3.jpg",
+    "stock": 3,
+    "createdAt": "2025-05-01T08:49:54.922180Z",
+    "updatedAt": "2025-05-01T08:49:54.922182Z"
+  },
+  {
+    "name": "Rustic Wardrobe",
+    "description": "A rustic wardrobe perfect for your home.",
+    "price": "3757.205",
+    "image": "image-4.jpg",
+    "stock": 8,
+    "createdAt": "2025-05-01T08:49:54.922191Z",
+    "updatedAt": "2025-05-01T08:49:54.922192Z"
+  },
+  {
+    "name": "Minimalist Mirror",
+    "description": "A minimalist mirror perfect for your home.",
+    "price": "539.48",
+    "image": "image-5.jpg",
+    "stock": 45,
+    "createdAt": "2025-05-01T08:49:54.922200Z",
+    "updatedAt": "2025-05-01T08:49:54.922202Z"
+  },
+  {
+    "name": "Rustic Bathtub",
+    "description": "A rustic bathtub perfect for your home.",
+    "price": "2694.874",
+    "image": "image-6.jpg",
+    "stock": 2,
+    "createdAt": "2025-05-01T08:49:54.922208Z",
+    "updatedAt": "2025-05-01T08:49:54.922210Z"
+  },
+  {
+    "name": "Elegant Sofa set",
+    "description": "A elegant sofa set perfect for your home.",
+    "price": "3340.69",
+    "image": "image-7.jpg",
+    "stock": 3,
+    "createdAt": "2025-05-01T08:49:54.922217Z",
+    "updatedAt": "2025-05-01T08:49:54.922218Z"
+  },
+  {
+    "name": "Stylish Sink",
+    "description": "A stylish sink perfect for your home.",
+    "price": "578.116",
+    "image": "image-8.jpg",
+    "stock": 12,
+    "createdAt": "2025-05-01T08:49:54.922234Z",
+    "updatedAt": "2025-05-01T08:49:54.922236Z"
+  },
+  {
+    "name": "Premium Lamp",
+    "description": "A premium lamp perfect for your home.",
+    "price": "66.562",
+    "image": "image-9.jpg",
+    "stock": 58,
+    "createdAt": "2025-05-01T08:49:54.922243Z",
+    "updatedAt": "2025-05-01T08:49:54.922245Z"
+  },
+  {
+    "name": "Classic Other",
+    "description": "A classic other perfect for your home.",
+    "price": "981.423",
+    "image": "image-10.jpg",
+    "stock": 14,
+    "createdAt": "2025-05-01T08:49:54.922253Z",
+    "updatedAt": "2025-05-01T08:49:54.922255Z"
+  },
+  {
+    "name": "Cozy Sofa",
+    "description": "A cozy sofa perfect for your home.",
+    "price": "4184.146",
+    "image": "image-11.jpg",
+    "stock": 6,
+    "createdAt": "2025-05-01T08:49:54.922261Z",
+    "updatedAt": "2025-05-01T08:49:54.922262Z"
+  },
+  {
+    "name": "Stylish Table",
+    "description": "A stylish table perfect for your home.",
+    "price": "1115.167",
+    "image": "image-12.jpg",
+    "stock": 18,
+    "createdAt": "2025-05-01T08:49:54.922268Z",
+    "updatedAt": "2025-05-01T08:49:54.922269Z"
+  },
+  {
+    "name": "Modern Bed",
+    "description": "A modern bed perfect for your home.",
+    "price": "5241.599",
+    "image": "image-13.jpg",
+    "stock": 1,
+    "createdAt": "2025-05-01T08:49:54.922275Z",
+    "updatedAt": "2025-05-01T08:49:54.922290Z"
+  },
+  {
+    "name": "Rustic Wardrobe",
+    "description": "A rustic wardrobe perfect for your home.",
+    "price": "1106.116",
+    "image": "image-14.jpg",
+    "stock": 3,
+    "createdAt": "2025-05-01T08:49:54.922296Z",
+    "updatedAt": "2025-05-01T08:49:54.922298Z"
+  },
+  {
+    "name": "Classic Mirror",
+    "description": "A classic mirror perfect for your home.",
+    "price": "494.93",
+    "image": "image-15.jpg",
+    "stock": 50,
+    "createdAt": "2025-05-01T08:49:54.922303Z",
+    "updatedAt": "2025-05-01T08:49:54.922305Z"
+  },
+  {
+    "name": "Rustic Bathtub",
+    "description": "A rustic bathtub perfect for your home.",
+    "price": "2967.058",
+    "image": "image-16.jpg",
+    "stock": 3,
+    "createdAt": "2025-05-01T08:49:54.922310Z",
+    "updatedAt": "2025-05-01T08:49:54.922311Z"
+  },
+  {
+    "name": "Vintage Sofa set",
+    "description": "A vintage sofa set perfect for your home.",
+    "price": "5296.464",
+    "image": "image-17.jpg",
+    "stock": 2,
+    "createdAt": "2025-05-01T08:49:54.922317Z",
+    "updatedAt": "2025-05-01T08:49:54.922318Z"
+  },
+  {
+    "name": "Luxury Sink",
+    "description": "A luxury sink perfect for your home.",
+    "price": "145.519",
+    "image": "image-18.jpg",
+    "stock": 24,
+    "createdAt": "2025-05-01T08:49:54.922323Z",
+    "updatedAt": "2025-05-01T08:49:54.922325Z"
+  },
+  {
+    "name": "Elegant Lamp",
+    "description": "A elegant lamp perfect for your home.",
+    "price": "176.805",
+    "image": "image-19.jpg",
+    "stock": 28,
+    "createdAt": "2025-05-01T08:49:54.922331Z",
+    "updatedAt": "2025-05-01T08:49:54.922332Z"
+  },
+  {
+    "name": "Stylish Other",
+    "description": "A stylish other perfect for your home.",
+    "price": "954.451",
+    "image": "image-20.jpg",
+    "stock": 26,
+    "createdAt": "2025-05-01T08:49:54.922337Z",
+    "updatedAt": "2025-05-01T08:49:54.922339Z"
+  },
+  {
+    "name": "Premium Sofa",
+    "description": "A premium sofa perfect for your home.",
+    "price": "3598.628",
+    "image": "image-21.jpg",
+    "stock": 9,
+    "createdAt": "2025-05-01T08:49:54.922345Z",
+    "updatedAt": "2025-05-01T08:49:54.922347Z"
+  },
+  {
+    "name": "Modern Table",
+    "description": "A modern table perfect for your home.",
+    "price": "2203.236",
+    "image": "image-22.jpg",
+    "stock": 19,
+    "createdAt": "2025-05-01T08:49:54.922352Z",
+    "updatedAt": "2025-05-01T08:49:54.922354Z"
+  },
+  {
+    "name": "Elegant Bed",
+    "description": "A elegant bed perfect for your home.",
+    "price": "5693.416",
+    "image": "image-23.jpg",
+    "stock": 1,
+    "createdAt": "2025-05-01T08:49:54.922359Z",
+    "updatedAt": "2025-05-01T08:49:54.922360Z"
+  },
+  {
+    "name": "Rustic Wardrobe",
+    "description": "A rustic wardrobe perfect for your home.",
+    "price": "2022.075",
+    "image": "image-24.jpg",
+    "stock": 5,
+    "createdAt": "2025-05-01T08:49:54.922370Z",
+    "updatedAt": "2025-05-01T08:49:54.922372Z"
+  },
+  {
+    "name": "Minimalist Mirror",
+    "description": "A minimalist mirror perfect for your home.",
+    "price": "434.19",
+    "image": "image-25.jpg",
+    "stock": 34,
+    "createdAt": "2025-05-01T08:49:54.922378Z",
+    "updatedAt": "2025-05-01T08:49:54.922379Z"
+  },
+  {
+    "name": "Modern Bathtub",
+    "description": "A modern bathtub perfect for your home.",
+    "price": "6171.567",
+    "image": "image-26.jpg",
+    "stock": 3,
+    "createdAt": "2025-05-01T08:49:54.922385Z",
+    "updatedAt": "2025-05-01T08:49:54.922386Z"
+  },
+  {
+    "name": "Premium Sofa set",
+    "description": "A premium sofa set perfect for your home.",
+    "price": "3640.351",
+    "image": "image-27.jpg",
+    "stock": 4,
+    "createdAt": "2025-05-01T08:49:54.922392Z",
+    "updatedAt": "2025-05-01T08:49:54.922393Z"
+  },
+  {
+    "name": "Minimalist Sink",
+    "description": "A minimalist sink perfect for your home.",
+    "price": "123.805",
+    "image": "image-28.jpg",
+    "stock": 33,
+    "createdAt": "2025-05-01T08:49:54.922398Z",
+    "updatedAt": "2025-05-01T08:49:54.922400Z"
+  },
+  {
+    "name": "Vintage Lamp",
+    "description": "A vintage lamp perfect for your home.",
+    "price": "68.507",
+    "image": "image-29.jpg",
+    "stock": 30,
+    "createdAt": "2025-05-01T08:49:54.922405Z",
+    "updatedAt": "2025-05-01T08:49:54.922406Z"
+  },
+  {
+    "name": "Luxury Other",
+    "description": "A luxury other perfect for your home.",
+    "price": "415.83",
+    "image": "image-30.jpg",
+    "stock": 19,
+    "createdAt": "2025-05-01T08:49:54.922412Z",
+    "updatedAt": "2025-05-01T08:49:54.922413Z"
+  },
+  {
+    "name": "Classic Sofa",
+    "description": "A classic sofa perfect for your home.",
+    "price": "4657.464",
+    "image": "image-31.jpg",
+    "stock": 6,
+    "createdAt": "2025-05-01T08:49:54.922419Z",
+    "updatedAt": "2025-05-01T08:49:54.922421Z"
+  },
+  {
+    "name": "Vintage Table",
+    "description": "A vintage table perfect for your home.",
+    "price": "737.997",
+    "image": "image-32.jpg",
+    "stock": 15,
+    "createdAt": "2025-05-01T08:49:54.922426Z",
+    "updatedAt": "2025-05-01T08:49:54.922427Z"
+  },
+  {
+    "name": "Modern Bed",
+    "description": "A modern bed perfect for your home.",
+    "price": "5327.972",
+    "image": "image-33.jpg",
+    "stock": 4,
+    "createdAt": "2025-05-01T08:49:54.922433Z",
+    "updatedAt": "2025-05-01T08:49:54.922434Z"
+  },
+  {
+    "name": "Classic Wardrobe",
+    "description": "A classic wardrobe perfect for your home.",
+    "price": "3317.779",
+    "image": "image-34.jpg",
+    "stock": 8,
+    "createdAt": "2025-05-01T08:49:54.922440Z",
+    "updatedAt": "2025-05-01T08:49:54.922441Z"
+  },
+  {
+    "name": "Classic Mirror",
+    "description": "A classic mirror perfect for your home.",
+    "price": "579.287",
+    "image": "image-35.jpg",
+    "stock": 40,
+    "createdAt": "2025-05-01T08:49:54.922447Z",
+    "updatedAt": "2025-05-01T08:49:54.922448Z"
+  },
+  {
+    "name": "Cozy Bathtub",
+    "description": "A cozy bathtub perfect for your home.",
+    "price": "2243.894",
+    "image": "image-36.jpg",
+    "stock": 1,
+    "createdAt": "2025-05-01T08:49:54.922453Z",
+    "updatedAt": "2025-05-01T08:49:54.922455Z"
+  },
+  {
+    "name": "Premium Sofa set",
+    "description": "A premium sofa set perfect for your home.",
+    "price": "6909.152",
+    "image": "image-37.jpg",
+    "stock": 1,
+    "createdAt": "2025-05-01T08:49:54.922464Z",
+    "updatedAt": "2025-05-01T08:49:54.922466Z"
+  },
+  {
+    "name": "Cozy Sink",
+    "description": "A cozy sink perfect for your home.",
+    "price": "381.232",
+    "image": "image-38.jpg",
+    "stock": 11,
+    "createdAt": "2025-05-01T08:49:54.922472Z",
+    "updatedAt": "2025-05-01T08:49:54.922473Z"
+  },
+  {
+    "name": "Elegant Lamp",
+    "description": "A elegant lamp perfect for your home.",
+    "price": "109.04",
+    "image": "image-39.jpg",
+    "stock": 21,
+    "createdAt": "2025-05-01T08:49:54.922478Z",
+    "updatedAt": "2025-05-01T08:49:54.922480Z"
+  },
+  {
+    "name": "Elegant Other",
+    "description": "A elegant other perfect for your home.",
+    "price": "335.427",
+    "image": "image-40.jpg",
+    "stock": 22,
+    "createdAt": "2025-05-01T08:49:54.922485Z",
+    "updatedAt": "2025-05-01T08:49:54.922486Z"
+  },
+  {
+    "name": "Elegant Sofa",
+    "description": "A elegant sofa perfect for your home.",
+    "price": "2305.849",
+    "image": "image-41.jpg",
+    "stock": 8,
+    "createdAt": "2025-05-01T08:49:54.922492Z",
+    "updatedAt": "2025-05-01T08:49:54.922493Z"
+  },
+  {
+    "name": "Elegant Table",
+    "description": "A elegant table perfect for your home.",
+    "price": "1322.433",
+    "image": "image-42.jpg",
+    "stock": 13,
+    "createdAt": "2025-05-01T08:49:54.922502Z",
+    "updatedAt": "2025-05-01T08:49:54.922504Z"
+  },
+  {
+    "name": "Minimalist Bed",
+    "description": "A minimalist bed perfect for your home.",
+    "price": "2631.306",
+    "image": "image-43.jpg",
+    "stock": 2,
+    "createdAt": "2025-05-01T08:49:54.922509Z",
+    "updatedAt": "2025-05-01T08:49:54.922511Z"
+  },
+  {
+    "name": "Luxury Wardrobe",
+    "description": "A luxury wardrobe perfect for your home.",
+    "price": "2814.777",
+    "image": "image-44.jpg",
+    "stock": 6,
+    "createdAt": "2025-05-01T08:49:54.922516Z",
+    "updatedAt": "2025-05-01T08:49:54.922517Z"
+  },
+  {
+    "name": "Rustic Mirror",
+    "description": "A rustic mirror perfect for your home.",
+    "price": "558.72",
+    "image": "image-45.jpg",
+    "stock": 27,
+    "createdAt": "2025-05-01T08:49:54.922522Z",
+    "updatedAt": "2025-05-01T08:49:54.922524Z"
+  },
+  {
+    "name": "Rustic Bathtub",
+    "description": "A rustic bathtub perfect for your home.",
+    "price": "1925.283",
+    "image": "image-46.jpg",
+    "stock": 2,
+    "createdAt": "2025-05-01T08:49:54.922529Z",
+    "updatedAt": "2025-05-01T08:49:54.922530Z"
+  },
+  {
+    "name": "Vintage Sofa set",
+    "description": "A vintage sofa set perfect for your home.",
+    "price": "2203.323",
+    "image": "image-47.jpg",
+    "stock": 4,
+    "createdAt": "2025-05-01T08:49:54.922536Z",
+    "updatedAt": "2025-05-01T08:49:54.922538Z"
+  },
+  {
+    "name": "Cozy Sink",
+    "description": "A cozy sink perfect for your home.",
+    "price": "527.028",
+    "image": "image-48.jpg",
+    "stock": 25,
+    "createdAt": "2025-05-01T08:49:54.922547Z",
+    "updatedAt": "2025-05-01T08:49:54.922550Z"
+  },
+  {
+    "name": "Classic Lamp",
+    "description": "A classic lamp perfect for your home.",
+    "price": "205.091",
+    "image": "image-49.jpg",
+    "stock": 58,
+    "createdAt": "2025-05-01T08:49:54.922558Z",
+    "updatedAt": "2025-05-01T08:49:54.922561Z"
+  },
+  {
+    "name": "Minimalist Other",
+    "description": "A minimalist other perfect for your home.",
+    "price": "751.063",
+    "image": "image-50.jpg",
+    "stock": 22,
+    "createdAt": "2025-05-01T08:49:54.922569Z",
+    "updatedAt": "2025-05-01T08:49:54.922571Z"
+  },
+  {
+    "name": "Minimalist Sofa",
+    "description": "A minimalist sofa perfect for your home.",
+    "price": "1133.742",
+    "image": "image-51.jpg",
+    "stock": 7,
+    "createdAt": "2025-05-01T08:49:54.922580Z",
+    "updatedAt": "2025-05-01T08:49:54.922582Z"
+  },
+  {
+    "name": "Elegant Table",
+    "description": "A elegant table perfect for your home.",
+    "price": "2462.835",
+    "image": "image-52.jpg",
+    "stock": 20,
+    "createdAt": "2025-05-01T08:49:54.922587Z",
+    "updatedAt": "2025-05-01T08:49:54.922589Z"
+  },
+  {
+    "name": "Minimalist Bed",
+    "description": "A minimalist bed perfect for your home.",
+    "price": "2447.303",
+    "image": "image-53.jpg",
+    "stock": 4,
+    "createdAt": "2025-05-01T08:49:54.922594Z",
+    "updatedAt": "2025-05-01T08:49:54.922596Z"
+  },
+  {
+    "name": "Stylish Wardrobe",
+    "description": "A stylish wardrobe perfect for your home.",
+    "price": "1065.525",
+    "image": "image-54.jpg",
+    "stock": 5,
+    "createdAt": "2025-05-01T08:49:54.922601Z",
+    "updatedAt": "2025-05-01T08:49:54.922603Z"
+  },
+  {
+    "name": "Stylish Mirror",
+    "description": "A stylish mirror perfect for your home.",
+    "price": "385.852",
+    "image": "image-55.jpg",
+    "stock": 41,
+    "createdAt": "2025-05-01T08:49:54.922609Z",
+    "updatedAt": "2025-05-01T08:49:54.922610Z"
+  },
+  {
+    "name": "Elegant Bathtub",
+    "description": "A elegant bathtub perfect for your home.",
+    "price": "6806.43",
+    "image": "image-56.jpg",
+    "stock": 3,
+    "createdAt": "2025-05-01T08:49:54.922616Z",
+    "updatedAt": "2025-05-01T08:49:54.922618Z"
+  },
+  {
+    "name": "Cozy Sofa set",
+    "description": "A cozy sofa set perfect for your home.",
+    "price": "5535.803",
+    "image": "image-57.jpg",
+    "stock": 4,
+    "createdAt": "2025-05-01T08:49:54.922623Z",
+    "updatedAt": "2025-05-01T08:49:54.922624Z"
+  },
+  {
+    "name": "Modern Sink",
+    "description": "A modern sink perfect for your home.",
+    "price": "326.767",
+    "image": "image-58.jpg",
+    "stock": 26,
+    "createdAt": "2025-05-01T08:49:54.922629Z",
+    "updatedAt": "2025-05-01T08:49:54.922631Z"
+  },
+  {
+    "name": "Luxury Lamp",
+    "description": "A luxury lamp perfect for your home.",
+    "price": "222.762",
+    "image": "image-59.jpg",
+    "stock": 39,
+    "createdAt": "2025-05-01T08:49:54.922636Z",
+    "updatedAt": "2025-05-01T08:49:54.922637Z"
+  },
+  {
+    "name": "Rustic Other",
+    "description": "A rustic other perfect for your home.",
+    "price": "316.378",
+    "image": "image-60.jpg",
+    "stock": 23,
+    "createdAt": "2025-05-01T08:49:54.922643Z",
+    "updatedAt": "2025-05-01T08:49:54.922649Z"
+  },
+  {
+    "name": "Stylish Sofa",
+    "description": "A stylish sofa perfect for your home.",
+    "price": "2384.871",
+    "image": "image-61.jpg",
+    "stock": 8,
+    "createdAt": "2025-05-01T08:49:54.922656Z",
+    "updatedAt": "2025-05-01T08:49:54.922657Z"
+  },
+  {
+    "name": "Luxury Table",
+    "description": "A luxury table perfect for your home.",
+    "price": "2049.437",
+    "image": "image-62.jpg",
+    "stock": 7,
+    "createdAt": "2025-05-01T08:49:54.922662Z",
+    "updatedAt": "2025-05-01T08:49:54.922664Z"
+  },
+  {
+    "name": "Elegant Bed",
+    "description": "A elegant bed perfect for your home.",
+    "price": "1892.346",
+    "image": "image-63.jpg",
+    "stock": 1,
+    "createdAt": "2025-05-01T08:49:54.922669Z",
+    "updatedAt": "2025-05-01T08:49:54.922671Z"
+  },
+  {
+    "name": "Luxury Wardrobe",
+    "description": "A luxury wardrobe perfect for your home.",
+    "price": "3420.08",
+    "image": "image-64.jpg",
+    "stock": 2,
+    "createdAt": "2025-05-01T08:49:54.922676Z",
+    "updatedAt": "2025-05-01T08:49:54.922677Z"
+  },
+  {
+    "name": "Rustic Mirror",
+    "description": "A rustic mirror perfect for your home.",
+    "price": "625.269",
+    "image": "image-65.jpg",
+    "stock": 43,
+    "createdAt": "2025-05-01T08:49:54.922683Z",
+    "updatedAt": "2025-05-01T08:49:54.922684Z"
+  },
+  {
+    "name": "Vintage Bathtub",
+    "description": "A vintage bathtub perfect for your home.",
+    "price": "5033.542",
+    "image": "image-66.jpg",
+    "stock": 3,
+    "createdAt": "2025-05-01T08:49:54.922690Z",
+    "updatedAt": "2025-05-01T08:49:54.922691Z"
+  },
+  {
+    "name": "Classic Sofa set",
+    "description": "A classic sofa set perfect for your home.",
+    "price": "5017.089",
+    "image": "image-67.jpg",
+    "stock": 1,
+    "createdAt": "2025-05-01T08:49:54.922697Z",
+    "updatedAt": "2025-05-01T08:49:54.922698Z"
+  },
+  {
+    "name": "Stylish Sink",
+    "description": "A stylish sink perfect for your home.",
+    "price": "186.518",
+    "image": "image-68.jpg",
+    "stock": 31,
+    "createdAt": "2025-05-01T08:49:54.922703Z",
+    "updatedAt": "2025-05-01T08:49:54.922705Z"
+  },
+  {
+    "name": "Modern Lamp",
+    "description": "A modern lamp perfect for your home.",
+    "price": "273.802",
+    "image": "image-69.jpg",
+    "stock": 49,
+    "createdAt": "2025-05-01T08:49:54.922710Z",
+    "updatedAt": "2025-05-01T08:49:54.922711Z"
+  },
+  {
+    "name": "Classic Other",
+    "description": "A classic other perfect for your home.",
+    "price": "760.474",
+    "image": "image-70.jpg",
+    "stock": 18,
+    "createdAt": "2025-05-01T08:49:54.922716Z",
+    "updatedAt": "2025-05-01T08:49:54.922718Z"
+  },
+  {
+    "name": "Stylish Sofa",
+    "description": "A stylish sofa perfect for your home.",
+    "price": "1386.661",
+    "image": "image-71.jpg",
+    "stock": 4,
+    "createdAt": "2025-05-01T08:49:54.922724Z",
+    "updatedAt": "2025-05-01T08:49:54.922726Z"
+  },
+  {
+    "name": "Elegant Table",
+    "description": "A elegant table perfect for your home.",
+    "price": "1474.583",
+    "image": "image-72.jpg",
+    "stock": 19,
+    "createdAt": "2025-05-01T08:49:54.922731Z",
+    "updatedAt": "2025-05-01T08:49:54.922732Z"
+  },
+  {
+    "name": "Cozy Bed",
+    "description": "A cozy bed perfect for your home.",
+    "price": "4515.253",
+    "image": "image-73.jpg",
+    "stock": 1,
+    "createdAt": "2025-05-01T08:49:54.922738Z",
+    "updatedAt": "2025-05-01T08:49:54.922739Z"
+  },
+  {
+    "name": "Minimalist Wardrobe",
+    "description": "A minimalist wardrobe perfect for your home.",
+    "price": "2506.184",
+    "image": "image-74.jpg",
+    "stock": 8,
+    "createdAt": "2025-05-01T08:49:54.922745Z",
+    "updatedAt": "2025-05-01T08:49:54.922746Z"
+  },
+  {
+    "name": "Elegant Mirror",
+    "description": "A elegant mirror perfect for your home.",
+    "price": "662.863",
+    "image": "image-75.jpg",
+    "stock": 41,
+    "createdAt": "2025-05-01T08:49:54.922751Z",
+    "updatedAt": "2025-05-01T08:49:54.922753Z"
+  },
+  {
+    "name": "Vintage Bathtub",
+    "description": "A vintage bathtub perfect for your home.",
+    "price": "4099.585",
+    "image": "image-76.jpg",
+    "stock": 2,
+    "createdAt": "2025-05-01T08:49:54.922759Z",
+    "updatedAt": "2025-05-01T08:49:54.922760Z"
+  },
+  {
+    "name": "Classic Sofa set",
+    "description": "A classic sofa set perfect for your home.",
+    "price": "6818.448",
+    "image": "image-77.jpg",
+    "stock": 4,
+    "createdAt": "2025-05-01T08:49:54.922766Z",
+    "updatedAt": "2025-05-01T08:49:54.922767Z"
+  },
+  {
+    "name": "Rustic Sink",
+    "description": "A rustic sink perfect for your home.",
+    "price": "188.026",
+    "image": "image-78.jpg",
+    "stock": 11,
+    "createdAt": "2025-05-01T08:49:54.922772Z",
+    "updatedAt": "2025-05-01T08:49:54.922774Z"
+  },
+  {
+    "name": "Vintage Lamp",
+    "description": "A vintage lamp perfect for your home.",
+    "price": "182.945",
+    "image": "image-79.jpg",
+    "stock": 15,
+    "createdAt": "2025-05-01T08:49:54.922779Z",
+    "updatedAt": "2025-05-01T08:49:54.922780Z"
+  },
+  {
+    "name": "Premium Other",
+    "description": "A premium other perfect for your home.",
+    "price": "799.333",
+    "image": "image-80.jpg",
+    "stock": 8,
+    "createdAt": "2025-05-01T08:49:54.922785Z",
+    "updatedAt": "2025-05-01T08:49:54.922787Z"
+  },
+  {
+    "name": "Premium Sofa",
+    "description": "A premium sofa perfect for your home.",
+    "price": "4726.431",
+    "image": "image-81.jpg",
+    "stock": 6,
+    "createdAt": "2025-05-01T08:49:54.922792Z",
+    "updatedAt": "2025-05-01T08:49:54.922794Z"
+  },
+  {
+    "name": "Elegant Table",
+    "description": "A elegant table perfect for your home.",
+    "price": "1188.322",
+    "image": "image-82.jpg",
+    "stock": 5,
+    "createdAt": "2025-05-01T08:49:54.922799Z",
+    "updatedAt": "2025-05-01T08:49:54.922800Z"
+  },
+  {
+    "name": "Minimalist Bed",
+    "description": "A minimalist bed perfect for your home.",
+    "price": "3465.004",
+    "image": "image-83.jpg",
+    "stock": 2,
+    "createdAt": "2025-05-01T08:49:54.922806Z",
+    "updatedAt": "2025-05-01T08:49:54.922807Z"
+  },
+  {
+    "name": "Premium Wardrobe",
+    "description": "A premium wardrobe perfect for your home.",
+    "price": "1888.332",
+    "image": "image-84.jpg",
+    "stock": 4,
+    "createdAt": "2025-05-01T08:49:54.922816Z",
+    "updatedAt": "2025-05-01T08:49:54.922817Z"
+  },
+  {
+    "name": "Luxury Mirror",
+    "description": "A luxury mirror perfect for your home.",
+    "price": "495.176",
+    "image": "image-85.jpg",
+    "stock": 34,
+    "createdAt": "2025-05-01T08:49:54.922823Z",
+    "updatedAt": "2025-05-01T08:49:54.922824Z"
+  },
+  {
+    "name": "Premium Bathtub",
+    "description": "A premium bathtub perfect for your home.",
+    "price": "5797.808",
+    "image": "image-86.jpg",
+    "stock": 1,
+    "createdAt": "2025-05-01T08:49:54.922829Z",
+    "updatedAt": "2025-05-01T08:49:54.922831Z"
+  },
+  {
+    "name": "Vintage Sofa set",
+    "description": "A vintage sofa set perfect for your home.",
+    "price": "4191.665",
+    "image": "image-87.jpg",
+    "stock": 1,
+    "createdAt": "2025-05-01T08:49:54.922836Z",
+    "updatedAt": "2025-05-01T08:49:54.922838Z"
+  },
+  {
+    "name": "Premium Sink",
+    "description": "A premium sink perfect for your home.",
+    "price": "470.786",
+    "image": "image-88.jpg",
+    "stock": 33,
+    "createdAt": "2025-05-01T08:49:54.922844Z",
+    "updatedAt": "2025-05-01T08:49:54.922845Z"
+  },
+  {
+    "name": "Modern Lamp",
+    "description": "A modern lamp perfect for your home.",
+    "price": "300.509",
+    "image": "image-89.jpg",
+    "stock": 58,
+    "createdAt": "2025-05-01T08:49:54.922851Z",
+    "updatedAt": "2025-05-01T08:49:54.922852Z"
+  },
+  {
+    "name": "Premium Other",
+    "description": "A premium other perfect for your home.",
+    "price": "534.782",
+    "image": "image-90.jpg",
+    "stock": 12,
+    "createdAt": "2025-05-01T08:49:54.922857Z",
+    "updatedAt": "2025-05-01T08:49:54.922859Z"
+  },
+  {
+    "name": "Luxury Sofa",
+    "description": "A luxury sofa perfect for your home.",
+    "price": "2080.892",
+    "image": "image-91.jpg",
+    "stock": 4,
+    "createdAt": "2025-05-01T08:49:54.922864Z",
+    "updatedAt": "2025-05-01T08:49:54.922865Z"
+  },
+  {
+    "name": "Minimalist Table",
+    "description": "A minimalist table perfect for your home.",
+    "price": "509.459",
+    "image": "image-92.jpg",
+    "stock": 5,
+    "createdAt": "2025-05-01T08:49:54.922871Z",
+    "updatedAt": "2025-05-01T08:49:54.922872Z"
+  },
+  {
+    "name": "Stylish Bed",
+    "description": "A stylish bed perfect for your home.",
+    "price": "5375.842",
+    "image": "image-93.jpg",
+    "stock": 1,
+    "createdAt": "2025-05-01T08:49:54.922877Z",
+    "updatedAt": "2025-05-01T08:49:54.922879Z"
+  },
+  {
+    "name": "Premium Wardrobe",
+    "description": "A premium wardrobe perfect for your home.",
+    "price": "3274.24",
+    "image": "image-94.jpg",
+    "stock": 2,
+    "createdAt": "2025-05-01T08:49:54.922884Z",
+    "updatedAt": "2025-05-01T08:49:54.922886Z"
+  },
+  {
+    "name": "Luxury Mirror",
+    "description": "A luxury mirror perfect for your home.",
+    "price": "536.349",
+    "image": "image-95.jpg",
+    "stock": 26,
+    "createdAt": "2025-05-01T08:49:54.922891Z",
+    "updatedAt": "2025-05-01T08:49:54.922892Z"
+  },
+  {
+    "name": "Classic Bathtub",
+    "description": "A classic bathtub perfect for your home.",
+    "price": "5661.417",
+    "image": "image-96.jpg",
+    "stock": 2,
+    "createdAt": "2025-05-01T08:49:54.922898Z",
+    "updatedAt": "2025-05-01T08:49:54.922899Z"
+  },
+  {
+    "name": "Stylish Sofa set",
+    "description": "A stylish sofa set perfect for your home.",
+    "price": "7768.169",
+    "image": "image-97.jpg",
+    "stock": 4,
+    "createdAt": "2025-05-01T08:49:54.922905Z",
+    "updatedAt": "2025-05-01T08:49:54.922906Z"
+  },
+  {
+    "name": "Luxury Sink",
+    "description": "A luxury sink perfect for your home.",
+    "price": "384.908",
+    "image": "image-98.jpg",
+    "stock": 36,
+    "createdAt": "2025-05-01T08:49:54.922911Z",
+    "updatedAt": "2025-05-01T08:49:54.922913Z"
+  },
+  {
+    "name": "Premium Lamp",
+    "description": "A premium lamp perfect for your home.",
+    "price": "232.906",
+    "image": "image-99.jpg",
+    "stock": 47,
+    "createdAt": "2025-05-01T08:49:54.922918Z",
+    "updatedAt": "2025-05-01T08:49:54.922919Z"
+  },
+  {
+    "name": "Rustic Other",
+    "description": "A rustic other perfect for your home.",
+    "price": "670.596",
+    "image": "image-100.jpg",
+    "stock": 14,
+    "createdAt": "2025-05-01T08:49:54.922925Z",
+    "updatedAt": "2025-05-01T08:49:54.922926Z"
+  }
+]

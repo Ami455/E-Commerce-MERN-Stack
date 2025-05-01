@@ -2,44 +2,65 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { api } from '../../../utils/api';
 import RatingDisplay from '../../Review/RatingDisplay';
+import CartButton from '../Products/CartButton/CartButton';
 
 export default function Details() {
     const location = useLocation();
     const { productId } = location.state || {};
     const [product, setProduct] = useState(null);
     // console.log(productId)
-const [rating, setRating] = useState(0);
-  const [reviews, setReviews] = useState(0);
-      const getRating= async()=>{
-      try{ 
-          const res = await api.get(`${import.meta.env.VITE_REVIEW}/${productId}`);
-          const { reviews, averageRating } = res.data; 
-          setRating(averageRating);
-          setReviews(reviews)
-          console.log(reviews.length)
-         }
-         catch(error){
-      console.error('Failed to fetch average rating:', error);
-         }
-     } 
-   
+    const [rating, setRating] = useState(0);
+    const [reviews, setReviews] = useState(0);
+    const getRating = async () => {
+        try {
+            const res = await api.get(`${import.meta.env.VITE_REVIEW}/${productId}`);
+            const { reviews, averageRating } = res.data;
+            setRating(averageRating);
+            setReviews(reviews)
+            console.log(reviews.length)
+        }
+        catch (error) {
+            console.error('Failed to fetch average rating:', error);
+        }
+    }
+    const [cart, setCart] = useState([]);
+
+    const getCart = async () => {
+        try {
+            const res = await api.get(`${import.meta.env.VITE_CARTPRODUCT}`);
+            setCart(res.data.products);
+        } catch (err) {
+            console.error('Failed to fetch cart:', err);
+        }
+    };
+
+
+    const getProductQuantity = (productId) => {
+        const cartItem = cart.find(item => item.id === productId);
+        return cartItem ? cartItem.CartProduct.quantity : 0;
+    };
+
+
+    const getData = async () => {
+        try {
+            const response = await api.get(
+                `${import.meta.env.VITE_PRODUCTS_LIST}/${productId}`
+            );
+            setProduct(response.data);
+        } catch (error) {
+            console.error("Failed to fetch product:", error);
+        }
+    };
 
 
 
     useEffect(() => {
+
         if (productId) {
-            const getData = async () => {
-                try {
-                    const response = await api.get(
-                        `${import.meta.env.VITE_PRODUCTS_LIST}/${productId}`
-                    );
-                    setProduct(response.data);
-                } catch (error) {
-                    console.error("Failed to fetch product:", error);
-                }
-            };
+
             getData();
-            getRating() 
+            getRating();
+            getCart();
         }
     }, [productId]);
 
@@ -62,7 +83,14 @@ const [rating, setRating] = useState(0);
                         <p>Rating: <RatingDisplay rating={rating} /> <h6>{reviews.length}</h6></p>
                         <h2>Description</h2>
                         <p>{product.description}</p>
-                        <button className=' btn w-100'>Add to Cart</button>
+
+                        <CartButton
+                            product={product}
+                            getProductQuantity={getProductQuantity}
+                            getCart={getCart}
+                            getProducts={getData}
+                        />
+
                     </div>
                 </div>
             </div>

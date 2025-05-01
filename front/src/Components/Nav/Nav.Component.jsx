@@ -16,27 +16,27 @@ import "../Nav/NavComponent.css";
 
 export default function NavComponent() {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
-  // const [categoryData, setCategoryData] = useState([]);
+  const [categoryData, setCategoryData] = useState([]);
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
 
-  // const getCategory = useCallback(async () => {
-  //   try {
-  //     const res = await api.get(`${import.meta.env.VITE_CATEGORY_LIST}`);
-  //     setCategoryData(res.data.categories);
-  //   } catch (err) {
-  //     console.error("Error fetching categories:", err);
-  //   }
-  // }, []);
+  const getCategory = useCallback(async () => {
+    try {
+      const res = await api.get(`${import.meta.env.VITE_CATEGORY_LIST}`);
+      setCategoryData(res.data.categories);
+    } catch (err) {
+      console.error("Error fetching categories:", err);
+    }
+  }, []);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     navigate(`/search?search=${search}`);
   };
 
-  // useEffect(() => {
-  //   getCategory();
-  // }, []);
+  useEffect(() => {
+    getCategory();
+  }, []);
 
   return (
     <Navbar expand="lg" className="bar">
@@ -53,13 +53,13 @@ export default function NavComponent() {
             <Nav.Link as={Link} to="/about">About</Nav.Link>
             <Nav.Link as={Link} to="/category/products">Product</Nav.Link>
 
-            {/* <NavDropdown title="Category" id="category-dropdown">
+            <NavDropdown title="Category" id="category-dropdown">
               {categoryData.map((cat) => (
-                <NavDropdown.Item as={Link} to={`/category/${cat.id}`} key={cat.id}>
+                <NavDropdown.Item as={Link} to={`http://localhost:5173/category/products?category=${cat.name}`} key={cat.id}>
                   {cat.name}
                 </NavDropdown.Item>
               ))}
-            </NavDropdown> */}
+            </NavDropdown>
 
             <Nav.Link as={Link} to="/favorites">
               <FontAwesomeIcon icon={faHeart} />

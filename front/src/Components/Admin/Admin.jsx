@@ -56,7 +56,6 @@ export default function Admin() {
               <Accordion.Header><strong>Order</strong></Accordion.Header>
               <Accordion.Body>
                 <Nav className="flex-column">
-                  <Nav.Link as={Link} to="order/add" className="nlink">Add</Nav.Link>
                   <Nav.Link as={Link} to="order/list" className="nlink">List</Nav.Link>
                   <Nav.Link as={Link} to="order/edit" className="nlink">Edit</Nav.Link>
                 </Nav>
