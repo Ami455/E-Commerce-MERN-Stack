@@ -15,9 +15,9 @@ async function seedAll() {
     const categoryCount = await Category.count();
     if (categoryCount === 0) {
       await Category.bulkCreate(categories);
-      console.log('✅ Categories seeded successfully');
+      console.log('Categories seeded successfully');
     } else {
-      console.log('ℹ️ Categories already exist, skipping seeding');
+      console.log('Categories already exist, skipping seeding');
     }
 
     const productCount = await Product.count();
