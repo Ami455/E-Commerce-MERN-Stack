@@ -48,7 +48,7 @@ const order = await Order.create({
 const orderProducts = cart.Products.map((product)=>({
     OrderId: order.id,
     ProductId: product.id,
-    quantity : product.cartProduct.quantity,
+    quantity : product.CartProduct.quantity,
 }))
 
 await OrderProduct.bulkCreate(orderProducts);

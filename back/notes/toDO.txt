@@ -1,10 +1,8 @@
 
-5- reviews & comments
+admin track order
 6- seller, relation between seller and product
 login with google acount
 send mail to customer service
-user track his order
-amina : reviews
 
 
 
@@ -18,4 +16,7 @@ Done:
 1111111111 multer for mai 
 fav , checkout front  
 order controller,order history,
-admin track order
+
+user track his order
+ reviews
+
