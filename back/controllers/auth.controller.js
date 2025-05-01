@@ -72,7 +72,7 @@ const admin = async (req,res)=>{
 }
 
 
-const getme = async (req,res)=>{
+const getMe = async (req,res)=>{
     const user = await User.findByPk(req.user.id)
     if (!user) {
         return res.status(404).json({
@@ -85,4 +85,4 @@ const getme = async (req,res)=>{
     });
 }
 
-module.exports={login,register,admin,getme}
+module.exports={login,register,admin,getMe}

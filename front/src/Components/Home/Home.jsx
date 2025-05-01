@@ -62,7 +62,7 @@ export default function Home() {
                             <React.Fragment key={cat.id}>
                                 <div className="col-2">
                                     <div className="categ py-3">
-                                        <Link to={`/category/${cat.id}`} className="text-decoration-none">
+                                        <Link to={`http://localhost:5173/category/products?category=${cat.name}`} className="text-decoration-none">
                                         <img src={cat.image} className="w-100 object-fit-contain" alt="" />
                                         <h5 className="sofa-text">{cat.name}</h5>
                                         </Link>

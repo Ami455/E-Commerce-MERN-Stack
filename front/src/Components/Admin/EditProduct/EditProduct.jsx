@@ -3,43 +3,53 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import { formDataApi } from '../../../utils/api';
+import { useParams, useNavigate, useLocation, Link } from 'react-router-dom';
+import { api, formDataApi } from '../../../utils/api';
 
 export default function Edit() {
     
     const location = useLocation();
     const { productId } = location.state || {};
     const navigate = useNavigate();
+    const [categoryData, setCategoryData] = useState([]);
+    const [selectedImageFile, setSelectedImageFile] = useState(null);
+
 
     const [formData, setFormData] = useState({
         name: '',
         category: '',
         price: '',
-        quantity: '',
+        stock: '',
         description: '',
         image: '',
     });
 
-    const [selectedImageFile, setSelectedImageFile] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    
 
     // Separate function to fetch product details
     const fetchProductDetails = async () => {
         try {
             const response = await formDataApi.get(`${import.meta.env.VITE_PRODUCTS_LIST}/${productId}`);
-            const { name, category, price, quantity, description, image } = response.data;
-            setFormData({ name, category, price, quantity, description, image });
+            const { name, categoryId, price, stock, description, image } = response.data;
+            setFormData({ name, categoryId, price, stock, description, image });
         } catch (error) {
             console.error('Failed to fetch product:', error);
-        } finally {
-            setIsLoading(false);
         }
     };
+
+            const getCategory = async () => {
+                try {
+                    const res = await api.get(import.meta.env.VITE_CATEGORY_LIST);
+                    setCategoryData(res.data.categories);
+                } catch (error) {
+                    console.error("Failed to load categories", error);
+                }
+            };
 
     useEffect(() => {
         if (productId) {
             fetchProductDetails();
+            getCategory();
         }
     }, [productId]);
 
@@ -70,12 +80,12 @@ export default function Edit() {
         try {
             const updatedFormData = new FormData();
             updatedFormData.append('name', formData.name);
-            updatedFormData.append('category', formData.category);
+            updatedFormData.append('categoryId', formData.categoryId);
             updatedFormData.append('price', formData.price);
-            updatedFormData.append('quantity', formData.quantity);
+            updatedFormData.append('stock', formData.stock);
             updatedFormData.append('description', formData.description);
             if (selectedImageFile) {
-                updatedFormData.append('image', selectedImageFile);
+                updatedFormData.append('file', selectedImageFile);
             }
 
             await formDataApi.put(
@@ -84,14 +94,14 @@ export default function Edit() {
             );
 
             alert('Product updated successfully!');
-            navigate('/admin/list');
+            navigate('/admin/product/list');
         } catch (error) {
             console.error('Failed to update product:', error);
             alert('Failed to update product.');
         }
     };
 
-    if (isLoading) return <p>Loading product data...</p>;
+
 
     return (
         <div className="container mt-5">
@@ -110,13 +120,13 @@ export default function Edit() {
 
                 <Form.Group className="mb-3">
                     <Form.Label>Category</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="category"
-                        value={formData.category}
-                        onChange={handleInputChange}
-                        placeholder="Enter category"
-                    />
+                    <Form.Select name="categoryId" value={formData.categoryId}
+                        onChange={handleInputChange}>
+                        <option value="">Select a Category</option>
+                        {categoryData.map((category) => (
+                            <option key={category.id} value={category.id}>{category.name}</option>
+                        ))}
+                    </Form.Select>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
@@ -131,13 +141,13 @@ export default function Edit() {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Quantity</Form.Label>
+                    <Form.Label>stock</Form.Label>
                     <Form.Control
                         type="number"
-                        name="quantity"
-                        value={formData.quantity}
+                        name="stock"
+                        value={formData.stock}
                         onChange={handleInputChange}
-                        placeholder="Enter quantity"
+                        placeholder="Enter stock"
                     />
                 </Form.Group>
 
@@ -173,7 +183,7 @@ export default function Edit() {
                 </Form.Group>
 
                 <div className="text-center">
-                    <Button variant="primary" type="submit" href='/admin/list' size="lg">
+                    <Button variant="primary" type="submit"  size="lg">
                         <FontAwesomeIcon icon={faUpload} /> Update Product
                     </Button>
                 </div>

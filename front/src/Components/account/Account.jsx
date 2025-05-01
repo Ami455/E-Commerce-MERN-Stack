@@ -819,7 +819,7 @@ import { useForm } from 'react-hook-form'
 import { api } from '../../utils/api'
 import toast from 'react-hot-toast'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Account() {
   const { register, handleSubmit, reset } = useForm()
@@ -987,7 +987,7 @@ export default function Account() {
                 </div>
                 <div className="col-12 text-end">
                   <button type="button" className="btn btn-link text-danger" onClick={() => setShowSecondAddress(false)}>
-                    − Remove Address 2
+                     Remove Address 2
                   </button>
                 </div>
               </fieldset>
@@ -1000,7 +1000,7 @@ export default function Account() {
         </div>
 
         <div className="col-12 mt-3 text-center">
-          <a href="/orders">Your Orders</a>
+          <Link to={"/orders"}>Your Orders</Link>
         </div>
       </div>
     </div>

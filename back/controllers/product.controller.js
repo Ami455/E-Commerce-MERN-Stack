@@ -126,7 +126,11 @@ const createProduct = async (req, res) => {
 // Update a furniture product by ID
 
 const updateProduct = async (req, res) => {
-    const [updated] = await Product.update(req.body, {
+    const image = req.file.filename;
+    if (!req.file) {
+        return res.status(400).json({ error: 'No image file uploaded' });
+    }
+    const [updated] = await Product.update(...req.body,image, {
         where: { id: req.params.id }
     });
     if (updated) {

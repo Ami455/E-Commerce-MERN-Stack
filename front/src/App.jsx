@@ -27,12 +27,17 @@ import SearchResults from './Components/Category/Search/Search.jsx';
 import AddUser from './Components/Admin/AddUser/AddUser.jsx';
 import ListUser from './Components/Admin/ListUser/ListUser.jsx';
 import EditUser from './Components/Admin/EditUser/EditUser.jsx';
-import AddOrder from './Components/Admin/AddOrder/AddOrder.jsx';
+
 import ListOrder from './Components/Admin/ListOrder/ListOrder.jsx';
 import EditOrder from './Components/Admin/EditOrder/EditOrder.jsx';
 import Order from './Components/order/Order.jsx';
 import { api } from './utils/api.js';
 import Orders from './Components/order/orders.jsx';
+
+import OrderDetail from './Components/Admin/OrderDetail/OrderDetail.jsx';
+
+
+
 
 function AppRoutes() {
     const { isAuthenticated } = useSelector((state) => state.auth);
@@ -68,8 +73,8 @@ function AppRoutes() {
                 { path: 'user/add', element: <AddUser /> },
                 { path: 'user/list', element: <ListUser /> },
                 { path: 'user/edit', element: <EditUser /> },
-                { path: 'order/add', element: <AddOrder /> },
                 { path: 'order/list', element: <ListOrder /> },
+                { path: 'order/details', element: <OrderDetail /> },
                 { path: 'order/edit', element: <EditOrder /> },
             ]},
             
