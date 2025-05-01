@@ -18,7 +18,7 @@ const createAddress = async (req, res) => {
 
 // Get all addresses
 const getAllAddresses = async (req, res) => {
-  const userId=req.user.id
+  const userId=req.params.id
   const addresses = await Address.findAll( {where: { userId } });
     res.status(200).json(addresses);
   
@@ -42,7 +42,6 @@ const getAddressById = async (req, res) => {
 const updateAddress = async (req, res) => {
   const {street, city, postalCode , country}= req.body
     const { id } = req.params;
-    console.log(id)
     const address = await Address.findByPk(id);
 
     if (!address) {

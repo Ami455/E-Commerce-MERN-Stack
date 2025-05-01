@@ -16,9 +16,13 @@ const [products, setProducts] = useState([]);
 const [totalPrice, setTotalPrice] = useState([]);
 
         const getData = async ()=>{
-            const cart = await api.get(`${import.meta.env.VITE_CARTPRODUCT}`)
+            try{
+              const cart = await api.get(`${import.meta.env.VITE_CARTPRODUCT}`)
          setProducts( cart.data.products)
          setTotalPrice( cart.data.totalPrice)
+            }catch(error){
+              console.log(error)
+            }
         
        // console.log(cart.data)
         };

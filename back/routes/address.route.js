@@ -9,7 +9,7 @@ const {createAddress,
     deleteAddress} = require('../controllers/address.controller');
 
 router.post('/',authMiddleware, tryCatchWrapper(createAddress));
-router.get('/',authMiddleware,  tryCatchWrapper(getAllAddresses));
+router.get('/users/:id',authMiddleware,  tryCatchWrapper(getAllAddresses));
 router.get('/:id', authMiddleware, tryCatchWrapper(getAddressById));
 router.put('/:id',authMiddleware, tryCatchWrapper(updateAddress));
 router.delete('/:id',authMiddleware, tryCatchWrapper(deleteAddress));

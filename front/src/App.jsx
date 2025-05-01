@@ -28,6 +28,7 @@ import ListOrder from './Components/Admin/ListOrder/ListOrder.jsx';
 import EditOrder from './Components/Admin/EditOrder/EditOrder.jsx';
 import OrderDetail from './Components/Admin/OrderDetail/OrderDetail.jsx';
 import SearchResults from './Components/Category/Search/Search.jsx';
+import Favorite from './Components/favorite/Favorite.jsx';
 
 function AppRoutes() {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -49,6 +50,7 @@ function AppRoutes() {
         { path: '/login', element: isAuthenticated ? <Home /> : <Login /> },
         { path: '/register', element: <Register /> },
         { path: '/cart', element: <Cart /> },
+        { path: '/favorites', element: <Favorite /> },
         { path: '/checkout', element: <Checkout /> },
         { path: '/orders', element: <Orders /> },
         { path: '/order/:orderId', element: <Order /> },

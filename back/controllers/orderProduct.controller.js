@@ -33,7 +33,7 @@ const findAllOrdersAdmin = async (req, res) => {
         include: [
             {
                 model: Product,
-                through: { attributes: ["quantity"] }
+                through: { model: OrderProduct, attributes: ["quantity"] }
             },
             {
                 model: Address,
@@ -49,10 +49,10 @@ const findAllOrdersAdmin = async (req, res) => {
 }
 
 const findOrderDetails = async (req, res) => {
-    const userId = req.user.id;
+    
     const orderId = req.params.id;
     const order = await Order.findOne({
-        where: { id : orderId, userId },
+        where: { id : orderId },
         include: [
           {
             model: Product,
