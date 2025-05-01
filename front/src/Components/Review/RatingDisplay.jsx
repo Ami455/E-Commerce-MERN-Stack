@@ -2,21 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { Rating } from 'react-simple-star-rating';
 import { api } from '../../utils/api';
 
-export default function RatingDisplay() {
-   const [rating, setRating] = useState(0);
-    const getRating= async()=>{
-    try{ 
-        const res = await api.get(`${import.meta.env.VITE_REVIEW}/${productId}`);
-        const { reviews, averageRating } = res.data; 
-        setRating(averageRating);
-       }
-       catch(error){
-    console.error('Failed to fetch average rating:', error);
-       }
-   } 
-   useEffect(()=>{
-    getRating()
-   },[])
+export default function RatingDisplay({rating}) {
+  //  const [rating, setRating] = useState(0);
+  //   const getRating= async()=>{
+  //   try{ 
+  //       const res = await api.get(`${import.meta.env.VITE_REVIEW}/${productId}`);
+  //       const { reviews, averageRating } = res.data; 
+  //       setRating(averageRating);
+  //      }
+  //      catch(error){
+  //   console.error('Failed to fetch average rating:', error);
+  //      }
+  //  } 
+  //  useEffect(()=>{
+  //   getRating()
+  //  },[])
    
     return (
        

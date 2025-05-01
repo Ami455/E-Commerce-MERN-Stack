@@ -1,10 +1,8 @@
 Todo:
 
 admin track orders
-6-filter , search
-7-payment , checkout
 8-fav
-9-order, orders history
+
 
 
 
@@ -23,5 +21,7 @@ cart
 2- crud in front
 3- display products (/products)
 4- connection between front and back (cors)
-
+6-filter , search
+7-payment , checkout
+9-order, orders history
 

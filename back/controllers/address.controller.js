@@ -42,6 +42,7 @@ const getAddressById = async (req, res) => {
 const updateAddress = async (req, res) => {
   const {street, city, postalCode , country}= req.body
     const { id } = req.params;
+    console.log(id)
     const address = await Address.findByPk(id);
 
     if (!address) {

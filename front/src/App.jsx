@@ -32,6 +32,7 @@ import ListOrder from './Components/Admin/ListOrder/ListOrder.jsx';
 import EditOrder from './Components/Admin/EditOrder/EditOrder.jsx';
 import Order from './Components/order/Order.jsx';
 import { api } from './utils/api.js';
+import Orders from './Components/order/orders.jsx';
 
 function AppRoutes() {
     const { isAuthenticated } = useSelector((state) => state.auth);
@@ -56,7 +57,8 @@ function AppRoutes() {
             { path: '/register', element: <Register /> },
             { path: '/cart', element: <Cart /> },
             { path: '/checkout', element: <Checkout /> },
-            { path: '/order', element: <Order /> },
+             { path: '/order/:orderId', element: <Order /> },
+            { path: '/orders', element: <Orders /> },
 
             { path: '/admin', element: <Admin />, children: [
 
@@ -84,14 +86,15 @@ function AppRoutes() {
 
 export default function App() {
 
+    const fetchME = async () => {
+        try{
+            const response = await  api.get('auth/me')
+        }
+        catch (error) {
+            console.log(error);
+        }}
+
     useEffect(() => {
-        const fetchME = async () => {
-            try{
-                const response = await  api.get('/me')
-            }
-            catch (error) {
-                console.log(error);
-            }}
             fetchME()
     },[])
 

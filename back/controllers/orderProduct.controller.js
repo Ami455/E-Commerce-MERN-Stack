@@ -2,6 +2,7 @@ const Order = require('../models/Order.model');
 const Product = require('../models/Products.model');
 const OrderProduct = require('../models/OrderProduct.model');
 const Address = require('../models/address.model');
+const User = require('../models/user.model');
 
 const findAllOrders = async (req, res) => {
     const userId = req.user.id;
@@ -15,6 +16,10 @@ const findAllOrders = async (req, res) => {
         {
           model: Address,
           as: "address"
+        },
+        {
+          model: User,
+          as: "user"
         }
       ]
     });
@@ -35,6 +40,10 @@ const findOrderDetails = async (req, res) => {
           {
             model: Address,
             as: "address"
+          },
+          {
+            model: User,
+            as: "user"
           }
         ]
       });
