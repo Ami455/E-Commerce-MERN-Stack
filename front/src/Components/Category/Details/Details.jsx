@@ -10,7 +10,7 @@ export default function Details() {
     const [product, setProduct] = useState(null);
     // console.log(productId)
     const [rating, setRating] = useState(0);
-    const [reviews, setReviews] = useState(0);
+    const [reviews, setReviews] = useState([]);
     const getRating = async () => {
         try {
             const res = await api.get(`${import.meta.env.VITE_REVIEW}/${productId}`);
@@ -70,18 +70,56 @@ export default function Details() {
     }
     // console.log(product)
 
+    // Helper function to generate stars based on rating
+    const renderStars = (rating) => {
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 >= 0.5;
+        const emptyStars = 5 - Math.ceil(rating);
+
+        const stars = [];
+
+        // Add full stars
+        for (let i = 0; i < fullStars; i++) {
+            stars.push(<span key={`full-${i}`} className="star filled">★</span>);
+        }
+
+        // Add half star if applicable
+        if (hasHalfStar) {
+            stars.push(<span key="half" className="star half-filled">☆</span>);
+        }
+
+        // Add empty stars
+        for (let i = 0; i < emptyStars; i++) {
+            stars.push(<span key={`empty-${i}`} className="star empty">☆</span>);
+        }
+
+        return stars;
+    };
+
     return (
         <>
             <div className=' m-5'>
-                <div className='d-row d-flex justify-content-between  container  m-5 p-5' >
+                <div className=' d-flex justify-content-between  container  m-5 p-5' >
                     <div className='col-6'>
-                        <img src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`} className='w-100 m-2 ' />
+                        <img 
+                            src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`} 
+                            className='w-100 m-2' 
+                            alt={product.name}
+                        />
                     </div>
                     <div className='col-6 ps-5'>
                         <h1>{product.name}</h1>
                         <h2>${product.price}</h2>
                         <p>Category: {product.category}</p>
-                        <p>Rating: <RatingDisplay rating={rating} /> <h6>{reviews.length}</h6></p>
+
+                        <p>
+                            Rating: <span className="star-rating">
+                                {renderStars(rating)}
+                            </span>
+                            <br />
+                            <span>{reviews.length} Reviews</span>
+                        </p>
+
                         <h2>Description</h2>
                         <p>{product.description}</p>
 
@@ -94,9 +132,20 @@ export default function Details() {
                     </div>
                 </div>
 
-                {/* <p>{reviews.map(()=>{
-
-                })}</p> */}
+                <div className="container">
+                    <h3>Reviews:</h3>
+                    {reviews.length > 0 ? (
+                        reviews.map((review, index) => (
+                            <div key={index} className="border p-3 my-2 rounded">
+                                <p><strong>User:</strong> {review.user.userName}</p> {/* Display userId (you can replace this with real user name) */}
+                                <p><strong>Comment:</strong> {review.comment}</p>
+                                <p><strong>Rating:</strong> {renderStars(review.rating)}</p>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No reviews yet.</p>
+                    )}
+                </div>
             </div>
         </>
     );
