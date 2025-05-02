@@ -13,12 +13,18 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Logo from "../../../../images/navLogo.png";
 import { api } from '../../utils/api';
 import "../Nav/NavComponent.css";
+import FavoriteBadge from '../favorite/FavoriteBadge';
+import CartBadge from '../Cart/CartBadge';
 
-export default function NavComponent() {
+
+export default function NavComponent({count}) {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const [categoryData, setCategoryData] = useState([]);
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
+    const {favoriteCount} = useSelector((state) => state.favorites);  // Access global count from Redux
+    const {cartCount} = useSelector((state) => state.cart);  // Access global count from Redux
+   
 
   const getCategory = useCallback(async () => {
     try {
@@ -36,7 +42,8 @@ export default function NavComponent() {
 
   useEffect(() => {
     getCategory();
-  }, []);
+    
+  }, [favoriteCount,cartCount]);
 
   return (
     <Navbar expand="lg" className="bar">
@@ -51,7 +58,7 @@ export default function NavComponent() {
 
             <Nav.Link as={Link} to="/">Home</Nav.Link>
             <Nav.Link as={Link} to="/about">About</Nav.Link>
-            <Nav.Link as={Link} to="/category/products">Product</Nav.Link>
+            <Nav.Link as={Link} to="/category/products">Products</Nav.Link>
 
             <NavDropdown title="Category" id="category-dropdown">
               {categoryData.map((cat) => (
@@ -62,11 +69,13 @@ export default function NavComponent() {
             </NavDropdown>
 
             <Nav.Link as={Link} to="/favorites">
-              <FontAwesomeIcon icon={faHeart} />
+              {/* <FontAwesomeIcon icon={faHeart} /> */}
+              <FavoriteBadge count={favoriteCount}/>
             </Nav.Link>
 
             <Nav.Link as={Link} to="/cart">
-              <FontAwesomeIcon icon={faCartShopping} />
+              {/* <FontAwesomeIcon icon={faCartShopping} /> */}
+              <CartBadge count={cartCount} />
             </Nav.Link>
 
             <Nav.Link as={Link} to={isAuthenticated?"/account":"/login"}>

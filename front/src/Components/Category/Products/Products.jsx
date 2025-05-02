@@ -4,14 +4,18 @@ import CartButton from './CartButton/CartButton';
 import { api } from '../../../utils/api';
 import { useSearchParams } from 'react-router-dom';
 import Pagination from 'react-bootstrap/Pagination';
+import FavoriteButton from '../../favorite/favoriteButton';
+import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [favorites, setFavorites] = useState([]);
   const [error, setError] = useState(null);
   const [categoryData, setCategoryData] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const {favoriteCount} = useSelector((state) => state.favorites); 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -29,7 +33,15 @@ export default function Products() {
       console.error('Failed to fetch cart:', err);
     }
   };
-
+  const getFavorites = async () => {
+    
+    try {
+      const res = await api.get(`${import.meta.env.VITE_FAVORITE_PRODUCTS}`);
+      setFavorites(res.data.products);
+    } catch (err) {
+      console.error('Failed to fetch favorites:', err);
+    }
+  };
   const getProducts = async (page = 1) => {
     try {
       let categoryId = '';
@@ -76,7 +88,8 @@ export default function Products() {
   useEffect(() => {
     getCategory();
     getCart();
-  }, []);
+    getFavorites();
+  }, [favoriteCount]);
 
   useEffect(() => {
     if (categoryData.length > 0) {
@@ -227,6 +240,11 @@ export default function Products() {
                   <div key={product.id} className="col-md-4 mb-4">
                     <div className="text-center">
                       <ProductCard product={product} />
+                      <FavoriteButton 
+                      favorite={favorites.some(fav => fav.id === product.id)} 
+                      productId={product.id}
+                  
+                      />
                       <CartButton
                         product={product}
                         getProductQuantity={getProductQuantity}

@@ -37,7 +37,7 @@ const navigate = useNavigate()
   return (
     <>
     {orders.map((order)=>
-    <div className="container mt-5">
+    <div className="container  mt-5" key={order.id}>
     <Card>
       <Card.Body>
         <Card.Title>Order #{order.id}</Card.Title>

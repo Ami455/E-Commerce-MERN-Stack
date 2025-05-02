@@ -8,9 +8,10 @@ export default function ListOrder() {
   const [orderInfo, setOrderInfo] = useState();
 
   const getOrder = async () => {
-    const data = await api.get(`${import.meta.env.VITE_ORDER}`)
+    const data = await api.get(`${import.meta.env.VITE_ORDER_ADMIN}`)
+    
     setOrderInfo(data.data);
-    console.log(data.data);
+    console.log("orders", data.data);
   }
 
   const updateOrder =async (id) => {

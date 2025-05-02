@@ -15,7 +15,7 @@ const {findAllUsers,
 router.get('/',authMiddleware,roleMiddleware(Role.ADMIN), tryCatchWrapper(findAllUsers))
 router.get('/:id',authMiddleware, tryCatchWrapper(findUserById))
 router.post('/',authMiddleware,roleMiddleware(Role.ADMIN), tryCatchWrapper(createUser))
-router.put('/:id',authMiddleware,roleMiddleware(Role.ADMIN), tryCatchWrapper (updateUser))
+router.put('/:id',authMiddleware, tryCatchWrapper (updateUser))
 router.put('/:id/active',authMiddleware,roleMiddleware(Role.ADMIN), tryCatchWrapper( isActiveUser))
 router.get('/admin',authMiddleware,roleMiddleware(Role.ADMIN), tryCatchWrapper(adminDashboard))
 
