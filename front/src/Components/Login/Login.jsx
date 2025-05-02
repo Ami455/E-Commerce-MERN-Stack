@@ -4,12 +4,15 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../store/slices/AuthSlices';
 import './Login.css';
+import useCartCount from '../../Hooks/useCartCount';
+import useFavoriteCount from '../../Hooks/useFavoriteCount';
 
 export default function Login() {
     const { register, handleSubmit } = useForm();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    const {getCartCount} = useCartCount()
+    const {getFavCount  } = useFavoriteCount();
     const { isAuthenticated, error, loading } = useSelector((state) => state.auth);
 
     console.log(isAuthenticated)
@@ -20,7 +23,10 @@ export default function Login() {
 
     useEffect(() => {
         if (isAuthenticated) {
+            getFavCount()
+            getCartCount()
             navigate("/");
+
         }
     }, [isAuthenticated, navigate]);
 

@@ -15,6 +15,7 @@ import { api } from '../../utils/api';
 import "../Nav/NavComponent.css";
 import FavoriteBadge from '../favorite/FavoriteBadge';
 import CartBadge from '../Cart/CartBadge';
+import toast from 'react-hot-toast';
 
 
 export default function NavComponent({count}) {
@@ -40,10 +41,19 @@ export default function NavComponent({count}) {
     navigate(`/search?search=${search}`);
   };
 
+  const handleProtectedNavigation = (destination) => {
+    if (!isAuthenticated) {
+      toast.error(`Please log in to view your ${destination}.`);
+    } else {
+      navigate(`/${destination}`);
+    }
+  };
+  
+
   useEffect(() => {
     getCategory();
     
-  }, [favoriteCount,cartCount]);
+  }, [favoriteCount,cartCount,isAuthenticated]);
 
   return (
     <Navbar expand="lg" className="bar">
@@ -68,13 +78,11 @@ export default function NavComponent({count}) {
               ))}
             </NavDropdown>
 
-            <Nav.Link as={Link} to="/favorites">
-              {/* <FontAwesomeIcon icon={faHeart} /> */}
+            <Nav.Link onClick={() => handleProtectedNavigation("favorites")}>
               <FavoriteBadge count={favoriteCount}/>
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/cart">
-              {/* <FontAwesomeIcon icon={faCartShopping} /> */}
+            <Nav.Link onClick={() => handleProtectedNavigation("cart")}>
               <CartBadge count={cartCount} />
             </Nav.Link>
 

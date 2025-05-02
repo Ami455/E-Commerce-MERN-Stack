@@ -63,6 +63,10 @@ const {getCartCount} = useCartCount()
 
     
 const handleCheckout=()=>{
+  if(!totalPrice){
+toast.error("Cart is empty")
+return
+  }
     navigate('/checkout', {
         state: {
             totalPrice: totalPrice,

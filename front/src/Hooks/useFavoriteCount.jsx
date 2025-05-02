@@ -31,6 +31,6 @@ export default function useFavoriteCount() {
 useEffect(() => {
   getFavCount();
 }, []); 
-  return {ToggleFav};
+  return {ToggleFav,getFavCount};
 }
   

@@ -10,6 +10,11 @@ const Review = sequelize.define('Review', {
             min: 1,
             max: 5
         }
+    },
+    comment: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        
     }
 }, {
     // Additional model options
