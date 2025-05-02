@@ -6,12 +6,13 @@ import { faArrowLeft, faArrowRight, faHeart, faHourglass1, faMinus,faPlus, faTra
 import { Link, useNavigate } from 'react-router-dom';
 import { api } from '../../utils/api';
 import FavoriteButton from './favoriteButton';
-import toast from 'react-hot-toast';
+
+import { useSelector } from 'react-redux';
 
 export default function Favorite() {
     const navigate = useNavigate();
 const [products, setProducts] = useState([]);
-
+const {favoriteCount} = useSelector((state) => state.favorites); 
 
         const getData = async ()=>{
             try{
@@ -34,7 +35,7 @@ const [products, setProducts] = useState([]);
         useEffect(()=>{
           getData()
         }
-        ,[])
+        ,[favoriteCount])
 
     
 
@@ -72,10 +73,6 @@ const [products, setProducts] = useState([]);
 <td><FavoriteButton 
   favorite={true} 
   productId={product.id} 
-  onToggle={() => {
-    getData(); 
-    toast.success("Favorites updated");
-  }} 
 /></td>
                   </tr>
                 )}

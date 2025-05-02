@@ -6,6 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 import Pagination from 'react-bootstrap/Pagination';
 import FavoriteButton from '../../favorite/favoriteButton';
 import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -14,7 +15,7 @@ export default function Products() {
   const [error, setError] = useState(null);
   const [categoryData, setCategoryData] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const {favoriteCount} = useSelector((state) => state.favorites); 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -33,6 +34,7 @@ export default function Products() {
     }
   };
   const getFavorites = async () => {
+    
     try {
       const res = await api.get(`${import.meta.env.VITE_FAVORITE_PRODUCTS}`);
       setFavorites(res.data.products);
@@ -87,7 +89,7 @@ export default function Products() {
     getCategory();
     getCart();
     getFavorites();
-  }, []);
+  }, [favoriteCount]);
 
   useEffect(() => {
     if (categoryData.length > 0) {
@@ -241,10 +243,7 @@ export default function Products() {
                       <FavoriteButton 
                       favorite={favorites.some(fav => fav.id === product.id)} 
                       productId={product.id}
-                      onToggle={() => {
-                        getFavorites(); 
-                        toast.success("Favorites updated");
-                      }}
+                  
                       />
                       <CartButton
                         product={product}

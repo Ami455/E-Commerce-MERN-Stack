@@ -3,6 +3,10 @@ import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { api } from '../../../../utils/api';
+import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { setCartCount } from '../../../../store/slices/CartSlice';
+import useCartCount from '../../../../Hooks/useCartCount';
 
 export default function CartButton({
     product,
@@ -10,15 +14,19 @@ export default function CartButton({
     getCart,
     getProducts
 }) {
-
+    const {getCartCount} = useCartCount()
     const editQuantity = async (id, operation) => {
         if (operation === "#") {
             await api.post(`${import.meta.env.VITE_CARTPRODUCT}/${id}`, { quantity: 1 });
+            
+            
         } else {
             let count = getProductQuantity(id);
             operation === "+" ? count++ : count--;
             await api.put(`${import.meta.env.VITE_CARTPRODUCT}/${id}`, { quantity: count });
         }
+         toast.success("Cart updated")
+         getCartCount()
         getProducts();
         getCart();
     };
