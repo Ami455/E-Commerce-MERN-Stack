@@ -6,7 +6,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { api } from '../../utils/api';
 import toast from 'react-hot-toast';
 import { logout } from '../../store/slices/AuthSlices';
-import logo from '../../../../images/navLogo.png';
+
+
 
 export default function Account() {
   const { register, handleSubmit, reset } = useForm();
@@ -134,10 +135,7 @@ export default function Account() {
 
   return (
     <div className="container mt-4">
-      <div className="col-12 p-5 text-center">
-        <img src={logo} alt="logo" />
-      </div>
-
+     
       <h1 className="mb-4">My Account</h1>
 
       <div className="d-flex justify-content-end">
