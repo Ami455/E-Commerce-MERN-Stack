@@ -32,7 +32,7 @@ export default function Admin() {
                 <Nav className="flex-column">
                   <Nav.Link as={Link} to="product/add" className="nlink">Add</Nav.Link>
                   <Nav.Link as={Link} to="product/list" className="nlink">List</Nav.Link>
-                  <Nav.Link as={Link} to="product/edit" className="nlink">Edit</Nav.Link>
+                  {/* <Nav.Link as={Link} to="product/edit" className="nlink">Edit</Nav.Link> */}
                 </Nav>
               </Accordion.Body>
             </Accordion.Item>
@@ -45,7 +45,7 @@ export default function Admin() {
                 <Nav className="flex-column">
                   <Nav.Link as={Link} to="user/add" className="nlink">Add</Nav.Link>
                   <Nav.Link as={Link} to="user/list" className="nlink">List</Nav.Link>
-                  <Nav.Link as={Link} to="user/edit" className="nlink">Edit</Nav.Link>
+                  {/* <Nav.Link as={Link} to="user/edit" className="nlink">Edit</Nav.Link> */}
                 </Nav>
               </Accordion.Body>
             </Accordion.Item>
@@ -57,7 +57,7 @@ export default function Admin() {
               <Accordion.Body>
                 <Nav className="flex-column">
                   <Nav.Link as={Link} to="order/list" className="nlink">List</Nav.Link>
-                  <Nav.Link as={Link} to="order/edit" className="nlink">Edit</Nav.Link>
+                  {/* <Nav.Link as={Link} to="order/edit" className="nlink">Edit</Nav.Link> */}
                 </Nav>
               </Accordion.Body>
             </Accordion.Item>

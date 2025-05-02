@@ -123,24 +123,62 @@ const createProduct = async (req, res) => {
 
 
 
-// Update a furniture product by ID
+//mai update 
 
 const updateProduct = async (req, res) => {
-    const image = req.file.filename;
-    if (!req.file) {
-        return res.status(400).json({ error: 'No image file uploaded' });
-    }
-    const [updated] = await Product.update(...req.body,image, {
-        where: { id: req.params.id }
-    });
-    if (updated) {
-        const updatedProduct = await Product.findByPk(req.params.id);
-        res.status(200).json(updatedProduct);
-    } else {
-        res.status(404).json({ error: 'Product not found' });
-    }
+    try {
+        const { name, description, price, stock, categoryId } = req.body;
+        const id = req.params.id;
 
+        const updateData = {
+            name,
+            description,
+            price,
+            stock,
+            categoryId,
+        };
+
+        // Only update image if new file is uploaded
+        if (req.file) {
+            updateData.image = req.file.filename;
+        }
+
+        const [updated] = await Product.update(updateData, {
+            where: { id }
+        });
+
+        if (updated) {
+            const updatedProduct = await Product.findByPk(id);
+            res.status(200).json(updatedProduct);
+        } else {
+            res.status(404).json({ error: 'Product not found' });
+        }
+    } catch (error) {
+        console.error('Error updating product:', error);
+        res.status(500).json({ error: 'Failed to update product' });
+    }
 };
+
+
+
+// Update a furniture product by ID
+
+// const updateProduct = async (req, res) => {
+//     const image = req.file.filename;
+//     if (!req.file) {
+//         return res.status(400).json({ error: 'No image file uploaded' });
+//     }
+//     const [updated] = await Product.update(...req.body,image, {
+//         where: { id: req.params.id }
+//     });
+//     if (updated) {
+//         const updatedProduct = await Product.findByPk(req.params.id);
+//         res.status(200).json(updatedProduct);
+//     } else {
+//         res.status(404).json({ error: 'Product not found' });
+//     }
+
+// };
 
 // Delete a furniture product by ID
 const deleteProduct = async (req, res) => {

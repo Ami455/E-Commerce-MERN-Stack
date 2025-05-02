@@ -18,6 +18,7 @@ export default function Details() {
             setRating(averageRating);
             setReviews(reviews)
             console.log(reviews.length)
+            console.log(reviews)
         }
         catch (error) {
             console.error('Failed to fetch average rating:', error);
@@ -90,9 +91,12 @@ export default function Details() {
                             getCart={getCart}
                             getProducts={getData}
                         />
-
                     </div>
                 </div>
+
+                {/* <p>{reviews.map(()=>{
+
+                })}</p> */}
             </div>
         </>
     );
