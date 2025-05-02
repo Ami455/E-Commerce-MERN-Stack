@@ -91,7 +91,7 @@ const handleCheckout=()=>{
                 {products.map((product,index) =>
                   <tr key={product.id} >
                     <td>{product.id}</td>
-                    <td><img src={product.image} className='imageTable' /></td>
+                    <td><img src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`}className='imageTable' /></td>
                     <td>{product.name}</td>
                     <td>{product.category}</td>
                     <td>{product.price*product.CartProduct.quantity}</td>
