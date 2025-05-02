@@ -1,14 +1,14 @@
 Todo:
 
 admin track orders
-8-fav
+8- add fav to details
 
 
 
 
 Done:
 1- details of product (front)
-2-auth middleware (front)
+2- auth middleware (front)
 3- CRUD product between list and add dashboard
 4- home page , footer , about
 5- category

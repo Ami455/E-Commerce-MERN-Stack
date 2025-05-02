@@ -3,9 +3,8 @@ admin track order
 6- seller, relation between seller and product
 login with google acount
 send mail to customer service
-
-
-
+comments
+forget password
 
 
 Done:

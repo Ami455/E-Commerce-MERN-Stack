@@ -1,5 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import logo from '../../../../images/navLogo.png';
 
 export default function About() {
     return (
@@ -22,8 +23,8 @@ export default function About() {
                 <li><span className="fa-li"><i className="fa-regular fa-square"></i></span>in lists</li>
             </ul>
             </div>
-            <div className="col-5">
-                <img src="https://xtratheme.com/elementor/furniture-shop-2/wp-content/uploads/sites/112/2019/09/img5.jpg" alt="" />
+            <div className="col-5 mt-5">
+            <img src={logo} alt="logo" />
             </div>
         </div>
     </div>
