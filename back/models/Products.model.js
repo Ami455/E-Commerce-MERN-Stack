@@ -28,16 +28,6 @@ const Product = sequelize.define("Product", {
         type: DataTypes.INTEGER,
         defaultValue: 1,
         allowNull: false, // Default value for stock
-    },
-    createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: DataTypes.NOW, // Automatically set the current date
-    },
-    updatedAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: DataTypes.NOW, // Automatically set the current date
     }
 }, {
     // Additional model options

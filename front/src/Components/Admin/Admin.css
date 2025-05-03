@@ -15,10 +15,10 @@ p{
 
 .tabRow{
     height: auto;
-    border-left:solid0.2rem #FFEBCD;
+    /* border-left:solid0.2rem #FFEBCD; */
     border-right: solid 0.8rem;
     text-align: center;
     padding-top: 0.7rem;
-    color: #FFEBCD;
+    color: #001851;
     
 }

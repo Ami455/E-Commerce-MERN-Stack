@@ -21,11 +21,22 @@ const User = sequelize.define("User", {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    phoneNumber: {
+        type: DataTypes.STRING,
+        allowNull: true, // user might not add it initially
+        validate: {
+          is: /^[0-9\-+() ]+$/i, // only numbers, +, -, () allowed
+        }
+      },
+      birthDate: {
+        type: DataTypes.DATEONLY, // DATEONLY because you don't need time, only date
+        allowNull: true
+      },
     role: {
         type: DataTypes.ENUM(Role.ADMIN, Role.USER), // restrict values
         allowNull: false,
         defaultValue: Role.USER, // default value
-      },      
+      },
     IsActive: {
         type: DataTypes.BOOLEAN,
         defaultValue: true
