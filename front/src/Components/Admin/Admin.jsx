@@ -24,7 +24,7 @@ export default function Admin() {
   return (
     <Tab.Container defaultActiveKey="add">
       <Row>
-        <Col sm={2} className="tabRow p-3">
+        <Col sm={2} className="tabRow p-5">
           <Accordion defaultActiveKey="0" className='mb-3'>
             <Accordion.Item eventKey="0">
               <Accordion.Header><strong>Product</strong></Accordion.Header>

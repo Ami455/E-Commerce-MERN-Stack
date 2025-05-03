@@ -15,7 +15,7 @@ export const formDataApi = axios.create({
 });
 
 // Attach token dynamically before each request
-api.interceptors.request.use((config) => {
+api.interceptors.response.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -23,7 +23,7 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-formDataApi.interceptors.request.use((config) => {
+formDataApi.interceptors.response.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
