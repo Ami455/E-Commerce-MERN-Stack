@@ -2,7 +2,7 @@ const User = require('../models/user.model')
 const {hashPassword,comparePassword} = require('../utils/hashingPassword')
 const {registerSchema} = require('../vaildators/auth.validator')
 const {generateToken}=require('../utils/jwt')
-
+// const { verifyToken } = require('../utils/jwt');
 
 
 const login = async (req,res)=>{
@@ -27,6 +27,7 @@ const login = async (req,res)=>{
     return res.status(201).json({
         message: "logged in successfully",
         token,
+        user:{role:user.role, id: user.id}
     });
 }
 
@@ -49,7 +50,9 @@ const register = async (req,res)=>{
     const hashedPassword = await hashPassword(value.password)
 
     const newUser = await User.create({...value,password:hashedPassword})
-
+    await newUser.createCart()
+    await newUser.createFav()
+    
     const token = generateToken({id:newUser.id,email:newUser.email, role: newUser.role})
 
     return res.status(201).json({
@@ -59,4 +62,27 @@ const register = async (req,res)=>{
 
 }
 
-module.exports={login,register}
+const admin = async (req,res)=>{
+    const data =req.user
+    const role = data.role
+    // console.log(data.role)
+    console.log(role)
+
+    res.json({role, message: 'Welcome to the admin panel!'})
+}
+
+
+const getMe = async (req,res)=>{
+    const user = await User.findByPk(req.user.id)
+    if (!user) {
+        return res.status(404).json({
+            message: "User not found",
+        });
+    }
+    return res.status(200).json({
+        message: "User found",
+        user,
+    });
+}
+
+module.exports={login,register,admin,getMe}

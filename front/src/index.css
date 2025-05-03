@@ -16,3 +16,6 @@ ul{
 li{
   text-decoration: none;
 }
+::selection{
+  background-color: #FFC107;
+}

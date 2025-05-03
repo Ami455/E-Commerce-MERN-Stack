@@ -1,5 +1,9 @@
+.back{
+  background-color: #efeeee;
+}
+
 .login-background {
-    background-image: url('https://images2.alphacoders.com/647/647567.jpg');
+    /* background-image: url('https://images2.alphacoders.com/647/647567.jpg'); */
     background-size: cover;
     background-position: center;
 flex:1;
@@ -9,3 +13,15 @@ padding: 10rem;
 
   }
   
+.btn{
+  background-color:  #FFC107;  
+}
+.container .ggg{
+  /* background-color: rgba(14, 28, 60, 0.1); */
+  color: #0e1c3c;}
+
+.login-title{
+  border-bottom: 1px  solid rgba(167, 167, 167, .2);
+  padding: 30px;
+  font-size: 1.5rem;
+}

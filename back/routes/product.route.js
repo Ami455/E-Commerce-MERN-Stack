@@ -1,4 +1,7 @@
     const router = require('express').Router()
+    const roleMiddleware = require("../middleware/role.middleware")
+    const Role=require("../utils/role")
+    const uploads=require("../middleware/uploads.middleware")
     const {tryCatchWrapper} = require('../middleware/errorHandler.middleware')
     const { findAllProduct,
         findProductById,
@@ -10,10 +13,10 @@
         setProductCategory} = require('../controllers/product.controller')
 
 
-    router.get('/', tryCatchWrapper(findAllProduct))
+    router.get('/',tryCatchWrapper(findAllProduct))
     router.get('/:id', tryCatchWrapper(findProductById))
-    router.post('/', tryCatchWrapper(createProduct))
-    router.put('/:id', tryCatchWrapper (updateProduct))
+    router.post('/', uploads.single("file") ,tryCatchWrapper(createProduct))
+    router.put('/:id',uploads.single("file"), tryCatchWrapper (updateProduct))
     router.delete('/:id', tryCatchWrapper( deleteProduct))
 
 

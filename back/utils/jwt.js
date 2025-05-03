@@ -2,7 +2,7 @@ const jwt = require ('jsonwebtoken')
 const dotenv = require('dotenv').config
 
 const generateToken =  (payload)=>{
-    return jwt.sign(payload,process.env.JWT_SIGNING_KEY,{expiresIn:'1h'})
+    return jwt.sign(payload,process.env.JWT_SIGNING_KEY,{expiresIn:'3h'})
 }
 
 const verifyToken = (token)=>{

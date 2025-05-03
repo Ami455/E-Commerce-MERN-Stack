@@ -1,0 +1,135 @@
+import React, { useEffect, useState } from 'react';
+import { Form, Button, Card } from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { api } from '../../../utils/api';
+import toast from 'react-hot-toast';
+
+const Checkout = () => {
+  const { totalPrice } = useLocation().state || {};
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
+  const [addresses, setAddresses] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
+  const payments = ['Credit Card', 'PayPal', 'Cash on Delivery'];
+  const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
+
+  const fetchData = async () => {
+    try {
+      const res = await api.get(`${import.meta.env.VITE_ADDRESSES}/${user.id}`);
+      if (res.data.length > 0) {
+        setAddresses(res.data);
+      }
+    } catch (error) {
+      console.error('Failed to fetch data', error);
+    }
+  };
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+    fetchData();
+  }, [isAuthenticated]);
+
+  const onSubmit = async (data) => {
+    try {
+      const payload = {
+        addressId:data.addressId, //parseInt(data.addressId), // ensure number
+        paymentMethod: data.paymentMethod,
+        totalPrice
+      };
+      console.log('Sending order:', payload);
+
+      const response = await api.post(`${import.meta.env.VITE_CHECK_OUT}`, payload);
+      console.log('Response:', response);
+      let orderId = response.data.orderId
+      toast.success(response.data.message)
+      navigate(`/order/${orderId}`
+    //     , {
+    //     state: {
+    //         orderId
+    //     }
+    // }
+  )
+    } catch (error) {
+      console.log('Error during checkout:', error);
+      setErrorMessage('Failed to place order. Please try again.');
+    }
+  };
+
+  const grand_total = totalPrice + 50 + 30;
+
+  return (
+    <div className="container mt-5">
+      <Card>
+        <Card.Body>
+          <Card.Title className="mb-4">Checkout</Card.Title>
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            {/* Address Selection */}
+            <Form.Group className="mb-3">
+              <Form.Label>Select Address</Form.Label>
+              <Form.Select {...register('addressId', { required: true })}>
+                <option value="">Select an address</option>
+                {addresses.map((address) => (
+                  <option key={address.id} value={address.id}>
+                    {`${address.street}, ${address.city}, ${address.country}`}
+                  </option>
+                ))}
+              </Form.Select>
+              {errors.addressId && <small className="text-danger">Address is required</small>}
+            </Form.Group>
+
+            {/* Payment Method */}
+            <Form.Group className="mb-3">
+              <Form.Label>Payment Method</Form.Label>
+              <div>
+                {payments.map((method) => (
+                  <Form.Check
+                    key={method}
+                    type="radio"
+                    label={method}
+                    value={method}
+                    {...register('paymentMethod', { required: true })}
+                    name="paymentMethod"
+                  />
+                ))}
+                {errors.paymentMethod && <small className="text-danger">Payment method is required</small>}
+              </div>
+            </Form.Group>
+
+            {/* Order Summary */}
+            <div className="mb-3">
+              <p>Total Price: ${totalPrice}</p>
+              <p>Fees: $50</p>
+              <p>Delivery: $30</p>
+              <hr />
+              <p><strong>Grand Total: ${grand_total}</strong></p>
+            </div>
+
+            {/* Error Message */}
+            {errorMessage && (
+              <div className="alert alert-danger" role="alert">
+                {errorMessage}
+              </div>
+            )}
+
+            {/* Submit Button */}
+            <Button variant="primary" type="submit">
+              Confirm Order
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
+    </div>
+  );
+};
+
+export default Checkout;
+
