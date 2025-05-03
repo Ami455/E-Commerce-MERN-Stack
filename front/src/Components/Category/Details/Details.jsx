@@ -3,6 +3,10 @@ import { useLocation } from 'react-router-dom';
 import { api } from '../../../utils/api';
 import RatingDisplay from '../../Review/RatingDisplay';
 import CartButton from '../Products/CartButton/CartButton';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import FavoriteButton from '../../favorite/favoriteButton';
+import { useSelector } from 'react-redux';
 
 export default function Details() {
     const location = useLocation();
@@ -11,6 +15,17 @@ export default function Details() {
     // console.log(productId)
     const [rating, setRating] = useState(0);
     const [reviews, setReviews] = useState([]);
+    const {favoriteCount} = useSelector((state) => state.favorites);
+const [isFavorite, setIsFavorite] = useState([]);
+const getIsFavorite = async () => {
+    
+    try {
+      const res = await api.get(`${import.meta.env.VITE_FAVORITE_PRODUCTS}/${productId}`);
+      setIsFavorite(res.data.isFavorite);
+    } catch (err) {
+      console.error('Failed to fetch favorite:', err);
+    }
+  };
     const getRating = async () => {
         try {
             const res = await api.get(`${import.meta.env.VITE_REVIEW}/${productId}`);
@@ -62,8 +77,9 @@ export default function Details() {
             getData();
             getRating();
             getCart();
+            getIsFavorite();
         }
-    }, [productId]);
+    }, [productId,favoriteCount]);
 
     if (!product) {
         return <h3>Loading product details...</h3>;
@@ -101,9 +117,9 @@ export default function Details() {
             <div className=' m-5'>
                 <div className=' d-flex justify-content-between  container  m-5 p-5' >
                     <div className='col-6'>
-                        <img 
-                            src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`} 
-                            className='w-100 m-2' 
+                        <img
+                            src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`}
+                            className='w-100 m-2'
                             alt={product.name}
                         />
                     </div>
@@ -123,12 +139,18 @@ export default function Details() {
                         <h2>Description</h2>
                         <p>{product.description}</p>
 
-                        <CartButton
+                       <div className=' d-inline-flex w-100'>
+                         <CartButton 
                             product={product}
                             getProductQuantity={getProductQuantity}
                             getCart={getCart}
                             getProducts={getData}
                         />
+                        <span><FavoriteButton
+                            favorite={isFavorite}
+                            productId={productId}
+
+                        /></span></div>
                     </div>
                 </div>
 
@@ -137,7 +159,7 @@ export default function Details() {
                     {reviews.length > 0 ? (
                         reviews.map((review, index) => (
                             <div key={index} className="border p-3 my-2 rounded">
-                                <p><strong>User:</strong> {review.user.userName}</p> {/* Display userId (you can replace this with real user name) */}
+                                <p><FontAwesomeIcon icon={faCircleUser} /> <strong>User:</strong> {review.user.userName}</p> {/* Display userId (you can replace this with real user name) */}
                                 <p><strong>Comment:</strong> {review.comment}</p>
                                 <p><strong>Rating:</strong> {renderStars(review.rating)}</p>
                             </div>

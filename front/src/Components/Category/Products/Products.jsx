@@ -120,7 +120,6 @@ export default function Products() {
 
   const renderPagination = () => {
     let items = [];
-
     for (let number = 1; number <= totalPages; number++) {
       items.push(
         <Pagination.Item 
@@ -231,6 +230,8 @@ export default function Products() {
                 <option value="price_desc">Price: High to Low</option>
                 <option value="name_asc">Name: A to Z</option>
                 <option value="name_desc">Name: Z to A</option>
+                <option value="created_asc">Sort by latest</option>
+                <option value="created_desc">Sort by oldest</option>
               </select>
             </div>
 

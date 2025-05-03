@@ -6,7 +6,7 @@ const {
     findFavProduct,
     addRemoveProductToFav,
     // deleteProductFromFav
-} = require('../controllers/FavProduct.controller');
+} = require('../controllers/favProduct.controller');
 
 // Get all favorite products
 router.get('/products', authMiddleware, tryCatchWrapper(findFavProducts));

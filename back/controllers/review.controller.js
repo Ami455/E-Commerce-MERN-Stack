@@ -3,8 +3,7 @@ const Review = require("../models/review.model");
 
 
 const createReview= async (req, res) => {
-  const {rating}  = req.body;
-  console.log(rating)
+  const {rating, comment}  = req.body;
     const userId = req.user.id; 
   const productId = req.params.productId
   let review = await Review.findOne({
@@ -13,7 +12,8 @@ const createReview= async (req, res) => {
   
   if (review) {
     // Update existing review
-    review.rating = rating;
+     review.rating = rating;
+   if(comment){ review.comment = comment}
     await review.save();
     res.status(200).json({ message: "Review updated", review });
   } else {
@@ -21,7 +21,9 @@ const createReview= async (req, res) => {
     review = await Review.create({
       productId,
       userId,
-      rating
+      rating,
+      comment : comment === undefined ? null : comment
+
     });
   }
 
@@ -39,11 +41,20 @@ const findProductReviews = async (req, res) => {
 
     res.json({ reviews, averageRating });
 }
+const findUserReview = async (req, res) => {
+  const userId=req.user.id
+    const review = await Review.findOne({
+      where: { productId: req.params.productId, userId }
+    });
+    
+    res.json({ review });
+}
 
 
   module.exports ={
     createReview,
-    findProductReviews
+    findProductReviews,
+    findUserReview
   }
 
 

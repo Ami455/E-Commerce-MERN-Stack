@@ -6,6 +6,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { api } from '../../utils/api';
 import toast from 'react-hot-toast';
 import { logout } from '../../store/slices/AuthSlices';
+import { clearCartCount } from '../../store/slices/CartSlice';
+import { clearFavoriteCount } from '../../store/slices/FavoriteSlices';
 
 
 
@@ -116,6 +118,8 @@ export default function Account() {
 
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(clearCartCount());
+  dispatch(clearFavoriteCount());
     navigate("/login");
     toast.success('Logged out successfully!');
     localStorage.removeItem('userData');

@@ -1,7 +1,4 @@
-Todo:
 
-admin track orders
-8- add fav to details
 
 
 
@@ -25,3 +22,6 @@ cart
 7-payment , checkout
 9-order, orders history
 
+
+admin track orders
+8- add fav to details

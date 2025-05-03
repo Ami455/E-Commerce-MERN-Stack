@@ -11,8 +11,11 @@ const cartSlice = createSlice({
     setCartCount: (state, action) => {
       state.cartCount = action.payload;
     },
+    clearCartCount: (state, action) => {
+      state.cartCount = 0;
+    },
   },
 });
 
-export const { setCartCount } = cartSlice.actions;
+export const { setCartCount ,clearCartCount} = cartSlice.actions;
 export default cartSlice.reducer;
