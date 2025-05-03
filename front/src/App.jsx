@@ -33,7 +33,7 @@ import EditOrder from './Components/Admin/EditOrder/EditOrder.jsx';
 import Order from './Components/order/Order.jsx';
 
 function AppRoutes() {
-    const { isAuthenticated } = useSelector((state) => state.auth);
+  const {user, isAuthenticated } = useSelector((state) => state.auth);
 
     const router = createBrowserRouter([{
         path: '/',
@@ -80,9 +80,16 @@ function AppRoutes() {
 }
 
 export default function App() {
-    return (
-        <>
-            <AppRoutes />
-        </>
-    );
+  const {user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      dispatch(fetchMe());
+    }
+  }, [dispatch]);
+  console.log(user)
+
+
+  return <AppRoutes />;
 }

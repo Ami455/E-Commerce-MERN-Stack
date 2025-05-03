@@ -39,6 +39,10 @@ if(sort)
         orderSelector = [['name', 'ASC']];
       } else if (sort === 'name_desc') {
         orderSelector = [['name', 'DESC']];
+      }else if (sort === 'created_asc') {
+        orderSelector = [['createdAt', 'ASC']];
+      } else if (sort === 'created_desc') {
+        orderSelector = [["createdAt", "DESC"]];
       }
 }
 
@@ -52,7 +56,6 @@ const offset = (page - 1) * limit;
       offset: parseInt(offset),
     });
 
-    console.log(products)
     
 
     res.json({
@@ -93,7 +96,6 @@ const findProductById = async (req, res) => {
 
 
 const createProduct = async (req, res) => {
-
     const image = req.file.filename;
     const { name,
         description,

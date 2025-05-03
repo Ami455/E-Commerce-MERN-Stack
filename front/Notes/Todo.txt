@@ -1,10 +1,5 @@
-Todo:
 
-admin track orders
-6-filter , search
-7-payment , checkout
-8-fav
-9-order, orders history
+
 
 
 
@@ -25,3 +20,6 @@ cart
 4- connection between front and back (cors)
 
 
+
+admin track orders
+8- add fav to details

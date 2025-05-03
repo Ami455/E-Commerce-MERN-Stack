@@ -1,61 +1,129 @@
-import React, { useEffect, useState } from 'react'
-import logo from "../../../../images/navLogo.png"
-import { useForm } from 'react-hook-form'
-import { api } from '../../utils/api'
-import toast from 'react-hot-toast'
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom'
+
+import React, { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, Link } from 'react-router-dom';
+import { api } from '../../utils/api';
+import toast from 'react-hot-toast';
+import { logout } from '../../store/slices/AuthSlices';
+import { clearCartCount } from '../../store/slices/CartSlice';
+import { clearFavoriteCount } from '../../store/slices/FavoriteSlices';
+
+
 
 export default function Account() {
-  const { register, handleSubmit ,reset} = useForm()
-  const {user , isAuthenticated} = useSelector((state) => state.auth);
-const navigate = useNavigate()
-const [addressId, setAddressId] = useState(null)
-const [iscreated, setIscreated] = useState(0)
+  const { register, handleSubmit, reset } = useForm();
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const [addresses, setAddresses] = useState([]);
+  const [showSecondAddress, setShowSecondAddress] = useState(false);
+  const [loading, setLoading] = useState(false); // new loading state
 
-const sendAddressData = async (updatedAddress, updatedUser) => {
-   try{
-    //if address is created just update it
-   // await api.put(`${import.meta.env.VITE_ADDRESS}/${addressId}`,updatedAddress)
-   console.log(iscreated)
-   iscreated==1?await api.put(`${import.meta.env.VITE_ADDRESS}/${addressId}`,updatedAddress):await api.post(`${import.meta.env.VITE_ADDRESS}`,updatedAddress);
-    await api.put(`${import.meta.env.VITE_USER}/${user.id}`,updatedUser);
-    toast.success('Data Updated Successfully!')
-    
-   }
-   catch(error){
-    toast
-console.error('Failed to post address:', error);
-toast.error(error)
-   }
-    
-  };
-const fetchData = async () => {
-   try{
-    
-    
-   const userData= await api.get(`${import.meta.env.VITE_USER}/${user.id}`);
-   const addresses= await api.get(`${import.meta.env.VITE_ADDRESS}`);
-   if(addresses.data.length>0){setIscreated(1); setAddressId(addresses.data[0].id)}
+  const fetchData = async () => {
+    if (!user?.id) return;
 
-   console.log(addresses.data.length, "length")
-   console.log(userData.data, addresses.data[0])
-   reset({ ...userData.data, ...addresses.data[0] }); // sets default values dynamically
-   
-   }
-   catch(error){
-console.error('Failed to fetch data', error);
-   }
+    try {
+      const userData = await api.get(`${import.meta.env.VITE_USER}/${user.id}`);
+      const addressesRes = await api.get(`${import.meta.env.VITE_ADDRESS}/users/${user.id}`);
+      const fetchedAddresses = addressesRes.data || [];
+
+      setAddresses(fetchedAddresses);
+
+      const formValues = { ...userData.data, ...fetchedAddresses[0] };
+
+      if (fetchedAddresses[1]) {
+        formValues.street2 = fetchedAddresses[1].street;
+        formValues.city2 = fetchedAddresses[1].city;
+        formValues.postalCode2 = fetchedAddresses[1].postalCode;
+        formValues.country2 = fetchedAddresses[1].country;
+        setShowSecondAddress(true);
+      } else {
+        setShowSecondAddress(false);
+      }
+
+      reset(formValues);
+      localStorage.setItem('userData', JSON.stringify(formValues));
+
+    } catch (error) {
+      console.error('Failed to fetch account data', error);
+    }
   };
 
+  const onSubmit = async (formData) => {
+    try {
+      setLoading(true);
+  
+      // 1. Update user basic info
+      await api.put(`${import.meta.env.VITE_USER}/${user.id}`, {
+        userName: formData.userName,
+        email: formData.email,
+        phoneNumber: formData.phoneNumber,
+        birthDate: formData.birthDate,
+      });
+  
+      // 2. Update or Create Address 1
+      if (addresses[0]) {
+        await api.put(`${import.meta.env.VITE_ADDRESS}/${addresses[0].id}`, {
+          userId: user.id,
+          street: formData.street,
+          city: formData.city,
+          postalCode: formData.postalCode,
+          country: formData.country,
+        });
+      } else if (formData.street && formData.city && formData.postalCode && formData.country) {
+        await api.post(`${import.meta.env.VITE_ADDRESS}`, {
+          userId: user.id,
+          street: formData.street,
+          city: formData.city,
+          postalCode: formData.postalCode,
+          country: formData.country,
+        });
+      }
+  
+      // 3. Update or Create Address 2 if shown
+      if (showSecondAddress && (formData.street2 || formData.city2 || formData.postalCode2 || formData.country2)) {
+        if (addresses[1]) {
+          await api.put(`${import.meta.env.VITE_ADDRESS}/${addresses[1].id}`, {
+            userId: user.id,
+            street: formData.street2,
+            city: formData.city2,
+            postalCode: formData.postalCode2,
+            country: formData.country2,
+          });
+        } else {
+          await api.post(`${import.meta.env.VITE_ADDRESS}`, {
+            userId: user.id,
+            street: formData.street2,
+            city: formData.city2,
+            postalCode: formData.postalCode2,
+            country: formData.country2,
+          });
+        }
+      }
+  
+      toast.success('Account updated successfully!');
+      localStorage.setItem('userData', JSON.stringify(formData));
+      await fetchData();
+  
+    } catch (error) {
+      console.error('Failed to update account', error);
+      toast.error('Failed to update account');
+    } finally {
+      setLoading(false);
+    }
+  };
+  
 
-  const onSubmit = async(formData) => {
-    const {street, city, postalCode , country,userName, email, phoneNumber,birthDate} =formData
-    
-    await sendAddressData({street, city, postalCode , country},{userName, email, phoneNumber,birthDate})
-    
-  }
+  const handleLogout = () => {
+    dispatch(logout());
+    dispatch(clearCartCount());
+  dispatch(clearFavoriteCount());
+    navigate("/login");
+    toast.success('Logged out successfully!');
+    localStorage.removeItem('userData');
+  };
 
  useEffect(() => {
   console.log(isAuthenticated)

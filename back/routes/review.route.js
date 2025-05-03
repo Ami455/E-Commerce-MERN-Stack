@@ -5,12 +5,14 @@ const {tryCatchWrapper} = require('../middleware/errorHandler.middleware')
 
 const {
     createReview,
-    findProductReviews
+    findProductReviews,
+    findUserReview
   } = require("../controllers/review.controller")
 
 
 
   router.get("/:productId",tryCatchWrapper(findProductReviews) )
+  router.get("/user/:productId",authMiddleware, tryCatchWrapper(findUserReview) )
   router.post("/:productId",authMiddleware,tryCatchWrapper(createReview))
 
   module.exports = router

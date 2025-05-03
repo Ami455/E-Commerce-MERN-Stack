@@ -2,11 +2,32 @@ import React from 'react'
 import { useState } from "react";
 import { api } from '../../utils/api';
 import { Rating } from 'react-simple-star-rating'
+import toast from 'react-hot-toast';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 export default function ReviewForm({ productId }) {
 
   const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
 
+    const getRating= async()=>{
+    try{ 
+        const res = await api.get(`${import.meta.env.VITE_REVIEW}/user/${productId}`);
+        const { review} = res.data; 
+        setComment(review.comment)
+        setRating(review.rating);
+       }
+       catch(error){
+    console.error('Failed to fetch average rating:', error);
+       }
+   } 
+   useEffect(()=>{
+    getRating()
+   },[])
+
+  
   // Catch Rating value
   const handleRating = (rate) => {
     setRating(rate)
@@ -22,14 +43,19 @@ export default function ReviewForm({ productId }) {
 
   
   const handleSubmit = async () => {
+    if (rating === 0) {
+      setErrorMessage("Please provide a rating before submitting."); // Show error message if no rating is selected
+      return;
+    }
+    setErrorMessage("")
    try{
     
-    await api.post(`${import.meta.env.VITE_REVIEW}/${productId}`,{rating});
+    await api.post(`${import.meta.env.VITE_REVIEW}/${productId}`,{rating,comment});
 
     alert("Review submitted");
    }
    catch(error){
-console.error('Failed to fetch product:', error);
+console.error('Failed to post review:', error);
    }
     
   };
@@ -38,9 +64,13 @@ console.error('Failed to fetch product:', error);
     console.log(newRating);
   };
    
-
+ // Handle comment input change
+ const handleCommentChange = (e) => {
+  setComment(e.target.value);
+};
   return (
     <div>
+      <h6>Submit a review</h6>
     <Rating
         onClick={handleRating}
         onPointerEnter={onPointerEnter}
@@ -48,6 +78,21 @@ console.error('Failed to fetch product:', error);
         onPointerMove={onPointerMove}
         /* Available Props */
       />
+      {/* Comment Input Field */}
+      <textarea
+        value={comment}
+        onChange={handleCommentChange}  // Updates the comment state
+        placeholder={comment?comment:"Write your comment here..."}
+        rows="2"
+        cols="30"
+      />
+      {errorMessage && (
+               <div className="alert alert-danger d-flex align-items-center" role="alert" style={{ fontSize: '14px' }}>
+               <FontAwesomeIcon icon={faExclamationCircle} style={{ fontSize: '20px', marginRight: '8px', color: 'red' }} />
+               {errorMessage}
+             </div>
+            
+            )}
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );

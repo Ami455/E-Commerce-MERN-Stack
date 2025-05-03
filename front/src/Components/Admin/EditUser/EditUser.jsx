@@ -41,7 +41,6 @@ export default function EditUser() {
       setFormData({
         userName,
         email,
-        password,
         phoneNumber,
         birthDate: birthDate?.split("T")[0] || '',
         role,
@@ -128,7 +127,7 @@ export default function EditUser() {
         <Form.Group className="mb-3">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            type="text"
+            type="password"
             name="password"
             value={formData.password}
             onChange={handleInputChange}

@@ -1,28 +1,85 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { api } from '../../../utils/api';
+import RatingDisplay from '../../Review/RatingDisplay';
+import CartButton from '../Products/CartButton/CartButton';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import FavoriteButton from '../../favorite/favoriteButton';
+import { useSelector } from 'react-redux';
 
 export default function Details() {
     const location = useLocation();
     const { productId } = location.state || {};
     const [product, setProduct] = useState(null);
     // console.log(productId)
+    const [rating, setRating] = useState(0);
+    const [reviews, setReviews] = useState([]);
+    const {favoriteCount} = useSelector((state) => state.favorites);
+const [isFavorite, setIsFavorite] = useState([]);
+const getIsFavorite = async () => {
+    
+    try {
+      const res = await api.get(`${import.meta.env.VITE_FAVORITE_PRODUCTS}/${productId}`);
+      setIsFavorite(res.data.isFavorite);
+    } catch (err) {
+      console.error('Failed to fetch favorite:', err);
+    }
+  };
+    const getRating = async () => {
+        try {
+            const res = await api.get(`${import.meta.env.VITE_REVIEW}/${productId}`);
+            const { reviews, averageRating } = res.data;
+            setRating(averageRating);
+            setReviews(reviews)
+            console.log(reviews.length)
+            console.log(reviews)
+        }
+        catch (error) {
+            console.error('Failed to fetch average rating:', error);
+        }
+    }
+    const [cart, setCart] = useState([]);
+
+    const getCart = async () => {
+        try {
+            const res = await api.get(`${import.meta.env.VITE_CARTPRODUCT}`);
+            setCart(res.data.products);
+        } catch (err) {
+            console.error('Failed to fetch cart:', err);
+        }
+    };
+
+
+    const getProductQuantity = (productId) => {
+        const cartItem = cart.find(item => item.id === productId);
+        return cartItem ? cartItem.CartProduct.quantity : 0;
+    };
+
+
+    const getData = async () => {
+        try {
+            const response = await api.get(
+                `${import.meta.env.VITE_PRODUCTS_LIST}/${productId}`
+            );
+            setProduct(response.data);
+        } catch (error) {
+            console.error("Failed to fetch product:", error);
+        }
+    };
+
+
 
     useEffect(() => {
+
         if (productId) {
-            const getData = async () => {
-                try {
-                    const response = await api.get(
-                        `${import.meta.env.VITE_PRODUCTS_LIST}/${productId}`
-                    );
-                    setProduct(response.data);
-                } catch (error) {
-                    console.error("Failed to fetch product:", error);
-                }
-            };
+
             getData();
+            getRating();
+            getCart();
+            getIsFavorite();
         }
-    }, [productId]);
+    }, [productId,favoriteCount]);
 
     if (!product) {
         return <h3>Loading product details...</h3>;
@@ -34,7 +91,11 @@ export default function Details() {
             <div className=' m-5'>
                 <div className='d-row d-flex justify-content-between  container  m-5 p-5' >
                     <div className='col-6'>
-                        <img src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`} className='w-100 m-2 ' />
+                        <img
+                            src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`}
+                            className='w-100 m-2'
+                            alt={product.name}
+                        />
                     </div>
                     <div className='col-6 ps-5'>
                         <h1>{product.name}</h1>
@@ -43,8 +104,35 @@ export default function Details() {
                         <p>Rating: {product.rating}</p>
                         <h2>Description</h2>
                         <p>{product.description}</p>
-                        <button className=' btn w-100'>Add to Cart</button>
+
+                       <div className=' d-inline-flex w-100'>
+                         <CartButton 
+                            product={product}
+                            getProductQuantity={getProductQuantity}
+                            getCart={getCart}
+                            getProducts={getData}
+                        />
+                        <span><FavoriteButton
+                            favorite={isFavorite}
+                            productId={productId}
+
+                        /></span></div>
                     </div>
+                </div>
+
+                <div className="container">
+                    <h3>Reviews:</h3>
+                    {reviews.length > 0 ? (
+                        reviews.map((review, index) => (
+                            <div key={index} className="border p-3 my-2 rounded">
+                                <p><FontAwesomeIcon icon={faCircleUser} /> <strong>User:</strong> {review.user.userName}</p> {/* Display userId (you can replace this with real user name) */}
+                                <p><strong>Comment:</strong> {review.comment}</p>
+                                <p><strong>Rating:</strong> {renderStars(review.rating)}</p>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No reviews yet.</p>
+                    )}
                 </div>
             </div>
         </>

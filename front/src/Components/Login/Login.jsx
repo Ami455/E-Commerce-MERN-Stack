@@ -4,12 +4,16 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../store/slices/AuthSlices';
 import './Login.css';
+import useCartCount from '../../Hooks/useCartCount';
+import useFavoriteCount from '../../Hooks/useFavoriteCount';
+import Photo from './1.png'
 
 export default function Login() {
     const { register, handleSubmit } = useForm();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    const {getCartCount} = useCartCount()
+    const {getFavCount  } = useFavoriteCount();
     const { isAuthenticated, error, loading } = useSelector((state) => state.auth);
 
     console.log(isAuthenticated)
@@ -20,12 +24,15 @@ export default function Login() {
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate("/"); 
+            getFavCount()
+            getCartCount()
+            navigate("/");
+
         }
     }, [isAuthenticated, navigate]);
 
     return (
-        <section>
+        <section className='back'>
             <div className="container my-5">
                 <div className="row ggg p-5 justify-content-between align-items-center">
                     <div className="col-5 login">
@@ -51,7 +58,7 @@ export default function Login() {
                         </form>
                     </div>
                     <div className="col-5">
-                        <img src="https://i.pinimg.com/736x/f8/33/e9/f833e9c1e11ff86c5aa7f1fa4ba4ea86.jpg" className='w-100 rounded' alt="Login Visual" />
+                        <img src={Photo} className='w-100 rounded' alt="Login Visual" />
                     </div>
                 </div>
             </div>
