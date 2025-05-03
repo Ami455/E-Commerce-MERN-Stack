@@ -1,35 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { api } from "../../utils/api";
+import { api } from "../../utils/api"; // your axios instance
 
-// Login user
+// Create async thunk
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (credentials, { rejectWithValue }) => {
     try {
       const res = await api.post(`${import.meta.env.VITE_AUTH_LOGIN}`, credentials);
-      localStorage.setItem("token", res.data.token);
-      return res.data;
+      console.log(res)
+      return res.data; // return user and token
     } catch (err) {
+      console.error("Login error in thunk:", err.response?.data?.message || err.message);
       return rejectWithValue(err.response?.data || { message: "Login failed" });
     }
   }
 );
 
-// Fetch logged-in user
-export const fetchMe = createAsyncThunk(
-  "auth/fetchMe",
-  async (_, { rejectWithValue }) => {
-    try {
-      const res = await api.get("/auth/me");
-      return res.data;
-    } catch (err) {
-      localStorage.removeItem("token");
-      return rejectWithValue(err.response?.data || { message: "Session expired" });
-    }
-  }
-);
-
-const authSlice = createSlice({
+const authSlices = createSlice({
   name: "auth",
   initialState: {
     user: null,
@@ -79,6 +66,8 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
 
-export default authSlice.reducer;
+export const { logout } = authSlices.actions;
+
+    
+export default authSlices.reducer;

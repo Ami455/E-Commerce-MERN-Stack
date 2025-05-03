@@ -1,4 +1,3 @@
-const User = require('../models/user.model');
 const Review = require("../models/review.model");
 
 
@@ -27,18 +26,18 @@ const createReview= async (req, res) => {
     });
   }
 
-    res.status(201).json(review);
-  }
+  res.status(201).json(review);
+}
 
 
 const findProductReviews = async (req, res) => {
-
+    
     const reviews = await Review.findAll({
-      where: { productId: req.params.productId } , include:[{ model:User ,as :"user"}]
+      where: { productId: req.params.productId }
     });
     const averageRating = reviews.length
     ? reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length : 0;
-
+  
     res.json({ reviews, averageRating });
 }
 const findUserReview = async (req, res) => {

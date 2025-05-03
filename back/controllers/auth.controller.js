@@ -72,17 +72,4 @@ const admin = async (req,res)=>{
 }
 
 
-const getMe = async (req,res)=>{
-    const user = await User.findByPk(req.user.id)
-    if (!user) {
-        return res.status(404).json({
-            message: "User not found",
-        });
-    }
-    return res.status(200).json({
-        message: "User found",
-        user,
-    });
-}
-
-module.exports={login,register,admin,getMe}
+module.exports={login,register,admin}

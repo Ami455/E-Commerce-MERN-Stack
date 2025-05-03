@@ -72,10 +72,10 @@ const addRemoveProductToFav = async (req, res, next) => {
     });
 
     if (existingFavProduct) {
-       // console.log("exist fav")
+        
     await existingFavProduct.destroy();
 
-    return res.status(200).json({ message: "Product removed from favorites" });
+    res.status(200).json({ message: "Product removed from favorites" });
     }
 
     await FavProduct.create({

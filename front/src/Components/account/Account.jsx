@@ -125,138 +125,218 @@ export default function Account() {
     localStorage.removeItem('userData');
   };
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/login");
-    } else {
-      const savedUserData = localStorage.getItem('userData');
-      if (savedUserData) {
-        reset(JSON.parse(savedUserData));
-      }
-      fetchData();
-    }
-  }, [isAuthenticated, user]);
+ useEffect(() => {
+  console.log(isAuthenticated)
+         if (!isAuthenticated) {
+             navigate("/login"); 
+         }
+         fetchData()
+         
+     }, [isAuthenticated]);
+
 
   return (
-    <div className="container mt-4">
-     
-      <h1 className="mb-4">My Account</h1>
-
-      <div className="d-flex justify-content-end">
-        <button className="btn btn-danger mb-4" onClick={handleLogout}>
-          Logout
-        </button>
-      </div>
-
-      <form onSubmit={handleSubmit(onSubmit)} className="mb-5">
-        <fieldset className="border p-4 rounded">
-          <legend className="w-auto px-2">User Info</legend>
-          <div className="mb-3">
-            <label className="form-label">UserName</label>
-            <input type="text" className="form-control" {...register("userName", { required: true })} />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Email</label>
-            <input type="email" className="form-control" {...register("email", { required: true })} />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Phone Number</label>
-            <input type="tel" className="form-control" {...register("phoneNumber", { required: true })} />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Birth Date</label>
-            <input type="date" className="form-control" {...register("birthDate", { required: true })} />
-          </div>
-        </fieldset>
-
-        <fieldset className="border p-4 rounded mt-4">
-          <legend className="w-auto px-2">Address 1 Info</legend>
-          <div className="mb-3">
-            <label className="form-label">Street</label>
-            <input {...register("street", { required: true })} type="text" className="form-control" />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">City</label>
-            <input {...register("city", { required: true })} type="text" className="form-control" />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Postal Code</label>
-            <input {...register("postalCode", { required: true })} type="text" className="form-control" />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Country</label>
-            <input {...register("country", { required: true })} type="text" className="form-control" />
-          </div>
-        </fieldset>
-
-        {!showSecondAddress && (
-          <div className="col-12 text-end">
-            <button
-              type="button"
-              className="btn btn-link"
-              onClick={() => setShowSecondAddress(true)}
-            >
-              + Add Another Address
-            </button>
-          </div>
-        )}
-
-        {showSecondAddress && (
-          <fieldset className="border p-4 rounded mt-4">
-            <legend className="w-auto px-2">Address 2 Info</legend>
-            <div className="mb-3">
-              <label className="form-label">Street</label>
-              <input {...register("street2")} type="text" className="form-control" />
-            </div>
-            <div className="mb-3">
-              <label className="form-label">City</label>
-              <input {...register("city2")} type="text" className="form-control" />
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Postal Code</label>
-              <input {...register("postalCode2")} type="text" className="form-control" />
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Country</label>
-              <input {...register("country2")} type="text" className="form-control" />
-            </div>
-            <div className="col-12 text-end">
-              <button
-                type="button"
-                className="btn btn-link text-danger"
-                onClick={() => {
-                  setShowSecondAddress(false);
-                  reset((prev) => ({
-                    ...prev,
-                    street2: '',
-                    city2: '',
-                    postalCode2: '',
-                    country2: ''
-                  }));
-                }}
-              >
-                Remove Address 2
-              </button>
-            </div>
-          </fieldset>
-        )}
-
-        <div className="col-12 mt-4 text-center">
-          <button
-            type="submit"
-            className="btn btn-primary w-50"
-            disabled={loading}
-          >
-            {loading ? 'Saving...' : 'Save'}
-          </button>
+    <div className="container">
+      <div className="row justify-content-center align-content-center">
+        <div className="col-12 p-5 text-center">
+          <img src={logo} alt="logo" />
         </div>
-      </form>
 
-      <div className="col-12 mt-3 text-center">
-        <Link to="/orders">View Your Orders</Link>
+        <div className="col-12">
+          <form className="row g-3" onSubmit={handleSubmit(onSubmit)}>
+
+            {/* User Info */}
+            <fieldset className="border p-4 rounded">
+              <legend className="w-auto px-2">User Info</legend>
+
+              <div className="col-md-6">
+                <label className="form-label">UserName</label>
+                <input  type="text" id="userName" className="form-control"  {...register("userName", { required: true })} />
+              </div>
+
+              <div className="col-md-6">
+                <label className="form-label">Email</label>
+                <input type="email" className="form-control" id="email" {...register("email", { required: true })}/>
+              </div>
+
+              <div className="col-md-6">
+                <label className="form-label">Phone Number</label>
+                <input {...register("phoneNumber",  { required: true })} type="tel" className="form-control" />
+              </div>
+
+              <div className="col-md-6">
+                <label className="form-label">Birth Date</label>
+                <input {...register("birthDate",  { required: true })} type="date" className="form-control" />
+              </div>
+            </fieldset>
+
+            {/* Address1 Info */}
+            <fieldset className="border p-4 rounded mt-4">
+              <legend className="w-auto px-2">Address 1 Info</legend>
+
+              <div className="col-12">
+                <label className="form-label">Street</label>
+                  <input {...register("street", { required: true })} type="text" className="form-control" placeholder="1234 Main St" />
+              </div>
+
+              <div className="col-md-6">
+                <label className="form-label">City</label>
+                <input {...register("city" , { required: true })} type="text" className="form-control" />
+              </div>
+
+              <div className="col-md-6">
+                <label className="form-label">Postal Code</label>
+                <input {...register("postalCode" , { required: true })} type="text" className="form-control" />
+              </div>
+              <div className="col-md-6">
+                <label className="form-label">Country</label>
+                <input {...register("country" , { required: true })} type="text" className="form-control" />
+              </div>
+            </fieldset>
+
+            <div className="col-12 mt-4 text-center">
+              <button type="submit" className="btn btn-primary w-50">Save</button>
+            </div>
+
+          </form>
+        </div>
+
+        <div className="col-12 mt-3 text-center" >
+          <a href="/orders">Your Orders</a>
+        </div>
       </div>
     </div>
-  );
+  )
 }
 
 
+
+
+// import React from 'react'
+// import logo from "../../../../images/navLogo.png"
+
+
+
+// export default function Account() {
+//   return (
+    
+//     <div className="container">
+//         <div className="row justify-content-center align-content-center">
+//             <div className="col-12 p-5">
+//                 <img src={logo} alt="logo" />
+//             </div>
+//             <div className="col-12">
+//             <form className="row g-3">
+//         <div className="col-md-6">
+//             <label htmlFor="inputName4" className="form-label">
+//             userName
+//             </label>
+//             <input type="email" className="form-control" id="inputEmail4" />
+//         </div>
+//         <div className="col-md-6">
+//         <label htmlFor="inputEmail4" className="form-label">
+//             Email
+//         </label>
+//         <input type="email" className="form-control" id="inputEmail4" />
+//         </div>
+//         <div className="col-md-6">
+//             <label htmlFor="inputPhone4" className="form-label">
+//             Phone Number
+//             </label>
+//             <input type="Phone" className="form-control" id="inputPhone4" />
+//         </div>
+//         <div className="col-md-6">
+//         <label htmlFor="inputDate4" className="form-label">
+//             Date
+//         </label>
+//         <input type="date" className="form-control" id="inputDate4" />
+//         </div>
+//     <div className="col-12">
+//             <label htmlFor="inputAddress" className="form-label">
+//                 Address
+//                 </label>
+//         <div className="container border p-4">
+//             <div className="row">
+//             <div className="col-12">
+                
+//                 <input
+//                 type="text"
+//                 className="form-control"
+//                 id="inputAddress"
+//                 placeholder="1234 Main St"
+//                 />
+//                 </div>
+//                 <div className="col-6">
+//                     <label htmlFor="inputCity" className="form-label">
+//                     City
+//                     </label>
+//                     <input type="text" className="form-control" id="inputCity" />
+//                     </div>
+//                     <div className="col-4">
+//                     <label htmlFor="inputpostCode" className="form-label">
+//                     Post Code
+//                     </label>
+//                     <input type="text" className="form-control" id="inputpostCode" />
+//                     </div>
+//         </div>
+//             </div>
+//         </div>
+//     </form> 
+//     </div>
+//     <div className="col-12 ">
+//         <div>
+//             <a href="/orders">
+//             your orders
+//         </a>
+//         </div>
+        
+//     </div>
+//         </div>
+//     </div>
+//   )
+// }
+
+
+      {/* <div className="col-12">
+        <label htmlFor="inputAddress2" className="form-label">
+          Address 2
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          id="inputAddress2"
+          placeholder="Apartment, studio, or floor"
+        />
+      </div> */}
+{/* <div className="col-md-4">
+        <label htmlFor="inputState" className="form-label">
+          State
+        </label>
+        <select id="inputState" className="form-select">
+          <option defaultValue>Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+      <div className="col-md-2">
+        <label htmlFor="inputZip" className="form-label">
+          Zip
+        </label>
+        <input type="text" className="form-control" id="inputZip" />
+      </div>
+      <div className="col-12">
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="gridCheck"
+          />
+          <label className="form-check-label" htmlFor="gridCheck">
+            Check me out
+          </label>
+        </div>
+      </div>*/}
+      {/* <div className="col-12">
+        <button type=" " className="btn w-100 btn-primary">
+          your order
+        </button>
+      </div> */}

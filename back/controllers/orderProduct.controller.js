@@ -2,7 +2,6 @@ const Order = require('../models/Order.model');
 const Product = require('../models/Products.model');
 const OrderProduct = require('../models/OrderProduct.model');
 const Address = require('../models/address.model');
-const User = require('../models/user.model');
 
 const findAllOrders = async (req, res) => {
     const userId = req.user.id;
@@ -16,10 +15,6 @@ const findAllOrders = async (req, res) => {
         {
           model: Address,
           as: "address"
-        },
-        {
-          model: User,
-          as: "user"
         }
       ]
     });
@@ -27,32 +22,11 @@ const findAllOrders = async (req, res) => {
     res.status(200).json(orders);
 }
 
-
-const findAllOrdersAdmin = async (req, res) => {
-    const orders = await Order.findAll({
-        include: [
-            {
-                model: Product,
-                through: { model: OrderProduct, attributes: ["quantity"] }
-            },
-            {
-                model: Address,
-                as: "address"
-            },
-            {
-                model: User,
-                as: "user"
-            }
-        ]
-    });
-    res.status(200).json(orders);
-}
-
 const findOrderDetails = async (req, res) => {
-    
+    const userId = req.user.id;
     const orderId = req.params.id;
     const order = await Order.findOne({
-        where: { id : orderId },
+        where: { id : orderId, userId },
         include: [
           {
             model: Product,
@@ -61,10 +35,6 @@ const findOrderDetails = async (req, res) => {
           {
             model: Address,
             as: "address"
-          },
-          {
-            model: User,
-            as: "user"
           }
         ]
       });
@@ -169,6 +139,5 @@ module.exports = {
     findAllOrders,
     findOrderDetails,
     addProductToOrder,
-    deleteProductFromOrder,
-    findAllOrdersAdmin
+    deleteProductFromOrder
 };

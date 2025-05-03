@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../../Card/ProductCard';
 import CartButton from './CartButton/CartButton';
+import { Container, Row, Col, NavDropdown } from 'react-bootstrap';
 import { api } from '../../../utils/api';
 import { useSearchParams } from 'react-router-dom';
 import Pagination from 'react-bootstrap/Pagination';
@@ -12,19 +13,13 @@ import { Col, Container, FormControl, InputGroup, Row } from 'react-bootstrap';
 export default function Products() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
-  const [favorites, setFavorites] = useState([]);
   const [error, setError] = useState(null);
   const [categoryData, setCategoryData] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const {favoriteCount} = useSelector((state) => state.favorites); 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-
-  const selectedCategoryName = searchParams.get('category') || '';
-  const selectedMinPrice = searchParams.get('min_price') || '';
-  const selectedMaxPrice = searchParams.get('max_price') || '';
-  const selectedLimit = searchParams.get('limit') || 12;  // default 9 products per page
-  const selectedSort = searchParams.get('sort') || '';
+  const [selectedCategory, setSelectedCategory] = useState();
+  const [min_price, setMinPrice] = useState();
+  const [max_price, setMaxPrice] = useState();
+  const [limit, setLimit] = useState();
+  const [sort, setSort] = useState();
 
   const getCart = async () => {
     try {
@@ -34,38 +29,23 @@ export default function Products() {
       console.error('Failed to fetch cart:', err);
     }
   };
-  const getFavorites = async () => {
-    
-    try {
-      const res = await api.get(`${import.meta.env.VITE_FAVORITE_PRODUCTS}`);
-      setFavorites(res.data.products);
-    } catch (err) {
-      console.error('Failed to fetch favorites:', err);
-    }
-  };
-  const getProducts = async (page = 1) => {
-    try {
-      let categoryId = '';
-      if (selectedCategoryName) {
-        const foundCategory = categoryData.find(c => c.name === selectedCategoryName);
-        categoryId = foundCategory ? foundCategory.id : '';
-      }
 
+  const getProducts = async () => {
+    try {
       const params = {
-        ...(selectedMinPrice && { min_price: selectedMinPrice }),
-        ...(selectedMaxPrice && { max_price: selectedMaxPrice }),
-        ...(selectedLimit && { limit: selectedLimit }),
-        ...(selectedSort && { sort: selectedSort }),
-        ...(categoryId && { categoryId }),
-        page,
+        min_price,
+        max_price,
+        limit,
+        sort,
+        ...(min_price && { min_price }),      // only include if not empty
+      ...(max_price && { max_price }),      // only include if not empty
+        ...(selectedCategory && { category: selectedCategory }), // Only add if selected
       };
 
       const res = await api.get(`${import.meta.env.VITE_PRODUCTS_LIST}`, { params });
 
       if (res.status >= 200 && res.status < 300) {
         setProducts(res.data.items);
-        setTotalPages(res.data.totalPages);
-        setCurrentPage(res.data.currentPage);
         setError(null);
       } else {
         setError(res.statusText);
@@ -87,32 +67,13 @@ export default function Products() {
   };
 
   useEffect(() => {
-    getCategory();
-    getCart();
-    getFavorites();
-  }, [favoriteCount]);
+    getProducts();
+  }, [min_price, max_price, limit, sort, selectedCategory]);
 
   useEffect(() => {
-    if (categoryData.length > 0) {
-      getProducts(currentPage);
-    }
-  }, [searchParams, categoryData, currentPage]);
-
-  const handleFilterChange = (key, value) => {
-    const params = Object.fromEntries([...searchParams]);
-    if (value) {
-      params[key] = value;
-    } else {
-      delete params[key];
-    }
-    setSearchParams(params);
-    setCurrentPage(1); // Reset to page 1 when filters change
-  };
-
-  const handleClearFilters = () => {
-    setSearchParams({});
-    setCurrentPage(1);
-  };
+    getCategory();
+    getCart();
+  }, []);
 
   const getProductQuantity = (productId) => {
     const cartItem = cart.find(item => item.id === productId);

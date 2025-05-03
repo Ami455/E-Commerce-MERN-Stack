@@ -9,25 +9,16 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import './Cart.css'
 import { api } from '../../utils/api';
-import toast from 'react-hot-toast';
-
-
-import useCartCount from '../../Hooks/useCartCount';
 
 export default function Cart() {
-  
     const navigate = useNavigate();
 const [products, setProducts] = useState([]);
 const [totalPrice, setTotalPrice] = useState([]);
-const {getCartCount} = useCartCount()
+
         const getData = async ()=>{
-            try{
-              const cart = await api.get(`${import.meta.env.VITE_CARTPRODUCT}`)
+            const cart = await api.get(`${import.meta.env.VITE_CARTPRODUCT}`)
          setProducts( cart.data.products)
          setTotalPrice( cart.data.totalPrice)
-            }catch(error){
-              console.log(error)
-            }
         
        // console.log(cart.data)
         };
@@ -39,19 +30,16 @@ const {getCartCount} = useCartCount()
             if(operation=="*"||products[index].CartProduct.quantity<=0){
                 //console.log("delete")
                 await api.delete(`${import.meta.env.VITE_CARTPRODUCT}/${id}`);
-                
-              }else
-              {
+            }else
+            {
                 if(products[index].CartProduct.quantity>products[index].stock)
-                  {
-                    products[index].CartProduct.quantity=products[index].stock
-                  }
-                  await api.put(`${import.meta.env.VITE_CARTPRODUCT}/${id}`,{quantity:products[index].CartProduct.quantity});
-                  
+                {
+                products[index].CartProduct.quantity=products[index].stock
                 }
-                toast.success("Cart updated")
-                
-            getCartCount()
+                await api.put(`${import.meta.env.VITE_CARTPRODUCT}/${id}`,{quantity:products[index].CartProduct.quantity});
+
+            }
+            
           getData();
         }
         
@@ -95,7 +83,7 @@ return
                 {products.map((product,index) =>
                   <tr key={product.id} >
                     <td>{product.id}</td>
-                    <td><img src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`}className='imageTable' /></td>
+                    <td><img src={product.image} className='imageTable' /></td>
                     <td>{product.name}</td>
                     <td>{product.category}</td>
                     <td>{product.price*product.CartProduct.quantity}</td>

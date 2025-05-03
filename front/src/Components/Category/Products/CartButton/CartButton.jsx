@@ -3,10 +3,6 @@ import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { api } from '../../../../utils/api';
-import toast from 'react-hot-toast';
-import { useDispatch } from 'react-redux';
-import { setCartCount } from '../../../../store/slices/CartSlice';
-import useCartCount from '../../../../Hooks/useCartCount';
 
 export default function CartButton({
     product,
@@ -14,19 +10,15 @@ export default function CartButton({
     getCart,
     getProducts
 }) {
-    const {getCartCount} = useCartCount()
+
     const editQuantity = async (id, operation) => {
         if (operation === "#") {
             await api.post(`${import.meta.env.VITE_CARTPRODUCT}/${id}`, { quantity: 1 });
-            
-            
         } else {
             let count = getProductQuantity(id);
             operation === "+" ? count++ : count--;
             await api.put(`${import.meta.env.VITE_CARTPRODUCT}/${id}`, { quantity: count });
         }
-         toast.success("Cart updated")
-         getCartCount()
         getProducts();
         getCart();
     };
@@ -34,7 +26,7 @@ export default function CartButton({
     return (
         <>
             {getProductQuantity(product.id) > 0 ? (
-                <div className="w-100 bg-info-subtle d-flex justify-content-between">
+                <div className="w-75 bg-primary d-flex justify-content-between">
                     <FontAwesomeIcon
                         icon={faMinus}
                         onClick={() => editQuantity(product.id, "-")}
@@ -51,7 +43,7 @@ export default function CartButton({
                 <Button
                     onClick={() => editQuantity(product.id, "#")}
                     variant="primary"
-                    className="w-100  mb-3"
+                    className="w-50  mb-3"
                 >
                     Add to Cart
                 </Button>

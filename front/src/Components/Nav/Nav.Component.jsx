@@ -82,7 +82,7 @@ export default function NavComponent({ count }) {
                   <h5>{cat.name}</h5>
                 </NavDropdown.Item>
               ))}
-            </NavDropdown>
+            </NavDropdown> */}
 
             {/* Favorite Badge */}
             <Nav.Link onClick={() => handleProtectedNavigation("favorites")} className="position-relative nav-link-custom">

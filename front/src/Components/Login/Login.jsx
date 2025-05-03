@@ -19,7 +19,7 @@ export default function Login() {
     console.log(isAuthenticated)
 
     const onSubmit = async (formData) => {
-        await dispatch(loginUser(formData));
+        await dispatch(loginUser(formData)); 
     };
 
     useEffect(() => {

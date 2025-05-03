@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useState } from "react";
 import { api } from '../../utils/api';
 import { Rating } from 'react-simple-star-rating'
@@ -52,7 +52,7 @@ export default function ReviewForm({ productId }) {
     
     await api.post(`${import.meta.env.VITE_REVIEW}/${productId}`,{rating,comment});
 
-    toast.success("Review submitted");
+    alert("Review submitted");
    }
    catch(error){
 console.error('Failed to post review:', error);
@@ -72,7 +72,6 @@ console.error('Failed to post review:', error);
     <div>
       <h6>Submit a review</h6>
     <Rating
-    initialValue={rating}
         onClick={handleRating}
         onPointerEnter={onPointerEnter}
         onPointerLeave={onPointerLeave}

@@ -86,36 +86,10 @@ const getIsFavorite = async () => {
     }
     // console.log(product)
 
-    // Helper function to generate stars based on rating
-    const renderStars = (rating) => {
-        const fullStars = Math.floor(rating);
-        const hasHalfStar = rating % 1 >= 0.5;
-        const emptyStars = 5 - Math.ceil(rating);
-
-        const stars = [];
-
-        // Add full stars
-        for (let i = 0; i < fullStars; i++) {
-            stars.push(<span key={`full-${i}`} className="star filled">★</span>);
-        }
-
-        // Add half star if applicable
-        if (hasHalfStar) {
-            stars.push(<span key="half" className="star half-filled">☆</span>);
-        }
-
-        // Add empty stars
-        for (let i = 0; i < emptyStars; i++) {
-            stars.push(<span key={`empty-${i}`} className="star empty">☆</span>);
-        }
-
-        return stars;
-    };
-
     return (
         <>
             <div className=' m-5'>
-                <div className=' d-flex justify-content-between  container  m-5 p-5' >
+                <div className='d-row d-flex justify-content-between  container  m-5 p-5' >
                     <div className='col-6'>
                         <img
                             src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`}
@@ -127,15 +101,7 @@ const getIsFavorite = async () => {
                         <h1>{product.name}</h1>
                         <h2>${product.price}</h2>
                         <p>Category: {product.category}</p>
-
-                        <p>
-                            Rating: <span className="star-rating">
-                                {renderStars(rating)}
-                            </span>
-                            <br />
-                            <span>{reviews.length} Reviews</span>
-                        </p>
-
+                        <p>Rating: {product.rating}</p>
                         <h2>Description</h2>
                         <p>{product.description}</p>
 

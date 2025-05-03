@@ -18,7 +18,7 @@ const createAddress = async (req, res) => {
 
 // Get all addresses
 const getAllAddresses = async (req, res) => {
-  const userId=req.params.id
+  const userId=req.user.id
   const addresses = await Address.findAll( {where: { userId } });
     res.status(200).json(addresses);
   
