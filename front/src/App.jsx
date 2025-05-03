@@ -31,7 +31,7 @@ import SearchResults from './Components/Category/Search/Search.jsx';
 import Favorite from './Components/favorite/Favorite.jsx';
 
 function AppRoutes() {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const {user, isAuthenticated } = useSelector((state) => state.auth);
 
   const router = createBrowserRouter([
     {
@@ -78,6 +78,7 @@ function AppRoutes() {
 }
 
 export default function App() {
+  const {user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -85,6 +86,8 @@ export default function App() {
       dispatch(fetchMe());
     }
   }, [dispatch]);
+  console.log(user)
+
 
   return <AppRoutes />;
 }

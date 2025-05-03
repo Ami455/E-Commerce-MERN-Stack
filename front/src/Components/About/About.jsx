@@ -1,32 +1,66 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from 'react';
+import { Container, Row, Col, Card, Image } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import logo from '../../../../images/navLogo.png';
 
 export default function About() {
     return (
-    <div className="container py-5">
-        <div className="row justify-content-around">
-            <div className="col-6  ">
-                <div className="inner p-0">
-                    <h2> <span>About</span>  Us </h2>
-                    {/* <p>Furniture can be a product of design and is considered a form of decorative art. In addition to furniture's functional role, it can serve a symbolic or religious purpose. It can be made from many materials, including metal, plastic, and wood. Furniture can be made using a variety of woodworking joints which often reflect the local culture.</p>
-                    <p>Early furniture from this period is known from artwork such as a Venus figurine found in Russia, depicting the goddess on a throne. The first surviving extant furniture is in the homes of Skara Brae in Scotland, and includes cupboards, dressers and beds all constructed from stone. Complex construction techniques such as joinery began in the early dynastic period of ancient Egypt. This era saw constructed wooden pieces, including stools and tables, sometimes decorated with valuable metals or ivory.</p> */}
-                    <h3 >At <span>Dwella</span> , we believe luxury should be effortless.</h3>
-                    <p>We are a premium e-commerce platform dedicated to offering an unparalleled shopping experience for A-Class customers. With a seamless blend of elegant design, smart technology, and exceptional service, Dwella transforms online shopping into a refined lifestyle.</p>
-                    <p>Our team is committed to curating the finest products, delivering outstanding customer support, and creating a user experience that is intuitive, fast, and truly premium.</p>
-                    <p>Welcome to <span>Dwella</span>  — where luxury meets innovation.</p>
-            </div>
-            <ul className="fa-ul">
-                <li><span className="fa-li"><i className="fa-solid fa-check-square"></i></span>List icons can</li>
-                <li><span className="fa-li"><i className="fa-solid fa-check-square"></i></span>be used to</li>
-                <li><span className="fa-li"><i className="fa-solid fa-spinner fa-pulse"></i></span>replace bullets</li>
-                <li><span className="fa-li"><i className="fa-regular fa-square"></i></span>in lists</li>
-            </ul>
-            </div>
-            <div className="col-5 mt-5">
-            <img src={logo} alt="logo" />
-            </div>
+        <div className="text-dark">
+            {/* Mission Section */}
+            <section className="py-5">
+                <Container>
+                    <Row className="align-items-center">
+                        <Col md={6}>
+                            <h2 className="mb-4">Our Mission</h2>
+                            <p className="mb-4">
+                                At ComfyHome, we believe that furniture should be more than just functional—it should inspire and elevate your daily living experience. 
+                                Our mission is to provide high-quality, thoughtfully designed furniture that brings comfort, style, and harmony to your home.
+                            </p>
+                            <p>
+                                We're committed to sustainable practices, exceptional craftsmanship, and customer satisfaction. Every piece is carefully selected to ensure durability, beauty, and value.
+                            </p>
+                        </Col>
+                        <Col md={6} className="text-center position-relative">
+                            <div className="bg-light rounded overflow-hidden">
+                                <Image 
+                                    src={logo}
+                                    alt="Craftsman working on furniture" 
+                                    fluid 
+                                />
+                            </div>
+                            
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
+
+            {/* Core Values Section */}
+            <section className="py-5">
+                <Container>
+                    <h2 className="text-center text-warning mb-5">Our Core Values</h2>
+                    <Row className="g-4">
+                        {[
+                            { title: "Quality Craftsmanship", text: "Exceptional materials and skilled craftsmanship in every piece." },
+                            { title: "Sustainable Practices", text: "Environmentally responsible sourcing and manufacturing." },
+                            { title: "Customer Satisfaction", text: "Outstanding service and lasting customer relationships." },
+                            { title: "Innovative Design", text: "Functional and contemporary designs for modern living." }
+                        ].map((value, idx) => (
+                            <Col xs={12} sm={6} lg={3} key={idx}>
+                                <Card bg="light" text="dark" className="h-100 border-0 shadow-sm">
+                                    <Card.Body className="text-center">
+                                        <div className="mb-3">
+                                            <FontAwesomeIcon icon={faCheckCircle} size="2x" className="text-warning" />
+                                        </div>
+                                        <Card.Title className="mb-3">{value.title}</Card.Title>
+                                        <Card.Text>{value.text}</Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        ))}
+                    </Row>
+                </Container>
+            </section>
         </div>
-    </div>
-    )
+    );
 }

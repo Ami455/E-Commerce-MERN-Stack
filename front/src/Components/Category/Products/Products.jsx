@@ -7,6 +7,7 @@ import Pagination from 'react-bootstrap/Pagination';
 import FavoriteButton from '../../favorite/favoriteButton';
 import toast from 'react-hot-toast';
 import { useSelector } from 'react-redux';
+import { Col, Container, FormControl, InputGroup, Row } from 'react-bootstrap';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -151,120 +152,144 @@ export default function Products() {
     <>
       {error && <p className="text-danger text-center">{error}</p>}
 
-      <section className="d-flex justify-content-center mt-5">
-        <div className="row w-100" style={{ maxWidth: '1200px' }}>
-          <div className="col-md-3 mb-4">
-            <h5 className="fw-bold mb-3">SHOP BY</h5>
+      <section style={{ backgroundColor: '#0c2c4d', padding: '5rem 0' }}>
+      <Container className="text-center">
+        <h2 className="fw-bold text-white mb-3">Shop Our Collection</h2>
+        <p className="text-light mb-4">
+          Discover our carefully curated furniture pieces designed for modern living.
+        </p>
+      </Container>
+    </section>
 
-            {/* Price Filter */}
-            <div className="mb-3">
-              <label className="form-label fw-semibold">Price</label>
-              <input
-                type="number"
-                placeholder="Min Price"
-                className="form-control mb-2"
-                value={selectedMinPrice}
-                onChange={e => handleFilterChange('min_price', e.target.value)}
-              />
-              <input
-                type="number"
-                placeholder="Max Price"
-                className="form-control"
-                value={selectedMaxPrice}
-                onChange={e => handleFilterChange('max_price', e.target.value)}
-              />
-            </div>
+      <section className="container-fluid py-5">
+  <div className="container">
+    <div className="row">
 
-            {/* Limit Filter */}
-            <div className="mb-3">
-              <label className="form-label fw-semibold">Products Per Page</label>
-              <select
-                className="form-select"
-                value={selectedLimit}
-                onChange={e => handleFilterChange('limit', e.target.value)}
-              >
-                <option value="">Default (9)</option>
-                <option value="3">3</option>
-                <option value="6">6</option>
-                <option value="9">9</option>
-                <option value="12">12</option>
-                <option value="16">16</option>
-              </select>
-            </div>
+      {/* Sidebar Filters */}
+      <aside className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+        <div className="p-4 border rounded-4 shadow-sm bg-white">
+          <h5 className="fw-bold mb-4">Shop By</h5>
 
-            {/* Category Filter */}
-            <div className="mb-3">
-              <label className="form-label fw-semibold">Category</label>
-              <select
-                className="form-select"
-                value={selectedCategoryName}
-                onChange={(e) => handleFilterChange('category', e.target.value)}
-              >
-                <option value="">All Categories</option>
-                {categoryData.map((category) => (
-                  <option key={category.id} value={category.name}>
-                    {category.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Clear Filters Button */}
-            <div className="mb-3">
-              <button onClick={handleClearFilters} className="btn btn-outline-secondary w-100">
-                Clear Filters
-              </button>
-            </div>
-
+          {/* Price Filter */}
+          <div className="mb-4">
+            <label className="form-label fw-semibold">Price Range</label>
+            <input
+              type="number"
+              placeholder="Min Price"
+              className="form-control mb-2"
+              value={selectedMinPrice}
+              onChange={(e) => handleFilterChange('min_price', e.target.value)}
+            />
+            <input
+              type="number"
+              placeholder="Max Price"
+              className="form-control"
+              value={selectedMaxPrice}
+              onChange={(e) => handleFilterChange('max_price', e.target.value)}
+            />
           </div>
 
-          <div className="col-md-9">
-            <div className="d-flex justify-content-between align-items-center mb-4">
-              <select
-                className="form-select w-auto"
-                value={selectedSort}
-                onChange={e => handleFilterChange('sort', e.target.value)}
-              >
-                <option value="">Default</option>
-                <option value="price_asc">Price: Low to High</option>
-                <option value="price_desc">Price: High to Low</option>
-                <option value="name_asc">Name: A to Z</option>
-                <option value="name_desc">Name: Z to A</option>
-                <option value="created_asc">Sort by latest</option>
-                <option value="created_desc">Sort by oldest</option>
-              </select>
-            </div>
+          {/* Limit Filter */}
+          <div className="mb-4">
+            <label className="form-label fw-semibold">Products Per Page</label>
+            <select
+              className="form-select"
+              value={selectedLimit}
+              onChange={(e) => handleFilterChange('limit', e.target.value)}
+            >
+              <option value="">Default (9)</option>
+              <option value="3">3</option>
+              <option value="6">6</option>
+              <option value="9">9</option>
+              <option value="12">12</option>
+              <option value="16">16</option>
+            </select>
+          </div>
 
-            <div className="row product-list">
-              {products.length > 0 ? (
-                products.map((product) => (
-                  <div key={product.id} className="col-md-4 mb-4">
-                    <div className="text-center">
-                      <ProductCard product={product} />
-                      <FavoriteButton 
-                      favorite={favorites.some(fav => fav.id === product.id)} 
-                      productId={product.id}
-                  
-                      />
-                      <CartButton
-                        product={product}
-                        getProductQuantity={getProductQuantity}
-                        getCart={getCart}
-                        getProducts={() => getProducts(currentPage)}
-                      />
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p className="text-center">No products found.</p>
-              )}
-            </div>
+          {/* Category Filter */}
+          <div className="mb-4">
+            <label className="form-label fw-semibold">Category</label>
+            <select
+              className="form-select"
+              value={selectedCategoryName}
+              onChange={(e) => handleFilterChange('category', e.target.value)}
+            >
+              <option value="">All Categories</option>
+              {categoryData.map((category) => (
+                <option key={category.id} value={category.name}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
-            {/* Pagination */}
-            {renderPagination()}
+          {/* Clear Filters */}
+          <div className="d-grid">
+            <button 
+              onClick={handleClearFilters} 
+              className="btn btn-outline-dark"
+            >
+              Clear Filters
+            </button>
           </div>
         </div>
-      </section>
+      </aside>
+
+      {/* Products Section */}
+      <div className="col-12 col-md-8 col-lg-9">
+
+        {/* Sort Dropdown */}
+        <div className="d-flex justify-content-end align-items-center mb-4">
+          <select
+            className="form-select w-auto"
+            value={selectedSort}
+            onChange={(e) => handleFilterChange('sort', e.target.value)}
+          >
+            <option value="">Sort: Default</option>
+            <option value="price_asc">Price: Low to High</option>
+            <option value="price_desc">Price: High to Low</option>
+            <option value="name_asc">Name: A to Z</option>
+            <option value="name_desc">Name: Z to A</option>
+            <option value="created_asc">Newest First</option>
+            <option value="created_desc">Oldest First</option>
+          </select>
+        </div>
+
+        {/* Products Grid */}
+        <div className="row g-4">
+          {products.length > 0 ? (
+            products.map((product) => (
+              <div key={product.id} className="col-12 col-sm-6 col-md-6 col-lg-4">
+                <div className="text-center h-100">
+                  <ProductCard product={product} />
+                  <FavoriteButton
+                    favorite={favorites.some((fav) => fav.id === product.id)}
+                    productId={product.id}
+                  />
+                  <CartButton
+                    product={product}
+                    getProductQuantity={getProductQuantity}
+                    getCart={getCart}
+                    getProducts={() => getProducts(currentPage)}
+                  />
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="text-center">No products found.</p>
+          )}
+        </div>
+
+        {/* Pagination */}
+        <div className="mt-5">
+          {renderPagination()}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
     </>
   );
 }
