@@ -106,29 +106,43 @@ export default function Details() {
   
 
   return (
-    
     <div className="container my-5">
-      <div className="row g-4 align-items-start">
-        <div className="col-md-6 position-relative">
-          <img
-            src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`}
-            alt={product.name}
-            className="img-fluid rounded shadow-sm w-100"
-          />
-          
-        </div>
-        <div className="col-md-6 ">
-          <h1 className="text-main-sub d-inline ">{product.name}</h1>
-          <div className=" d-inline m-4 end-0 ">
-          <FavoriteButton favorite={isFavorite} productId={productId}  />
+      {/* Product Info */}
+      <div className="row g-5 align-items-start">
+        
+        {/* Image */}
+        <div className="col-md-6">
+          <div className="position-relative shadow-lg rounded overflow-hidden ">
+            <img
+              src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`}
+              alt={product.name}
+              className="img-fluid w-100 object-fit-cover"
+              style={{ borderRadius: '1rem' }}
+            />
           </div>
-          <h3 className="text-main">${product.price}</h3>
-          <p><strong>Category:</strong> {product.category}</p>
-          <p>
-            <strong>Rating:</strong> <span><RatingDisplay rating={rating}/> </span> ({reviews.length} Reviews)
+        </div>
+
+        {/* Product Details */}
+        <div className="col-md-6">
+          <div className="d-flex align-items-center justify-content-between">
+            <h1 className="fw-bold ">{product.name}</h1>
+            <FavoriteButton favorite={isFavorite} productId={productId} />
+          </div>
+
+          <h3 className="text-success fw-semibold my-3">${product.price}</h3>
+
+          <p className="mb-2">
+            <strong>Category:</strong> {product.category}
           </p>
-          <h5>Description</h5>
-          <p>{product.description}</p>
+
+          <p className="mb-2">
+            <strong>Rating:</strong> <RatingDisplay rating={rating} /> ({reviews.length} Reviews)
+          </p>
+
+          <h5 className="mt-4">Description</h5>
+          <p className="text-muted">{product.description}</p>
+
+          {/* Add to Cart */}
           <div className="mt-4">
             <CartButton
               product={product}
@@ -140,29 +154,38 @@ export default function Details() {
         </div>
       </div>
 
+      {/* Reviews Section */}
       <div className="mt-5">
-                    {/* {console.log(bought, "bought")} */}
-                    {bought && <div className='mb-5'>
-                        <h3>My Review</h3>
-                        <div className='w-25'><ReviewForm productId={productId} onReviewSubmit={()=> setRefreshReviews(prev => !prev)}/></div>
-                        
-                    </div>}
-        <h3 className="text-main-sub">Customer Reviews</h3>
-        {reviews.length ? reviews.map((rev, i) => (
-          <div key={i} className="card my-3 shadow-sm">
-            <div className="card-body">
-              <h6 className="card-title">
-                <FontAwesomeIcon icon={faCircleUser} className="me-2 text-main-sub" />
-                {rev.user.userName}
-              </h6>
-              <p className="mb-1">{rev.comment}</p>
-              <div className="star-rating">
-                <span className="text-warning "> <RatingDisplay rating={rev.rating}/> </span>
-
-              </div>
+        {bought && (
+          <div className="mb-5">
+            <h3 className="fw-bold">My Review</h3>
+            <div className="w-25 w-md-50">
+              <ReviewForm
+                productId={productId}
+                onReviewSubmit={() => setRefreshReviews(prev => !prev)}
+              />
             </div>
           </div>
-        )) : (
+        )}
+
+        <h3 className="fw-bold mb-4">Customer Reviews</h3>
+
+        {reviews.length ? (
+          reviews.map((rev, i) => (
+            <div key={i} className="card mb-3 shadow-sm border-0">
+              <div className="card-body">
+                <h6 className="card-title fw-semibold">
+                  <FontAwesomeIcon icon={faCircleUser} className="me-2 text-primary" />
+                  {rev.user.userName}
+                </h6>
+                <p className="mb-2">{rev.comment}</p>
+                <div className="star-rating">
+                  <RatingDisplay rating={rev.rating} />
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
           <p className="text-muted">No reviews yet.</p>
         )}
       </div>

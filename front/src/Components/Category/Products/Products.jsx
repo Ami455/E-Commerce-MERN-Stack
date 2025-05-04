@@ -538,156 +538,156 @@ export default function Products() {
 
   return (
     <>
-      {error && <p className="text-danger text-center">{error}</p>}
+{error && <p className="text-danger text-center">{error}</p>}
 
-      <section style={{ backgroundColor: '#0c2c4d', padding: '5rem 0' }}>
-        <Container className="text-center">
-          <h2 className="fw-bold text-white mb-3">Shop Our Collection</h2>
-          <p className="text-light mb-4">
-            Discover our carefully curated furniture pieces designed for modern living.
-          </p>
-        </Container>
-      </section>
+{/* Header Section */}
+<section style={{ backgroundColor: '#0c2c4d', padding: '5rem 0' }}>
+  <Container className="text-center">
+    <h2 className="fw-bold text-white mb-3">Shop Our Collection</h2>
+    <p className="text-light mb-0 fs-5">
+      Discover our carefully curated furniture pieces designed for modern living.
+    </p>
+  </Container>
+</section>
 
-      <section className="container py-5">
-        <div className="container">
-          <div className="row">
+{/* Main Shop Section */}
+<section className="py-5" style={{ backgroundColor: '#f8f9fa' }}>
+  <Container>
+    <div className="row g-5">
 
-            {/* Sidebar Filters */}
-            <aside className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0 pt-5">
-              <div className="p-4 border rounded-4 shadow-sm bg-white">
-                <h5 className="fw-bold mb-4">Shop By</h5>
+      {/* Sidebar */}
+      <aside className="col-12 col-md-4 col-lg-3 pt-5">
+        <div className="p-4 bg-white border rounded-4 shadow-sm " style={{ top: '100px' }}>
+          <h5 className="fw-bold mb-4">Filter By</h5>
 
-                {/* Price Filter */}
-                <div className="mb-4">
-                  <label className="form-label fw-semibold">Price Range</label>
-                  <input
-                    type="number"
-                    placeholder="Min Price"
-                    className="form-control mb-2"
-                    value={minPrice}
-                    onChange={handleMinPriceChange}
-                    min="0"
-                    step="0.01"
-                  />
-                  <input
-                    type="number"
-                    placeholder="Max Price"
-                    className="form-control"
-                    value={maxPrice}
-                    onChange={handleMaxPriceChange}
-                    min="0"
-                    step="0.01"
-                  />
-                </div>
+          {/* Price Filter */}
+          <div className="mb-4">
+            <label className="form-label fw-semibold">Price Range</label>
+            <input
+              type="number"
+              placeholder="Min Price"
+              className="form-control mb-2"
+              value={minPrice}
+              onChange={handleMinPriceChange}
+              min="0"
+              step="0.01"
+            />
+            <input
+              type="number"
+              placeholder="Max Price"
+              className="form-control"
+              value={maxPrice}
+              onChange={handleMaxPriceChange}
+              min="0"
+              step="0.01"
+            />
+          </div>
 
-                {/* Limit Filter */}
-                <div className="mb-4">
-                  <label className="form-label fw-semibold">Products Per Page</label>
-                  <select
-                    className="form-select"
-                    value={selectedLimit}
-                    onChange={(e) => handleFilterChange('limit', e.target.value)}
-                  >
-                    <option value="">Default (9)</option>
-                    <option value="3">3</option>
-                    <option value="6">6</option>
-                    <option value="9">9</option>
-                    <option value="12">12</option>
-                    <option value="16">16</option>
-                  </select>
-                </div>
+          {/* Limit Filter */}
+          <div className="mb-4">
+            <label className="form-label fw-semibold">Products Per Page</label>
+            <select
+              className="form-select"
+              value={selectedLimit}
+              onChange={(e) => handleFilterChange('limit', e.target.value)}
+            >
+              <option value="">Default (9)</option>
+              <option value="3">3</option>
+              <option value="6">6</option>
+              <option value="9">9</option>
+              <option value="12">12</option>
+              <option value="16">16</option>
+            </select>
+          </div>
 
-                {/* Category Filter */}
-                <div className="mb-4">
-                  <label className="form-label fw-semibold">Category</label>
-                  <select
-                    className="form-select"
-                    value={selectedCategoryName}
-                    onChange={(e) => handleFilterChange('category', e.target.value)}
-                  >
-                    <option value="">All Categories</option>
-                    {categoryData.map((category) => (
-                      <option key={category.id} value={category.name}>
-                        {category.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+          {/* Category Filter */}
+          <div className="mb-4">
+            <label className="form-label fw-semibold">Category</label>
+            <select
+              className="form-select"
+              value={selectedCategoryName}
+              onChange={(e) => handleFilterChange('category', e.target.value)}
+            >
+              <option value="">All Categories</option>
+              {categoryData.map((category) => (
+                <option key={category.id} value={category.name}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
-                {/* Clear Filters */}
-                <div className="d-grid">
-                  <button
-                    onClick={handleClearFilters}
-                    className="btn btn-outline-dark"
-                  >
-                    Clear Filters
-                  </button>
-                </div>
-              </div>
-            </aside>
-
-            {/* Products Section */}
-            <div className="col-12 col-md-8  col-lg-9">
-
-              {/* Sort Dropdown */}
-              <div className="d-flex justify-content-end align-items-center mb-4">
-                <select
-                  className="form-select w-auto"
-                  value={selectedSort}
-                  onChange={(e) => handleFilterChange('sort', e.target.value)}
-                >
-                  <option value="">Sort: Default</option>
-                  <option value="price_asc">Price: Low to High</option>
-                  <option value="price_desc">Price: High to Low</option>
-                  <option value="name_asc">Name: A to Z</option>
-                  <option value="name_desc">Name: Z to A</option>
-                  <option value="created_desc">Newest First</option>
-                  <option value="created_asc">Oldest First</option>
-                </select>
-              </div>
-
-              {/* Products Grid */}
-              <div className="row w-100 g-4">
-                {products.length > 0 ? (
-                  products.map((product) => (
-                    <div key={product.id} className="col-12 col-sm-6  g-3 col-md-6 col-lg-4 ">
-                      <div className="text-center card bg-light hover-shadow ">
-                        <div ><ProductCard product={product} /></div>
-
-                        <div className="d-flex justify-content-center align-items-center mt-auto">
-                          
-                          <div className='me-2 mb-2  '>
-                            <FavoriteButton
-                              favorite={favorites.some((fav) => fav.id === product.id)}
-                              productId={product.id}
-                            />
-                          </div>
-                          <CartButton
-                            product={product}
-                            getProductQuantity={getProductQuantity}
-                            getCart={getCart}
-                            getProducts={() => getProducts(currentPage)}
-                          />
-                        </div>
-
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <p className="text-center">No products found.</p>
-                )}
-              </div>
-
-              {/* Pagination */}
-              <div className="mt-5">
-                {renderPagination()}
-              </div>
-            </div>
-
+          {/* Clear Filters */}
+          <div className="d-grid">
+            <button
+              onClick={handleClearFilters}
+              className="btn btn-outline-dark"
+            >
+              Clear Filters
+            </button>
           </div>
         </div>
-      </section>
+      </aside>
+
+      {/* Products Grid */}
+      <div className="col-12 col-md-8 col-lg-9">
+
+        {/* Sort Dropdown */}
+        <div className="d-flex justify-content-end align-items-center mb-4">
+          <select
+            className="form-select w-auto"
+            value={selectedSort}
+            onChange={(e) => handleFilterChange('sort', e.target.value)}
+          >
+            <option value="">Sort: Default</option>
+            <option value="price_asc">Price: Low to High</option>
+            <option value="price_desc">Price: High to Low</option>
+            <option value="name_asc">Name: A to Z</option>
+            <option value="name_desc">Name: Z to A</option>
+            <option value="created_desc">Newest First</option>
+            <option value="created_asc">Oldest First</option>
+          </select>
+        </div>
+
+        {/* Product Cards */}
+        <div className="row g-4">
+          {products.length > 0 ? (
+            products.map((product) => (
+              <div key={product.id} className="col-12 col-sm-6 col-md-6 col-lg-4">
+                <div className="card border-0 shadow-sm h-100 position-relative bg-white hover-shadow transition">
+                  <div className="p-3">
+                    <ProductCard product={product} />
+                  </div>
+                  <div className="d-flex justify-content-center gap-2 mb-3">
+                    <FavoriteButton
+                      favorite={favorites.some((fav) => fav.id === product.id)}
+                      productId={product.id}
+                    />
+                    <CartButton
+                      product={product}
+                      getProductQuantity={getProductQuantity}
+                      getCart={getCart}
+                      getProducts={() => getProducts(currentPage)}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p className="text-center fs-5">No products found.</p>
+          )}
+        </div>
+
+        {/* Pagination */}
+        <div className="d-flex justify-content-center mt-5">
+          {renderPagination()}
+        </div>
+
+      </div>
+    </div>
+  </Container>
+</section>
+
 
     </>
   );

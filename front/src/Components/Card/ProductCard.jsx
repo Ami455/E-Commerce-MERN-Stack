@@ -26,17 +26,22 @@ export default function CardComponent({ product }) {
 
   return (
     <div>
-      <div>
-        <Link to={`../details`} state={{ productId: product.id }}>
-          <div className=''>
-            <Card.Img variant="top" src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`} className='productImage w-100 p-2 ' />
-            <Card.Body className='mb-2'>
-              <Card.Title className=' nameProduct' >{product.name}</Card.Title>
-              {/* <RatingDisplay rating={rating} /> <h6>{reviews.length}</h6> */}
-            </Card.Body></div>
-        </Link>
-        {/* <Button variant="primary" className='w-75 mb-3'>Add to Cart</Button> */}
-      </div>
+    <Card className="h-100 border-0 shadow-sm product-card hover-shadow transition">
+      <Link to={`../details`} state={{ productId: product.id }} className="text-decoration-none text-dark">
+        <Card.Img 
+          variant="top" 
+          src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`} 
+          className="productImage w-100 p-3" 
+          style={{ objectFit: 'cover', height: '250px', borderRadius: '1rem 1rem 0 0' }}
+        />
+        <Card.Body className="d-flex flex-column align-items-center text-center">
+          <Card.Title className="nameProduct fs-5 fw-bold mb-2">{product.name}</Card.Title>
+          {/* If you add rating later: */}
+          {/* <RatingDisplay rating={rating} />
+          <small className="text-muted">{reviews.length} reviews</small> */}
+        </Card.Body>
+      </Link>
+    </Card>
     </div>
 
 
