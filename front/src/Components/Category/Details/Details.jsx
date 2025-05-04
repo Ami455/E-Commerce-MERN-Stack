@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { api } from '../../../utils/api';
-import RatingDisplay from '../../Review/RatingDisplay';
-import CartButton from '../Products/CartButton/CartButton';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import FavoriteButton from '../../favorite/favoriteButton';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { api } from '../../../utils/api';
+import FavoriteButton from '../../favorite/favoriteButton';
+import RatingDisplay from '../../Review/RatingDisplay';
 import ReviewForm from '../../Review/ReviewForm';
+import CartButton from '../Products/CartButton/CartButton';
 
 import './Details.css'; // We'll use this for CSS variables
 
@@ -29,6 +29,7 @@ export default function Details() {
         try {
             const res = await api.get(`${import.meta.env.VITE_FAVORITE_PRODUCTS}/${productId}`);
             setIsFavorite(res.data.isFavorite);
+            console.log(isFavorite)
         } catch (err) {
             console.error('Failed to fetch favorite:', err);
         }
@@ -143,7 +144,8 @@ export default function Details() {
                     {/* {console.log(bought, "bought")} */}
                     {bought && <div className='mb-5'>
                         <h3>My Review</h3>
-                        <ReviewForm productId={productId} onReviewSubmit={()=> setRefreshReviews(prev => !prev)}/>
+                        <div className='w-25'><ReviewForm productId={productId} onReviewSubmit={()=> setRefreshReviews(prev => !prev)}/></div>
+                        
                     </div>}
         <h3 className="text-main-sub">Customer Reviews</h3>
         {reviews.length ? reviews.map((rev, i) => (

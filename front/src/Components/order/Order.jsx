@@ -43,9 +43,8 @@ export default function Order() {
 
   return (
     <>
-    <div className="vh-100">
 
-    
+
       <Container className="mt-5 mb-5 ">
         <Row className="mb-4">
           <Col sm={12} md={6} lg={6}>
@@ -94,11 +93,17 @@ export default function Order() {
                     <tr key={product.id}>
                       <td>{product.id}</td>
                       <td><img src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`} className="imageTable" alt={product.name} /></td>
-                      <td>{product.name}</td>
+                      <td><Link
+                        to="/category/details"
+                        state={{ productId: product.id }}
+                        className="text-decoration-none text-dark"
+                      >
+                        {product.name}
+                      </Link></td>
                       <td>{product.categoryId}</td>
                       <td>${product.price * product.OrderProduct.quantity}</td>
                       <td>{product.OrderProduct.quantity}</td>
-                      <td><ReviewForm productId={product.id} /></td>
+                      <td className=' justify-content-center'><ReviewForm productId={product.id} /></td>
                     </tr>
                   ))}
               </tbody>
@@ -106,7 +111,6 @@ export default function Order() {
           </Col>
         </Row>
       </Container>
-      </div>
     </>
   );
 }

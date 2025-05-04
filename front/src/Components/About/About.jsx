@@ -14,7 +14,7 @@ export default function About() {
                         <Col md={6}>
                             <h2 className="mb-4">Our Mission</h2>
                             <p className="mb-4">
-                                At ComfyHome, we believe that furniture should be more than just functional—it should inspire and elevate your daily living experience. 
+                                At ComfyHome, we believe that furniture should be more than just functional—it should inspire and elevate your daily living experience.
                                 Our mission is to provide high-quality, thoughtfully designed furniture that brings comfort, style, and harmony to your home.
                             </p>
                             <p>
@@ -23,13 +23,13 @@ export default function About() {
                         </Col>
                         <Col md={6} className="text-center position-relative">
                             <div className="bg-light rounded overflow-hidden">
-                                <Image 
+                                <Image
                                     src={logo}
-                                    alt="Craftsman working on furniture" 
-                                    fluid 
+                                    alt="Craftsman working on furniture"
+                                    fluid
                                 />
                             </div>
-                            
+
                         </Col>
                     </Row>
                 </Container>

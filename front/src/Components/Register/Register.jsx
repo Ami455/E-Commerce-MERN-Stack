@@ -3,6 +3,7 @@ import { Navigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import {api} from '../../utils/api'; // make sure your api instance is set
 import './Register.css';
+import Photo from './1.png'
 
 export default function Register() {
   const { register, handleSubmit } = useForm();
@@ -41,7 +42,8 @@ export default function Register() {
   }
 
   return (
-    <section>
+    <div className='resgister'  >
+    <section >
       <div className="container my-5">
         <div className="row p-5 justify-content-between align-items-center">
           <div className="col-5 register">
@@ -74,11 +76,12 @@ export default function Register() {
             </form>
           </div>
 
-          <div className="col-5">
+          {/* <div className="col-5">
             <img src="https://i.pinimg.com/736x/f8/33/e9/f833e9c1e11ff86c5aa7f1fa4ba4ea86.jpg" className="w-100 rounded" alt="Register Visual" />
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
+    </div>
   );
 }

@@ -37,7 +37,7 @@
 //     }
 //   };
 //   const getFavorites = async () => {
-    
+
 //     try {
 //       const res = await api.get(`${import.meta.env.VITE_FAVORITE_PRODUCTS}`);
 //       setFavorites(res.data.products);
@@ -134,7 +134,7 @@
 //         </Pagination.Item>
 //       );
 //     }
-  
+
 
 //     return (
 //       <Pagination className="justify-content-center mt-4">
@@ -280,9 +280,9 @@
 //         key={product.id}
 //         className="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch"
 //       >
-//       <ProductCard product={product}/>
+//       {/* <ProductCard product={product}/> */}
 
-//           {/* <div className="card border-0 shadow-sm w-100 h-100">
+//            <div className="card border-0 shadow-sm w-100 h-100">
 //             <img
 //               src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`}
 //               className="card-img-top"
@@ -310,7 +310,7 @@
 //                 />
 //               </div>
 //             </div>
-//           </div> */}
+//           </div> 
 //       </div>
 //     ))
 //   ) : (
@@ -343,7 +343,7 @@ import { useSearchParams } from 'react-router-dom';
 import Pagination from 'react-bootstrap/Pagination';
 import FavoriteButton from '../../favorite/favoriteButton';
 import { useSelector } from 'react-redux';
-import {  Container} from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { useDebouncedCallback } from 'use-debounce';
 
 export default function Products() {
@@ -438,7 +438,7 @@ export default function Products() {
     if (categoryData.length > 0) {
       getProducts(currentPage);
     }
-    
+
   }, [searchParams, categoryData, currentPage]);
 
   // Debounced callbacks to update search parameters for min and max price
@@ -511,9 +511,9 @@ export default function Products() {
     let items = [];
     for (let number = 1; number <= totalPages; number++) {
       items.push(
-        <Pagination.Item 
-          key={number} 
-          active={number === currentPage} 
+        <Pagination.Item
+          key={number}
+          active={number === currentPage}
           onClick={() => setCurrentPage(number)}
         >
           {number}
@@ -523,13 +523,13 @@ export default function Products() {
 
     return (
       <Pagination className="justify-content-center mt-4">
-        <Pagination.Prev 
-          onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)} 
+        <Pagination.Prev
+          onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
           disabled={currentPage === 1}
         />
         {items}
-        <Pagination.Next 
-          onClick={() => currentPage < totalPages && setCurrentPage(currentPage + 1)} 
+        <Pagination.Next
+          onClick={() => currentPage < totalPages && setCurrentPage(currentPage + 1)}
           disabled={currentPage === totalPages}
         />
       </Pagination>
@@ -549,12 +549,12 @@ export default function Products() {
         </Container>
       </section>
 
-      <section className="container-fluid py-5">
+      <section className="container py-5">
         <div className="container">
           <div className="row">
 
             {/* Sidebar Filters */}
-            <aside className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+            <aside className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0 pt-5">
               <div className="p-4 border rounded-4 shadow-sm bg-white">
                 <h5 className="fw-bold mb-4">Shop By</h5>
 
@@ -617,8 +617,8 @@ export default function Products() {
 
                 {/* Clear Filters */}
                 <div className="d-grid">
-                  <button 
-                    onClick={handleClearFilters} 
+                  <button
+                    onClick={handleClearFilters}
                     className="btn btn-outline-dark"
                   >
                     Clear Filters
@@ -628,7 +628,7 @@ export default function Products() {
             </aside>
 
             {/* Products Section */}
-            <div className="col-12 col-md-8 col-lg-9">
+            <div className="col-12 col-md-8  col-lg-9">
 
               {/* Sort Dropdown */}
               <div className="d-flex justify-content-end align-items-center mb-4">
@@ -642,28 +642,35 @@ export default function Products() {
                   <option value="price_desc">Price: High to Low</option>
                   <option value="name_asc">Name: A to Z</option>
                   <option value="name_desc">Name: Z to A</option>
-                  <option value="created_asc">Newest First</option>
-                  <option value="created_desc">Oldest First</option>
+                  <option value="created_desc">Newest First</option>
+                  <option value="created_asc">Oldest First</option>
                 </select>
               </div>
 
               {/* Products Grid */}
-              <div className="row g-4">
+              <div className="row w-100 g-4">
                 {products.length > 0 ? (
                   products.map((product) => (
-                    <div key={product.id} className="col-12 col-sm-6 col-md-6 col-lg-4">
-                      <div className="text-center h-100">
-                        <ProductCard product={product} />
-                        <FavoriteButton
-                          favorite={favorites.some((fav) => fav.id === product.id)}
-                          productId={product.id}
-                        />
-                        <CartButton
-                          product={product}
-                          getProductQuantity={getProductQuantity}
-                          getCart={getCart}
-                          getProducts={() => getProducts(currentPage)}
-                        />
+                    <div key={product.id} className="col-12 col-sm-6  g-3 col-md-6 col-lg-4 ">
+                      <div className="text-center card bg-light hover-shadow ">
+                        <div ><ProductCard product={product} /></div>
+
+                        <div className="d-flex justify-content-center align-items-center mt-auto">
+                          
+                          <div className='me-2 mb-2  '>
+                            <FavoriteButton
+                              favorite={favorites.some((fav) => fav.id === product.id)}
+                              productId={product.id}
+                            />
+                          </div>
+                          <CartButton
+                            product={product}
+                            getProductQuantity={getProductQuantity}
+                            getCart={getCart}
+                            getProducts={() => getProducts(currentPage)}
+                          />
+                        </div>
+
                       </div>
                     </div>
                   ))

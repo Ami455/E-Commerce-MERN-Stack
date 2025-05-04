@@ -100,18 +100,20 @@ const createProduct = async (req, res) => {
     const { name,
         description,
         price,
-        stock } = req.body
+        stock,categoryId } = req.body
     if (!req.file) {
         return res.status(400).json({ error: 'No image file uploaded' });
     }
 
     const product = await Product.create({
-        name,
+        name ,
         description,
         price,
-        stock, image
+        stock, 
+        image,
     })
-    
+
+
     const category = await Category.findByPk(req.body.categoryId)
 
     if (category && product) {
@@ -120,7 +122,6 @@ const createProduct = async (req, res) => {
     } else {
         res.status(404).json({ error: 'category not found' });
     }
-
 };
 
 
@@ -128,6 +129,7 @@ const createProduct = async (req, res) => {
 //mai update 
 
 const updateProduct = async (req, res) => {
+    console.log(req.body)
     try {
         const { name, description, price, stock, categoryId } = req.body;
         const id = req.params.id;

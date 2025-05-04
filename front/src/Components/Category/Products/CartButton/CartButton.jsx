@@ -13,19 +13,19 @@ export default function CartButton({
     getCart,
     getProducts
 }) {
-    const {getCartCount} = useCartCount()
+    const { getCartCount } = useCartCount()
     const editQuantity = async (id, operation) => {
         if (operation === "#") {
             await api.post(`${import.meta.env.VITE_CARTPRODUCT}/${id}`, { quantity: 1 });
-            
-            
+
+
         } else {
             let count = getProductQuantity(id);
             operation === "+" ? count++ : count--;
             await api.put(`${import.meta.env.VITE_CARTPRODUCT}/${id}`, { quantity: count });
         }
-         toast.success("Cart updated")
-         getCartCount()
+        toast.success("Cart updated")
+        getCartCount()
         getProducts();
         getCart();
     };
@@ -33,25 +33,25 @@ export default function CartButton({
     return (
         <>
             {getProductQuantity(product.id) > 0 ? (
-                <div className="w-100 bg-dark-subtle d-flex align-items-center p-2 justify-content-between mb-3 h-75 ">
+                <div className="bg-dark-subtle d-flex align-items-center p-2 w-50 justify-content-between mb-3 h-75 ">
                     <FontAwesomeIcon
                         icon={faMinus}
                         onClick={() => editQuantity(product.id, "-")}
                         className="custom-icon"
-                        
+
                     />
                     {getProductQuantity(product.id)}
                     <FontAwesomeIcon
                         icon={faPlus}
                         onClick={() => editQuantity(product.id, "+")}
-                        className="custom-icon"
+                        className=" custom-icon"
                     />
                 </div>
             ) : (
                 <Button
                     onClick={() => editQuantity(product.id, "#")}
                     variant="primary"
-                    className="w-100  mb-3"
+                    className=" mb-2"
                 >
                     Add to Cart
                 </Button>

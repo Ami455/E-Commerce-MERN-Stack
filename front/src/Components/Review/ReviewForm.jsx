@@ -5,6 +5,7 @@ import { Rating } from 'react-simple-star-rating'
 import toast from 'react-hot-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { Button, Form } from 'react-bootstrap';
 
 export default function ReviewForm({ productId ,onReviewSubmit}) {
 
@@ -70,7 +71,7 @@ console.error('Failed to post review:', error);
   setComment(e.target.value);
 };
   return (
-    <div>
+    <div className=' card-body '>
       <h6>Submit a review</h6>
     <Rating
     initialValue={rating}
@@ -81,13 +82,17 @@ console.error('Failed to post review:', error);
         /* Available Props */
       />
       {/* Comment Input Field */}
-      <textarea
-        value={comment}
-        onChange={handleCommentChange}  // Updates the comment state
+         <Form.Group className="mb-3 mt-3  align-item-center w-100" controlId="exampleForm.ControlTextarea1">
+        {/* <Form.Label>Example textarea</Form.Label> */}
+        <Form.Control
+         as="textarea"
+          rows={2}
+          
+          value={comment}
+          onChange={handleCommentChange}  // Updates the comment state
         placeholder={comment?comment:"Write your comment here..."}
-        rows="2"
-        cols="30"
-      />
+         />
+      </Form.Group>
       {errorMessage && (
                <div className="alert alert-danger d-flex align-items-center" role="alert" style={{ fontSize: '14px' }}>
                <FontAwesomeIcon icon={faExclamationCircle} style={{ fontSize: '20px', marginRight: '8px', color: 'red' }} />
@@ -95,7 +100,8 @@ console.error('Failed to post review:', error);
              </div>
             
             )}
-      <button onClick={handleSubmit}>Submit</button>
+      {/* <button onClick={handleSubmit}>Submit</button> */}
+      <Button variant="primary" onClick={handleSubmit}>Submit</Button>
     </div>
   );
 };
