@@ -1,0 +1,10 @@
+:root{
+    --main-color: #FFC107;
+    --main-sub-color: #0e1c3c;
+}
+.bagr{
+    background-color: var(--main-sub-color);
+}
+.texcol{
+    color: var(--main-color);
+}

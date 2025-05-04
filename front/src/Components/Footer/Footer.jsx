@@ -26,9 +26,9 @@ export default function Footer() {
         <Row className="mb-5">
           {/* About */}
           <Col xs={12} md={6} lg={3} className="mb-4">
-            <h5 className="text-warning mb-3">COMFY<span className="text-light">HOME</span></h5>
+            <h5 className="text-warning mb-3">D<span className="text-light">wella</span></h5>
             <p className="small text-white">
-              ComfyHome designs modern furniture for stylish living. Elevate your space with comfort, elegance, and innovation.
+              Dwella designs modern furniture for stylish living. Elevate your space with comfort, elegance, and innovation.
             </p>
             <div className="d-flex gap-3 mt-3">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={linkStyle} onMouseEnter={hoverStyle} onMouseLeave={unhoverStyle}>
