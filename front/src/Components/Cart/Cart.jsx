@@ -76,44 +76,65 @@ return
 
   return (
     <>
-<Container className='mt-5 mb-5'>
-<Table>
-              <thead>
-                <tr>
-                  <th style={{ width: "5%" }}>#</th>
-                  <th style={{ width: "15%" }}>Image</th>
-                  <th style={{ width: "30%" }}>Name</th>
-                  <th style={{ width: "15%" }}>Category</th>
-                  <th style={{ width: "5%" }}>Price</th>
-                  <th style={{ width: "5%" }}>-</th>
-                  <th style={{ width: "5%" }}>Quantity</th>
-                  <th style={{ width: "5%" }}>+</th>
-                  <th style={{ width: "5%" }}>Delete</th>
-                </tr>
-              </thead>
-              <tbody>
-                {products.map((product,index) =>
-                  <tr key={product.id} >
-                    <td>{product.id}</td>
-                    <td><img src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`}className='imageTable' /></td>
-                    <td>{product.name}</td>
-                    <td>{product.category}</td>
-                    <td>{product.price/**product.CartProduct.quantity*/}</td>
-                    <td><Link onClick={() => editQuantity(product.id,"-",index)}><FontAwesomeIcon icon={faMinus} className="custom-icon" /></Link></td>
-                    <td>{product.CartProduct.quantity}</td>
-                    <td><Link onClick={() => editQuantity(product.id,"+",index)}><FontAwesomeIcon icon={faPlus} className="custom-icon" /></Link></td>
-                    <td><Link onClick={() => editQuantity(product.id,"*")}><FontAwesomeIcon icon={faTrash} className="custom-icon" /></Link></td>
+<Container className="mt-5 mb-5">
+  <Table responsive="sm" bordered hover>
+    <thead className="bg-main-sub text-white">
+      <tr>
+        <th>#</th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>-</th>
+        <th>Quantity</th>
+        <th>+</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {products.map((product, index) => (
+        <tr key={product.id}>
+          <td>{product.id}</td>
+          <td>
+            <img
+              src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`}
+              className="imageTable"
+              alt={product.name}
+            />
+          </td>
+          <td>{product.name}</td>
+          <td>{product.category}</td>
+          <td>{product.price * product.CartProduct.quantity}</td>
+          <td>
+            <Link onClick={() => editQuantity(product.id, "-", index)}>
+              <FontAwesomeIcon icon={faMinus} className="custom-icon" />
+            </Link>
+          </td>
+          <td>{product.CartProduct.quantity}</td>
+          <td>
+            <Link onClick={() => editQuantity(product.id, "+", index)}>
+              <FontAwesomeIcon icon={faPlus} className="custom-icon" />
+            </Link>
+          </td>
+          <td>
+            <Link onClick={() => editQuantity(product.id, "*")}>
+              <FontAwesomeIcon icon={faTrash} className="custom-icon" />
+            </Link>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </Table>
 
-                  </tr>
-                )}
-              </tbody>
-            </Table>
-            <h1>Total Price: {totalPrice}</h1>
-            <Button onClick={handleCheckout}>
-    <FontAwesomeIcon icon={faArrowRight} /> Proceed to Checkout
-</Button>
+  <div className="d-flex justify-content-between align-items-center">
+    <h2>Total Price: {totalPrice}</h2>
+    <Button className="btn-main" onClick={handleCheckout}>
+      <FontAwesomeIcon icon={faArrowRight} /> Proceed to Checkout
+    </Button>
+  </div>
 </Container>
         
+
 
 
 

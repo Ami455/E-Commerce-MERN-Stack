@@ -1,98 +1,72 @@
-table {
-    /* background-color: rgb(226, 217, 235); */
-    border-collapse: separate;
-    border-spacing: 0px 0.7rem;
-    /* Space between borders */
+:root {
+    --main-color: #FFC107;
+    --main-sub-color: #0e1c3c;
+  }
 
-}
-
-tr {
-    /* Apply vertical alignment to table cells */
-    vertical-align: middle;
-    /* Center text vertically */
-    outline: 0.1rem solid #999;
-    /* Add border to each row */
-
-}
-
-tbody tr:hover {
-    outline: 0.1rem solid #282727;
-}
-
-.imageTable {
-    width: 3rem;
-    /* Set the width to 48px */
-    height: 3.44rem;
-    /* Set the height to 55px */
-    object-fit: cover;
-    /* Ensures the image covers the area without distortion */
-}
-
-.iconButton {
-    border: none;
-    /* Remove border */
+.table {
+    margin-top: 30px;
+    /* background:  rgba(14, 28, 60,0.8); */
+    /* background: rgb(255, 193, 7 ,0.5); */
     background: none;
-    /* Remove background */
-    padding: 0;
-    /* Remove padding */
+}
+  
+  .table th,
+  .table td {
+    text-align: center;
+  }
+  
+  .table .imageTable {
+    width: 50px;
+    height: auto;
+  }
+  
+  .table th {
+    background-color: var(--main-sub-color);
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f7f7f7;
+  }
+  
+ 
+  .custom-icon {
+    font-size: 20px;
+    color: var(--main-sub-color);
     cursor: pointer;
-    /* Change cursor to pointer */
-    outline: none;
-    /* Remove outline on focus */
-    pointer-events: none;
-}
-
-.custom-icon {
-    color: #626060;
-    font-size: larger;
-
-}
-
-.custom-icon:hover {
-    color: #343333;
-    font-size: larger;
-
-}
-
-.custom-icon:active {
-    color: #343333;
-    font-size: larger;
-
-}
-.mytooltip > .tooltip-inner {
-    background-color: rgba(128, 128, 128, 0.977);
-color: #000000;
-width: 100%;
-
-max-width: 100%; /* or whatever limit you want */
-
   }
-  .tooltip{
-    pointer-events: none;
+  
+  .custom-icon:hover {
+    color: var(--main-color);
   }
-
-
-.imageTooltip{
-    width: 9rem;
-    height: 10.3rem;
-    object-fit: cover;
-}
-
-.mytooltip .tooltip-arrow::before {
-    border-bottom-color:  #5e5c5f; ; /* 'bottom' since placement="bottom" */
-    border-width: 0.5rem; /* Adjust the size of the arrow */
-
+  
+  .btn-main {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
   }
-  .toolTipDivStyle {
-    max-width: 70vw; /* Maximum width of the container */
-    width: auto; /* Allow the width to adjust based on content */
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Responsive columns */
-    gap: 1rem 4rem; /* Gap between items in the grid */
-    word-wrap: normal; /* Allow long words to break */
-    overflow-wrap: break-word; /* Ensure long words wrap correctly */
-    padding: 1rem; /* Optional: Add padding for better spacing */
-}
-.toolTipDivStyle > *:last-child {
-    grid-column: 1 / -1; /* Make last item span the full row */
+  
+  .btn-main:hover {
+    background-color: var(--main-sub-color);
+    color: white;
   }
+  
+  @media (max-width: 768px) {
+    .table thead {
+      font-size: 14px;
+    }
+    .table td, .table th {
+      font-size: 14px;
+      padding: 8px;
+    }
+  
+    .btn-main {
+      width: 100%;
+      margin-top: 20px;
+    }
+  }
+  

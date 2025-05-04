@@ -63,10 +63,7 @@ export default function Register() {
                 <input type="password" className="form-control" id="password" {...register("password", { required: true })} />
               </div>
 
-              <div className="mb-3 form-check">
-                <input type="checkbox" className="form-check-input" id="rememberMe" />
-                <label className="form-check-label" htmlFor="rememberMe">Remember me</label>
-              </div>
+              
 
               <button type="submit" className="btn btn-primary">Register</button>
 
