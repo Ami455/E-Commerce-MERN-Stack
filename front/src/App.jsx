@@ -29,6 +29,7 @@ import EditOrder from './Components/Admin/EditOrder/EditOrder.jsx';
 import OrderDetail from './Components/Admin/OrderDetail/OrderDetail.jsx';
 import SearchResults from './Components/Category/Search/Search.jsx';
 import Favorite from './Components/favorite/Favorite.jsx';
+import Error from './Components/Error/Error.jsx';
 
 function AppRoutes() {
   const {user, isAuthenticated } = useSelector((state) => state.auth);
@@ -65,6 +66,7 @@ function AppRoutes() {
           { path: 'order/edit', element: <EditOrder /> },
           { path: 'order/details', element: <OrderDetail /> },
         ]},
+        { path: '*', element: <Error /> }, 
       ],
     },
   ]);
