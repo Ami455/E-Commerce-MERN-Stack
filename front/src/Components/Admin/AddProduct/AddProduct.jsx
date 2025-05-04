@@ -42,7 +42,7 @@ export default function Add() {
             const formDataToSend = new FormData();
             formDataToSend.append('name', formdata.name);
             formDataToSend.append('description', formdata.description);
-            formDataToSend.append('categoryId', formdata.category);
+            formDataToSend.append('categoryId', formdata.categoryId);
             formDataToSend.append('price', formdata.price);
             formDataToSend.append('stock', formdata.stock);
             console.log(formdata.file[0])
@@ -79,7 +79,7 @@ export default function Add() {
                 {/* Product Category */}
                 <Form.Group className="mb-3">
                     <Form.Label>Category</Form.Label>
-                    <Form.Select name="category" {...register("category", { required: true })}>
+                    <Form.Select name="categoryId" {...register("categoryId", { required: true })}>
                         <option value="">Select a Category</option>
                         {categoryData.map((category) => (
                             <option key={category.id} value={category.id}>{category.name}</option>

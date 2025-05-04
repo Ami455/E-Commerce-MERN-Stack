@@ -1,0 +1,104 @@
+:root {
+    --main-color: #FFC107;
+    --main-sub-color: #0e1c3c;
+    --bg-light: #f8f9fa;
+    --text-dark: #333;
+    --text-light: #fff;
+  }
+  /* .hhh{
+    background-color: #FFC107;
+  } */
+  .card {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    color: var(--main-sub-color);
+  }
+  
+  .card-body p {
+    font-size: 1rem;
+    color: var(--text-dark);
+  }
+  
+  .table {
+    margin-top: 30px;
+  }
+  
+  .table th,
+  .table td {
+    text-align: center;
+    padding: 12px;
+    font-size: 14px;
+  }
+  
+  .table .imageTable {
+    width: 50px;
+    height: auto;
+  }
+  
+  .table thead {
+    background-color: var(--main-sub-color);
+    color: var(--text-light);
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f7f7f7;
+  }
+  
+  .btn-main {
+    background-color: var(--main-color);
+    color: var(--text-light);
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .btn-main:hover {
+    background-color: var(--main-sub-color);
+    color: var(--text-light);
+  }
+  
+  /* تحسين العرض في الجوال */
+  @media (max-width: 768px) {
+    .card-body p,
+    .card-title {
+      font-size: 1rem;
+    }
+  
+    .table thead {
+      font-size: 12px;
+    }
+  
+    .table td,
+    .table th {
+      font-size: 12px;
+    }
+  
+    .btn-main {
+      width: 100%;
+      margin-top: 20px;
+    }
+  
+    .table {
+      font-size: 12px;
+    }
+  
+    .imageTable {
+      width: 40px;
+    }
+  
+    .card {
+      margin-bottom: 15px;
+    }
+  
+    .card-title {
+      font-size: 1.2rem;
+    }
+  }
+  

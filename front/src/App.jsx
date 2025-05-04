@@ -1,6 +1,3 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "./App.css";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
     import { useSelector } from "react-redux";
     import  { Toaster } from 'react-hot-toast';
@@ -30,46 +27,52 @@ import EditUser from './Components/Admin/EditUser/EditUser.jsx';
 import AddOrder from './Components/Admin/AddOrder/AddOrder.jsx';
 import ListOrder from './Components/Admin/ListOrder/ListOrder.jsx';
 import EditOrder from './Components/Admin/EditOrder/EditOrder.jsx';
-import Order from './Components/order/Order.jsx';
+import OrderDetail from './Components/Admin/OrderDetail/OrderDetail.jsx';
+import SearchResults from './Components/Category/Search/Search.jsx';
+import Favorite from './Components/favorite/Favorite.jsx';
+import Error from './Components/Error/Error.jsx';
+
+import React, { useEffect } from 'react';
 
 function AppRoutes() {
-  const {user, isAuthenticated } = useSelector((state) => state.auth);
+  const {isAuthenticated } = useSelector((state) => state.auth);
 
-    const router = createBrowserRouter([{
-        path: '/',
-        element: <Layout />,
-        children: [
-            { index: true, element: <Home /> },
-            { path: '/account', element: <Account /> },
-            { path: '/about', element: <About /> },
-            {path: '/search', element: <SearchResults />},
-            { path: '/category', element: <Category />, children: [
-                { path: 'products', element: <Products /> },
-                { path: 'details', element: <Details /> },
-                { path: ':categoryId', element: <FindByCategory /> }
-            ]},
-
-            { path: '/login', element: isAuthenticated ? <Home /> : <Login /> },
-            { path: '/register', element: <Register /> },
-            { path: '/cart', element: <Cart /> },
-            { path: '/checkout', element: <Checkout /> },
-            { path: '/order', element: <Order /> },
-
-            { path: '/admin', element: <Admin />, children: [
-
-                { path: 'product/add', element: <Add /> },
-                { path: 'product/list', element: <List /> },
-                { path: 'product/edit', element: <Edit /> },
-                { path: 'user/add', element: <AddUser /> },
-                { path: 'user/list', element: <ListUser /> },
-                { path: 'user/edit', element: <EditUser /> },
-                { path: 'order/add', element: <AddOrder /> },
-                { path: 'order/list', element: <ListOrder /> },
-                { path: 'order/edit', element: <EditOrder /> },
-            ]},
-            
-        ]
-    }]);
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Layout />,
+      children: [
+        { index: true, element: <Home /> },
+        { path: '/account', element: <Account /> },
+        { path: '/about', element: <About /> },
+        { path: '/search', element: <SearchResults /> },
+        { path: '/category', element: <Category />, children: [
+          { path: 'products', element: <Products /> },
+          { path: 'details', element: <Details /> },
+          { path: ':categoryId', element: <FindByCategory /> }
+        ]},
+        { path: '/login', element: isAuthenticated ? <Home /> : <Login /> },
+        { path: '/register', element: <Register /> },
+        { path: '/cart', element: <Cart /> },
+        { path: '/favorites', element: <Favorite /> },
+        { path: '/checkout', element: <Checkout /> },
+        { path: '/orders', element: <Orders /> },
+        { path: '/order/:orderId', element: <Order /> },
+        { path: '/admin', element: <Admin />, children: [
+          { path: 'product/add', element: <Add /> },
+          { path: 'product/list', element: <List /> },
+          { path: 'product/edit', element: <Edit /> },
+          { path: 'user/add', element: <AddUser /> },
+          { path: 'user/list', element: <ListUser /> },
+          { path: 'user/edit', element: <EditUser /> },
+          { path: 'order/list', element: <ListOrder /> },
+          { path: 'order/edit', element: <EditOrder /> },
+          { path: 'order/details', element: <OrderDetail /> },
+        ]},
+        { path: '*', element: <Error /> }, 
+      ],
+    },
+  ]);
 
 
     

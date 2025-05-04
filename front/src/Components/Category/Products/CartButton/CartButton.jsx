@@ -3,6 +3,9 @@ import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { api } from '../../../../utils/api';
+import toast from 'react-hot-toast';
+
+import useCartCount from '../../../../Hooks/useCartCount';
 
 export default function CartButton({
     product,

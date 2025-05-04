@@ -1,0 +1,27 @@
+:root {
+    --main-color: #FFC107;
+    --main-sub-color: #0e1c3c;
+  }
+  
+  .text-main {
+    color: var(--main-color);
+  }
+  
+  .text-main-sub {
+    color: var(--main-sub-color);
+  }
+  
+  .btn-main {
+    background-color: var(--main-color);
+    color: #fff;
+    border: none;
+  }
+  
+  .btn-main:hover {
+    background-color: #e6ac00;
+  }
+  
+  .star-rating span {
+    font-size: 1.5rem;
+  }
+  

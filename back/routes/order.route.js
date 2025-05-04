@@ -3,6 +3,7 @@ const authMiddleware = require("../middleware/auth.middleware")
 
 const {tryCatchWrapper} = require('../middleware/errorHandler.middleware')
 const { findAllOrders,
+    findProductInAllOrders,
     findOrderDetails,
     addProductToOrder,
     deleteProductFromOrder,
@@ -13,6 +14,9 @@ const { updateOrderStatus } = require('../controllers/order.controller')
 
 
 router.get('/',authMiddleware, tryCatchWrapper(findAllOrders))
+router.get('/admin',authMiddleware, tryCatchWrapper(findAllOrdersAdmin))
+router.post('/checkout',authMiddleware, tryCatchWrapper(checkout))
+ router.get('/product/:id',authMiddleware, tryCatchWrapper(findProductInAllOrders))
  router.get('/:id',authMiddleware, tryCatchWrapper(findOrderDetails))
  router.post('/:id',authMiddleware, tryCatchWrapper(updateOrderStatus))
  router.post('/:orderId/product/:productId',authMiddleware, tryCatchWrapper(addProductToOrder))

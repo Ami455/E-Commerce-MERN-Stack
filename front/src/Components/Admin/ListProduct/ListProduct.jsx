@@ -40,66 +40,105 @@ import { api } from '../../../utils/api';
           setTooltipShow(true);
         };
 
-        const handleMouseLeave = () => {
-          setTooltipShow(false);
-        };
-        return (
-          <>
+  const handleMouseLeave = () => {
+    setTooltipShow(false);
+  };
 
-            <Table className=' bg-light'>
-              <thead>
-                <tr>
-                  <th style={{ width: "5%" }}>#</th>
-                  <th style={{ width: "15%" }}>Image</th>
-                  <th style={{ width: "30%" }}>Name</th>
-                  <th style={{ width: "15%" }}>Category</th>
-                  <th style={{ width: "5%" }}>Price</th>
-                  <th style={{ width: "5%" }}>Stock</th>
-                  <th style={{ width: "5%" }}>Delete</th>
-                  <th style={{ width: "5%" }}>Edit</th>
-                </tr>
-              </thead>
-              <tbody>
-                {products.map((product) =>
-                  <tr key={product.id} /*onMouseEnter={() => setIsHoverInfo(true)} 
-              onMouseLeave={() => setIsHoverInfo(false)}*/
-                    onMouseEnter={(e) => handleMouseEnter(e, product)}
-                    onMouseLeave={handleMouseLeave}>
-                    <td>{product.id}</td>
-                    <td><img src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`} className='imageTable' /></td>
-                    <td>{product.name}</td>
-                    <td>{product.category}</td>
-                    <td>{product.price}</td>
-                    <td>{product.stock}</td>
-                    {/* <td><Button className='iconButton' onClick={()=>alert("mm")}><FontAwesomeIcon icon={faTrash} className="custom-icon"/></Button></td>
-                <td><Button className='iconButton' onClick={()=>fnEdit}><FontAwesomeIcon icon={faPen} className="custom-icon"/></Button></td> */}
-                    <td><Link onClick={() => deleteData(product.id)}><FontAwesomeIcon icon={faTrash} className="custom-icon" /></Link></td>
-                    <td><Link to="../product/edit" state={{ productId: product.id }}><FontAwesomeIcon icon={faPen} className="custom-icon" /></Link></td>
-                    {/* {isHoverInfo && (<tr><ProductCard product={product}/></tr>)} */}
+  // Generate page numbers dynamically
+  const renderPagination = () => {
+    let items = [];
 
-                  </tr>
-                )}
+    for (let number = 1; number <= totalPages; number++) {
+      items.push(
+        <Pagination.Item 
+          key={number} 
+          active={number === currentPage} 
+          onClick={() => setCurrentPage(number)}
+        >
+          {number}
+        </Pagination.Item>
+      );
+    }
 
+    return (
+      <Pagination className="justify-content-center mt-4">
+        <Pagination.Prev 
+          onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)} 
+          disabled={currentPage === 1}
+        />
+        {items}
+        <Pagination.Next 
+          onClick={() => currentPage < totalPages && setCurrentPage(currentPage + 1)} 
+          disabled={currentPage === totalPages}
+        />
+      </Pagination>
+    );
+  };
 
-              </tbody>
-            </Table>
+  return (
+    <>
+      <Table className='bg-light'>
+        <thead>
+          <tr>
+            <th style={{ width: "5%" }}>#</th>
+            <th style={{ width: "15%" }}>Image</th>
+            <th style={{ width: "30%" }}>Name</th>
+            <th style={{ width: "15%" }}>Category</th>
+            <th style={{ width: "10%" }}>Price</th>
+            <th style={{ width: "10%" }}>Stock</th>
+            <th style={{ width: "5%" }}>Delete</th>
+            <th style={{ width: "5%" }}>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((product) => (
+            <tr key={product.id}
+              onMouseEnter={(e) => handleMouseEnter(e, product)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <td>{product.id}</td>
+              <td>
+                <img 
+                  src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`} 
+                  className='imageTable' 
+                  alt={product.name}
+                />
+              </td>
+              <td>{product.name}</td>
+              <td>{product.categoryId}</td>
+              <td>${parseFloat(product.price).toFixed(2)}</td>
+              <td>{product.stock}</td>
+              <td>
+                <Link onClick={() => deleteData(product.id)}>
+                  <FontAwesomeIcon icon={faTrash} className="custom-icon" />
+                </Link>
+              </td>
+              <td>
+                <Link to="../product/edit" state={{ productId: product.id }}>
+                  <FontAwesomeIcon icon={faPen} className="custom-icon" />
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
 
-            <Overlay target={tooltipTarget} show={tooltipShow} placement="bottom-end" >
-              {(props) => (
-                <Tooltip id="overlay-tooltip"  {...props} className='mytooltip' >
-                  <div className="toolTipDivStyle">
-                    <div ><strong>Product ID:</strong><br />{tooltipData.id}</div>
-                    <div ><img src={tooltipData.image} className='imageTooltip' alt={tooltipData.name} /></div>
-                    <div><strong>Name:</strong><br />{tooltipData.name}</div>
-                    <div><strong>Category:</strong><br />{tooltipData.category}</div>
-                    <div><strong>Price:</strong><br />${tooltipData.price}</div>
-                    <div><strong>Stock:</strong><br />{tooltipData.stock}</div>
-                    <div><strong>Description:</strong><br />{tooltipData.description}</div>
-                  </div>
-
-                </Tooltip>
-              )}
-            </Overlay>
+      {/* Tooltip for hovering */}
+      <Overlay target={tooltipTarget} show={tooltipShow} placement="bottom-end">
+        {(props) => (
+          <Tooltip id="overlay-tooltip" {...props} className='mytooltip'>
+            <div className="toolTipDivStyle">
+              <div><strong>Product ID:</strong><br />{tooltipData.id}</div>
+              <div><img src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${tooltipData.image}`} className='imageTooltip' alt={tooltipData.name} /></div>
+              <div><strong>Name:</strong><br />{tooltipData.name}</div>
+              <div><strong>Category:</strong><br />{tooltipData.categoryId}</div>
+              <div><strong>Price:</strong><br />${parseFloat(tooltipData.price || 0).toFixed(2)}</div>
+              <div><strong>Stock:</strong><br />{tooltipData.stock}</div>
+              <div><strong>Description:</strong><br />{tooltipData.description}</div>
+            </div>
+          </Tooltip>
+        )}
+      </Overlay>
 
 
 
