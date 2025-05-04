@@ -119,7 +119,7 @@ export default function OrderDetail() {
                                                     <td><img src={product.image} className='imageTable' /></td>
                                                     <td>{product.name}</td>
                                                     <td>{product.categoryId}</td>
-                                                    <td>{product.price * product.OrderProduct.quantity}</td>
+                                                    <td>{product.price /** product.OrderProduct.quantity*/}</td>
                                                     <td>{product.OrderProduct.quantity}</td>
                                                     {/* <td><ReviewForm productId={product.id}/></td>  */}
 

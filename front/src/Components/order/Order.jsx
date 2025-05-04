@@ -107,7 +107,7 @@ const navigate = useNavigate()
                         <td><img src={product.image} className='imageTable' /></td>
                         <td>{product.name}</td>
                         <td>{product.category}</td>
-                        <td>{product.price*product.OrderProduct.quantity}</td>
+                        <td>{product.price/**product.OrderProduct.quantity*/}</td>
                         <td>{product.OrderProduct.quantity}</td>
                         <td><ReviewForm productId={product.id}/></td> 
     

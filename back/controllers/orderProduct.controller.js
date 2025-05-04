@@ -7,26 +7,42 @@ const User = require('../models/user.model');
 const findAllOrders = async (req, res) => {
     const userId = req.user.id;
     const orders = await Order.findAll({
-      where: { userId },
-      include: [
-        {
-          model: Product,
-          through: { attributes: ["quantity"] }
-        },
-        {
-          model: Address,
-          as: "address"
-        },
-        {
-          model: User,
-          as: "user"
-        }
-      ]
+        where: { userId },
+        include: [
+            {
+                model: Product,
+                through: { attributes: ["quantity"] }
+            },
+            {
+                model: Address,
+                as: "address"
+            },
+            {
+                model: User,
+                as: "user"
+            }
+        ]
     });
 
     res.status(200).json(orders);
 }
+const findProductInAllOrders = async (req, res) => {
+    const userId = req.user.id;
+    const ProductId = req.params.id
+    const product = await Product.findByPk(ProductId);
+    if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+    }
+    const found = await Order.findAll({
+        where: { userId },
+        include: {
+            model: Product,
+            where: { id: ProductId },
 
+        },
+    });
+    res.status(200).json({ bought: !!found });
+}
 
 const findAllOrdersAdmin = async (req, res) => {
     const orders = await Order.findAll({
@@ -49,30 +65,30 @@ const findAllOrdersAdmin = async (req, res) => {
 }
 
 const findOrderDetails = async (req, res) => {
-    
+
     const orderId = req.params.id;
     const order = await Order.findOne({
-        where: { id : orderId },
+        where: { id: orderId },
         include: [
-          {
-            model: Product,
-            through: { attributes: ["quantity"] }
-          },
-          {
-            model: Address,
-            as: "address"
-          },
-          {
-            model: User,
-            as: "user"
-          }
+            {
+                model: Product,
+                through: { attributes: ["quantity"] }
+            },
+            {
+                model: Address,
+                as: "address"
+            },
+            {
+                model: User,
+                as: "user"
+            }
         ]
-      });
+    });
 
     if (!order) {
         return res.status(404).json({ error: 'Order not found' });
     }
-    
+
     res.status(200).json({ order });
 };
 
@@ -95,12 +111,12 @@ const addProductToOrder = async (req, res) => {
     if (!product) {
         return res.status(404).json({ error: 'Product not found' });
     }
-    const orderProduct = await OrderProduct.findOne({ where: { OrderId:orderId, ProductId:productId } })
+    const orderProduct = await OrderProduct.findOne({ where: { OrderId: orderId, ProductId: productId } })
 
-    
+
     if (orderProduct) {
         // If product already exists, update the quantity
-//but if quantity <=0 delete product from order
+        //but if quantity <=0 delete product from order
         if (quantity <= 0) {
             await orderProduct.destroy();
             return res.status(200).json({ message: 'Product removed from order' });
@@ -114,7 +130,7 @@ const addProductToOrder = async (req, res) => {
         // If product doesn't exist in the order, create a new entry in OrderProduct table
 
         //quantity cant be more than stock or less than 1
-    const finalQuantity = Math.min(Math.max(quantity, 1), product.stock);
+        const finalQuantity = Math.min(Math.max(quantity, 1), product.stock);
 
         await OrderProduct.create({ OrderId: orderId, ProductId: productId, quantity: finalQuantity });
     }
@@ -140,8 +156,8 @@ const deleteProductFromOrder = async (req, res) => {
     if (!product) {
         return res.status(404).json({ error: 'Product not found' });
     }
-    const orderProduct = await OrderProduct.findOne({ where: { OrderId:orderId, ProductId:productId } })
-if (!orderProduct) {
+    const orderProduct = await OrderProduct.findOne({ where: { OrderId: orderId, ProductId: productId } })
+    if (!orderProduct) {
         // If product doesnt exist
         return res.status(404).json({ error: 'Product is not in the order' });
 
@@ -149,8 +165,8 @@ if (!orderProduct) {
 
     const deleted = await OrderProduct.destroy({
         where: {
-            OrderId:orderId,
-            ProductId:productId
+            OrderId: orderId,
+            ProductId: productId
         }
     });
 
@@ -167,6 +183,7 @@ if (!orderProduct) {
 
 module.exports = {
     findAllOrders,
+    findProductInAllOrders,
     findOrderDetails,
     addProductToOrder,
     deleteProductFromOrder,

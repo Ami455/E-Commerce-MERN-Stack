@@ -7,6 +7,8 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FavoriteButton from '../../favorite/favoriteButton';
 import { useSelector } from 'react-redux';
+import ReviewForm from '../../Review/ReviewForm';
+
 
 export default function Details() {
     const location = useLocation();
@@ -15,17 +17,20 @@ export default function Details() {
     // console.log(productId)
     const [rating, setRating] = useState(0);
     const [reviews, setReviews] = useState([]);
-    const {favoriteCount} = useSelector((state) => state.favorites);
-const [isFavorite, setIsFavorite] = useState([]);
-const getIsFavorite = async () => {
-    
-    try {
-      const res = await api.get(`${import.meta.env.VITE_FAVORITE_PRODUCTS}/${productId}`);
-      setIsFavorite(res.data.isFavorite);
-    } catch (err) {
-      console.error('Failed to fetch favorite:', err);
-    }
-  };
+    const [bought, setBought] = useState(false);
+    const { favoriteCount } = useSelector((state) => state.favorites);
+    const { user, isAuthenticated } = useSelector((state) => state.auth);
+
+    const [isFavorite, setIsFavorite] = useState([]);
+    const getIsFavorite = async () => {
+
+        try {
+            const res = await api.get(`${import.meta.env.VITE_FAVORITE_PRODUCTS}/${productId}`);
+            setIsFavorite(res.data.isFavorite);
+        } catch (err) {
+            console.error('Failed to fetch favorite:', err);
+        }
+    };
     const getRating = async () => {
         try {
             const res = await api.get(`${import.meta.env.VITE_REVIEW}/${productId}`);
@@ -68,6 +73,16 @@ const getIsFavorite = async () => {
         }
     };
 
+    const findProductInOrder = async () => {
+        try {
+
+            const response = await api.get(`${import.meta.env.VITE_ORDER_PRODUCT}/${productId}`);
+            setBought(response.data.bought);
+        } catch (error) {
+            console.error('Error fetching product in order:', error);
+        }
+    };
+
 
 
     useEffect(() => {
@@ -79,12 +94,12 @@ const getIsFavorite = async () => {
             getCart();
             getIsFavorite();
         }
-    }, [productId,favoriteCount]);
+        if (isAuthenticated) { findProductInOrder() }
+    }, [productId, favoriteCount, isAuthenticated]);
 
     if (!product) {
         return <h3>Loading product details...</h3>;
     }
-    // console.log(product)
 
     // Helper function to generate stars based on rating
     const renderStars = (rating) => {
@@ -139,22 +154,27 @@ const getIsFavorite = async () => {
                         <h2>Description</h2>
                         <p>{product.description}</p>
 
-                       <div className=' d-inline-flex w-100'>
-                         <CartButton 
-                            product={product}
-                            getProductQuantity={getProductQuantity}
-                            getCart={getCart}
-                            getProducts={getData}
-                        />
-                        <span><FavoriteButton
-                            favorite={isFavorite}
-                            productId={productId}
+                        <div className=' d-inline-flex w-100'>
+                            <CartButton
+                                product={product}
+                                getProductQuantity={getProductQuantity}
+                                getCart={getCart}
+                                getProducts={getData}
+                            />
+                            <span><FavoriteButton
+                                favorite={isFavorite}
+                                productId={productId}
 
-                        /></span></div>
+                            /></span></div>
                     </div>
                 </div>
 
                 <div className="container">
+                    {console.log(bought, "bought")}
+                    {bought && <div className='mb-5'>
+                        <h3>My Review</h3>
+                        <ReviewForm productId={productId} />
+                    </div>}
                     <h3>Reviews:</h3>
                     {reviews.length > 0 ? (
                         reviews.map((review, index) => (
