@@ -32,9 +32,9 @@ export default function Login() {
     }, [isAuthenticated, navigate]);
 
     return (
-        <section className='back'>
-            <div className="container my-5">
-                <div className="row ggg p-5 justify-content-between align-items-center">
+        <section className=''>
+            <div className="container  my-5">
+                <div className="row bg-dark-subtle p-5 justify-content-between align-items-center">
                     <div className="col-5 login">
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <h2 className='login-title p-3'>Log in</h2>

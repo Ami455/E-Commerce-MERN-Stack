@@ -8,9 +8,6 @@
   padding: 10rem;
   background-color: #efeeee; */
 
-.register{
-  background-color: #efeeee;
-}
 
 .btn {
   background-color: #ffc107;
@@ -23,7 +20,7 @@
 
 
 .login-title {
-  border-bottom: 1px solid rgba(167, 167, 167, 0.2);
+  /* border-bottom: 1px solid rgba(167, 167, 167, 0.2); */
   padding: 30px;
   font-size: 1.5rem;
 }

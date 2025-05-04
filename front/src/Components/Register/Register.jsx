@@ -42,11 +42,11 @@ export default function Register() {
   }
 
   return (
-    <div className='resgister'  >
+    
     <section >
       <div className="container my-5">
-        <div className="row p-5 justify-content-between align-items-center">
-          <div className="col-5 register">
+        <div className="row bg-dark-subtle p-5 justify-content-between align-items-center">
+          <div className="col-5 ">
             <form onSubmit={handleSubmit(onSubmit)}>
               <h2 className="register-title p-3">Sign up</h2>
 
@@ -76,12 +76,12 @@ export default function Register() {
             </form>
           </div>
 
-          {/* <div className="col-5">
-            <img src="https://i.pinimg.com/736x/f8/33/e9/f833e9c1e11ff86c5aa7f1fa4ba4ea86.jpg" className="w-100 rounded" alt="Register Visual" />
-          </div> */}
+          <div className="col-5">
+            <img src={Photo} className="w-100 rounded" alt="Register Visual" />
+          </div>
         </div>
       </div>
     </section>
-    </div>
+    
   );
 }
