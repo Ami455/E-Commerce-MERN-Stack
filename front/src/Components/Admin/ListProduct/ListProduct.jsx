@@ -105,7 +105,7 @@ export default function List() {
                 />
               </td>
               <td>{product.name}</td>
-              <td>{product.category}</td>
+              <td>{product.categoryId}</td>
               <td>${parseFloat(product.price).toFixed(2)}</td>
               <td>{product.stock}</td>
               <td>
@@ -131,7 +131,7 @@ export default function List() {
               <div><strong>Product ID:</strong><br />{tooltipData.id}</div>
               <div><img src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${tooltipData.image}`} className='imageTooltip' alt={tooltipData.name} /></div>
               <div><strong>Name:</strong><br />{tooltipData.name}</div>
-              <div><strong>Category:</strong><br />{tooltipData.category}</div>
+              <div><strong>Category:</strong><br />{tooltipData.categoryId}</div>
               <div><strong>Price:</strong><br />${parseFloat(tooltipData.price || 0).toFixed(2)}</div>
               <div><strong>Stock:</strong><br />{tooltipData.stock}</div>
               <div><strong>Description:</strong><br />{tooltipData.description}</div>

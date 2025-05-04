@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
@@ -31,8 +30,10 @@ import SearchResults from './Components/Category/Search/Search.jsx';
 import Favorite from './Components/favorite/Favorite.jsx';
 import Error from './Components/Error/Error.jsx';
 
+import React, { useEffect } from 'react';
+
 function AppRoutes() {
-  const {user, isAuthenticated } = useSelector((state) => state.auth);
+  const {isAuthenticated } = useSelector((state) => state.auth);
 
   const router = createBrowserRouter([
     {

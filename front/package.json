@@ -31,7 +31,8 @@
     "react-simple-star-rating": "^5.1.7",
     "redux": "^5.0.1",
     "simple": "^0.2.0",
-    "toaster": "^0.1.2"
+    "toaster": "^0.1.2",
+    "use-debounce": "^10.0.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
