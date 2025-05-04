@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
-export default function ReviewForm({ productId }) {
+export default function ReviewForm({ productId ,onReviewSubmit}) {
 
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
@@ -53,6 +53,7 @@ export default function ReviewForm({ productId }) {
     await api.post(`${import.meta.env.VITE_REVIEW}/${productId}`,{rating,comment});
 
     toast.success("Review submitted");
+    if(onReviewSubmit){onReviewSubmit();}
    }
    catch(error){
 console.error('Failed to post review:', error);

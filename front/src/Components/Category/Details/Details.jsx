@@ -18,6 +18,7 @@ export default function Details() {
     // console.log(productId)
     const [rating, setRating] = useState(0);
     const [reviews, setReviews] = useState([]);
+    const [refreshReviews, setRefreshReviews] = useState(false);
     const [bought, setBought] = useState(false);
     const { favoriteCount } = useSelector((state) => state.favorites);
     const { user, isAuthenticated } = useSelector((state) => state.auth);
@@ -79,6 +80,7 @@ export default function Details() {
 
             const response = await api.get(`${import.meta.env.VITE_ORDER_PRODUCT}/${productId}`);
             setBought(response.data.bought);
+            console.log(response)
         } catch (error) {
             console.error('Error fetching product in order:', error);
         }
@@ -96,7 +98,7 @@ export default function Details() {
             getIsFavorite();
         }
         if (isAuthenticated) { findProductInOrder() }
-    }, [productId, favoriteCount, isAuthenticated])
+    }, [productId, favoriteCount, isAuthenticated,refreshReviews])
 
   if (!product) return <h3 className="text-center mt-5">Loading product details...</h3>;
 
@@ -112,16 +114,17 @@ export default function Details() {
             alt={product.name}
             className="img-fluid rounded shadow-sm w-100"
           />
-          <div className="position-absolute top-0 end-0 m-4 ">
-          <FavoriteButton favorite={isFavorite} productId={productId} size="xxxl" />
-          </div>
+          
         </div>
-        <div className="col-md-6">
-          <h1 className="text-main-sub">{product.name}</h1>
+        <div className="col-md-6 ">
+          <h1 className="text-main-sub d-inline ">{product.name}</h1>
+          <div className=" d-inline m-4 end-0 ">
+          <FavoriteButton favorite={isFavorite} productId={productId}  />
+          </div>
           <h3 className="text-main">${product.price}</h3>
           <p><strong>Category:</strong> {product.category}</p>
           <p>
-            <strong>Rating:</strong> <span>{renderStars(rating)}</span> ({reviews.length} Reviews)
+            <strong>Rating:</strong> <span><RatingDisplay rating={rating}/> </span> ({reviews.length} Reviews)
           </p>
           <h5>Description</h5>
           <p>{product.description}</p>
@@ -137,10 +140,10 @@ export default function Details() {
       </div>
 
       <div className="mt-5">
-                    {console.log(bought, "bought")}
+                    {/* {console.log(bought, "bought")} */}
                     {bought && <div className='mb-5'>
                         <h3>My Review</h3>
-                        <ReviewForm productId={productId} />
+                        <ReviewForm productId={productId} onReviewSubmit={()=> setRefreshReviews(prev => !prev)}/>
                     </div>}
         <h3 className="text-main-sub">Customer Reviews</h3>
         {reviews.length ? reviews.map((rev, i) => (

@@ -41,14 +41,14 @@ const {favoriteCount} = useSelector((state) => state.favorites);
 
   return (
     <>
-    {!products.length? <h1>No Favorites</h1>:
-
+    
 <Container className='mt-5 mb-5'>
 <Link to="/category/products">
 <Button>
     <FontAwesomeIcon icon={faArrowLeft} /> Continue shopping
 </Button>
 </Link>
+{!products.length? <h1>No Favorites</h1>:
 
 <Table>
               <thead>
@@ -79,10 +79,10 @@ const {favoriteCount} = useSelector((state) => state.favorites);
               </tbody>
             </Table>
             
-            
+} 
 </Container>
         
-}
+
 
 
     </>
