@@ -45,7 +45,7 @@ export default function Details() {
             console.error('Failed to fetch average rating:', error);
         }
     }
-  };
+  
 
   const [cart, setCart] = useState([]);
 
@@ -96,14 +96,14 @@ export default function Details() {
             getIsFavorite();
         }
         if (isAuthenticated) { findProductInOrder() }
-    }, [productId, favoriteCount, isAuthenticated]);
+    }, [productId, favoriteCount, isAuthenticated])
 
   if (!product) return <h3 className="text-center mt-5">Loading product details...</h3>;
 
   
 
   return (
-    <>
+    
     <div className="container my-5">
       <div className="row g-4 align-items-start">
         <div className="col-md-6 position-relative">
@@ -152,7 +152,7 @@ export default function Details() {
               </h6>
               <p className="mb-1">{rev.comment}</p>
               <div className="star-rating">
-                <span className="text-warning ">{renderStars(rev.rating)}</span>
+                <span className="text-warning "> <RatingDisplay rating={rev.rating}/> </span>
 
               </div>
             </div>

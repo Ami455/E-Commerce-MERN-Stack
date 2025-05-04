@@ -103,7 +103,7 @@ return
             />
           </td>
           <td>{product.name}</td>
-          <td>{product.category}</td>
+          <td>{product.categoryId}</td>
           <td>{product.price * product.CartProduct.quantity}</td>
           <td>
             <Link onClick={() => editQuantity(product.id, "-", index)}>

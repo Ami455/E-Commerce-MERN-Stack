@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Button, Badge } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './ProductCard.css'; // Create a separate CSS file for custom styles
-import RatingDisplay from '../Review/RatingDisplay';
 import { api } from '../../utils/api';
+import RatingDisplay from '../Review/RatingDisplay';
+import './ProductCard.css'; // Create a separate CSS file for custom styles
 
 export default function CardComponent({ product }) {
   const [rating, setRating] = useState(0);
@@ -28,7 +26,7 @@ export default function CardComponent({ product }) {
      
   return (
     <div>
-      <div  >
+      <div>
       <Link to={`../details`} state={{ productId: product.id }}>
           <Card.Img variant="top" src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`} className='productImage w-100' />
           <Card.Body className='mb-2'>
@@ -36,10 +34,11 @@ export default function CardComponent({ product }) {
             <RatingDisplay rating={rating} /> <h6>{reviews.length}</h6>
           </Card.Body>
         </Link>
-        {/* <Button variant="primary" className='w-75 mb-3'>Add to Cart</Button> */}
+        <Button variant="primary" className='w-75 mb-3'>Add to Cart</Button>
       </div>
     </div>
     
 
   );
 }
+ 

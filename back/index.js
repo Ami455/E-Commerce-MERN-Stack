@@ -16,19 +16,6 @@ const favRouter = require('./routes/fav.route')
 const orderRouter = require('./routes/order.route')
 const reviewRouter = require('./routes/review.route')
 
-app.listen(port, async () => {
-  try {
-    await sequelize.authenticate();
-    associations();
-    await sequelize.sync({ alter: true, force: false });
-    console.log("SQL connected successfully");
-  } catch (err) {
-    console.error("SQL connection failed", err);
-  }
-});
-
-
-
 const products = require('./seeds/products.json')
 
 const cors= require("cors")

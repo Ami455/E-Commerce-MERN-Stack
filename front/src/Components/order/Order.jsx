@@ -93,9 +93,9 @@ export default function Order() {
                   order.Products.map((product) => (
                     <tr key={product.id}>
                       <td>{product.id}</td>
-                      <td><img src={product.image} className="imageTable" alt={product.name} /></td>
+                      <td><img src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`} className="imageTable" alt={product.name} /></td>
                       <td>{product.name}</td>
-                      <td>{product.category}</td>
+                      <td>{product.categoryId}</td>
                       <td>${product.price * product.OrderProduct.quantity}</td>
                       <td>{product.OrderProduct.quantity}</td>
                       <td><ReviewForm productId={product.id} /></td>

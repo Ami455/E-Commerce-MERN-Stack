@@ -33,11 +33,12 @@ export default function CartButton({
     return (
         <>
             {getProductQuantity(product.id) > 0 ? (
-                <div className="w-100 bg-info-subtle d-flex justify-content-between">
+                <div className="w-100 bg-dark-subtle d-flex align-items-center p-2 justify-content-between mb-3 h-75 ">
                     <FontAwesomeIcon
                         icon={faMinus}
                         onClick={() => editQuantity(product.id, "-")}
                         className="custom-icon"
+                        
                     />
                     {getProductQuantity(product.id)}
                     <FontAwesomeIcon

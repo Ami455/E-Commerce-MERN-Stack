@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import ProductCard from '../../Card/ProductCard';
 import CartButton from './CartButton/CartButton';
 import { api } from '../../../utils/api';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import Pagination from 'react-bootstrap/Pagination';
 import FavoriteButton from '../../favorite/favoriteButton';
 
 import { useSelector } from 'react-redux';
 import { Col, Container, FormControl, InputGroup, Row } from 'react-bootstrap';
+
+// import { useDebouncedCallback } from 'use-debounce';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -256,38 +258,45 @@ export default function Products() {
         </div>
 
         <div className="row g-4">
+        <Link></Link>
   {products.length > 0 ? (
     products.map((product) => (
+
       <div
         key={product.id}
         className="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch"
       >
-        <div className="card border-0 shadow-sm w-100 h-100">
-          <img
-            src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`}
-            className="card-img-top"
-            alt={product.name}
-            style={{ height: '200px', objectFit: 'cover' }}
-          />
-          <div className="card-body d-flex flex-column justify-content-between">
-            <h6 className="card-title">{product.name}</h6>
-            <p className="card-text fw-semibold text-primary">
-              ${product.price}
-            </p>
-            <div className="d-flex justify-content-between align-items-center mt-auto">
-              <FavoriteButton
-                favorite={favorites.some((fav) => fav.id === product.id)}
-                productId={product.id}
-              />
-              <CartButton
-                product={product}
-                getProductQuantity={getProductQuantity}
-                getCart={getCart}
-                getProducts={() => getProducts(currentPage)}
-              />
+      <ProductCard product={product}/>
+
+          {/* <div className="card border-0 shadow-sm w-100 h-100">
+            <img
+              src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`}
+              className="card-img-top"
+              alt={product.name}
+              style={{ height: '200px', objectFit: 'cover' }}
+            />
+            <div className="card-body d-flex flex-column justify-content-between">
+              <h6 className="card-title">{product.name}</h6>
+              <p className="card-text fw-semibold text-primary">
+                ${product.price}
+              </p>
+              <div className="d-flex justify-content-between align-items-center mt-auto">
+
+              <div className='me-2 mb-3 '>
+                <FavoriteButton
+                  favorite={favorites.some((fav) => fav.id === product.id)}
+                  productId={product.id}
+                />
+                </div>
+                <CartButton
+                  product={product}
+                  getProductQuantity={getProductQuantity}
+                  getCart={getCart}
+                  getProducts={() => getProducts(currentPage)}
+                />
+              </div>
             </div>
-          </div>
-        </div>
+          </div> */}
       </div>
     ))
   ) : (
