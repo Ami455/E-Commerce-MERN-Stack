@@ -4,8 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { api } from '../../../../utils/api';
 import toast from 'react-hot-toast';
-import { useDispatch } from 'react-redux';
-import { setCartCount } from '../../../../store/slices/CartSlice';
+
 import useCartCount from '../../../../Hooks/useCartCount';
 
 export default function CartButton({

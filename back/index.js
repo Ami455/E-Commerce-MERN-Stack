@@ -15,6 +15,18 @@ const favRouter = require('./routes/fav.route')
 const orderRouter = require('./routes/order.route')
 const reviewRouter = require('./routes/review.route')
 
+app.listen(port, async () => {
+  try {
+    await sequelize.authenticate();
+    associations();
+    await sequelize.sync({ alter: true, force: false });
+    console.log("SQL connected successfully");
+  } catch (err) {
+    console.error("SQL connection failed", err);
+  }
+});
+
+
 
 const products = require('./seeds/products.json')
 
@@ -59,17 +71,6 @@ app.listen(port, async () => {
     await sequelize.authenticate();
     associations();
     await sequelize.sync({ alter: true, force: false });
-    
-
-
-    // const productCount = await Product.count();
-    // if (productCount === 0) {
-    //   await Product.bulkCreate(products);
-    //   console.log("Seeded products");
-    // } else {
-    //   console.log("Products already exist, skipping seeding");
-    // }
-
     console.log("SQL connected successfully");
   } catch (err) {
     console.error("SQL connection failed", err);
