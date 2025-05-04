@@ -97,7 +97,7 @@ return
                     <td>{product.id}</td>
                     <td><img src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`}className='imageTable' /></td>
                     <td>{product.name}</td>
-                    <td>{product.category}</td>
+                    <td>{product.categoryId}</td>
                     <td>{product.price/**product.CartProduct.quantity*/}</td>
                     <td><Link onClick={() => editQuantity(product.id,"-",index)}><FontAwesomeIcon icon={faMinus} className="custom-icon" /></Link></td>
                     <td>{product.CartProduct.quantity}</td>

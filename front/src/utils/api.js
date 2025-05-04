@@ -23,7 +23,7 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-formDataApi.interceptors.response.use((config) => {
+formDataApi.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
