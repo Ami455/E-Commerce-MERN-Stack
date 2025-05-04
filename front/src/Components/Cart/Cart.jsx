@@ -76,6 +76,7 @@ return
 
   return (
     <>
+
 <Container className="mt-5 mb-5">
   <Table responsive="sm" bordered hover>
     <thead className="bg-main-sub text-white">
@@ -132,6 +133,7 @@ return
       <FontAwesomeIcon icon={faArrowRight} /> Proceed to Checkout
     </Button>
   </div>
+
 </Container>
 
         

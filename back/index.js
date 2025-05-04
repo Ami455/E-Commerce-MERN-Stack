@@ -3,6 +3,7 @@ const app = express()
 const port = 5555
 const morgan = require("morgan")
 const bodyParser = require("body-parser")
+const rareLimit = require("express-rate-limit");
 const userRouter = require("./routes/user.route")
 const {errorHandler} = require('./middleware/errorHandler.middleware')
 const sequelize = require("./db/sql.db.config")
@@ -41,7 +42,7 @@ const Category = require("./models/Category.model")
 // const  FurnitureProduct  = require('./models/index');
 
 // console.log(FurnitureProduct)
-
+app.use(rareLimit({ windowMs: 500 , max: 100})); // Limit each IP to 100 requests per 0.5sec
 app.use(errorHandler)
 app.use(cors({
   origin: `${process.env.REACT_LOCAL_HOST}`

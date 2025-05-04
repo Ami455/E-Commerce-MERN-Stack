@@ -19,7 +19,7 @@ const findCartProducts = async (req, res) => {
 
 
     if (!products.length) {
-       return res.status(200).json({ products, message: "Cart is empty" });
+        return res.status(200).json({ products, message: "Cart is empty" });
     }
 
     let totalPrice = 0;
@@ -27,7 +27,7 @@ const findCartProducts = async (req, res) => {
         totalPrice += product.CartProduct.quantity * product.price;
         //console.log(product.CartProduct.quantity, "*", product.price, totalPrice)
     });
-
+    totalPrice = parseFloat(totalPrice.toFixed(2));
     res.status(200).json({ products, totalPrice });
 };
 
@@ -87,7 +87,7 @@ const addProductToCart = async (req, res) => {
     } else {
         // If product doesn't exist in the cart, create a new entry in CartProduct table
         await CartProduct.create({ CartId, ProductId, quantity: finalQuantity });
-        
+
     }
 
 

@@ -7,36 +7,101 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FavoriteButton from '../../favorite/favoriteButton';
 import { useSelector } from 'react-redux';
-import './Details.css'; // We'll use this for CSS variables
+
+import ReviewForm from '../../Review/ReviewForm';
+import './Details.css';
 
 export default function Details() {
-  const location = useLocation();
-  const { productId } = location.state || {};
-  const [product, setProduct] = useState(null);
-  const [rating, setRating] = useState(0);
-  const [reviews, setReviews] = useState([]);
-  const { favoriteCount } = useSelector((state) => state.favorites);
-  const [isFavorite, setIsFavorite] = useState([]);
+    const location = useLocation();
+    const { productId } = location.state || {};
+    const [product, setProduct] = useState(null);
+    // console.log(productId)
+    const [rating, setRating] = useState(0);
+    const [reviews, setReviews] = useState([]);
+    const [bought, setBought] = useState(false);
+    const { favoriteCount } = useSelector((state) => state.favorites);
+    const { user, isAuthenticated } = useSelector((state) => state.auth);
 
-  const getIsFavorite = async () => {
-    try {
-      const res = await api.get(`${import.meta.env.VITE_FAVORITE_PRODUCTS}/${productId}`);
-      setIsFavorite(res.data.isFavorite);
-    } catch (err) {
-      console.error('Failed to fetch favorite:', err);
-    }
-  };
+    const [isFavorite, setIsFavorite] = useState([]);
+    const getIsFavorite = async () => {
 
-  const getRating = async () => {
-    try {
-      const res = await api.get(`${import.meta.env.VITE_REVIEW}/${productId}`);
-      const { reviews, averageRating } = res.data;
-      setRating(averageRating);
-      setReviews(reviews);
-    } catch (error) {
-      console.error('Failed to fetch average rating:', error);
+        try {
+            const res = await api.get(`${import.meta.env.VITE_FAVORITE_PRODUCTS}/${productId}`);
+            setIsFavorite(res.data.isFavorite);
+        } catch (err) {
+            console.error('Failed to fetch favorite:', err);
+        }
+    };
+    const getRating = async () => {
+        try {
+            const res = await api.get(`${import.meta.env.VITE_REVIEW}/${productId}`);
+            const { reviews, averageRating } = res.data;
+            setRating(averageRating);
+            setReviews(reviews)
+            console.log(reviews.length)
+            console.log(reviews)
+        }
+        catch (error) {
+            console.error('Failed to fetch average rating:', error);
+        }
     }
-  };
+    const [cart, setCart] = useState([]);
+
+    const getCart = async () => {
+        try {
+            const res = await api.get(`${import.meta.env.VITE_CARTPRODUCT}`);
+            setCart(res.data.products);
+        } catch (err) {
+            console.error('Failed to fetch cart:', err);
+        }
+    };
+
+
+    const getProductQuantity = (productId) => {
+        const cartItem = cart.find(item => item.id === productId);
+        return cartItem ? cartItem.CartProduct.quantity : 0;
+    };
+
+
+    const getData = async () => {
+        try {
+            const response = await api.get(
+                `${import.meta.env.VITE_PRODUCTS_LIST}/${productId}`
+            );
+            setProduct(response.data);
+        } catch (error) {
+            console.error("Failed to fetch product:", error);
+        }
+    };
+
+    const findProductInOrder = async () => {
+        try {
+
+            const response = await api.get(`${import.meta.env.VITE_ORDER_PRODUCT}/${productId}`);
+            setBought(response.data.bought);
+        } catch (error) {
+            console.error('Error fetching product in order:', error);
+        }
+    };
+
+
+
+    useEffect(() => {
+
+        if (productId) {
+
+            getData();
+            getRating();
+            getCart();
+            getIsFavorite();
+        }
+        if (isAuthenticated) { findProductInOrder() }
+    }, [productId, favoriteCount, isAuthenticated]);
+
+    if (!product) {
+        return <h3>Loading product details...</h3>;
+    }
+
 
   const [cart, setCart] = useState([]);
 
@@ -74,18 +139,19 @@ export default function Details() {
 
   if (!product) return <h3 className="text-center mt-5">Loading product details...</h3>;
 
-  const renderStars = (rating) => {
-    const full = Math.floor(rating);
-    const half = rating % 1 >= 0.5;
-    const empty = 5 - Math.ceil(rating);
-    return (
-      <>
-        {[...Array(full)].map((_, i) => <span key={`f${i}`} className="text-warning">★</span>)}
-        {half && <span className="text-warning">☆</span>}
-        {[...Array(empty)].map((_, i) => <span key={`e${i}`} className="text-muted">☆</span>)}
-      </>
-    );
-  };
+//   const renderStars = (rating) => {
+//     const full = Math.floor(rating);
+//     const half = rating % 1 >= 0.5;
+//     const empty = 5 - Math.ceil(rating);
+//     return (
+
+//       <>
+//         {[...Array(full)].map((_, i) => <span key={`f${i}`} className="text-warning">★</span>)}
+//         {half && <span className="text-warning">☆</span>}
+//         {[...Array(empty)].map((_, i) => <span key={`e${i}`} className="text-muted">☆</span>)}
+//       </>
+//     );
+//   };
 
   return (
     <div className="container my-5">
@@ -131,9 +197,10 @@ export default function Details() {
               </h6>
               <p className="mb-1">{rev.comment}</p>
               <div className="star-rating">
-                <span className="text-warning ">{renderStars(rev.rating)}</span>
+                <span className="text-warning "><RatingDisplay(rev.rating)/></span>
 
               </div>
+
             </div>
           </div>
         )) : (
