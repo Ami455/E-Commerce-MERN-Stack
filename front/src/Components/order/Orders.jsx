@@ -37,7 +37,7 @@ export default function Orders() {
   return (
     <>
       {orders.map((order) =>
-        <div className="container  mt-5 vh-100" key={order.id}>
+        <div className="container  mt-3 mb-3" key={order.id}>
           <Card>
             {/* <Card.Body> */}
             <Container className="mt-5 mb-5 ">

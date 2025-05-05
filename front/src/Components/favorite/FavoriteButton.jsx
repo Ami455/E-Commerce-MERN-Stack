@@ -31,7 +31,7 @@ export default function FavoriteButton({ favorite = false, productId }) {
             <button onClick={toggleFavorite} style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
                 {favorite ? (
 
-                    <FontAwesomeIcon icon={faHeartCircleBolt} style={{ color: 'red', fontSize: '30px' }} className="custom-icon" />
+                    <FontAwesomeIcon icon={faHeart} style={{ color: 'red', fontSize: '30px' }} className="custom-icon" />
                 ) : (
 
                     <FontAwesomeIcon icon={faHeart} style={{ fontSize: '30px' }} className="custom-icon" />

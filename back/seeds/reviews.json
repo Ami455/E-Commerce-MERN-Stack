@@ -1,0 +1,111 @@
+[
+    {
+      "userId": 1,
+      "productId": 1,
+      "rating": 5,
+      "review": "Absolutely love this sofa! It's super comfortable and fits perfectly in my living room. The quality is amazing, and it feels very premium."
+    },
+    {
+      "userId": 2,
+      "productId": 2,
+      "rating": 4,
+      "review": "Great quality table! It looks stunning and is exactly as described. I deducted one star because the assembly instructions could be a bit clearer."
+    },
+    {
+      "userId": 3,
+      "productId": 3,
+      "rating": 5,
+      "review": "This bed is perfect! It’s stylish and sturdy. Easy to assemble, and it gives my bedroom a modern look."
+    },
+    {
+      "userId": 4,
+      "productId": 4,
+      "rating": 4,
+      "review": "Love the rustic design! The wardrobe has ample space for all my clothes. It arrived with a small scratch, but it’s still great overall."
+    },
+    {
+      "userId": 5,
+      "productId": 5,
+      "rating": 5,
+      "review": "Such a beautiful mirror. It adds a lot of character to my entryway, and I love the minimalist design. Highly recommend!"
+    },
+    {
+      "userId": 6,
+      "productId": 6,
+      "rating": 4,
+      "review": "The bathtub is beautiful and exactly what I was looking for. The only downside is that it took longer to install than expected, but the quality is great."
+    },
+    {
+      "userId": 7,
+      "productId": 7,
+      "rating": 5,
+      "review": "The Malva set is absolutely gorgeous. Very comfortable and looks stunning in my living room. Worth every penny!"
+    },
+    {
+      "userId": 8,
+      "productId": 8,
+      "rating": 4,
+      "review": "Good quality sink with a modern design. It’s durable and easy to clean. Only issue was with the delivery time, but I’m happy with the product."
+    },
+    {
+      "userId": 9,
+      "productId": 9,
+      "rating": 5,
+      "review": "This lamp is perfect for my living room! It gives off a nice warm light and adds an elegant touch. Very pleased with my purchase."
+    },
+    {
+      "userId": 10,
+      "productId": 10,
+      "rating": 4,
+      "review": "Lovely trolley! It’s sturdy and stylish, but I expected it to be a bit bigger. Still, it’s great for serving drinks."
+    },
+    {
+      "userId": 11,
+      "productId": 11,
+      "rating": 5,
+      "review": "I absolutely adore this sofa! It’s so cozy and looks great in my living room. Perfect for lounging after a long day."
+    },
+    {
+      "userId": 12,
+      "productId": 12,
+      "rating": 4,
+      "review": "Nice table with a clean design. It’s very sturdy, but I would have liked it to be a little larger. Still, a great addition to my dining room."
+    },
+    {
+      "userId": 13,
+      "productId": 13,
+      "rating": 5,
+      "review": "This bed is everything I wanted! It’s modern, stylish, and very comfortable. It arrived in perfect condition, and I am extremely happy with it."
+    },
+    {
+      "userId": 14,
+      "productId": 14,
+      "rating": 4,
+      "review": "The wardrobe is good quality and looks great. It’s a bit smaller than I expected, but it fits well in my space."
+    },
+    {
+      "userId": 15,
+      "productId": 15,
+      "rating": 5,
+      "review": "I love this classic mirror! It’s elegant and adds a vintage touch to my hallway. Very happy with the purchase."
+    },
+    {
+      "userId": 16,
+      "productId": 16,
+      "rating": 5,
+      "review": "The rustic bathtub is exactly what I needed for my bathroom renovation. It’s spacious, looks great, and is very durable."
+    },
+    {
+      "userId": 17,
+      "productId": 17,
+      "rating": 5,
+      "review": "This 3-seater sofa is super comfortable and stylish. It fits perfectly in my living room, and I love the quality. Definitely recommend!"
+    },
+    {
+      "userId": 18,
+      "productId": 18,
+      "rating": 4,
+      "review": "The table is very sturdy, and the design is beautiful. It was easy to assemble, but I feel like the price could be a bit more competitive for what it offers."
+    }
+  ]
+  

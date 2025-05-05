@@ -129,7 +129,7 @@ export default function EditUser() {
           <Form.Control
             type="password"
             name="password"
-            value={formData.password}
+            // value={formData.password}
             onChange={handleInputChange}
             placeholder="Enter password"
           />

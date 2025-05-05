@@ -81,7 +81,8 @@ export default function Details() {
 
             const response = await api.get(`${import.meta.env.VITE_ORDER_PRODUCT}/${productId}`);
             setBought(response.data.bought);
-            console.log(response)
+      
+            console.log("bouaght", response.data)
         } catch (error) {
             console.error('Error fetching product in order:', error);
         }

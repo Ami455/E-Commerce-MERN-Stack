@@ -1,0 +1,165 @@
+[
+    {
+      "userName": "Amina",
+      "email": "amina@example.com",
+      "password": "amina123",
+      "phoneNumber": "+20 100 123 4567",
+      "birthDate": "1990-05-14",
+      "role": "admin",
+      "IsActive": true
+    },
+    {
+      "userName": "Selvia",
+      "email": "selvia@example.com",
+      "password": "selvia123",
+      "phoneNumber": "+20 101 456 7890",
+      "birthDate": "1988-11-23",
+      "role": "admin",
+      "IsActive": true
+    },
+    {
+      "userName": "Mai",
+      "email": "mai@example.com",
+      "password": "mai123",
+      "phoneNumber": "+20 102 789 0123",
+      "birthDate": "1992-03-30",
+      "role": "admin",
+      "IsActive": true
+    },
+    {
+      "userName": "Youssef",
+      "email": "youssef0@example.com",
+      "password": "user123",
+      "phoneNumber": "+20 100 111 2220",
+      "birthDate": "1995-07-20",
+      "role": "user",
+      "IsActive": true
+    },
+    {
+      "userName": "Laila",
+      "email": "laila1@example.com",
+      "password": "user123",
+      "phoneNumber": "+20 100 111 2221",
+      "birthDate": "1996-08-15",
+      "role": "user",
+      "IsActive": true
+    },
+    {
+      "userName": "Omar",
+      "email": "omar2@example.com",
+      "password": "user123",
+      "phoneNumber": "+20 100 111 2222",
+      "birthDate": "1997-01-11",
+      "role": "user",
+      "IsActive": true
+    },
+    {
+      "userName": "Sara",
+      "email": "sara3@example.com",
+      "password": "user123",
+      "phoneNumber": "+20 100 111 2223",
+      "birthDate": "1994-12-05",
+      "role": "user",
+      "IsActive": true
+    },
+    {
+      "userName": "Ahmed",
+      "email": "ahmed4@example.com",
+      "password": "user123",
+      "phoneNumber": "+20 100 111 2224",
+      "birthDate": "1993-04-17",
+      "role": "user",
+      "IsActive": true
+    },
+    {
+      "userName": "Farah",
+      "email": "farah5@example.com",
+      "password": "user123",
+      "phoneNumber": "+20 100 111 2225",
+      "birthDate": "1999-09-09",
+      "role": "user",
+      "IsActive": true
+    },
+    {
+      "userName": "Khaled",
+      "email": "khaled6@example.com",
+      "password": "user123",
+      "phoneNumber": "+20 100 111 2226",
+      "birthDate": "1989-06-21",
+      "role": "user",
+      "IsActive": true
+    },
+    {
+      "userName": "Mona",
+      "email": "mona7@example.com",
+      "password": "user123",
+      "phoneNumber": "+20 100 111 2227",
+      "birthDate": "1998-03-08",
+      "role": "user",
+      "IsActive": true
+    },
+    {
+      "userName": "Hassan",
+      "email": "hassan8@example.com",
+      "password": "user123",
+      "phoneNumber": "+20 100 111 2228",
+      "birthDate": "1990-10-10",
+      "role": "user",
+      "IsActive": true
+    },
+    {
+      "userName": "Nour",
+      "email": "nour9@example.com",
+      "password": "user123",
+      "phoneNumber": "+20 100 111 2229",
+      "birthDate": "1991-02-14",
+      "role": "user",
+      "IsActive": true
+    },
+    {
+      "userName": "Tarek",
+      "email": "tarek10@example.com",
+      "password": "user123",
+      "phoneNumber": "+20 100 111 2230",
+      "birthDate": "1993-06-30",
+      "role": "user",
+      "IsActive": true
+    },
+    {
+      "userName": "Dina",
+      "email": "dina11@example.com",
+      "password": "user123",
+      "phoneNumber": "+20 100 111 2231",
+      "birthDate": "1992-08-01",
+      "role": "user",
+      "IsActive": true
+    },
+    {
+      "userName": "Mostafa",
+      "email": "mostafa12@example.com",
+      "password": "user123",
+      "phoneNumber": "+20 100 111 2232",
+      "birthDate": "1994-07-03",
+      "role": "user",
+      "IsActive": true
+    },
+    {
+      "userName": "Salma",
+      "email": "salma13@example.com",
+      "password": "user123",
+      "phoneNumber": "+20 100 111 2233",
+      "birthDate": "1990-11-28",
+      "role": "user",
+      "IsActive": true
+    },
+    {
+      "userName": "Rami",
+      "email": "rami14@example.com",
+      "password": "user123",
+      "phoneNumber": "+20 100 111 2234",
+      "birthDate": "1996-04-22",
+      "role": "user",
+      "IsActive": true
+    }
+  ]
+  

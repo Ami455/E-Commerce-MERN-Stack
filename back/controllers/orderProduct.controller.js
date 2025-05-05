@@ -41,7 +41,8 @@ const findProductInAllOrders = async (req, res) => {
 
         },
     });
-    res.status(200).json({ bought: !!found });
+    
+    res.status(200).json({ bought: found.length > 0 });
 }
 
 const findAllOrdersAdmin = async (req, res) => {

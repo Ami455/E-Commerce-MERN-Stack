@@ -1,0 +1,166 @@
+
+
+[
+    {   "totalPrice": 9976.299,
+      "status": "pending",
+      "paymentMethod": "Credit Card",
+      "createdAt": "2025-05-05T04:28:42.247+03:00",
+      "updatedAt": "2025-05-05T04:28:42.247+03:00",
+      "userId": 1,
+      "addressId": 1
+    },
+    {   "totalPrice": 8352.303,
+      "status": "delivered",
+      "paymentMethod": "PayPal",
+      "createdAt": "2025-05-05T04:28:42.247+03:00",
+      "updatedAt": "2025-05-05T04:28:42.247+03:00",
+      "userId": 1,
+      "addressId": 2
+    },
+    {   "totalPrice": 16138.512,
+      "status": "processing",
+      "paymentMethod": "Cash on Delivery",
+      "createdAt": "2025-05-05T04:28:42.247+03:00",
+      "updatedAt": "2025-05-05T04:28:42.247+03:00",
+      "userId": 2,
+      "addressId": 3
+    },
+    {   "totalPrice": 4496.922,
+      "status": "cancelled",
+      "paymentMethod": "Credit Card",
+      "createdAt": "2025-05-05T04:28:42.247+03:00",
+      "updatedAt": "2025-05-05T04:28:42.247+03:00",
+      "userId": 3,
+      "addressId": 4
+    },
+    {   "totalPrice": 12376.600,
+      "status": "shipped",
+      "paymentMethod": "PayPal",
+      "createdAt": "2025-05-05T04:28:42.247+03:00",
+      "updatedAt": "2025-05-05T04:28:42.247+03:00",
+      "userId": 4,
+      "addressId": 5
+    },
+    {   "totalPrice": 4030.158,
+      "status": "pending",
+      "paymentMethod": "Credit Card",
+      "createdAt": "2025-05-05T04:28:42.247+03:00",
+      "updatedAt": "2025-05-05T04:28:42.247+03:00",
+      "userId": 5,
+      "addressId": 6
+    },
+    {   "totalPrice": 9808.889,
+      "status": "delivered",
+      "paymentMethod": "Cash on Delivery",
+      "createdAt": "2025-05-05T04:28:42.247+03:00",
+      "updatedAt": "2025-05-05T04:28:42.247+03:00",
+      "userId": 6,
+      "addressId": 7
+    },
+    {   "totalPrice": 1962.846,
+      "status": "pending",
+      "paymentMethod": "PayPal",
+      "createdAt": "2025-05-05T04:28:42.247+03:00",
+      "updatedAt": "2025-05-05T04:28:42.247+03:00",
+      "userId": 7,
+      "addressId": 8
+    },
+    {   "totalPrice": 2694.874,
+      "status": "shipped",
+      "paymentMethod": "Credit Card",
+      "createdAt": "2025-05-05T04:28:42.247+03:00",
+      "updatedAt": "2025-05-05T04:28:42.247+03:00",
+      "userId": 8,
+      "addressId": 9
+    },
+     {
+          "totalPrice": 5075.038,
+          "status": "processing",
+          "paymentMethod": "Cash on Delivery",
+          "createdAt": "2025-05-05T04:28:42.247+03:00",
+          "updatedAt": "2025-05-05T04:28:42.247+03:00",
+          "userId": 9,
+          "addressId": 10
+        },
+     {
+          "totalPrice": 4456.803,
+          "status": "pending",
+          "paymentMethod": "PayPal",
+          "createdAt": "2025-05-05T04:28:42.247+03:00",
+          "updatedAt": "2025-05-05T04:28:42.247+03:00",
+          "userId": 10,
+          "addressId": 11
+        },
+     {
+          "totalPrice": 8299.82,
+          "status": "shipped",
+          "paymentMethod": "Credit Card",
+          "createdAt": "2025-05-05T04:28:42.247+03:00",
+          "updatedAt": "2025-05-05T04:28:42.247+03:00",
+          "userId": 11,
+          "addressId": 12
+        },
+     {
+          "totalPrice": 4738.628,
+          "status": "delivered",
+          "paymentMethod": "Cash on Delivery",
+          "createdAt": "2025-05-05T04:28:42.247+03:00",
+          "updatedAt": "2025-05-05T04:28:42.247+03:00",
+          "userId": 12,
+          "addressId": 13
+        },
+     {
+          "totalPrice": 2737.13,
+          "status": "cancelled",
+          "paymentMethod": "PayPal",
+          "createdAt": "2025-05-05T04:28:42.247+03:00",
+          "updatedAt": "2025-05-05T04:28:42.247+03:00",
+          "userId": 13,
+          "addressId": 14
+        },
+     {
+          "totalPrice": 9259.25,
+          "status": "pending",
+          "paymentMethod": "Credit Card",
+          "createdAt": "2025-05-05T04:28:42.247+03:00",
+          "updatedAt": "2025-05-05T04:28:42.247+03:00",
+          "userId": 14,
+          "addressId": 15
+        },
+     {
+          "totalPrice": 3773.834,
+          "status": "processing",
+          "paymentMethod": "Cash on Delivery",
+          "createdAt": "2025-05-05T04:28:42.247+03:00",
+          "updatedAt": "2025-05-05T04:28:42.247+03:00",
+          "userId": 15,
+          "addressId": 16
+        },
+     {
+          "totalPrice": 2855.579,
+          "status": "shipped",
+          "paymentMethod": "Credit Card",
+          "createdAt": "2025-05-05T04:28:42.247+03:00",
+          "updatedAt": "2025-05-05T04:28:42.247+03:00",
+          "userId": 16,
+          "addressId": 17
+        },
+     {
+          "totalPrice": 7253.844,
+          "status": "pending",
+          "paymentMethod": "Cash on Delivery",
+          "createdAt": "2025-05-05T04:28:42.247+03:00",
+          "updatedAt": "2025-05-05T04:28:42.247+03:00",
+          "userId": 17,
+          "addressId": 18
+        },
+     {
+          "totalPrice": 10102.706,
+          "status": "delivered",
+          "paymentMethod": "PayPal",
+          "createdAt": "2025-05-05T04:28:42.247+03:00",
+          "updatedAt": "2025-05-05T04:28:42.247+03:00",
+          "userId": 18,
+          "addressId": 1
+        }
+      ]

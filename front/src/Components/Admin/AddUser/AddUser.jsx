@@ -72,7 +72,7 @@ export default function AddUser() {
                 <Form.Group className="mb-3">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
-                        type="text"
+                        type="password"
                         {...register("password", { required: true })}
                         placeholder="Enter password"
                     />
