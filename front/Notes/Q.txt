@@ -1,2 +1,0 @@
-1- how to fill background img in login page (screen size)
-2- return on res in back
