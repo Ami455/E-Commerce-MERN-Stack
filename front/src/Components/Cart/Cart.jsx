@@ -74,6 +74,7 @@ export default function Cart() {
 
   return (
     <>
+
       <Container className="mt-5 mb-5">
         <Table responsive="sm" bordered hover>
           <thead className="bg-main-sub text-white">

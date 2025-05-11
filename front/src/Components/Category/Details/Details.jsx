@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { api } from '../../../utils/api';
 import FavoriteButton from '../../favorite/favoriteButton';
+
 import RatingDisplay from '../../Review/RatingDisplay';
 import ReviewForm from '../../Review/ReviewForm';
 import CartButton from '../Products/CartButton/CartButton';
@@ -100,6 +101,7 @@ export default function Details() {
             getIsFavorite();
         }
         if (isAuthenticated) { findProductInOrder() }
+
     }, [productId, favoriteCount, isAuthenticated,refreshReviews])
 
   if (!product) return <h3 className="text-center mt-5">Loading product details...</h3>;
@@ -144,6 +146,7 @@ export default function Details() {
           <p className="text-muted">{product.description}</p>
 
           {/* Add to Cart */}
+
           <div className="mt-4">
             <CartButton
               product={product}
@@ -154,6 +157,7 @@ export default function Details() {
           </div>
         </div>
       </div>
+
 
       {/* Reviews Section */}
       <div className="mt-5">

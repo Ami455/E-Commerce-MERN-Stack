@@ -36,6 +36,7 @@ export default function Orders() {
 
   return (
     <>
+
       {orders.map((order) =>
         <div className="container  mt-3 mb-3" key={order.id}>
           <Card>
@@ -67,12 +68,14 @@ export default function Orders() {
             </Container>
           </Card>
           {/* {order.Products?.map(product => (
+
           <div key={product.id}>
               <p><strong>Name:</strong> {product.name}</p>
               <p><strong>Price:</strong> ${product.price}</p>
               <p><strong>Quantity:</strong> {product.OrderProduct?.quantity}</p>
           </div>
           ))} */}
+
 
           <Link to={`/order/${order.id}`} className="btn-main mt-3">
             See Order details
@@ -85,6 +88,7 @@ export default function Orders() {
         </div>
 
       )}
+
     </>
   );
 };

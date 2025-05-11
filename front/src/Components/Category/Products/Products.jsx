@@ -1,3 +1,4 @@
+
 // import React, { useEffect, useState } from 'react';
 // import ProductCard from '../../Card/ProductCard';
 // import CartButton from './CartButton/CartButton';
@@ -335,6 +336,7 @@
 
 
 
+
 import React, { useEffect, useState, useCallback } from 'react';
 import ProductCard from '../../Card/ProductCard';
 import CartButton from './CartButton/CartButton';
@@ -342,8 +344,10 @@ import { api } from '../../../utils/api';
 import { useSearchParams } from 'react-router-dom';
 import Pagination from 'react-bootstrap/Pagination';
 import FavoriteButton from '../../favorite/favoriteButton';
+
 import { useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap';
+
 import { useDebouncedCallback } from 'use-debounce';
 
 export default function Products() {
@@ -412,7 +416,9 @@ export default function Products() {
         setProducts([]);
       }
     } catch (err) {
-      setError('Failed to fetch products.');
+
+      setError(`Failed to fetch products.:${err}`);
+
       setProducts([]);
     }
   };
@@ -511,9 +517,11 @@ export default function Products() {
     let items = [];
     for (let number = 1; number <= totalPages; number++) {
       items.push(
+
         <Pagination.Item
           key={number}
           active={number === currentPage}
+
           onClick={() => setCurrentPage(number)}
         >
           {number}
@@ -523,6 +531,7 @@ export default function Products() {
 
     return (
       <Pagination className="justify-content-center mt-4">
+
         <Pagination.Prev
           onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
           disabled={currentPage === 1}
@@ -530,6 +539,7 @@ export default function Products() {
         {items}
         <Pagination.Next
           onClick={() => currentPage < totalPages && setCurrentPage(currentPage + 1)}
+
           disabled={currentPage === totalPages}
         />
       </Pagination>
@@ -538,6 +548,7 @@ export default function Products() {
 
   return (
     <>
+
 {error && <p className="text-danger text-center">{error}</p>}
 
 {/* Header Section */}
@@ -621,6 +632,7 @@ export default function Products() {
           <div className="d-grid">
             <button
               onClick={handleClearFilters}
+
               className="btn btn-outline-dark"
             >
               Clear Filters
@@ -629,7 +641,9 @@ export default function Products() {
         </div>
       </aside>
 
+
       {/* Products Grid */}
+
       <div className="col-12 col-md-8 col-lg-9">
 
         {/* Sort Dropdown */}
@@ -644,6 +658,7 @@ export default function Products() {
             <option value="price_desc">Price: High to Low</option>
             <option value="name_asc">Name: A to Z</option>
             <option value="name_desc">Name: Z to A</option>
+
             <option value="created_desc">Newest First</option>
             <option value="created_asc">Oldest First</option>
           </select>
@@ -692,3 +707,4 @@ export default function Products() {
     </>
   );
 }
+

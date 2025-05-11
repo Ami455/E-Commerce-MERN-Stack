@@ -89,6 +89,7 @@ export default function OrderDetail() {
                             </Accordion>
 
                             <Accordion className='mb-3'>
+
                                 <Accordion.Item eventKey="1" >
 
 
@@ -96,6 +97,7 @@ export default function OrderDetail() {
                                         <strong>Products Information</strong>
                                     </Accordion.Header>
                                     <Accordion.Body>
+
 
                                         <Table className=' bg-light-subtle'>
                                             <thead>

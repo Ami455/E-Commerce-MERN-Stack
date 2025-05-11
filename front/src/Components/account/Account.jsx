@@ -7,7 +7,9 @@ import toast from 'react-hot-toast';
 import { logout } from '../../store/slices/AuthSlices';
 import { clearCartCount } from '../../store/slices/CartSlice';
 import { clearFavoriteCount } from '../../store/slices/FavoriteSlices';
+
 import './Account.css';
+
 
 export default function Account() {
   const { register, handleSubmit, reset } = useForm();
