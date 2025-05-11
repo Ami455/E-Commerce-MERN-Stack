@@ -3,6 +3,12 @@ const { DataTypes } = require("sequelize")
 
 const Product = sequelize.define("Product", {
 
+    id:{
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
+
     name: {
         type: DataTypes.STRING,
         allowNull: false,

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { formDataApi } from '../../../utils/api';
 
 function useQuery() {
@@ -48,9 +48,9 @@ export default function SearchResults() {
                                     <h5 className="card-title">{product.name}</h5>
                                     <p className="card-text">{product.description || "No description available."}</p>
                                     <p className="card-text fw-bold">${product.price}</p>
-                                    <a href={`/product/${product.id}`} className="btn btn-primary">
+                                    <Link to="/category/details" state={{ productId: product.id }} className="btn btn-primary">
                                         View Details
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -61,86 +61,3 @@ export default function SearchResults() {
     );
 }
 
-
-
-
-//debounce for searchin
-
-// import React, { useEffect, useState } from 'react';
-// import { useLocation } from 'react-router-dom';
-// import { formDataApi } from '../../../utils/api';
-
-// function useQuery() {
-//     return new URLSearchParams(useLocation().search);
-// }
-
-// export default function SearchResults() {
-//     const query = useQuery();
-//     const search = query.get("search");
-//     const [products, setProducts] = useState([]);
-//     const [error, setError] = useState(null);
-//     const [debouncedSearch, setDebouncedSearch] = useState(search || ''); // State for debounced search term
-// // Debounce function
-// useEffect(() => {
-//     const timer = setTimeout(() => {
-//         setDebouncedSearch(search); // Set the search term after delay
-//     }, 500); // 500ms delay
-
-//     // Cleanup the timeout if the search term changes before the delay is over
-//     return () => clearTimeout(timer);
-// }, [search]); // Dependency array ensures it triggers only when 'search' changes
-
-//     useEffect(() => {
-//         const getProducts = async () => {
-//             try {
-//                 const res = await formDataApi.get(`${import.meta.env.VITE_PRODUCTS_LIST}`, { params: { search: debouncedSearch }  });
-//                 setProducts(res.data.items);
-//             } catch (err) {
-//                 setError("Failed to load products.");
-//             }
-//         };
-
-//         if (debouncedSearch) getProducts();
-//     }, [debouncedSearch]); // Trigger when debouncedSearch changes
-
-//     return (
-//         <div className="container mt-4">
-//             <h4>Search Results for "{debouncedSearch}":</h4>
-//             {error && <div className="alert alert-danger">{error}</div>}
-//             {products.length === 0 ? (
-//                 <p>No products found.</p>
-//             ) : (
-//                 <div className="row">
-//                     {products.map((product) => (
-//                         <div key={product.id} className="col-md-4 mb-4">
-//                             <div className="card h-100">
-//                                 {product.image && (
-//                                     <img
-//                                         src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`}
-//                                         className="card-img-top"
-//                                         alt={product.name}
-//                                         style={{ height: '200px', objectFit: 'cover' }}
-//                                     />
-//                                 )}
-//                                 <div className="card-body">
-//                                     <h5 className="card-title">{product.name}</h5>
-//                                     <p className="card-text">{product.description || "No description available."}</p>
-//                                     <p className="card-text fw-bold">${product.price}</p>
-//                                     <a href={`/product/${product.id}`} className="btn btn-primary">
-//                                         View Details
-//                                     </a>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     ))}
-//                 </div>
-//             )}
-//         </div>
-//     );
-// }
-
-
-
-    
-
-   

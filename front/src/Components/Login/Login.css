@@ -1,5 +1,5 @@
 .back{
-  background-color: #efeeee;
+  background-color: #c5c3c3;
 }
 
 .login-background {
@@ -17,8 +17,9 @@ padding: 10rem;
   background-color:  #FFC107;  
 }
 .container .ggg{
-  /* background-color: rgba(14, 28, 60, 0.1); */
-  color: #0e1c3c;}
+  background-color: rgba(14, 28, 60, 0.1);
+  color: #0e1c3c;
+}
 
 .login-title{
   border-bottom: 1px  solid rgba(167, 167, 167, .2);

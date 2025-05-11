@@ -108,13 +108,13 @@ export default function NavComponent({ count }) {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <button
+              {/* <button
                 type="submit"
-                className="btn position-absolute end-0 top-0 h-100 d-flex align-items-center justify-content-center"
+                className="btn position-absolute end-0 top-0 bg-black h-100 d-flex align-items-center justify-content-center"
                 style={{ background: 'transparent', border: 'none', color: 'white' }}
               >
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </button>
+              </button> */}
             </form>
 
             {/* Admin Dashboard */}

@@ -50,9 +50,9 @@ export default function List() {
 
     for (let number = 1; number <= totalPages; number++) {
       items.push(
-        <Pagination.Item 
-          key={number} 
-          active={number === currentPage} 
+        <Pagination.Item
+          key={number}
+          active={number === currentPage}
           onClick={() => setCurrentPage(number)}
         >
           {number}
@@ -62,13 +62,13 @@ export default function List() {
 
     return (
       <Pagination className="justify-content-center mt-4">
-        <Pagination.Prev 
-          onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)} 
+        <Pagination.Prev
+          onClick={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
           disabled={currentPage === 1}
         />
         {items}
-        <Pagination.Next 
-          onClick={() => currentPage < totalPages && setCurrentPage(currentPage + 1)} 
+        <Pagination.Next
+          onClick={() => currentPage < totalPages && setCurrentPage(currentPage + 1)}
           disabled={currentPage === totalPages}
         />
       </Pagination>
@@ -98,9 +98,9 @@ export default function List() {
             >
               <td>{product.id}</td>
               <td>
-                <img 
-                  src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`} 
-                  className='imageTable' 
+                <img
+                  src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`}
+                  className='imageTable'
                   alt={product.name}
                 />
               </td>

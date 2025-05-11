@@ -1,0 +1,26 @@
+[
+    { "userId": 1, "street": "12 Talaat Harb St", "city": "Cairo", "postalCode": "11511", "country": "Egypt" },
+    { "userId": 1, "street": "5 Nile Corniche", "city": "Giza", "postalCode": "12611", "country": "Egypt" },
+    { "userId": 2, "street": "20 Al Nasr Rd", "city": "Nasr City", "postalCode": "11765", "country": "Egypt" },
+    { "userId": 3, "street": "33 Abbas El Akkad", "city": "Nasr City", "postalCode": "11765", "country": "Egypt" },
+    { "userId": 4, "street": "55 El Maadi Corniche", "city": "Cairo", "postalCode": "11431", "country": "Egypt" },
+    { "userId": 4, "street": "7 El Mokattam St", "city": "Cairo", "postalCode": "11571", "country": "Egypt" },
+    { "userId": 5, "street": "8 Al Rehab Gate 9", "city": "New Cairo", "postalCode": "11841", "country": "Egypt" },
+    { "userId": 6, "street": "13 October 6 St", "city": "6th of October", "postalCode": "12568", "country": "Egypt" },
+    { "userId": 6, "street": "22 Al Haram St", "city": "Giza", "postalCode": "12111", "country": "Egypt" },
+    { "userId": 7, "street": "99 El Sheikh Zayed", "city": "Giza", "postalCode": "12588", "country": "Egypt" },
+    { "userId": 8, "street": "17 Port Said St", "city": "Alexandria", "postalCode": "21532", "country": "Egypt" },
+    { "userId": 9, "street": "4 Sidi Gaber Rd", "city": "Alexandria", "postalCode": "21521", "country": "Egypt" },
+    { "userId": 9, "street": "41 Sporting Club Rd", "city": "Alexandria", "postalCode": "21522", "country": "Egypt" },
+    { "userId": 10, "street": "27 El Mansoura Ave", "city": "Mansoura", "postalCode": "35516", "country": "Egypt" },
+    { "userId": 11, "street": "60 Zagazig Center", "city": "Zagazig", "postalCode": "44519", "country": "Egypt" },
+    { "userId": 12, "street": "100 Fayoum Main St", "city": "Fayoum", "postalCode": "63511", "country": "Egypt" },
+    { "userId": 13, "street": "2 Beni Suef University St", "city": "Beni Suef", "postalCode": "62511", "country": "Egypt" },
+    { "userId": 13, "street": "35 Nile Bridge", "city": "Beni Suef", "postalCode": "62512", "country": "Egypt" },
+    { "userId": 14, "street": "10 Assiut Central Rd", "city": "Assiut", "postalCode": "71511", "country": "Egypt" },
+    { "userId": 15, "street": "44 Sohag Downtown", "city": "Sohag", "postalCode": "82511", "country": "Egypt" },
+    { "userId": 16, "street": "87 Luxor East Bank", "city": "Luxor", "postalCode": "85511", "country": "Egypt" },
+    { "userId": 17, "street": "78 Aswan Nile Corniche", "city": "Aswan", "postalCode": "81511", "country": "Egypt" },
+    { "userId": 18, "street": "9 Hurghada Marina Blvd", "city": "Hurghada", "postalCode": "84511", "country": "Egypt" }
+  ]
+  

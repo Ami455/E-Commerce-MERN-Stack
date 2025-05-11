@@ -51,10 +51,8 @@ export default function Footer() {
             <h6 className="text-uppercase mb-3">Quick Links</h6>
             <ul className="list-unstyled">
               <li><Link to="/" style={linkStyle} onMouseEnter={hoverStyle} onMouseLeave={unhoverStyle}>Home</Link></li>
-              <li><Link to="/products" style={linkStyle} onMouseEnter={hoverStyle} onMouseLeave={unhoverStyle}>Shop Furniture</Link></li>
+              <li><Link to="/category/products" style={linkStyle} onMouseEnter={hoverStyle} onMouseLeave={unhoverStyle}>Shop Furniture</Link></li>
               <li><Link to="/about" style={linkStyle} onMouseEnter={hoverStyle} onMouseLeave={unhoverStyle}>Our Story</Link></li>
-              <li><Link to="/blog" style={linkStyle} onMouseEnter={hoverStyle} onMouseLeave={unhoverStyle}>Blog</Link></li>
-              <li><Link to="/contact" style={linkStyle} onMouseEnter={hoverStyle} onMouseLeave={unhoverStyle}>Contact Us</Link></li>
             </ul>
           </Col>
 
@@ -62,11 +60,11 @@ export default function Footer() {
           <Col xs={6} md={3} lg={3} className="mb-4">
             <h6 className="text-uppercase mb-3">Customer Service</h6>
             <ul className="list-unstyled">
-              <li><Link to="/track-order" style={linkStyle} onMouseEnter={hoverStyle} onMouseLeave={unhoverStyle}>Track Your Order</Link></li>
-              <li><Link to="/returns" style={linkStyle} onMouseEnter={hoverStyle} onMouseLeave={unhoverStyle}>Returns & Refunds</Link></li>
-              <li><Link to="/shipping" style={linkStyle} onMouseEnter={hoverStyle} onMouseLeave={unhoverStyle}>Shipping Info</Link></li>
-              <li><Link to="/privacy" style={linkStyle} onMouseEnter={hoverStyle} onMouseLeave={unhoverStyle}>Privacy Policy</Link></li>
-              <li><Link to="/terms" style={linkStyle} onMouseEnter={hoverStyle} onMouseLeave={unhoverStyle}>Terms & Conditions</Link></li>
+              <li><Link to="/orders" style={linkStyle} onMouseEnter={hoverStyle} onMouseLeave={unhoverStyle}>Track Your Order</Link></li>
+              <li>Returns & Refunds</li>
+              <li>Shipping Info</li>
+              <li>Privacy Policy</li>
+              <li>Terms & Conditions</li>
             </ul>
           </Col>
 

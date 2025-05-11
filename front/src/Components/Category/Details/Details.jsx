@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { api } from '../../../utils/api';
-import RatingDisplay from '../../Review/RatingDisplay';
-import CartButton from '../Products/CartButton/CartButton';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import FavoriteButton from '../../favorite/favoriteButton';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { api } from '../../../utils/api';
+import FavoriteButton from '../../favorite/favoriteButton';
 
+import RatingDisplay from '../../Review/RatingDisplay';
 import ReviewForm from '../../Review/ReviewForm';
-import './Details.css';
+import CartButton from '../Products/CartButton/CartButton';
+
+import './Details.css'; // We'll use this for CSS variables
 
 export default function Details() {
     const location = useLocation();
@@ -18,6 +19,7 @@ export default function Details() {
     // console.log(productId)
     const [rating, setRating] = useState(0);
     const [reviews, setReviews] = useState([]);
+    const [refreshReviews, setRefreshReviews] = useState(false);
     const [bought, setBought] = useState(false);
     const { favoriteCount } = useSelector((state) => state.favorites);
     const { user, isAuthenticated } = useSelector((state) => state.auth);
@@ -28,6 +30,7 @@ export default function Details() {
         try {
             const res = await api.get(`${import.meta.env.VITE_FAVORITE_PRODUCTS}/${productId}`);
             setIsFavorite(res.data.isFavorite);
+            console.log(isFavorite)
         } catch (err) {
             console.error('Failed to fetch favorite:', err);
         }
@@ -45,63 +48,7 @@ export default function Details() {
             console.error('Failed to fetch average rating:', error);
         }
     }
-    const [cart, setCart] = useState([]);
-
-    const getCart = async () => {
-        try {
-            const res = await api.get(`${import.meta.env.VITE_CARTPRODUCT}`);
-            setCart(res.data.products);
-        } catch (err) {
-            console.error('Failed to fetch cart:', err);
-        }
-    };
-
-
-    const getProductQuantity = (productId) => {
-        const cartItem = cart.find(item => item.id === productId);
-        return cartItem ? cartItem.CartProduct.quantity : 0;
-    };
-
-
-    const getData = async () => {
-        try {
-            const response = await api.get(
-                `${import.meta.env.VITE_PRODUCTS_LIST}/${productId}`
-            );
-            setProduct(response.data);
-        } catch (error) {
-            console.error("Failed to fetch product:", error);
-        }
-    };
-
-    const findProductInOrder = async () => {
-        try {
-
-            const response = await api.get(`${import.meta.env.VITE_ORDER_PRODUCT}/${productId}`);
-            setBought(response.data.bought);
-        } catch (error) {
-            console.error('Error fetching product in order:', error);
-        }
-    };
-
-
-
-    useEffect(() => {
-
-        if (productId) {
-
-            getData();
-            getRating();
-            getCart();
-            getIsFavorite();
-        }
-        if (isAuthenticated) { findProductInOrder() }
-    }, [productId, favoriteCount, isAuthenticated]);
-
-    if (!product) {
-        return <h3>Loading product details...</h3>;
-    }
-
+  
 
   const [cart, setCart] = useState([]);
 
@@ -119,62 +66,87 @@ export default function Details() {
     return cartItem ? cartItem.CartProduct.quantity : 0;
   };
 
-  const getData = async () => {
-    try {
-      const response = await api.get(`${import.meta.env.VITE_PRODUCTS_LIST}/${productId}`);
-      setProduct(response.data);
-    } catch (error) {
-      console.error("Failed to fetch product:", error);
-    }
-  };
+    const getData = async () => {
+        try {
+            const response = await api.get(
+                `${import.meta.env.VITE_PRODUCTS_LIST}/${productId}`
+            );
+            setProduct(response.data);
+        } catch (error) {
+            console.error("Failed to fetch product:", error);
+        }
+    };
 
-  useEffect(() => {
-    if (productId) {
-      getData();
-      getRating();
-      getCart();
-      getIsFavorite();
-    }
-  }, [productId, favoriteCount]);
+    const findProductInOrder = async () => {
+        try {
+
+            const response = await api.get(`${import.meta.env.VITE_ORDER_PRODUCT}/${productId}`);
+            setBought(response.data.bought);
+      
+            console.log("bouaght", response.data)
+        } catch (error) {
+            console.error('Error fetching product in order:', error);
+        }
+    };
+
+
+
+    useEffect(() => {
+
+        if (productId) {
+
+            getData();
+            getRating();
+            getCart();
+            getIsFavorite();
+        }
+        if (isAuthenticated) { findProductInOrder() }
+
+    }, [productId, favoriteCount, isAuthenticated,refreshReviews])
 
   if (!product) return <h3 className="text-center mt-5">Loading product details...</h3>;
 
-//   const renderStars = (rating) => {
-//     const full = Math.floor(rating);
-//     const half = rating % 1 >= 0.5;
-//     const empty = 5 - Math.ceil(rating);
-//     return (
-
-//       <>
-//         {[...Array(full)].map((_, i) => <span key={`f${i}`} className="text-warning">★</span>)}
-//         {half && <span className="text-warning">☆</span>}
-//         {[...Array(empty)].map((_, i) => <span key={`e${i}`} className="text-muted">☆</span>)}
-//       </>
-//     );
-//   };
+  
 
   return (
     <div className="container my-5">
-      <div className="row g-4 align-items-start">
-        <div className="col-md-6 position-relative">
-          <img
-            src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`}
-            alt={product.name}
-            className="img-fluid rounded shadow-sm w-100"
-          />
-          <div className="position-absolute top-0 end-0 m-4 ">
-          <FavoriteButton favorite={isFavorite} productId={productId} size="xxxl" />
+      {/* Product Info */}
+      <div className="row g-5 align-items-start">
+        
+        {/* Image */}
+        <div className="col-md-6">
+          <div className="position-relative shadow-lg rounded overflow-hidden ">
+            <img
+              src={`${import.meta.env.VITE_LOCAL_HOST}/uploads/${product.image}`}
+              alt={product.name}
+              className="img-fluid w-100 object-fit-cover"
+              style={{ borderRadius: '1rem' }}
+            />
           </div>
         </div>
+
+        {/* Product Details */}
         <div className="col-md-6">
-          <h1 className="text-main-sub">{product.name}</h1>
-          <h3 className="text-main">${product.price}</h3>
-          <p><strong>Category:</strong> {product.category}</p>
-          <p>
-            <strong>Rating:</strong> <span>{renderStars(rating)}</span> ({reviews.length} Reviews)
+          <div className="d-flex align-items-center justify-content-between">
+            <h1 className="fw-bold ">{product.name}</h1>
+            <FavoriteButton favorite={isFavorite} productId={productId} />
+          </div>
+
+          <h3 className="text-success fw-semibold my-3">${product.price}</h3>
+
+          <p className="mb-2">
+            <strong>Category:</strong> {product.category}
           </p>
-          <h5>Description</h5>
-          <p>{product.description}</p>
+
+          <p className="mb-2">
+            <strong>Rating:</strong> <RatingDisplay rating={rating} /> ({reviews.length} Reviews)
+          </p>
+
+          <h5 className="mt-4">Description</h5>
+          <p className="text-muted">{product.description}</p>
+
+          {/* Add to Cart */}
+
           <div className="mt-4">
             <CartButton
               product={product}
@@ -186,24 +158,39 @@ export default function Details() {
         </div>
       </div>
 
+
+      {/* Reviews Section */}
       <div className="mt-5">
-        <h3 className="text-main-sub">Customer Reviews</h3>
-        {reviews.length ? reviews.map((rev, i) => (
-          <div key={i} className="card my-3 shadow-sm">
-            <div className="card-body">
-              <h6 className="card-title">
-                <FontAwesomeIcon icon={faCircleUser} className="me-2 text-main-sub" />
-                {rev.user.userName}
-              </h6>
-              <p className="mb-1">{rev.comment}</p>
-              <div className="star-rating">
-                <span className="text-warning "><RatingDisplay(rev.rating)/></span>
-
-              </div>
-
+        {bought && (
+          <div className="mb-5">
+            <h3 className="fw-bold">My Review</h3>
+            <div className="w-25 w-md-50">
+              <ReviewForm
+                productId={productId}
+                onReviewSubmit={() => setRefreshReviews(prev => !prev)}
+              />
             </div>
           </div>
-        )) : (
+        )}
+
+        <h3 className="fw-bold mb-4">Customer Reviews</h3>
+
+        {reviews.length ? (
+          reviews.map((rev, i) => (
+            <div key={i} className="card mb-3 shadow-sm border-0">
+              <div className="card-body">
+                <h6 className="card-title fw-semibold">
+                  <FontAwesomeIcon icon={faCircleUser} className="me-2 text-primary" />
+                  {rev.user.userName}
+                </h6>
+                <p className="mb-2">{rev.comment}</p>
+                <div className="star-rating">
+                  <RatingDisplay rating={rev.rating} />
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
           <p className="text-muted">No reviews yet.</p>
         )}
       </div>

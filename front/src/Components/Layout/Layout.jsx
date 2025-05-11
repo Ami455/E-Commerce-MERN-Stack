@@ -15,7 +15,10 @@ export default function Layout() {
   return (
     <>
       <NavComponent />
-      <Outlet />
+      <section className='p-0 m-0 ' style={{minHeight:'455px'}}>
+      <Outlet  />
+      </section>
+      
       {!shouldHideFooter && <Footer />}
     </>
   );
